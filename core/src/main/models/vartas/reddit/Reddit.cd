@@ -30,7 +30,7 @@ public classdiagram Reddit {
         - Cache<String, Submission> submissions;
     }
 
-    public class Submission extends Snowflake{
+    public abstract class Submission extends Snowflake{
         - Optional<String> thumbnail;
         - Optional<String> linkFlairText;
         - Optional<String> content;
@@ -40,6 +40,15 @@ public classdiagram Reddit {
         - boolean nsfw;
         - boolean spoiler;
         - List<Comment> comments;
+
+        + abstract String getPermaLink();
+        + abstract String getShortLink();
+        + abstract String getQualifiedTitle();
+        /**
+         * The effective link to the submission. This can either be a link to the submission itself
+         * or a reference to the submitted instance (e.g. an image).
+         */
+        + abstract String getUrl();
     }
 
     public class Comment extends Snowflake{
