@@ -1,0 +1,128 @@
+{
+  "type" : "object",
+  "properties" : {
+    "accounts_active" : {
+      "description" : "Number of users active in last 15 minutes.",
+      "javaName" : "activeAccounts",
+      "type" : "integer"
+    },
+    "banner_img" : {
+      "description" : "Full URL to the banner image, or empty.",
+      "javaName" : "bannerImage",
+      "type" : "string"
+    },
+    "comment_score_hide_mins" : {
+      "description" : "Number of minutes the subreddit initially hides comment scores.",
+      "javaName" : "commentScoreHideMinutes",
+      "type" : "integer"
+    },
+    "description" : {
+      "description" : "Sidebar text.",
+      "type" : "integer"
+    },
+    "description_html" : {
+      "description" : "Sidebar text, escaped HTML format.",
+      "javaName" : "descriptionHtml",
+      "type" : "integer"
+    },
+    "display_name" : {
+      "description" : "Human readable name of the subreddit.",
+      "javaName" : "displayName",
+      "type" : "integer"
+    },
+    "header_img" : {
+      "description" : "Full URL to the header image, or {@code null} if none is set.",
+      "javaName" : "headerImage",
+      "type" : "integer"
+    },
+    "header_size" : {
+      "description" : "Width and height of the header image, or empty.",
+      "type" : "array",
+      "items" : {
+        "type" : "integer"
+      }
+    },
+    "header_title" : {
+      "description" : "Description of header image shown on hover, or {@code null} if none is set.",
+      "javaName" : "headerTitle",
+      "type" : "integer"
+    },
+    "icon_img" : {
+      "javaName" : "iconImage",
+      "type" : "string"
+    },
+    "over18" : {
+      "type" : "boolean"
+    },
+    "public_description" : {
+      "description" : "Description shown in subreddit search results?",
+      "javaName" : "publicDescription",
+      "type" : "string"
+    },
+    "public_traffic" : {
+      "description" : "Whether the subreddit's traffic page is publicly-accessible.",
+      "javaName" : "publicTraffic",
+      "type" : "boolean"
+    },
+    "subscribers" : {
+      "description" : "The number of redditors subscribed to this subreddit.",
+      "type" : "integer"
+    },
+    "submission_type" : {
+      "description" : "The type of submissions the subreddit allows - one of {@code any}, {@code link} or {@code self}.",
+      "javaName" : "submissionType",
+      "type" : "boolean"
+    },
+    "submit_link_label" : {
+      "description" : "The subreddit's custom label for the submit link button, if any. {@code null} is no custom label is set.",
+      "javaName" : "submitLinkLabel",
+      "type" : "boolean"
+    },
+    "submit_text_label" : {
+      "description" : "The subreddit's custom label for the submit text button, if any. {@code null} is no custom label is set.",
+      "javaName" : "submitTextLabel",
+      "type" : "boolean"
+    },
+    "subreddit_type" : {
+      "description" : "The subreddit's type - one of {@code public}, {@code private}, {@code restricted}, or in very special cases {@code gold_restricted}.",
+      "javaName" : "subredditType",
+      "type" : "string"
+    },
+    "title" : {
+      "description" : "Title of the main page.",
+      "type" : "string"
+    },
+    "url" : {
+      "description" : "The relative URL of the subreddit. Ex: \"/r/pics/\".",
+      "type" : "string"
+    },
+    "user_is_banned" : {
+      "description" : "Whether the logged-in user is banned from the subreddit. {@code null} in case of a user-less login.",
+      "javaName" : "userIsBanned",
+      "type" : "boolean"
+    },
+    "user_is_contributor" : {
+      "description" : "Whether the logged-in user is an approved submitter in the subreddit. {@code null} in case of a user-less login.",
+      "javaName" : "userIsContributor",
+      "type" : "boolean"
+    },
+    "user_is_moderator" : {
+      "description" : "Whether the logged-in user is a moderator of the subreddit. {@code null} in case of a user-less login.",
+      "javaName" : "userIsModerator",
+      "type" : "boolean"
+    },
+    "user_is_subscriber" : {
+      "description" : "Whether the logged-in user is subscribed to the subreddit. {@code null} in case of a user-less login.",
+      "javaName" : "userIsSubscriber",
+      "type" : "boolean"
+    },
+
+    "id" : {
+      "description" : "ID of the thing; prepend the kind to get fullname. e.g. t2_ in case of an accounts",
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    }
+  }
+}

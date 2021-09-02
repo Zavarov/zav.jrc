@@ -1,0 +1,25 @@
+{
+  "type" : "object",
+  "properties" : {
+    "rules" : {
+      "type": "array",
+      "items": {
+        "$ref": "Rule.json"
+      }
+    },
+    "site_rules" : {
+      "javaName" : "siteRules",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "site_rules_flow" : {
+      "javaName" : "siteRulesFlow",
+      "type": "array",
+      "items": {
+        "$ref": "NextStepReason.json"
+      }
+    }
+  }
+}

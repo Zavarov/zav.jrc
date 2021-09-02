@@ -1,0 +1,21 @@
+{
+  "type" : "object",
+  "properties" : {
+    "reasonTextToShow" : {
+      "type" : "string"
+    },
+    "reasonText" : {
+      "type" : "string"
+    },
+    "nextStepHeader" : {
+      "description" : "My guess is this entry is empty if getNextStepReasons is empty and vice versa.",
+      "type" : "string"
+    },
+    "nextStepReasons" : {
+      "type": "array",
+      "items": {
+        "$ref": "#"
+      }
+    }
+  }
+}

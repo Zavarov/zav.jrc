@@ -1,0 +1,39 @@
+{
+  "type" : "object",
+  "properties" : {
+    "over_18" : {
+      "javaName" : "over18",
+      "type" : "boolean"
+    },
+    "comment_karma" : {
+      "javaName" : "commentKarma",
+      "type" : "integer"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "created_utc" : {
+      "javaName" : "createdUtc",
+      "type" : "number"
+    },
+    "num_friends" : {
+      "javaName" : "numberOfFriends",
+      "type" : "integer"
+    },
+    "created" : {
+      "type" : "number"
+    },
+    "total_karma" : {
+      "javaName" : "totalKarma",
+      "type" : "integer"
+    },
+    "link_karma" : {
+      "javaName" : "linkKarma",
+      "type" : "integer"
+    },
+    "icon_img" : {
+      "javaName" : "iconImage",
+      "type" : "String"
+    }
+  }
+}

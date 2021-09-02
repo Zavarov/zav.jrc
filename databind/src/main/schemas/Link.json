@@ -1,0 +1,158 @@
+{
+  "type" : "object",
+  "properties" : {
+    "author" : {
+      "description" : "The account name of the poster. {@code null} if this is a promotional link.",
+      "type" : "string"
+    },
+    "author_flair_css_class" : {
+      "description" : "The CSS class of the author's flair. Subreddit specific. {@code null} if unflaired.",
+      "javaName" : "authorFlairCssClass",
+      "type" : "string"
+    },
+    "author_flair_text" : {
+      "description" : "The text of the author's flair. Subreddit specific. {@code null} if unflaired.",
+      "javaName" : "authorFlairText",
+      "type" : "string"
+    },
+    "clicked" : {
+      "description" : "Probably always returns false.",
+      "type" : "boolean"
+    },
+    "domain" : {
+      "description" : "The domain of this link. Self posts will be self.<subreddit> while other examples include {@code en.wikipedia.org} and {@code s3.amazon.com}.",
+      "type" : "string"
+    },
+    "hidden" : {
+      "description" : "{@code true} if the post is hidden by the logged in user. false if not logged in or not hidden.",
+      "type" : "boolean"
+    },
+    "is_self" : {
+      "description" : "{@code true} if this link is a selfpost.",
+      "javaName" : "isSelf",
+      "type" : "boolean"
+    },
+    "link_flair_css_class" : {
+      "description" : "The CSS class of the link's flair. {@code null} if link  is unflaired.",
+      "javaName" : "linkFlairCssClass",
+      "type" : "string"
+    },
+    "link_flair_text" : {
+      "description" : "The text of the link's flair. Subreddit specific. {@code null} if link is unflaired.",
+      "javaName" : "linkFlairText",
+      "type" : "string"
+    },
+    "locked" : {
+      "description" : "Whether the link is locked (closed to new comments) or not.",
+      "type" : "boolean"
+    },
+    "media" : {
+      "description" : "Used for streaming video. Detailed information about the video and it's origins are placed here."
+    },
+    "media_embed" : {
+      "description" : "Used for streaming video. Technical embed specific information is found here.",
+      "javaName" : "mediaEmbed"
+    },
+    "num_comments" : {
+      "description" : "The number of comments that belong to this link. Includes removed comments.",
+      "javaName" : "numberOfComments",
+      "type" : "integer"
+    },
+    "over_18" : {
+      "description" : "{@code true} if the post is tagged as NSFW. {@code false} if otherwise.",
+      "javaName" : "over18",
+      "type" : "boolean"
+    },
+    "permalink" : {
+      "description" : "Relative URL of the permanent link for this link.",
+      "type" : "string"
+    },
+    "saved" : {
+      "description" : "{@code true} if this post is saved by the logged in user.",
+      "type" : "boolean"
+    },
+    "score" : {
+      "description" : "The net-score of the link. Note: A submission's score is simply the number of upvotes minus the number of downvotes. If five users like the submission and three users don't it will have a score of 2. Please note that the vote numbers are not \"real\" numbers, they have been \"fuzzed\" to prevent spam bots etc. So taking the above example, if five users upvoted the submission, and three users downvote it, the upvote/downvote numbers may say 23 upvotes and 21 downvotes, or 12 upvotes, and 10 downvotes. The points score is correct, but the vote totals are \"fuzzed\".",
+      "type" : "integer"
+    },
+    "selftext" : {
+      "description" : "The raw text. This is the unformatted text which includes the raw markup characters such as ** for bold. &lt;, &gt;, and &amps; are escaped. {@code null} if not present.",
+      "type" : "string"
+    },
+    "selftext_html" : {
+      "description" : "The formatted escaped HTML text. This is the HTML formatted version of the marked up text. Items that are boldened by ** or *** will now have <em> or *** tags on them. Additionally, bullets and numbered lists will now be in HTML list format. NOTE: The HTML string will be escaped. You must unescape to get the raw HTML. {@code null} if not present.",
+      "javaName" : "selftextHtml",
+      "type" : "string"
+    },
+    "subreddit" : {
+      "description" : "Subreddit of thing excluding the /r/ prefix. e.g. \"pics\".",
+      "type" : "string"
+    },
+    "subreddit_id" : {
+      "description" : "The id of the subreddit in which the thing is located.",
+      "javaName" : "subredditId",
+      "type" : "string"
+    },
+    "thumbnail" : {
+      "description" : "Full URL to the thumbnail for this link. {@code null} if the link doesn't have a thumbnail.",
+      "type" : "string"
+    },
+    "title" : {
+      "description" : "The title of the link. May contain newlines for some reason.",
+      "type" : "string"
+    },
+    "url" : {
+      "description" : "The link of this post. the permalink if this is a self-post.",
+      "type" : "string"
+    },
+    "edited" : {
+      "description" : "Indicates if link has been edited. Will be the edit timestamp if the link has been edited and return empty otherwise.",
+      "type" : "number"
+    },
+    "distinguished" : {
+      "description" : "To allow determining whether they have been distinguished by moderators/admins.\n{@code null} = not distinguished.\nModerator = the green [M].\nAdmin = the red [A].\nSpecial = various other special distinguishes.\nsee http://redd.it/19ak1b",
+      "type" : "string"
+    },
+    "stickied" : {
+      "description" : "{@code true} if the post is set as the sticky in its subreddit.",
+      "type" : "boolean"
+    },
+    "spoiler" : {
+      "description" : "{@code true} if the post is marked as spoiler.",
+      "type" : "boolean"
+    },
+
+    "ups" : {
+      "description" : "The number of upvotes (includes own).",
+      "javaName" : "upvotes",
+      "type" : "integer"
+    },
+    "downs" : {
+      "description" : "The number of downvotes (includes own).",
+      "javaName" : "downvotes",
+      "type" : "integer"
+    },
+    "likes" : {
+      "description" : "{@code true} if thing is liked by the user, {@code false} if thing is disliked, {@code null} if the user has not voted or you are not logged in.",
+      "type" : "boolean"
+    },
+
+    "created" : {
+      "description" : "The time of creation in local epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "type" : "number"
+    },
+    "created_utc" : {
+      "description" : "The time of creation in UTC epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "javaName" : "createdUtc",
+      "type" : "number"
+    },
+
+    "id" : {
+      "description" : "ID of the thing; prepend the kind to get fullname. e.g. t2_ in case of an accounts",
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    }
+  }
+}

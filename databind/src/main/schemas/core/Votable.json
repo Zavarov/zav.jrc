@@ -1,0 +1,20 @@
+{
+  "description" : "All things that implement {@code votable} have these attributes.",
+  "type" : "object",
+  "properties" : {
+    "ups" : {
+      "description" : "The number of upvotes (includes own).",
+      "javaName" : "upvotes",
+      "type" : "integer"
+    },
+    "downs" : {
+      "description" : "The number of downvotes (includes own).",
+      "javaName" : "downvotes",
+      "type" : "integer"
+    },
+    "likes" : {
+      "description" : "{@code true} if thing is liked by the user, {@code false} if thing is disliked, {@code null} if the user has not voted or you are not logged in.",
+      "type" : "boolean"
+    }
+  }
+}

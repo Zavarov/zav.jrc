@@ -1,0 +1,142 @@
+{
+  "type" : "object",
+  "properties" : {
+    "approved_by" : {
+      "description" : "Who approved this comment. {@code null} if nobody or you are not a mod.",
+      "javaName" : "approvedBy",
+      "type" : "string"
+    },
+    "author" : {
+      "description" : "The account name of the poster.",
+      "type" : "string"
+    },
+    "author_flair_css_class" : {
+      "description" : "The CSS class of the author's flair. Subreddit specific. {@code null} if unflaired.",
+      "javaName" : "authorFlairCssClass",
+      "type" : "string"
+    },
+    "author_flair_text" : {
+      "description" : "The text of the author's flair. Subreddit specific. {@code null} if unflaired.",
+      "javaName" : "authorFlairText",
+      "type" : "string"
+    },
+    "banned_by" : {
+      "description" : "Who removed this comment. Subreddit specific. {@code null} if nobody or you are not a mod.",
+      "javaName" : "bannedBy",
+      "type" : "string"
+    },
+    "body" : {
+      "description" : "The raw text. This is the unformatted text which includes the raw markup characters such as ** for bold. &lt;, &gt;, and &amp; are escaped.",
+      "type" : "string"
+    },
+    "body_html" : {
+      "description" : "The formatted HTML text as displayed on Reddit. For example, text that is emphasised by * will now have <em> tags wrapping it. Additionally, bullets and numbered lists will now be in HTML list format. NOTE: The HTML string will be escaped. You must unescape to get the raw HTML.",
+      "javaName" : "bodyHtml",
+      "type" : "string"
+    },
+    "edited" : {
+      "description" : "Empty if not edited, edit date in UTC epoch-seconds otherwise.",
+      "type" : "number"
+    },
+    "gilded" : {
+      "description" : "The number of times this comment received Reddit gold.",
+      "type" : "integer"
+    },
+    "link_author" : {
+      "description" : "Present if the comment is being displayed outside its thread (user pages, /r/subreddit/comments/.json, etc.). Contains the author of the parent link.",
+      "javaName" : "linkAuthor",
+      "type" : "string"
+    },
+    "link_id" : {
+      "description" : "ID of the link this comment is in.",
+      "javaName" : "linkId",
+      "type" : "string"
+    },
+    "link_title" : {
+      "description" : "Present if the comment is being displayed outside its thread (user pages, /r/subreddit/comments/.json, etc.). Contains the title of the parent link.",
+      "javaName" : "linkTitle",
+      "type" : "string"
+    },
+    "link_url" : {
+      "description" : "Present if the comment is being displayed outside its thread (user pages, /r/subreddit/comments/.json, etc.). Contains the URL of the parent link.",
+      "javaName" : "linkUrl",
+      "type" : "string"
+    },
+    "num_reports" : {
+      "description" : "How many times this comment has been reported. {@code null} if not a mod.",
+      "javaName" : "numberOfReports",
+      "type" : "integer"
+    },
+    "parent_id" : {
+      "description" : "ID of the thing this comment is a reply to, either the link or a comment in it.",
+      "javaName" : "parentId",
+      "type" : "string"
+    },
+    "replies" : {
+      "description" : "A list of replies to this comment.",
+      "type" : "array",
+      "items" : {
+        "$ref" : "core/Thing.json"
+      }
+    },
+    "saved" : {
+      "description" : "{@code} if this post is saved by the logged in user.",
+      "type" : "boolean"
+    },
+    "score" : {
+      "description" : "The net-score of the comment.",
+      "type" : "integer"
+    },
+    "score_hidden" : {
+      "description" : "Whether the comment's score is currently hidden.",
+      "javaName" : "scoreHidden",
+      "type" : "boolean"
+    },
+    "subreddit" : {
+      "description" : "Subreddit of thing excluding the /r/ prefix. e.g. \"pics\".",
+      "type" : "string"
+    },
+    "subreddit_id" : {
+      "description" : "The ID of the subreddit in which the thing is located.",
+      "javaName" : "subredditId",
+      "type" : "string"
+    },
+    "distinguished" : {
+      "description" : "To allow determining whether they have been distinguished by moderators/admins.\n{@code null} = not distinguished.\nModerator = the green [M].\nAdmin = the red [A].\nSpecial = various other special distinguishes.\nsee http://redd.it/19ak1b",
+      "type" : "string"
+    },
+
+    "ups" : {
+      "description" : "The number of upvotes (includes own).",
+      "javaName" : "upvotes",
+      "type" : "integer"
+    },
+    "downs" : {
+      "description" : "The number of downvotes (includes own).",
+      "javaName" : "downvotes",
+      "type" : "integer"
+    },
+    "likes" : {
+      "description" : "{@code true} if thing is liked by the user, {@code false} if thing is disliked, {@code null} if the user has not voted or you are not logged in.",
+      "type" : "boolean"
+    },
+
+    "created" : {
+      "description" : "The time of creation in local epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "type" : "number"
+    },
+    "created_utc" : {
+      "description" : "The time of creation in UTC epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "javaName" : "createdUtc",
+      "type" : "number"
+    },
+
+    "id" : {
+      "description" : "ID of the thing; prepend the kind to get fullname. e.g. t2_ in case of an accounts",
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    }
+  }
+}

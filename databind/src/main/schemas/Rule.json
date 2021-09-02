@@ -1,0 +1,30 @@
+{
+  "type" : "object",
+  "properties" : {
+    "violation_reason" : {
+      "javaName" : "violationReason",
+      "type" : "string"
+    },
+    "created_utc" : {
+      "javaName" : "createdUtc",
+      "type" : "number"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "description_html" : {
+      "javaName" : "descriptionHtml",
+      "type" : "string"
+    },
+    "kind" : {
+      "type" : "string"
+    },
+    "priority" : {
+      "type" : "integer"
+    },
+    "short_name" : {
+      "javaName" : "shortName",
+      "type" : "string"
+    }
+  }
+}

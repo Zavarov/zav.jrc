@@ -1,0 +1,14 @@
+{
+  "type" : "object",
+  "properties" : {
+    "link" : {
+      "$ref": "Link.json"
+    },
+    "comments" : {
+      "type": "array",
+      "items": {
+        "$ref": "core/Thing.json"
+      }
+    }
+  }
+}

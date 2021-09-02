@@ -1,0 +1,14 @@
+{
+  "type" : "object",
+  "properties" : {
+    "source" : {
+      "$ref": "Link.json"
+    },
+    "duplicates" : {
+      "type": "array",
+      "items": {
+        "$ref": "Link.json"
+      }
+    }
+  }
+}

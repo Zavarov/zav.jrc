@@ -1,0 +1,20 @@
+{
+  "type" : "object",
+  "properties" : {
+    "data" : {
+      "javaType" : "UserListData",
+      "type" : "object",
+      "properties" : {
+        "children" : {
+          "type" : "array",
+          "items" : {
+            "$ref" : "User.json"
+          }
+        }
+      }
+    },
+    "kind" : {
+      "type"  : "string"
+    }
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "type" : "object",
+  "properties" : {
+    "comment_karma" : {
+      "javaName" : "commentKarma",
+      "type" : "integer"
+    },
+    "link_karma" : {
+      "javaName" : "linkKarma",
+      "type" : "integer"
+    },
+    "sr" : {
+      "javaName" : "subreddit",
+      "type" : "string"
+    }
+  }
+}

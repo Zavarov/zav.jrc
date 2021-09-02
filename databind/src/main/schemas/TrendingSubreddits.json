@@ -1,0 +1,19 @@
+{
+  "type" : "object",
+  "properties" : {
+    "comment_count" : {
+      "javaName" : "commentCount",
+      "type" : "integer"
+    },
+    "comment_url" : {
+      "javaName" : "commentUrl",
+      "type" : "string"
+    },
+    "subreddit_names" : {
+      "type" : "array",
+      "items" : {
+        "type" : "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "type" : "object",
+  "properties" : {
+    "accept_pms" : {
+      "javaName" : "acceptPrivateMessages",
+      "type" : "string"
+    },
+    "activity_relevant_ads" : {
+      "javaName" : "activityRelevantAds",
+      "type" : "boolean"
+    },
+    "allow_clicktracking" : {
+      "javaName" : "allowClickTracking",
+      "type" : "boolean"
+    },
+    "beta" : {
+      "type" : "boolean"
+    },
+    "clickgadget" : {
+      "type" : "boolean"
+    },
+    "collapse_left_bar" : {
+      "javaName" : "collapseLeftBar",
+      "type" : "boolean"
+    },
+    "collapse_read_messages" : {
+      "javaName" : "collapseReadMessages",
+      "type" : "boolean"
+    },
+    "compress" : {
+      "type" : "boolean"
+    },
+    "default_comment_sort" : {
+      "javaName" : "defaultCommentSort",
+      "type" : "string"
+    },
+    "default_theme_sr" : {
+      "javaName" : "defaultThemeSubreddit"
+    },
+    "design_beta" : {
+      "javaName" : "designBeta",
+      "type" : "boolean"
+    },
+    "domain_details" : {
+      "javaName" : "domainDetails",
+      "type" : "boolean"
+    },
+    "email_chat_request" : {
+      "javaName" : "emailChatRequest",
+      "type" : "boolean"
+    },
+    "email_comment_reply" : {
+      "javaName" : "emailCommentReply",
+      "type" : "boolean"
+    },
+    "email_digests" : {
+      "javaName" : "emailDigest",
+      "type" : "boolean"
+    },
+    "email_messages" : {
+      "javaName" : "emailMessages",
+      "type" : "boolean"
+    },
+    "email_post_reply" : {
+      "javaName" : "emailPostReply",
+      "type" : "boolean"
+    },
+    "email_private_message" : {
+      "javaName" : "emailPrivateMessage",
+      "type" : "boolean"
+    },
+    "email_unsubscribe_all" : {
+      "javaName" : "emailUnsubscribeAll",
+      "type" : "boolean"
+    },
+    "email_upvote_comment" : {
+      "javaName" : "emailUpvoteComment",
+      "type" : "boolean"
+    },
+    "email_upvote_post" : {
+      "javaName" : "emailUpvotePost",
+      "type" : "boolean"
+    },
+    "email_user_new_follower" : {
+      "javaName" : "emailUserNewFollower",
+      "type" : "boolean"
+    },
+    "email_username_mention" : {
+      "javaName" : "emailUsernameMention",
+      "type" : "boolean"
+    },
+    "enable_default_themes" : {
+      "javaName" : "enableDefaultThemes",
+      "type" : "boolean"
+    },
+    "feed_recommendations_enabled" : {
+      "javaName" : "feedRecommendationsEnabled",
+      "type" : "boolean"
+    },
+    "geopopular" : {
+      "type" : "string"
+    },
+    "hide_ads" : {
+      "javaName" : "hidsAds",
+      "type" : "boolean"
+    },
+    "hide_downs" : {
+      "javaName" : "hideDowns",
+      "type" : "boolean"
+    },
+    "hide_from_robots" : {
+      "javaName" : "hideFromRobots",
+      "type" : "boolean"
+    },
+    "hide_ups" : {
+      "javaName" : "hideUps",
+      "type" : "boolean"
+    },
+    "highlight_controversial" : {
+      "javaName" : "highlightControversial",
+      "type" : "boolean"
+    },
+    "highlight_new_comments" : {
+      "javaName" : "highlightNewComments",
+      "type" : "boolean"
+    },
+    "ignore_suggested_sort" : {
+      "javaName" : "ignoreSuggestedSort",
+      "type" : "boolean"
+    },
+    "label_nsfw" : {
+      "javaName" : "labelNsfw",
+      "type" : "boolean"
+    },
+    "lang" : {
+      "javaName" : "language",
+      "type" : "string"
+    },
+    "layout" : {
+      "type" : "integer"
+    },
+    "legacy_search" : {
+      "javaName" : "legacySearch",
+      "type" : "boolean"
+    },
+    "live_orangereds" : {
+      "javaName" : "liveOrangereds",
+      "type" : "boolean"
+    },
+    "mark_messages_read" : {
+      "javaName" : "markMessagesRead",
+      "type" : "boolean"
+    },
+    "media" : {
+      "type" : "string"
+    },
+    "media_preview" : {
+      "javaName" : "mediaPreview",
+      "type" : "string"
+    },
+    "min_comment_score" : {
+      "javaName" : "minCommentScore",
+      "type" : "integer"
+    },
+    "min_link_score" : {
+      "javaName" : "minLinkScore",
+      "type" : "integer"
+    },
+    "monitor_mentions" : {
+      "javaName" : "monitorMentions",
+      "type" : "boolean"
+    },
+    "newwindow" : {
+      "javaName" : "newWindow",
+      "type" : "boolean"
+    },
+    "nightmode" : {
+      "type" : "boolean"
+    },
+    "no_profanity" : {
+      "javaName" : "noProfanity",
+      "type" : "boolean"
+    },
+    "num_comments" : {
+      "javaName" : "numberOfComments",
+      "type" : "integer"
+    },
+    "numsites" : {
+      "javaName" : "numberOfSites",
+      "type" : "integer"
+    },
+    "over_18" : {
+      "javaName" : "over18",
+      "type" : "boolean"
+    },
+    "private_feeds" : {
+      "javaName" : "privateFeeds",
+      "type" : "boolean"
+    },
+    "profile_opt_out" : {
+      "javaName" : "profileOptOut",
+      "type" : "boolean"
+    },
+    "public_server_seconds" : {
+      "javaName" : "publicServerSeconds",
+      "type" : "boolean"
+    },
+    "public_votes" : {
+      "javaName" : "publicVotes",
+      "type" : "boolean"
+    },
+    "research" : {
+      "type" : "boolean"
+    },
+    "search_include_over_18" : {
+      "javaName" : "searchIncludeOver18",
+      "type" : "boolean"
+    },
+    "send_crosspost_messages" : {
+      "javaName" : "sendCrosspostMessages",
+      "type" : "boolean"
+    },
+    "send_welcome_messages" : {
+      "javaName" : "sendWelcomeMessages",
+      "type" : "boolean"
+    },
+    "show_flair" : {
+      "javaName" : "showFlair",
+      "type" : "boolean"
+    },
+    "show_gold_expiration" : {
+      "javaName" : "showGoldExpiration",
+      "type" : "boolean"
+    },
+    "show_link_flair" : {
+      "javaName" : "showLinkFlair",
+      "type" : "boolean"
+    },
+    "show_location_based_recommendations" : {
+      "javaName" : "showLocationBasedRecommendations",
+      "type" : "boolean"
+    },
+    "show_presence" : {
+      "javaName" : "showPresence",
+      "type" : "boolean"
+    },
+    "show_snoovatar" : {
+      "javaName" : "showSnoovatar",
+      "type" : "boolean"
+    },
+    "show_stylesheets" : {
+      "javaName" : "showStylesheets",
+      "type" : "boolean"
+    },
+    "show_trending" : {
+      "javaName" : "showTrending",
+      "type" : "boolean"
+    },
+    "show_twitter" : {
+      "javaName" : "showTwitter",
+      "type" : "boolean"
+    },
+    "store_visits" : {
+      "javaName" : "storeVisits",
+      "type" : "boolean"
+    },
+    "survey_last_seen_time" : {
+      "javaName" : "surveyLastSeenTime",
+      "type" : "integer"
+    },
+    "third_party_data_personalized_ads" : {
+      "javaName" : "thirdPartyDataPersonalizedAds",
+      "type" : "boolean"
+    },
+    "third_party_personalized_ads" : {
+      "javaName" : "thirdPartyPersonalizedAds",
+      "type" : "boolean"
+    },
+    "third_party_site_data_personalized_ads" : {
+      "javaName" : "thirdPartySiteDataPersonalizedAds",
+      "type" : "boolean"
+    },
+    "third_party_site_data_personalized_content" : {
+      "javaName" : "thirdPartySiteDataPersonalizedContent",
+      "type" : "boolean"
+    },
+    "threaded_messages" : {
+      "javaName" : "threadedMessages",
+      "type" : "boolean"
+    },
+    "threaded_modmail" : {
+      "javaName" : "topKarmaSubreddits",
+      "type" : "boolean"
+    },
+    "top_karma_subreddits" : {
+      "javaName" : "threadedModmail",
+      "type" : "boolean"
+    },
+    "use_global_defaults" : {
+      "javaName" : "useGlobalDefaults",
+      "type" : "boolean"
+    },
+    "video_autoplay" : {
+      "javaName" : "videoAutoplay",
+      "type" : "boolean"
+    },
+    "creddit_autorenew" : {
+      "javaName" : "credditAutorenew",
+      "type" : "boolean"
+    },
+    "theme_selector" : {
+      "javaName" : "themeSelector",
+      "type" : "string"
+    },
+    "in_redesign_beta" : {
+      "javaName" : "inRedesignBeta",
+      "type" : "boolean"
+    },
+    "other_theme" : {
+      "javaName" : "otherTheme",
+      "type" : "string"
+    },
+    "organic" : {
+      "type" : "boolean"
+    },
+    "show_promote" : {
+      "javaName" : "showPromote",
+      "type" : "boolean"
+    }
+  }
+}

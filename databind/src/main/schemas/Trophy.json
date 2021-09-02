@@ -1,0 +1,33 @@
+{
+  "type" : "object",
+  "properties" : {
+    "icon_70" : {
+      "javaName" : "icon70",
+      "type" : "string"
+    },
+    "granted_at" : {
+      "javaName" : "grantedAt",
+      "type" : "number"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "id" : {
+      "type" : "string"
+    },
+    "url" : {
+      "type" : "string"
+    },
+    "icon_40" : {
+      "javaName" : "icon40",
+      "type" : "string"
+    },
+    "award_id" : {
+      "javaName" : "awardId",
+      "type" : "string"
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "type" : "object",
+  "properties" : {
+    "comment_karma" : {
+      "description" : "User's comment karma.",
+      "javaName" : "commentKarma",
+      "type" : "integer"
+    },
+    "has_mail" : {
+      "description" : "User has unread mail? {@code null} if not your account.",
+      "javaName" : "hasMail",
+      "type" : "boolean"
+    },
+    "has_mod_mail" : {
+      "description" : "User has unread mod mail? {@code null} if not your account.",
+      "javaName" : "hasModMail",
+      "type" : "boolean"
+    },
+    "has_verified_email" : {
+      "description" : "User has provided an email address and got it verified?",
+      "javaName" : "hasVerifiedEmail",
+      "type" : "boolean"
+    },
+    "inbox_count" : {
+      "description" : "Number of unread messages in the inbox. Empty if not your account.",
+      "javaName" : "inboxCount",
+      "type" : "integer"
+    },
+    "is_friend" : {
+      "description" : "Whether the logged-in user has this user set as a friend.",
+      "javaName" : "isFriend",
+      "type" : "boolean"
+    },
+    "is_gold" : {
+      "description" : "Reddit gold status.",
+      "javaName" : "isGoldMember",
+      "type" : "boolean"
+    },
+    "is_mod" : {
+      "description" : "Whether this account moderates any subreddits.",
+      "javaName" : "isMod",
+      "type" : "boolean"
+    },
+    "link_karma" : {
+      "description" : "User's link karma.",
+      "javaName" : "linkKarma",
+      "type" : "integer"
+    },
+    "modhash" : {
+      "description" : "Current modhash. {@code null} if not your account.",
+      "javaName" : "modHash",
+      "type" : "string"
+    },
+    "over_18" : {
+      "description" : "Whether this account is set to be over 18.",
+      "javaName" : "over18",
+      "type" : "boolean"
+    },
+    "has_subscribed" : {
+      "description" : "Whether this account is subscribed to at least one subreddit.",
+      "javaName" : "hasSubscribed",
+      "type" : "boolean"
+    },
+    "awarder_karma" : {
+      "description" : "How much karma has been gained by giving awards to other users.",
+      "javaName" : "awarderKarma",
+      "type" : "integer"
+    },
+    "awardee_karma" : {
+      "description" : "How much karma has been received from awards given by other users.",
+      "javaName" : "awardeeKarma",
+      "type" : "integer"
+    },
+    "icon_img" : {
+      "description" : "The URL of the profile picture.",
+      "javaName" : "iconImage",
+      "type" : "string"
+    },
+    "total_karma" : {
+      "description" : "The link and comment karma combined.",
+      "javaName" : "totalKarma",
+      "type" : "integer"
+    },
+    "verified" : {
+      "description" : "Is this user verified? e.g. via email.",
+      "type" : "boolean"
+    },
+    "is_employee" : {
+      "description" : "Is this user a Reddit employee?",
+      "javaName" : "isEmployee",
+      "type" : "boolean"
+    },
+    "accept_chats" : {
+      "description" : "Does the user accept chat requests?",
+      "javaName" : "acceptChats",
+      "type" : "boolean"
+    },
+    "accept_pms" : {
+      "description" : "Does the user accept private messages?",
+      "javaName" : "acceptPrivateMessages",
+      "type" : "boolean"
+    },
+
+    "created" : {
+      "description" : "The time of creation in local epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "type" : "number"
+    },
+    "created_utc" : {
+      "description" : "The time of creation in UTC epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "javaName" : "createdUtc",
+      "type" : "number"
+    },
+
+    "id" : {
+      "description" : "ID of the thing; prepend the kind to get fullname. e.g. t2_ in case of an accounts",
+      "type" : "string"
+    },
+    "name" : {
+      "type" : "string"
+    }
+  }
+}

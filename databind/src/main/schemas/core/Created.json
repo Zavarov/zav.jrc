@@ -1,0 +1,15 @@
+{
+  "description" : "All things that implement {@code created} have these attributes.",
+  "type" : "object",
+  "properties" : {
+    "created" : {
+      "description" : "The time of creation in local epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "type" : "number"
+    },
+    "created_utc" : {
+      "description" : "The time of creation in UTC epoch-second format. Note that neither of these ever have a non-zero fraction. ex: 1331042771.0",
+      "javaName" : "createdUtc",
+      "type" : "number"
+    }
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "description" : "The base class for all Reddit objects.",
+  "type" : "object",
+  "properties" : {
+    "id" : {
+      "description" : "This item's identifier, e.g. \"8xwlg\".",
+      "type" : "string"
+    },
+    "name" : {
+      "description" : "Fullname of comment, e.g. \"t1_c3v7f8u\".",
+      "type" : "string"
+    },
+    "kind" : {
+      "description" : "All things have a kind. The kind is a String identifier that denotes the object's type. Some examples: Listing, more, t1, t2.",
+      "type" : "string"
+    },
+    "data" : {
+      "description" : "A custom data structure used to hold valuable information. This object's format will follow the data structure respective of its kind."
+    }
+  }
+}

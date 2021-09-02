@@ -1,0 +1,19 @@
+{
+  "type" : "object",
+  "properties" : {
+    "date" : {
+      "type" : "number"
+    },
+    "name" : {
+      "type" : "string"
+    },
+    "rel_id" : {
+      "javaName" : "id",
+      "type" : "string"
+    },
+    "id" : {
+      "javaName" : "userId",
+      "type" : "string"
+    }
+  }
+}
