@@ -95,6 +95,13 @@ public final class Account {
   public static final Endpoint GET_API_V1_ME_PREFS =
         new Endpoint("api", "v1", "me", "prefs");
   /**
+   * Update the preference settings of the logged in user.<p/>
+   *
+   * @see <a href="https://www.reddit.com/dev/api#PATCH_api_v1_me_prefs">here</a>
+   */
+  public static final Endpoint PATCH_API_V1_ME_PREFS =
+        new Endpoint("api", "v1", "me", "prefs");
+  /**
    * Return a list of trophies for the current user.<p/>
    * This endpoint is a {@link TrophyList}.
    *
