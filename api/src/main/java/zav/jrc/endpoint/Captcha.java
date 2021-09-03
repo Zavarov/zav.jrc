@@ -35,5 +35,6 @@ public final class Captcha {
    * @deprecated Reddit no longer requires captchas and thus this endpoint returns 403
    */
   @Deprecated
-  public static final Endpoint GET_NEEDS_CAPTCHA = new Endpoint("api", "needs_captcha");
+  public static final Endpoint GET_API_NEEDS_CAPTCHA =
+        new Endpoint("api", "needs_captcha");
 }

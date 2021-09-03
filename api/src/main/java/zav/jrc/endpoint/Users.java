@@ -29,7 +29,8 @@ public class Users {
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_block_user">here</a>
    */
-  public static final Endpoint POST_BLOCK_USER = new Endpoint("api", "block_user");
+  public static final Endpoint POST_API_BLOCK_USER =
+        new Endpoint("api", "block_user");
   /**
    * Create a relationship between a user and another user or subreddit.<p/>
    * OAuth2 use requires appropriate scope based on the 'type' of the relationship:
@@ -47,9 +48,10 @@ public class Users {
    * Complement to #POST_SUBREDDIT_UNFRIEND
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_friend">here</a>
-   * @see #POST_SUBREDDIT_UNFRIEND
+   * @see #POST_R_SUBREDDIT_API_UNFRIEND
    */
-  public static final Endpoint POST_SUBREDDIT_FRIEND = new Endpoint("r", "{subreddit}", "api", "friend");
+  public static final Endpoint POST_R_SUBREDDIT_API_FRIEND =
+        new Endpoint("r", "{subreddit}", "api", "friend");
   /**
    * Create a relationship between a user and another user or subreddit.<p/>
    * OAuth2 use requires appropriate scope based on the 'type' of the relationship:
@@ -67,27 +69,31 @@ public class Users {
    * Complement to #POST_UNFRIEND
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_friend">here</a>
-   * @see #POST_UNFRIEND
+   * @see #POST_API_UNFRIEND
    */
-  public static final Endpoint POST_FRIEND = new Endpoint("api", "friend");
+  public static final Endpoint POST_API_FRIEND =
+        new Endpoint("api", "friend");
   /**
    * Report a user. Reporting a user brings it to the attention of a Reddit admin.
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_report_user">here</a>
    */
-  public static final Endpoint POST_REPORT_USER = new Endpoint("api", "report_user");
+  public static final Endpoint POST_API_REPORT_USER =
+        new Endpoint("api", "report_user");
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_setpermissions">here</a>
    */
-  public static final Endpoint POST_SUBREDDIT_SETPERMISSION = new Endpoint("r", "{subreddit}", "api", "setpermission");
+  public static final Endpoint POST_R_SUBREDDIT_API_SETPERMISSION =
+        new Endpoint("r", "{subreddit}", "api", "setpermission");
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_setpermissions">here</a>
    */
-  public static final Endpoint POST_SETPERMISSION = new Endpoint("api", "setpermission");
+  public static final Endpoint POST_API_SETPERMISSION =
+        new Endpoint("api", "setpermission");
   /**
    * Remove a relationship between a user and another user or subreddit.<p/>
    * The user can either be passed in by name (nuser) or by fullname (iuser). If type is friend or enemy, 'container'
@@ -108,9 +114,10 @@ public class Users {
    * Complement to #POST_SUBREDDIT_FRIEND
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_unfriend">here</a>
-   * @see #POST_SUBREDDIT_FRIEND
+   * @see #POST_R_SUBREDDIT_API_FRIEND
    */
-  public static final Endpoint POST_SUBREDDIT_UNFRIEND = new Endpoint("r", "{subreddit}", "api", "unfriend");
+  public static final Endpoint POST_R_SUBREDDIT_API_UNFRIEND =
+        new Endpoint("r", "{subreddit}", "api", "unfriend");
   /**
    * Remove a relationship between a user and another user or subreddit.<p/>
    * The user can either be passed in by name (nuser) or by fullname (iuser). If type is friend or
@@ -134,33 +141,38 @@ public class Users {
    * Complement to #POST_FRIEND
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_unfriend">here</a>
-   * @see #POST_FRIEND
+   * @see #POST_API_FRIEND
    */
-  public static final Endpoint POST_UNFRIEND = new Endpoint("api", "unfriend");
+  public static final Endpoint POST_API_UNFRIEND =
+        new Endpoint("api", "unfriend");
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_user_data_by_account_ids">here</a>
    */
-  public static final Endpoint GET_USER_DATA_BY_ACCOUNT_IDS = new Endpoint("api", "user_data_by_account_ids");
+  public static final Endpoint GET_API_USER_DATA_BY_ACCOUNT_IDS =
+        new Endpoint("api", "user_data_by_account_ids");
   /**
    * Check whether a username is available for registration.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_username_available">here</a>
    */
-  public static final Endpoint GET_USERNAME_AVAILABLE = new Endpoint("api", "username_available");
+  public static final Endpoint GET_API_USERNAME_AVAILABLE =
+        new Endpoint("api", "username_available");
   /**
    * Stop being friends with a user.
    *
    * @see <a href="https://www.reddit.com/dev/api#DELETE_api_v1_me_friends_%28username%29">here</a>
    */
-  public static final Endpoint DELETE_ME_FRIENDS_USERNAME = new Endpoint("api", "v1", "me", "friends", "{username}");
+  public static final Endpoint DELETE_API_V1_ME_FRIENDS_USERNAME =
+        new Endpoint("api", "v1", "me", "friends", "{username}");
   /**
    * Get information about a specific 'friend', such as notes.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_friends_%28username%29">here</a>
    */
-  public static final Endpoint GET_ME_FRIENDS_USERNAME = new Endpoint("api", "v1", "me", "friends", "{username}");
+  public static final Endpoint GET_API_V1_ME_FRIENDS_USERNAME =
+        new Endpoint("api", "v1", "me", "friends", "{username}");
   /**
    * Create or update a "friend" relationship.<p/>
    * This operation is idempotent. It can be used to add a new friend, or update an existing friend
@@ -168,71 +180,83 @@ public class Users {
    *
    * @see <a href="https://www.reddit.com/dev/api#PUT_api_v1_me_friends_%28username%29">here</a>
    */
-  public static final Endpoint PUT_ME_FRIENDS_USERNAME = new Endpoint("api", "v1", "me", "friends", "{username}");
+  public static final Endpoint PUT_API_V1_ME_FRIENDS_USERNAME =
+        new Endpoint("api", "v1", "me", "friends", "{username}");
   /**
    * Return a list of trophies for the a given user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_user_%28username%29_trophies">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_TROHPIES = new Endpoint("api", "v1", "user", "{username}", "trophies");
+  public static final Endpoint GET_API_V1_USER_USERNAME_TROPHIES =
+        new Endpoint("api", "v1", "user", "{username}", "trophies");
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_%28where%29">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_WHERE = new Endpoint("user", "{username}", "{where}");
+  public static final Endpoint GET_USER_USERNAME_WHERE =
+        new Endpoint("user", "{username}", "{where}");
   /**
    * Return information about the user, including karma and gold status.
    *
    * @see <a href="https://www.reddit.com/dev/api/oauth#GET_user_%28username%29_about">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_ABOUT = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "about"));
+  public static final Endpoint GET_USER_USERNAME_ABOUT =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "about"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_comments">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_COMMENTS = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "comments"));
+  public static final Endpoint GET_USER_USERNAME_COMMENTS =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "comments"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_downvoted">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_DOWNVOTED = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "downvoted"));
+  public static final Endpoint GET_USER_USERNAME_DOWNVOTED =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "downvoted"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_gilded">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_GILDED = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "gilded"));
+  public static final Endpoint GET_USER_USERNAME_GILDED =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "gilded"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_hidden">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_HIDDEN = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "hidden"));
+  public static final Endpoint GET_USER_USERNAME_HIDDEN =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "hidden"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_overview">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_OVERVIEW = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "overview"));
+  public static final Endpoint GET_USER_USERNAME_OVERVIEW =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "overview"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_saved">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_SAVED = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "saved"));
+  public static final Endpoint GET_USER_USERNAME_SAVED =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "saved"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_submitted">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_SUBMITTED = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "submitted"));
+  public static final Endpoint GET_USER_USERNAME_SUBMITTED =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "submitted"));
   /**
    * TODO What does it do?
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_upvoted">here</a>
    */
-  public static final Endpoint GET_USER_USERNAME_UPVOTED = new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "upvoted"));
+  public static final Endpoint GET_USER_USERNAME_UPVOTED =
+        new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "upvoted"));
 }
