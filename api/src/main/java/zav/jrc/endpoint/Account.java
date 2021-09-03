@@ -43,15 +43,20 @@ public final class Account {
   /**
    * Returns all blocked users.<p/>
    * This endpoint is a {@link UserList}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th>/tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_blocked">here</a>
    * @deprecated Deprecated in favor of {@link #GET_PREFS_BLOCKED}.
@@ -62,15 +67,20 @@ public final class Account {
   /**
    * Returns all friends.<p/>
    * This endpoint is a {@link UserList}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th>/tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_friends">here</a>
    * @deprecated Deprecated in favor of {@link #GET_PREFS_FRIENDS}.
@@ -111,15 +121,20 @@ public final class Account {
         new Endpoint("api", "v1", "me", "trophies");
   /**
    * The endpoint for all user preferences.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th>/tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_%28where%29">here</a>
    */
@@ -128,15 +143,20 @@ public final class Account {
   /**
    * Returns all blocked users.<p/>
    * This endpoint is a {@link UserList}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th>/tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_blocked">here</a>
    */
@@ -145,15 +165,20 @@ public final class Account {
   /**
    * Returns all friends.<p/>
    * This endpoint is a {@link UserList}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th>/tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_friends">here</a>
    */
@@ -162,32 +187,44 @@ public final class Account {
   /**
    * Returns all blocked and trusted users.<p/>
    * This endpoint is a {@link Messaging}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_messaging">here</a>
+   * @deprecated Use {@link #GET_PREFS_BLOCKED} and {@link #GET_PREFS_TRUSTED} instead.
    */
+  @Deprecated
   public static final Endpoint GET_PREFS_MESSAGING =
         new Endpoint(GET_PREFS_WHERE.getPath("messaging"));
   /**
    * Returns all trusted users.<p/>
    * This endpoint is a {@link UserList}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th>/tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_trusted">here</a>
    */
