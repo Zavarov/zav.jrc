@@ -1,0 +1,220 @@
+{
+  "type": "object",
+  "properties" : {
+    "default_set" : {
+      "javaName" : "defaultSet",
+      "type" : "boolean"
+    },
+    "toxicity_threshold_chat_level" : {
+      "javaName" : "toxicityThresholdChatLevel",
+      "type" : "integer"
+    },
+    "crowd_control_chat_level" : {
+      "javaName" : "crowdControlChatLevel",
+      "type" : "integer"
+    },
+    "disable_contributor_requests" : {
+      "javaName" : "disableContributorRequests",
+      "type" : "boolean"
+    },
+    "public_description" : {
+      "javaName" : "publicDescription",
+      "type" : "string"
+    },
+    "subreddit_id" : {
+      "javaName" : "subredditId",
+      "type" : "string"
+    },
+    "allow_images" : {
+      "javaName" : "allowImages",
+      "type" : "boolean"
+    },
+    "free_form_reports" : {
+      "javaName" : "freeFormReports",
+      "type" : "boolean"
+    },
+    "domain" : {
+      "type" : "object"
+    },
+    "show_media" : {
+      "javaName" : "showMedia",
+      "type" : "boolean"
+    },
+    "wiki_edit_age" : {
+      "javaName" : "wikiEditAge",
+      "type" : "integer"
+    },
+    "submit_text" : {
+      "javaName" : "submitText",
+      "type" : "string"
+    },
+    "allow_polls" : {
+      "javaName" : "allowPolls",
+      "type" : "boolean"
+    },
+    "title" : {
+      "type" : "string"
+    },
+    "collapse_deleted_comments" : {
+      "javaName" : "collapseDeletedComments",
+      "type" : "boolean"
+    },
+    "wikimode" : {
+      "type" : "string"
+    },
+    "over_18" : {
+      "javaName" : "over18",
+      "type" : "boolean"
+    },
+    "allow_videos" : {
+      "javaName" : "allowVideos",
+      "type" : "boolean"
+    },
+    "spoilers_enabled" : {
+      "javaName" : "spoilersEnabled",
+      "type" : "boolean"
+    },
+    "new_pinned_post_pns_enabled" : {
+      "javaName" : "newPinnedPostPnsEnabled",
+      "type" : "boolean"
+    },
+    "crowd_control_mode" : {
+      "javaName" : "crowdControlMode",
+      "type" : "boolean"
+    },
+    "welcome_message_enabled" : {
+      "javaName" : "welcomeMessageEnabled",
+      "type" : "boolean"
+    },
+    "welcome_message_text" : {
+      "javaName" : "welcomeMessageText",
+      "type" : "object"
+    },
+    "suggested_comment_sort" : {
+      "javaName" : "suggestedCommentSort",
+      "type" : "object"
+    },
+    "restrict_posting" : {
+      "javaName" : "restrictPosting",
+      "type" : "boolean"
+    },
+    "original_content_tag_enabled" : {
+      "javaName" : "originalContentTagEnabled",
+      "type" : "boolean"
+    },
+    "description" : {
+      "type" : "string"
+    },
+    "submit_link_label" : {
+      "javaName" : "submitLinkLabel",
+      "type" : "object"
+    },
+    "allow_galleries" : {
+      "javaName" : "allowGalleries",
+      "type" : "boolean"
+    },
+    "allow_post_crossposts" : {
+      "javaName" : "allowPostCrossposts",
+      "type" : "boolean"
+    },
+    "spam_comments" : {
+      "javaName" : "spamComments",
+      "type" : "string"
+    },
+    "public_traffic" : {
+      "javaName" : "publicTraffic",
+      "type" : "boolean"
+    },
+    "restrict_commenting" : {
+      "javaName" : "restrictCommenting",
+      "type" : "boolean"
+    },
+    "crowd_control_level" : {
+      "javaName" : "crowdControlLevel",
+      "type" : "integer"
+    },
+    "submit_text_label" : {
+      "javaName" : "submitTextLabel",
+      "type" : "object"
+    },
+    "all_original_content" : {
+      "javaName" : "allOriginalContent",
+      "type" : "boolean"
+    },
+    "spam_selfposts" : {
+      "javaName" : "spamSelfposts",
+      "type" : "string"
+    },
+    "key_color" : {
+      "javaName" : "keyColor",
+      "type" : "string"
+    },
+    "language" : {
+      "type" : "string"
+    },
+    "wiki_edit_karma" : {
+      "javaName" : "wikiEditKarma",
+      "type" : "integer"
+    },
+    "hide_ads" : {
+      "javaName" : "hideAds",
+      "type" : "boolean"
+    },
+    "prediction_leaderboard_entry_type" : {
+      "javaName" : "predictionLeaderboardEntryType",
+      "type" : "integer"
+    },
+    "header_hover_text" : {
+      "javaName" : "headerHoverText",
+      "type" : "object"
+    },
+    "allow_chat_post_creation" : {
+      "javaName" : "allowChatPostCreation",
+      "type" : "boolean"
+    },
+    "allow_discovery" : {
+      "javaName" : "allowDiscovery",
+      "type" : "boolean"
+    },
+    "accept_followers" : {
+      "javaName" : "acceptFollowers",
+      "type" : "boolean"
+    },
+    "exclude_banned_modqueue" : {
+      "javaName" : "excludeBannedModqueue",
+      "type" : "boolean"
+    },
+    "allow_predictions_tournament" : {
+      "javaName" : "allowPredictionsTournament",
+      "type" : "boolean"
+    },
+    "show_media_preview" : {
+      "javaName" : "showMediaPreview",
+      "type" : "boolean"
+    },
+    "comment_score_hide_mins" : {
+      "javaName" : "commentScoreHideMins",
+      "type" : "integer"
+    },
+    "subreddit_type" : {
+      "javaName" : "subredditType",
+      "type" : "string"
+    },
+    "spam_links" : {
+      "javaName" : "spamLinks",
+      "type" : "string"
+    },
+    "allow_predictions" : {
+      "javaName" : "allowPredictions",
+      "type" : "boolean"
+    },
+    "user_flair_pns_enabled" : {
+      "javaName" : "userFlairPnsEnabled",
+      "type" : "boolean"
+    },
+    "content_options" : {
+      "javaName" : "contentOptions",
+      "type" : "string"
+    }
+  }
+}
