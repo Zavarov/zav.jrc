@@ -197,13 +197,6 @@ public class RestRequest {
     }
   
     @NonNull
-    public Builder setBody(@NonNull Parameter[] params, @NonNull BodyType type) {
-      var collector = Collectors.toMap(Parameter::getKey, Parameter::getValue);
-      var result = Arrays.stream(params).collect(collector);
-      return setBody(result, type);
-    }
-  
-    @NonNull
     public Builder setBody(@NonNull RequestBody body) {
       this.request.body = body;
       return this;
