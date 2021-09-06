@@ -215,11 +215,6 @@ public class RestRequest {
     }
   
     @NonNull
-    public Builder addParam(@NonNull Parameter param) {
-      return addParam(param.getKey(), param.getValue());
-    }
-  
-    @NonNull
     public <K, V> Builder addParam(@NonNull K key, @NonNull V value) {
       this.request.params.put(key, value);
       return this;
