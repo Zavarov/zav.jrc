@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.Client;
 import zav.jrc.Duration;
 import zav.jrc.GrantType;
+import zav.jrc.JcrException;
 import zav.jrc.OAuth2;
 import zav.jrc.databind.api.Token;
 import zav.jrc.http.RestRequest;
@@ -48,11 +49,10 @@ public class UserlessClient extends Client {
    * the client is able to retrieve a new access token, once the old one expired.
    *
    * @param duration The lifetime of the token.
-   * @throws IOException If the request couldn't be completed.
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
+   * @throws JcrException If the request failed.
    */
   @Override
-  public void login(@NonNull Duration duration) throws IOException, InterruptedException {
+  public void login(@NonNull Duration duration) throws JcrException {
     Map<Object, Object> body = new HashMap<>();
     body.put("grant_type", GrantType.USERLESS);
     body.put("device_id", uuid);
@@ -68,7 +68,11 @@ public class UserlessClient extends Client {
           .post();
   
     //_send(...) -> Skip token validation
-    ObjectMapper om = new ObjectMapper();
-    token = om.readValue(_send(request), Token.class);
+    try {
+      ObjectMapper om = new ObjectMapper();
+      token = om.readValue(_send(request), Token.class);
+    } catch (IOException e) {
+      throw JcrException.wrap(e);
+    }
   }
 }

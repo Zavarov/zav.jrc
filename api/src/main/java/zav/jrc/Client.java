@@ -34,12 +34,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.databind.api.Credentials;
 import zav.jrc.databind.api.Token;
 import zav.jrc.databind.api.UserAgent;
-import zav.jrc.http.RestRequest;
-import zav.jrc.http.ForbiddenException;
 import zav.jrc.http.HttpException;
-import zav.jrc.http.NotFoundException;
-import zav.jrc.http.RateLimiterException;
-import zav.jrc.http.UnauthorizedException;
+import zav.jrc.http.RestRequest;
 
 /**
  * The base class for authenticating the application.<p/>
@@ -75,10 +71,9 @@ public abstract class Client {
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
-   * @throws IOException If the request couldn't be completed.
+   * @throws JcrException If the request failed.
    */
-  public synchronized String send(Request request) throws IOException, InterruptedException {
+  public synchronized String send(Request request) throws JcrException {
     Objects.requireNonNull(token);
     
     //Make sure that the token is still valid
@@ -100,40 +95,28 @@ public abstract class Client {
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
-   * @throws IOException If the request couldn't be completed.
+   * @throws JcrException If the request failed.
    */
-  protected synchronized String _send(Request request) throws InterruptedException, IOException {
-    //Wait if we're making too many requests at once
-    rateLimiter.acquire();
-    
-    LOGGER.debug("--> {}", request);
-    Response response = http.newCall(request).execute();
-    rateLimiter.update(response);
-    LOGGER.debug("<-- {}", response);
-    LOGGER.debug("{} used, {} remain, {} seconds until next period", rateLimiter.getUsed(), rateLimiter.getRemaining(), rateLimiter.getReset());
-    
-    if (!response.isSuccessful()) {
-      switch (response.code()) {
-        case 401:
-          //Unauthorized
-          throw new UnauthorizedException(response.code(), response.message());
-        case 403:
-          //Forbidden
-          throw new ForbiddenException(response.code(), response.message());
-        case 404:
-          //Not Found
-          throw new NotFoundException(response.code(), response.message());
-        case 429:
-          //Too Many Requests
-          throw new RateLimiterException(response.code(), response.message());
-        default:
-          throw new HttpException(response.code(), response.message());
+  protected synchronized String _send(Request request) throws JcrException {
+    try {
+      //Wait if we're making too many requests at once
+      rateLimiter.acquire();
+      
+      LOGGER.debug("--> {}", request);
+      Response response = http.newCall(request).execute();
+      rateLimiter.update(response);
+      LOGGER.debug("<-- {}", response);
+      LOGGER.debug("{} used, {} remain, {} seconds until next period", rateLimiter.getUsed(), rateLimiter.getRemaining(), rateLimiter.getReset());
+      
+      if (!response.isSuccessful()) {
+        throw JcrException.wrap(new HttpException(response.code(), response.message()));
       }
+      
+      ResponseBody responseBody = response.body();
+      return Objects.requireNonNull(responseBody).string();
+    } catch (IOException | InterruptedException e) {
+      throw JcrException.wrap(e);
     }
-    
-    ResponseBody responseBody = response.body();
-    return Objects.requireNonNull(responseBody).string();
   }
 
   //----------------------------------------------------------------------------------------------//
@@ -142,15 +125,14 @@ public abstract class Client {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
 
-  public abstract void login(Duration duration) throws IOException, InterruptedException;
+  public abstract void login(Duration duration) throws JcrException;
 
   /**
    * Requests a new access and refresh token.
    *
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
-   * @throws IOException If the request couldn't be completed.
+   * @throws JcrException If the request failed.
    */
-  public void login() throws InterruptedException, IOException {
+  public void login() throws JcrException {
     LOGGER.info("Request token.");
     login(Duration.PERMANENT);
   }
@@ -164,10 +146,9 @@ public abstract class Client {
   /**
    * Requests a new access token.
    *
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
-   * @throws IOException If the request couldn't be completed.
+   * @throws JcrException If the request failed.
    */
-  public synchronized void refresh() throws IOException, InterruptedException {
+  public synchronized void refresh() throws JcrException {
     LOGGER.info("Refresh access token.");
     Objects.requireNonNull(token);
     Objects.requireNonNull(token.getRefreshToken());
@@ -186,8 +167,12 @@ public abstract class Client {
           .post();
 
     //_send(...) -> Skip token validation
-    ObjectMapper om = new ObjectMapper();
-    token = om.readValue(_send(request), Token.class);
+    try {
+      ObjectMapper om = new ObjectMapper();
+      token = om.readValue(_send(request), Token.class);
+    } catch (IOException e) {
+      throw JcrException.wrap(e);
+    }
   }
 
   //----------------------------------------------------------------------------------------------//
@@ -200,14 +185,13 @@ public abstract class Client {
    * Invalidates both the access and (if present) the refresh token.<p/>
    * Returns immediately in case the application isn't authenticated.
    *
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
-   * @throws IOException If the request couldn't be completed.
+   * @throws JcrException If the request failed.
    */
-  public void logout() throws IOException, InterruptedException {
+  public void logout() throws JcrException {
     try {
       revokeAccessToken();
     } catch (Exception e) {
-      e.printStackTrace();
+      LOGGER.error(e.getMessage(), e);
     } finally {
       revokeRefreshToken();
     }
@@ -216,10 +200,9 @@ public abstract class Client {
   /**
    * A helper method invalidating the refresh token, if present.
    *
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
-   * @throws IOException If the request couldn't be completed.
+   * @throws JcrException If the request failed.
    */
-  private void revokeRefreshToken() throws IOException, InterruptedException {
+  private void revokeRefreshToken() throws JcrException {
     if (token == null || token.getRefreshToken() == null) {
       return;
     }
@@ -246,10 +229,9 @@ public abstract class Client {
   /**
    * A helper method invalidating the access token.
    *
-   * @throws InterruptedException If the query got interrupted while waiting to be executed.
-   * @throws IOException If the request couldn't be completed.
+   * @throws JcrException If the request failed.
    */
-  private void revokeAccessToken() throws IOException, InterruptedException {
+  private void revokeAccessToken() throws JcrException {
     if (token == null) {
       return;
     }

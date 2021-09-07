@@ -21,12 +21,13 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 import java.time.LocalDateTime;
 import okhttp3.Response;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.http.RateLimiterException;
+import zav.jrc.http.HttpException;
 
 /**
  * A rate limiter is used to limit the amount of requests that can be made to the Reddit API with
- * a given interval. Making too many requests at once will trigger a {@link RateLimiterException}
- * and in the worst case, gets the application banned from making any further requests.<p/>
+ * a given interval. Making too many requests at once will trigger a {@link HttpException} with
+ * error code 429 and in the worst case, gets the application banned from making any further
+ * requests.<p/>
  * API access is managed via windows. Within each window, a fixed amount of requests can be made.
  * Once those have been used up, the application has to wait until the start of the next windows,
  * until further requests can be made.

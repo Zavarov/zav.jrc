@@ -14,13 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.http;
+package zav.jrc;
 
-/**
- * Thrown whenever a Rest request failed with error code {@code 404}.
- */
-public class NotFoundException extends HttpException {
-  public NotFoundException(int errorCode, String message) {
-    super(errorCode, message);
+public class JcrException extends Exception {
+  private JcrException(Exception cause) {
+    super(cause);
+  }
+  
+  public static JcrException wrap(Exception cause) {
+    return new JcrException(cause);
   }
 }
