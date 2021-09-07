@@ -14,13 +14,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.http.exception;
+package zav.jrc.http;
+
+import java.io.IOException;
 
 /**
- * Thrown whenever a Rest request failed with error code {@code 403}.
+ * The base class for every exception.<p/>
+ * This exception is thrown when there is no more specific exception for the error code.
  */
-public class ForbiddenException extends HttpException {
-  public ForbiddenException(int errorCode, String message) {
-    super(errorCode, message);
+public class HttpException extends IOException {
+  private final int errorCode;
+  
+  public HttpException(int errorCode, String message) {
+    super(message);
+    this.errorCode = errorCode;
+  }
+  
+  @Override
+  public String toString() {
+    return String.format("%d, %s", errorCode, getMessage());
   }
 }

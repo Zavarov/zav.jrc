@@ -21,7 +21,7 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 import java.time.LocalDateTime;
 import okhttp3.Response;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.http.exception.RateLimiterException;
+import zav.jrc.http.RateLimiterException;
 
 /**
  * A rate limiter is used to limit the amount of requests that can be made to the Reddit API with

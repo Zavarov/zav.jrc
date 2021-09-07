@@ -35,11 +35,11 @@ import zav.jrc.databind.api.Credentials;
 import zav.jrc.databind.api.Token;
 import zav.jrc.databind.api.UserAgent;
 import zav.jrc.http.RestRequest;
-import zav.jrc.http.exception.ForbiddenException;
-import zav.jrc.http.exception.HttpException;
-import zav.jrc.http.exception.NotFoundException;
-import zav.jrc.http.exception.RateLimiterException;
-import zav.jrc.http.exception.UnauthorizedException;
+import zav.jrc.http.ForbiddenException;
+import zav.jrc.http.HttpException;
+import zav.jrc.http.NotFoundException;
+import zav.jrc.http.RateLimiterException;
+import zav.jrc.http.UnauthorizedException;
 
 /**
  * The base class for authenticating the application.<p/>

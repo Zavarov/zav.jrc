@@ -14,13 +14,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.http.exception;
+package zav.jrc.http;
 
 /**
- * Thrown whenever a Rest request failed with error code {@code 429}.
+ * Thrown whenever a Rest request failed with error code {@code 401}.
  */
-public class RateLimiterException extends HttpException {
-  public RateLimiterException(int errorCode, String message) {
+public class UnauthorizedException extends HttpException {
+  public UnauthorizedException(int errorCode, String message) {
     super(errorCode, message);
   }
 }

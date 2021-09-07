@@ -14,24 +14,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.http.exception;
-
-import java.io.IOException;
+package zav.jrc.http;
 
 /**
- * The base class for every exception.<p/>
- * This exception is thrown when there is no more specific exception for the error code.
+ * Thrown whenever a Rest request failed with error code {@code 429}.
  */
-public class HttpException extends IOException {
-  private final int errorCode;
-  
-  public HttpException(int errorCode, String message) {
-    super(message);
-    this.errorCode = errorCode;
-  }
-  
-  @Override
-  public String toString() {
-    return String.format("%d, %s", errorCode, getMessage());
+public class RateLimiterException extends HttpException {
+  public RateLimiterException(int errorCode, String message) {
+    super(errorCode, message);
   }
 }
