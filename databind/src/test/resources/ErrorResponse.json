@@ -1,0 +1,11 @@
+{
+  "json": {
+    "errors": [
+      [
+        "SUBREDDIT_EXISTS",
+        "that subreddit already exists",
+        "name"
+      ]
+    ]
+  }
+}
