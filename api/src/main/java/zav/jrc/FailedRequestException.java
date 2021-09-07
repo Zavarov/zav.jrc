@@ -16,12 +16,12 @@
 
 package zav.jrc;
 
-public class JcrException extends Exception {
-  private JcrException(Exception cause) {
+public class FailedRequestException extends Exception {
+  private FailedRequestException(Exception cause) {
     super(cause);
   }
   
-  public static JcrException wrap(Exception cause) {
-    return new JcrException(cause);
+  public static FailedRequestException wrap(Exception cause) {
+    return new FailedRequestException(cause);
   }
 }

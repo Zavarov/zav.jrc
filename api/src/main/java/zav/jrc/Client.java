@@ -71,9 +71,9 @@ public abstract class Client {
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
-   * @throws JcrException If the request failed.
+   * @throws FailedRequestException If the request failed.
    */
-  public synchronized String send(Request request) throws JcrException {
+  public synchronized String send(Request request) throws FailedRequestException {
     Objects.requireNonNull(token);
     
     //Make sure that the token is still valid
@@ -95,9 +95,9 @@ public abstract class Client {
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
-   * @throws JcrException If the request failed.
+   * @throws FailedRequestException If the request failed.
    */
-  protected synchronized String _send(Request request) throws JcrException {
+  protected synchronized String _send(Request request) throws FailedRequestException {
     try {
       //Wait if we're making too many requests at once
       rateLimiter.acquire();
@@ -109,13 +109,13 @@ public abstract class Client {
       LOGGER.debug("{} used, {} remain, {} seconds until next period", rateLimiter.getUsed(), rateLimiter.getRemaining(), rateLimiter.getReset());
       
       if (!response.isSuccessful()) {
-        throw JcrException.wrap(new HttpException(response.code(), response.message()));
+        throw FailedRequestException.wrap(new HttpException(response.code(), response.message()));
       }
       
       ResponseBody responseBody = response.body();
       return Objects.requireNonNull(responseBody).string();
     } catch (IOException | InterruptedException e) {
-      throw JcrException.wrap(e);
+      throw FailedRequestException.wrap(e);
     }
   }
 
@@ -125,14 +125,14 @@ public abstract class Client {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
 
-  public abstract void login(Duration duration) throws JcrException;
+  public abstract void login(Duration duration) throws FailedRequestException;
 
   /**
    * Requests a new access and refresh token.
    *
-   * @throws JcrException If the request failed.
+   * @throws FailedRequestException If the request failed.
    */
-  public void login() throws JcrException {
+  public void login() throws FailedRequestException {
     LOGGER.info("Request token.");
     login(Duration.PERMANENT);
   }
@@ -146,9 +146,9 @@ public abstract class Client {
   /**
    * Requests a new access token.
    *
-   * @throws JcrException If the request failed.
+   * @throws FailedRequestException If the request failed.
    */
-  public synchronized void refresh() throws JcrException {
+  public synchronized void refresh() throws FailedRequestException {
     LOGGER.info("Refresh access token.");
     Objects.requireNonNull(token);
     Objects.requireNonNull(token.getRefreshToken());
@@ -171,7 +171,7 @@ public abstract class Client {
       ObjectMapper om = new ObjectMapper();
       token = om.readValue(_send(request), Token.class);
     } catch (IOException e) {
-      throw JcrException.wrap(e);
+      throw FailedRequestException.wrap(e);
     }
   }
 
@@ -185,9 +185,9 @@ public abstract class Client {
    * Invalidates both the access and (if present) the refresh token.<p/>
    * Returns immediately in case the application isn't authenticated.
    *
-   * @throws JcrException If the request failed.
+   * @throws FailedRequestException If the request failed.
    */
-  public void logout() throws JcrException {
+  public void logout() throws FailedRequestException {
     try {
       revokeAccessToken();
     } catch (Exception e) {
@@ -200,9 +200,9 @@ public abstract class Client {
   /**
    * A helper method invalidating the refresh token, if present.
    *
-   * @throws JcrException If the request failed.
+   * @throws FailedRequestException If the request failed.
    */
-  private void revokeRefreshToken() throws JcrException {
+  private void revokeRefreshToken() throws FailedRequestException {
     if (token == null || token.getRefreshToken() == null) {
       return;
     }
@@ -229,9 +229,9 @@ public abstract class Client {
   /**
    * A helper method invalidating the access token.
    *
-   * @throws JcrException If the request failed.
+   * @throws FailedRequestException If the request failed.
    */
-  private void revokeAccessToken() throws JcrException {
+  private void revokeAccessToken() throws FailedRequestException {
     if (token == null) {
       return;
     }
