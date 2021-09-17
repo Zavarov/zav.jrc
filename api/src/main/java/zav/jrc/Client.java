@@ -71,7 +71,7 @@ public abstract class Client {
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   public synchronized String send(Request request) throws FailedRequestException {
     Objects.requireNonNull(token);
@@ -95,7 +95,7 @@ public abstract class Client {
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   protected synchronized String _send(Request request) throws FailedRequestException {
     try {
@@ -130,7 +130,7 @@ public abstract class Client {
   /**
    * Requests a new access and refresh token.
    *
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   public void login() throws FailedRequestException {
     LOGGER.info("Request token.");
@@ -146,7 +146,7 @@ public abstract class Client {
   /**
    * Requests a new access token.
    *
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   public synchronized void refresh() throws FailedRequestException {
     LOGGER.info("Refresh access token.");
@@ -185,7 +185,7 @@ public abstract class Client {
    * Invalidates both the access and (if present) the refresh token.<p/>
    * Returns immediately in case the application isn't authenticated.
    *
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   public void logout() throws FailedRequestException {
     try {
@@ -200,7 +200,7 @@ public abstract class Client {
   /**
    * A helper method invalidating the refresh token, if present.
    *
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   private void revokeRefreshToken() throws FailedRequestException {
     if (token == null || token.getRefreshToken() == null) {
@@ -229,7 +229,7 @@ public abstract class Client {
   /**
    * A helper method invalidating the access token.
    *
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   private void revokeAccessToken() throws FailedRequestException {
     if (token == null) {

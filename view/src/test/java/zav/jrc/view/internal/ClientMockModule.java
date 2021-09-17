@@ -14,13 +14,15 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.http;
+package zav.jrc.view.internal;
 
-/**
- * Thrown whenever a Rest request failed with error code {@code 403}.
- */
-public class ForbiddenException extends HttpException {
-  public ForbiddenException(int errorCode, String message) {
-    super(errorCode, message);
+import zav.jrc.Client;
+import zav.jrc.guice.JraModule;
+
+public class ClientMockModule extends JraModule {
+  @Override
+  protected void configure() {
+    super.configure();
+    bind(Client.class).to(ClientMock.class);
   }
 }

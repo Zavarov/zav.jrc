@@ -25,11 +25,14 @@ import zav.jrc.databind.Subreddit;
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_listings">here</a>
  */
+@SuppressWarnings("unused")
 public final class Listings {
   private Listings() {}
   
   /**
-   * TODO What does it do?
+   * Returns a set of links from the front page, sorted by {@code best}.<p/>
+   * The order depends on number of upvotes, downvotes, age of the post and time the user spent on
+   * the subreddit the link was posted in.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_best">here</a>
    */
@@ -77,7 +80,8 @@ public final class Listings {
   public static final Endpoint GET_DUPLICATES_ARTICLE =
         new Endpoint("duplicates", "{article}");
   /**
-   * Get all links.<p/>
+   * Returns a set of links, sorted by {@code hot}.<p/>
+   * The order depends on the votes and age of the post.<p/>
    * In case the user is logged in, the links will be fetched from all subscribed subreddits,
    * otherwise from the frontpage.
    *
@@ -86,14 +90,16 @@ public final class Listings {
   public static final Endpoint GET_HOT =
         new Endpoint("hot");
   /**
-   * Get all links from the given subreddit.
+   * Returns a set of links in the given subreddit, sorted by {@code hot}.<p/>
+   * The order depends on the votes and age of the post.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_hot">here</a>
    */
   public static final Endpoint GET_R_SUBREDDIT_HOT =
         new Endpoint("r", "{subreddit}", "hot");
   /**
-   * Get all links.<p/>
+   * Returns a set of links, sorted by {@code new}.<p/>
+   * The order depends on the age of the post.<p/>
    * In case the user is logged in, the links will be fetched from all subscribed subreddits,
    * otherwise from the frontpage.<p/>
    * {@code new} sorts the subreddits based on their creation date, newest first.
@@ -103,7 +109,8 @@ public final class Listings {
   public static final Endpoint GET_NEW =
         new Endpoint("new");
   /**
-   * Get all links from the given subreddit.<p/>
+   * Returns a set of links in the given subreddit, sorted by {@code new}.<p/>
+   * The order depends on the age of the post.<p/>
    * {@code new} sorts the submissions based on their creation date, newest first.
    *
    * @see Subreddits#GET_SUBREDDITS_WHERE
@@ -126,7 +133,8 @@ public final class Listings {
   public static final Endpoint GET_R_SUBREDDIT_RANDOM =
         new Endpoint("r", "{subreddit}", "random");
   /**
-   * Get all links.<p/>
+   * Returns a set of links, sorted by {@code rising}.<p/>
+   * The order depends on the number of recent comments and votes.<p/>
    * In case the user is logged in, the links will be fetched from all subscribed subreddits,
    * otherwise from the frontpage.
    *
@@ -135,14 +143,15 @@ public final class Listings {
   public static final Endpoint GET_RISING =
         new Endpoint("rising");
   /**
-   * Get all links from the specified subreddit.
+   * Returns a set of links in the given subreddit, sorted by {@code rising}.<p/>
+   * The order depends on the number of recent comments and votes.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_rising">here</a>
    */
   public static final Endpoint GET_R_SUBREDDIT_RISING =
         new Endpoint("r", "{subreddit}", "rising");
   /**
-   * Get all links.<p/>
+   * Returns a set of links with a given sort.<p/>
    * In case the user is logged in, the links will be fetched from all subscribed subreddits,
    * otherwise from the frontpage.<p/>
    * {@code sort} indicates the order in which the links are sorted.
@@ -152,7 +161,7 @@ public final class Listings {
   public static final Endpoint GET_SORT =
         new Endpoint("{sort}");
   /**
-   * Get all links from the specified subreddit.<p/>
+   * Returns a set of links with a given subreddit and sort.<p/>
    * {@code sort} indicates the order in which the links are sorted.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_%28sort%29">here</a>
@@ -160,7 +169,8 @@ public final class Listings {
   public static final Endpoint GET_R_SUBREDDIT_SORT =
         new Endpoint("r", "{subreddit}", "{sort}");
   /**
-   * Get all links.<p/>
+   * Returns a set of links, sorted by {@code top}.<p/>
+   * The order depends the highest vote count within a specified time span.<p/>
    * In case the user is logged in, the links will be fetched from all subscribed subreddits,
    * otherwise from the frontpage.
    *
@@ -169,14 +179,18 @@ public final class Listings {
   public static final Endpoint GET_TOP =
         new Endpoint(GET_SORT.getPath("top"));
   /**
-   * Get all links from the specified subreddit.
+   * Returns a set of links within a given subreddit, sorted by {@code top}.<p/>
+   * The order depends the highest vote count within a specified time span.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_top">here</a>
    */
   public static final Endpoint GET_R_SUBREDDIT_TOP =
         new Endpoint(GET_R_SUBREDDIT_SORT.getPath("{subreddit}", "top"));
   /**
-   * TODO What does it do?
+   * Returns a set of links, sorted by {@code controversial}.<p/>
+   * The order depends the the number of upvotes and downvotes.<p/>
+   * In case the user is logged in, the links will be fetched from all subscribed subreddits,
+   * otherwise from the frontpage.
    *
    * @see #GET_SORT
    * @see <a href="https://www.reddit.com/dev/api#GET_controversial">here</a>
@@ -184,7 +198,8 @@ public final class Listings {
   public static final Endpoint GET_CONTROVERSIAL =
         new Endpoint(GET_SORT.getPath("controversial"));
   /**
-   * TODO What does it do?
+   * Returns a set of links within a given subreddit, sorted by {@code controversial}.<p/>
+   * The order depends the the number of upvotes and downvotes.
    *
    * @see #GET_R_SUBREDDIT_SORT
    * @see <a href="https://www.reddit.com/dev/api#GET_controversial">here</a>

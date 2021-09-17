@@ -16,6 +16,10 @@
 
 package zav.jrc;
 
+/**
+ * This exception is thrown whenever a request was rejected by the API.
+ * Use {@link Exception#getCause()} to get the reason why this exception was thrown.
+ */
 public class FailedRequestException extends Exception {
   private FailedRequestException(Exception cause) {
     super(cause);

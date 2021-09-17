@@ -14,13 +14,10 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.http;
+package zav.jrc.view.guice;
 
-/**
- * Thrown whenever a Rest request failed with error code {@code 429}.
- */
-public class RateLimiterException extends HttpException {
-  public RateLimiterException(int errorCode, String message) {
-    super(errorCode, message);
-  }
+import zav.jrc.view.AccountView;
+
+public interface AccountViewFactory {
+  AccountView create(String name);
 }

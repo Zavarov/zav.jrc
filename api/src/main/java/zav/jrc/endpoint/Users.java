@@ -23,6 +23,7 @@ import zav.jrc.Endpoint;
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_users">here</a>
  */
+@SuppressWarnings("unused")
 public class Users {
   /**
    * For blocking a user.

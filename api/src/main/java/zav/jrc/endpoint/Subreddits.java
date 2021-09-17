@@ -26,19 +26,25 @@ import zav.jrc.databind.core.Listing;
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_subreddits">here</a>
  */
+@SuppressWarnings("unused")
 public class Subreddits {
   /**
    * The endpoint for retrieving information about a subreddit with respect to a user.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_%28where%29">here</a>
    */
@@ -47,15 +53,20 @@ public class Subreddits {
   /**
    * The endpoint for retrieving information about a subreddit with respect to a user.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_%28where%29">here</a>
    */
@@ -64,15 +75,20 @@ public class Subreddits {
   /**
    * All currently banned users.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_banned">here</a>
    */
@@ -81,15 +97,20 @@ public class Subreddits {
   /**
    * All currently banned users.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_banned">here</a>
    */
@@ -98,15 +119,20 @@ public class Subreddits {
   /**
    * All contributors.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_contributors">here</a>
    */
@@ -115,15 +141,20 @@ public class Subreddits {
   /**
    * All contributors.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_contributors">here</a>
    */
@@ -132,15 +163,20 @@ public class Subreddits {
   /**
    * All moderators.<p/>
    * This endpoint is a {@link UserList}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_moderators">here</a>
    */
@@ -149,15 +185,20 @@ public class Subreddits {
   /**
    * All moderators.<p/>
    * This endpoint is a {@link UserList}.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_moderators">here</a>
    */
@@ -166,15 +207,20 @@ public class Subreddits {
   /**
    * All currently muted users.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_muted">here</a>
    */
@@ -183,15 +229,20 @@ public class Subreddits {
   /**
    * All currently muted users.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_muted">here</a>
    */
@@ -200,15 +251,20 @@ public class Subreddits {
   /**
    * All users banned from the wiki.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_wikibanned">here</a>
    */
@@ -217,15 +273,20 @@ public class Subreddits {
   /**
    * All users banned from the wiki.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_wikibanned">here</a>
    */
@@ -234,15 +295,20 @@ public class Subreddits {
   /**
    * All users contributing to the wiki.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_wikicontributors">here</a>
    */
@@ -251,15 +317,20 @@ public class Subreddits {
   /**
    * All users contributing to the wiki.<p/>
    * This endpoint is a list of users.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_about_wikicontributors">here</a>
    */
@@ -268,11 +339,12 @@ public class Subreddits {
   /**
    * Remove the subreddit's custom mobile banner.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description       |
+   *   | --------------------- | ----------------- |
+   *   | api_type              | the string 'json' |
+   *   | uh / X-Modhash header | modhash           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_banner">here</a>
    */
@@ -281,11 +353,12 @@ public class Subreddits {
   /**
    * Remove the subreddit's custom mobile banner.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description       |
+   *   | --------------------- | ----------------- |
+   *   | api_type              | the string 'json' |
+   *   | uh / X-Modhash header | modhash           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_banner">here</a>
    */
@@ -295,11 +368,12 @@ public class Subreddits {
    * Remove the subreddit's custom header image.<p/>
    * The sitewide-default header image will be shown again after this call.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description       |
+   *   | --------------------- | ----------------- |
+   *   | api_type              | the string 'json' |
+   *   | uh / X-Modhash header | modhash           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_header">here</a>
    */
@@ -309,11 +383,12 @@ public class Subreddits {
    * Remove the subreddit's custom header image.<p/>
    * The sitewide-default header image will be shown again after this call.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description       |
+   *   | --------------------- | ----------------- |
+   *   | api_type              | the string 'json' |
+   *   | uh / X-Modhash header | modhash           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_header">here</a>
    */
@@ -322,11 +397,12 @@ public class Subreddits {
   /**
    * Remove the subreddit's custom mobile icon.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description       |
+   *   | --------------------- | ----------------- |
+   *   | api_type              | the string 'json' |
+   *   | uh / X-Modhash header | modhash           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_icon">here</a>
    */
@@ -335,11 +411,12 @@ public class Subreddits {
   /**
    * Remove the subreddit's custom mobile icon.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description       |
+   *   | --------------------- | ----------------- |
+   *   | api_type              | the string 'json' |
+   *   | uh / X-Modhash header | modhash           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_icon">here</a>
    */
@@ -352,12 +429,13 @@ public class Subreddits {
    * referenced by the subreddit's stylesheet, that stylesheet will no longer validate and won't be
    * editable until the image reference is removed.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code img_name}</th><th>a valid subreddit image name</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description                  |
+   *   | --------------------- | ---------------------------- |
+   *   | api_type              | the string 'json'            |
+   *   | img_name              | a valid subreddit image name |
+   *   | uh / X-Modhash header | modhash                      |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_img">here</a>
    */
@@ -370,12 +448,13 @@ public class Subreddits {
    * referenced by the subreddit's stylesheet, that stylesheet will no longer validate and won't be
    * editable until the image reference is removed.<p/>
    * This endpoints returns a jQuery response.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code img_name}</th><th>a valid subreddit image name</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description                  |
+   *   | --------------------- | ---------------------------- |
+   *   | api_type              | the string 'json'            |
+   *   | img_name              | a valid subreddit image name |
+   *   | uh / X-Modhash header | modhash                      |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_delete_sr_img">here</a>
    */
@@ -385,12 +464,13 @@ public class Subreddits {
    * Return subreddits recommended for the given subreddit(s).<p/>
    * Gets a list of subreddits recommended for {@code srnames}, filtering out any that appear in the
    * optional {@code omit} param.
-   * <table>
-   *   <tr><th>{@code omit}</th><th>comma-delimited list of subreddit names</th></tr>
-   *   <tr><th>{@code over_18}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code srnames}</th><th>comma-delimited list of subreddit names</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                             |
+   *   | --------- | --------------------------------------- |
+   *   | omit      | comma-delimited list of subreddit names |
+   *   | over_18   | boolean value                           |
+   *   | srnames   | comma-delimited list of subreddit names |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_recommend_sr_%28srnames%29">here</a>
    */
@@ -415,15 +495,17 @@ public class Subreddits {
    *      }
    * }
    * </pre>
-   * <table>
-   *   <tr><th>{@code exact}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_over_18}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_unadvertisable}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code query}</th><th>a string up to 50 characters long, consisting of printable characters</th></tr>
-   *   <tr><th>{@code search_query_id}</th><th>a uuid</th></tr>
-   *   <tr><th>{@code typeahead_active}</th><th>boolean value or {@code None}</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter              | Description                        |
+   *   | ---------------------- | ---------------------------------- |
+   *   | exact                  | boolean value                      |
+   *   | include_over_18        | boolean value                      |
+   *   | include_unadvertisable | boolean value                      |
+   *   | query                  | a string up to 50 characters long, |
+   *   |                        | consisting of printable characters |
+   *   | search_query_id        | a uuid                             |
+   *   | typeahead_active       | boolean value or None              |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_search_reddit_names">here</a>
    */
@@ -447,15 +529,17 @@ public class Subreddits {
    *      }
    * }
    * </pre>
-   * <table>
-   *   <tr><th>{@code exact}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_over_18}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_unadvertisable}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code query}</th><th>a string up to 50 characters long, consisting of printable characters</th></tr>
-   *   <tr><th>{@code search_query_id}</th><th>a uuid</th></tr>
-   *   <tr><th>{@code typeahead_active}</th><th>boolean value or {@code None}</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter              | Description                        |
+   *   | ---------------------- | ---------------------------------- |
+   *   | exact                  | boolean value                      |
+   *   | include_over_18        | boolean value                      |
+   *   | include_unadvertisable | boolean value                      |
+   *   | query                  | a string up to 50 characters long, |
+   *   |                        | consisting of printable characters |
+   *   | search_query_id        | a uuid                             |
+   *   | typeahead_active       | boolean value or None              |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_search_reddit_names">here</a>
    */
@@ -479,15 +563,17 @@ public class Subreddits {
    *      }
    * }
    * </pre>
-   * <table>
-   *   <tr><th>{@code exact}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_over_18}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_unadvertisable}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code query}</th><th>a string up to 50 characters long, consisting of printable characters</th></tr>
-   *   <tr><th>{@code search_query_id}</th><th>a uuid</th></tr>
-   *   <tr><th>{@code typeahead_active}</th><th>boolean value or {@code None}</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter              | Description                        |
+   *   | ---------------------- | ---------------------------------- |
+   *   | exact                  | boolean value                      |
+   *   | include_over_18        | boolean value                      |
+   *   | include_unadvertisable | boolean value                      |
+   *   | query                  | a string up to 50 characters long, |
+   *   |                        | consisting of printable characters |
+   *   | search_query_id        | a uuid                             |
+   *   | typeahead_active       | boolean value or None              |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_search_subreddits">here</a>
    */
@@ -503,70 +589,76 @@ public class Subreddits {
    * {@code public_description} is the publicly visible subreddit description.<p/>
    * Most of the parameters for this endpoint are identical to options visible in the user interface
    * and their meanings are best explained there.
-   * <table>
-   *   <tr><th>{@code admin_override_spam_comments}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code admin_override_spam_links}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code admin_override_spam_selfposts}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code all_original_content}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_chat_post_creation}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_discovery}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_galleries}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_images}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_polls}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_post_crossposts}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_predictions}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_predictions_tournament}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_top}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code allow_videos}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code automated_reporting_level_abuse}</th><th>an integer between 0 and 3</th></tr>
-   *   <tr><th>{@code automated_reporting_level_hate}</th><th>an integer between 0 and 3</th></tr>
-   *   <tr><th>{@code collapse_deleted_comments}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code comment_score_hide_mins}</th><th>an integer between 0 and 1440 (default: 0)</th></tr>
-   *   <tr><th>{@code crowd_control_chat_level}</th><th>an integer between 0 and 3</th></tr>
-   *   <tr><th>{@code crowd_control_level}</th><th>an integer between 0 and 3</th></tr>
-   *   <tr><th>{@code crowd_control_mode}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code description}</th><th>raw markdown text</th></tr>
-   *   <tr><th>{@code disable_contributor_requests}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code exclude_banned_modqueue}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code free_form_reports}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code g-recaptcha-response}</th><th></th></tr>
-   *   <tr><th>{@code header-title}</th><th>a string no longer than 500 characters</th></tr>
-   *   <tr><th>{@code hide_ads}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code key_color}</th><th>a 6-digit rgb hex color, e.g. #AABBCC</th></tr>
-   *   <tr><th>{@code lang}</th><th>a valid IETF language tag (underscore separated)</th></tr>
-   *   <tr><th>{@code link_type}</th><th>one of ({@code any}, {@code link}, {@code self})</th></tr>
-   *   <tr><th>{@code name}</th><th>subreddit name</th></tr>
-   *   <tr><th>{@code new_pinned_post_pns_enabled}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code original_content_tag_enabled}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code over_18}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code prediction_leaderboard_entry_type}</th><th>an integer between 0 and 2</th></tr>
-   *   <tr><th>{@code public_description}</th><th>raw markdown text</th></tr>
-   *   <tr><th>{@code restrict_commenting}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code restrict_posting}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code show_media}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code show_media_preview}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code spam_comments}</th><th>one of ({@code low}, {@code high}, {@code all})</th></tr>
-   *   <tr><th>{@code spam_links}</th><th>one of ({@code low}, {@code high}, {@code all})</th></tr>
-   *   <tr><th>{@code spam_selfposts}</th><th>one of ({@code low}, {@code high}, {@code all})</th></tr>
-   *   <tr><th>{@code spoilers_enabled}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code sr}</th><th>fullname of a thing</th></tr>
-   *   <tr><th>{@code submit_link_label}</th><th>a string no longer than 60 characters</th></tr>
-   *   <tr><th>{@code submit_text}</th><th>raw markdown text</th></tr>
-   *   <tr><th>{@code submit_text_label}</th><th>a string no longer than 60 characters</th></tr>
-   *   <tr><th>{@code suggested_comment_sort}</th><th>one of ({@code confidence}, {@code top}, {@code new}, {@code controversial}, {@code old}, {@code random}, {@code qa}, {@code live})</th></tr>
-   *   <tr><th>{@code title}</th><th>a string no longer than 100 characters</th></tr>
-   *   <tr><th>{@code toxicity_threshold_chat_level}</th><th>an integer between 0 and 1</th></tr>
-   *   <tr><th>{@code type}</th><th>one of ({@code gold_restricted}, {@code archived}, {@code restricted}, {@code private}, {@code employees_only}, {@code gold_only}, {@code public}, {@code user})</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <tr><th>{@code user_flair_pns_enabled}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code welcome_message_enabled}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code welcome_message_text}</th><th>raw markdown text</th></tr>
-   *   <tr><th>{@code wiki_edit_age}</th><th>an integer between 0 and 36600 (default: 0)</th></tr>
-   *   <tr><th>{@code wiki_edit_karma}</th><th>an integer between 0 and 1000000000 (default: 0)</th></tr>
-   *   <tr><th>{@code wikimode}</th><th>one of ({@code disabled}, {@code modonly}, {@code anyone})</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter                         | Description                                         |
+   *   | --------------------------------- | --------------------------------------------------- |
+   *   | admin_override_spam_comments      | boolean value                                       |
+   *   | admin_override_spam_links         | boolean value                                       |
+   *   | admin_override_spam_selfposts     | boolean value                                       |
+   *   | all_original_content              | boolean value                                       |
+   *   | allow_chat_post_creation          | boolean value                                       |
+   *   | allow_discovery                   | boolean value                                       |
+   *   | allow_galleries                   | boolean value                                       |
+   *   | allow_images                      | boolean value                                       |
+   *   | allow_polls                       | boolean value                                       |
+   *   | allow_post_crossposts             | boolean value                                       |
+   *   | allow_predictions                 | boolean value                                       |
+   *   | allow_predictions_tournament      | boolean value                                       |
+   *   | allow_top                         | boolean value                                       |
+   *   | allow_videos                      | boolean value                                       |
+   *   | api_type                          | the string 'json'                                   |
+   *   | automated_reporting_level_abuse   | an integer between 0 and 3                          |
+   *   | automated_reporting_level_hate    | an integer between 0 and 3                          |
+   *   | collapse_deleted_comments         | boolean value                                       |
+   *   | comment_score_hide_mins           | an integer between 0 and 1440 (default: 0)          |
+   *   | crowd_control_chat_level          | an integer between 0 and 3                          |
+   *   | crowd_control_level               | an integer between 0 and 3                          |
+   *   | crowd_control_mode                | boolean value                                       |
+   *   | description                       | boolean value                                       |
+   *   | disable_contributor_requests      | raw markdown text                                   |
+   *   | exclude_banned_modqueue           | boolean value                                       |
+   *   | free_form_reports                 | boolean value                                       |
+   *   | g-recaptcha-response              |                                                     |
+   *   | header-title                      | a string no longer than 500 characters              |
+   *   | hide_ads                          | boolean value                                       |
+   *   | allow_predictions_tournament      | boolean value                                       |
+   *   | key_color                         | a 6-digit rgb hex color, e.g. #AABBCC               |
+   *   | lang                              | a valid IETF language tag (underscore separated)    |
+   *   | link_type                         | one of 'any', 'link', 'self'                        |
+   *   | name                              | subreddit name                                      |
+   *   | new_pinned_post_pns_enabled       | boolean value                                       |
+   *   | original_content_tag_enabled      | boolean value                                       |
+   *   | over_18                           | boolean value                                       |
+   *   | prediction_leaderboard_entry_type | an integer between 0 and 2                          |
+   *   | public_description                | raw markdown text                                   |
+   *   | restrict_commenting               | boolean value                                       |
+   *   | restrict_posting                  | boolean value                                       |
+   *   | show_media                        | boolean value                                       |
+   *   | show_media_preview                | boolean value                                       |
+   *   | spam_comments                     | one of 'low', 'high', 'all'                         |
+   *   | spam_links                        | one of 'low', 'high', 'all'                         |
+   *   | spam_selfposts                    | one of 'low', 'high', 'all'                         |
+   *   | spoilers_enabled                  | boolean value                                       |
+   *   | sr                                | fullname of a thing                                 |
+   *   | submit_link_label                 | a string no longer than 60 characters               |
+   *   | submit_text                       | raw markdown text                                   |
+   *   | submit_text_label                 | a string no longer than 60 characters               |
+   *   | suggested_comment_sort            | one of 'confidence', 'top', 'new', 'controversial', |
+   *   |                                   | 'old', 'random','qa', 'live'                        |
+   *   | title                             | a string no longer than 100 characters              |
+   *   | toxicity_threshold_chat_level     | an integer between 0 and 1                          |
+   *   | type                              | one of 'gold_restricted', 'archived', 'restricted', |
+   *   |                                   | 'private', 'employees_only', 'gold_only', 'public', |
+   *   |                                   | 'user'                                              |
+   *   | uh / X-Modhash header             | a modhash                                           |
+   *   | user_flair_pns_enabled            | boolean value                                       |
+   *   | welcome_message_enabled           | boolean value                                       |
+   *   | welcome_message_text              | raw markdown text                                   |
+   *   | allow_predictions_tournament      | boolean value                                       |
+   *   | wiki_edit_age                     | an integer between 0 and 36600 (default: 0)         |
+   *   | wiki_edit_karma                   | an integer between 0 and 1000000000 (default: 0)    |
+   *   | wikimode                          | one of 'disabled', 'modonly', 'anyone'              |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_site_admin">here</a>
    */
@@ -602,21 +694,24 @@ public class Subreddits {
    *          {
    *              "numSubscribers": 0,
    *              "name": "u_reddit",
-   *              "allowedPostTypes": {"images": true, "text": true, "videos": true, "links": true, "spoilers": true},
+   *              "allowedPostTypes": {
+   *                  "images": true, "text": true, "videos": true, "links": true, "spoilers": true
+   *              },
    *              "id": "t5_hv5dz",
    *              "primaryColor": "",
    *              "communityIcon": "",
-   *              "icon": "https://styles.redditmedia.com/t5_hv5dz/styles/profileIcon_snoo8658e16c-55fa-486f-b7c7-00726de2e742-headshot.png"
+   *              "icon": "https://styles.redditmedia.com/t5_hv5dz/styles/profileIcon.png"
    *          }
    *      ]
    * }
    * </pre>
-   * <table>
-   *   <tr><th>{@code include_over_18}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_profiles}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code query}</th><th>a string up to 25 characters long, consisting of printable characters.</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter        | Description                                                            |
+   *   | ---------------- | ---------------------------------------------------------------------- |
+   *   | include_over_18  | boolean value                                                          |
+   *   | include_profiles | boolean value                                                          |
+   *   | query            | a string up to 25 characters long, consisting of printable characters. |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_subreddit_autocomplete">here</a>
    */
@@ -629,15 +724,16 @@ public class Subreddits {
    * subscribed to.<p/>
    * This endpoint is a listing of things. Those things can either be subreddits or accounts, i.e.
    * personal subreddits.
-   * <table>
-   *   <tr><th>{@code include_over_18}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code include_profiles}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code limit}</th><th>an integer between 1 and 10 (default: 5)</th></tr>
-   *   <tr><th>{@code query}</th><th>a string up to 25 characters long, consisting of printable characters.</th></tr>
-   *   <tr><th>{@code search_query_id}</th><th>a uuid</th></tr>
-   *   <tr><th>{@code typeahead_active}</th><th>boolean value or {@code None}</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter        | Description                                                            |
+   *   | ---------------- | ---------------------------------------------------------------------- |
+   *   | include_over_18  | boolean value                                                          |
+   *   | include_profiles | boolean value                                                          |
+   *   | limit | an integer between 1 and 10 (default: 5)                                          |
+   *   | query            | a string up to 25 characters long, consisting of printable characters. |
+   *   | search_query_id | a uuid                                                                  |
+   *   | include_profiles | boolean value or None                                                  |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_subreddit_autocomplete_v2">here</a>
    */
@@ -646,14 +742,16 @@ public class Subreddits {
   /**
    * Update a subreddit's stylesheet.<p/>
    * {@code op} should be {@code save} to update the contents of the stylesheet.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code op}</th><th>one of ({@code save}, {@code preview})</th></tr>
-   *   <tr><th>{@code reason}</th><th>a string up to 256 characters long, consisting of printable characters.</th></tr>
-   *   <tr><th>{@code stylesheet_contents}</th><th>the new stylesheet content</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description                         |
+   *   | --------------------- | ----------------------------------- |
+   *   | api_type              | the string 'json'                   |
+   *   | op                    | one of 'save', 'preview'            |
+   *   | reason                | a string up to 256 characters long, |
+   *   |                       | consisting of printable characters. |
+   *   | stylesheet_contents   | the new stylesheet content          |
+   *   | uh / X-Modhash header | a modhash                           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_subreddit_stylesheet">here</a>
    */
@@ -662,14 +760,16 @@ public class Subreddits {
   /**
    * Update a subreddit's stylesheet.<p/>
    * {@code op} should be {@code save} to update the contents of the stylesheet.
-   * <table>
-   *   <tr><th>{@code api_type}</th><th>the string {@code json}</th></tr>
-   *   <tr><th>{@code op}</th><th>one of ({@code save}, {@code preview})</th></tr>
-   *   <tr><th>{@code reason}</th><th>a string up to 256 characters long, consisting of printable characters.</th></tr>
-   *   <tr><th>{@code stylesheet_contents}</th><th>the new stylesheet content</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description                         |
+   *   | --------------------- | ----------------------------------- |
+   *   | api_type              | the string 'json'                   |
+   *   | op                    | one of 'save', 'preview'            |
+   *   | reason                | a string up to 256 characters long, |
+   *   |                       | consisting of printable characters. |
+   *   | stylesheet_contents   | the new stylesheet content          |
+   *   | uh / X-Modhash header | a modhash                           |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_subreddit_stylesheet">here</a>
    */
@@ -681,15 +781,17 @@ public class Subreddits {
    * {@code unsub}. The user must have access to the subreddit to be able to subscribe to it.<p/>
    * The {@code skip_initial_defaults} param can be set to True to prevent automatically subscribing
    * the user to the current set of defaults when they take their first subscription action.<p/>
-   * Attempting to set it for an unsubscribe action will result in an error.
-   * <table>
-   *   <tr><th>{@code action}</th><th>one of ({@code sub}, {@code unsub})</th></tr>
-   *   <tr><th>{@code action_source}</th><th>one of ({@code o}, {@code n}, {@code b}, {@code o}, {@code a}, {@code r}, {@code d}, {@code i}, {@code n}, {@code g})</th></tr>
-   *   <tr><th>{@code skip_initial_defaults}</th><th>boolean value</th></tr>
-   *   <tr><th>{@code sr / sr_name}</th><th>A comma-separated list of subreddit <i>fullnames</i> (when using the "sr" parameter), or of subreddit names (when using the "sr_name" parameter).</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description                                             |
+   *   | --------------------- | ------------------------------------------------------- |
+   *   | action                | one of 'sub', 'unsub'                                   |
+   *   | action_source         | one of 'o', 'n', 'b', 'o', 'a', 'r', 'd', 'i', 'n', 'g' |
+   *   | skip_initial_defaults | boolean value                                           |
+   *   | sr / sr_name          | A comma-separated list of subreddit fullnames           |
+   *   |                       | (when using the "sr" parameter), or of subreddit names  |
+   *   |                       | (when using the "sr_name" parameter)                    |
+   *   | uh / X-Modhash header | a modhash                                               |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_subscribe">here</a>
    */
@@ -698,33 +800,42 @@ public class Subreddits {
   /**
    * Add or replace a subreddit image, custom header logo, custom mobile icon, or custom mobile
    * banner.
-   * <ul>
-   *   <li>If the {@code upload_type} value is {@code img}, an image for use in the subreddit stylesheet is uploaded with the name specified in {@code name}.</li>
-   *   <li>If the {@code upload_type} value is {@code header} then the image uploaded will be the subreddit's new logo and {@code name} will be ignored.</li>
-   *   <li>If the {@code upload_type} value is {@code icon} then the image uploaded will be the subreddit's new mobile icon and {@code name} will be ignored.</li>
-   *   <li>If the {@code upload_type} value is {@code banner} then the image uploaded will be the subreddit's new mobile banner and {@code name} will be ignored.</li>
-   * </ul>
+   * <pre>
+   *   | upload_type | Description                                   |
+   *   | ----------- | --------------------------------------------- |
+   *   | img         | an image for use in the subreddit stylesheet  |
+   *   |             | is uploaded with the name specified in 'name' |
+   *   | header      | the image uploaded will be the subreddit's    |
+   *   |             | new logo and 'name' will be ignored.          |
+   *   | icon        | the image uploaded will be the subreddit's    |
+   *   |             | new mobile icon and 'name' will be ignored.   |
+   *   | banner      | the image uploaded will be the subreddit's    |
+   *   |             | new mobile banner and 'name' will be ignored. |
+   * </pre>
    * For backwards compatibility, if {@code upload_type} is not specified, the {@code header} field
    * will be used instead:
-   * <ul>
-   *   <li>If the {@code header} field has value {@code 0}, then {@code upload_type} is {@code img}.</li>
-   *   <li>If the {@code header} field has value {@code 1}, then {@code upload_type} is {@code header}.</li>
-   * </ul>
+   * <pre>
+   *   | header | Description               |
+   *   | ------ | ------------------------- |
+   *   | 0      | 'upload_type' is 'img'    |
+   *   | 1      | 'upload_type' is 'header' |
+   * </pre>
    * The {@code img_type} field specifies whether to store the uploaded image as a PNG or JPEG.<p/>
    * Subreddits have a limited number of images that can be in use at any given time. If no image
    * with the specified name already exists, one of the slots will be consumed.<p/>
    * If an image with the specified name already exists, it will be replaced. This does not affect
    * the stylesheet immediately, but will take effect the next time the stylesheet is saved.<p/>
-   * <table>
-   *   <tr><th>{@code file}</th><th>file upload with maximum size of 500 KiB</th></tr>
-   *   <tr><th>{@code formid}</th><th>(optional) can be ignored</th></tr>
-   *   <tr><th>{@code header}</th><th>an integer between 0 and 1</th></tr>
-   *   <tr><th>{@code img_type}</th><th>one of png or jpg (default: png)</th></tr>
-   *   <tr><th>{@code name}</th><th>a valid subreddit image name</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <tr><th>{@code upload_type}</th><th>one of ({@code img}, {@code header}, {@code icon}, {@code banner})</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description                              |
+   *   | --------------------- | ---------------------------------------- |
+   *   | file                  | file upload with maximum size of 500 KiB |
+   *   | formid                | (optional) can be ignored                |
+   *   | header                | an integer between 0 and 1               |
+   *   | img_type              | one of png or jpg (default: png)         |
+   *   | name                  | a valid subreddit image name             |
+   *   | uh / X-Modhash header | a modhash                                |
+   *   | upload_type           | one of 'img', 'header', 'icon', 'banner' |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_upload_sr_img">here</a>
    */
@@ -733,33 +844,42 @@ public class Subreddits {
   /**
    * Add or replace a subreddit image, custom header logo, custom mobile icon, or custom mobile
    * banner.
-   * <ul>
-   *   <li>If the {@code upload_type} value is {@code img}, an image for use in the subreddit stylesheet is uploaded with the name specified in {@code name}.</li>
-   *   <li>If the {@code upload_type} value is {@code header} then the image uploaded will be the subreddit's new logo and {@code name} will be ignored.</li>
-   *   <li>If the {@code upload_type} value is {@code icon} then the image uploaded will be the subreddit's new mobile icon and {@code name} will be ignored.</li>
-   *   <li>If the {@code upload_type} value is {@code banner} then the image uploaded will be the subreddit's new mobile banner and {@code name} will be ignored.</li>
-   * </ul>
+   * <pre>
+   *   | upload_type | Description                                   |
+   *   | ----------- | --------------------------------------------- |
+   *   | img         | an image for use in the subreddit stylesheet  |
+   *   |             | is uploaded with the name specified in 'name' |
+   *   | header      | the image uploaded will be the subreddit's    |
+   *   |             | new logo and 'name' will be ignored.          |
+   *   | icon        | the image uploaded will be the subreddit's    |
+   *   |             | new mobile icon and 'name' will be ignored.   |
+   *   | banner      | the image uploaded will be the subreddit's    |
+   *   |             | new mobile banner and 'name' will be ignored. |
+   * </pre>
    * For backwards compatibility, if {@code upload_type} is not specified, the {@code header} field
    * will be used instead:
-   * <ul>
-   *   <li>If the {@code header} field has value {@code 0}, then {@code upload_type} is {@code img}.</li>
-   *   <li>If the {@code header} field has value {@code 1}, then {@code upload_type} is {@code header}.</li>
-   * </ul>
+   * <pre>
+   *   | header | Description               |
+   *   | ------ | ------------------------- |
+   *   | 0      | 'upload_type' is 'img'    |
+   *   | 1      | 'upload_type' is 'header' |
+   * </pre>
    * The {@code img_type} field specifies whether to store the uploaded image as a PNG or JPEG.<p/>
    * Subreddits have a limited number of images that can be in use at any given time. If no image
    * with the specified name already exists, one of the slots will be consumed.<p/>
    * If an image with the specified name already exists, it will be replaced. This does not affect
    * the stylesheet immediately, but will take effect the next time the stylesheet is saved.
-   * <table>
-   *   <tr><th>{@code file}</th><th>file upload with maximum size of 500 KiB</th></tr>
-   *   <tr><th>{@code formid}</th><th>(optional) can be ignored</th></tr>
-   *   <tr><th>{@code header}</th><th>an integer between 0 and 1</th></tr>
-   *   <tr><th>{@code img_type}</th><th>one of png or jpg (default: png)</th></tr>
-   *   <tr><th>{@code name}</th><th>a valid subreddit image name</th></tr>
-   *   <tr><th>{@code uh / X-Modhash header}</th><th>a <i>modhash</i></th></tr>
-   *   <tr><th>{@code upload_type}</th><th>one of ({@code img}, {@code header}, {@code icon}, {@code banner})</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter             | Description                              |
+   *   | --------------------- | ---------------------------------------- |
+   *   | file                  | file upload with maximum size of 500 KiB |
+   *   | formid                | (optional) can be ignored                |
+   *   | header                | an integer between 0 and 1               |
+   *   | img_type              | one of png or jpg (default: png)         |
+   *   | name                  | a valid subreddit image name             |
+   *   | uh / X-Modhash header | a modhash                                |
+   *   | upload_type           | one of 'img', 'header', 'icon', 'banner' |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_upload_sr_img">here</a>
    */
@@ -774,17 +894,25 @@ public class Subreddits {
    * the user, for example by creating a text field in their app that does not allow the user to
    * enter more characters than the max title length.<p/>
    * A non-exhaustive list of possible requirements a moderator may enable:
-   * <ul>
-   *   <li>{@code body_blacklisted_strings}: List of strings. Users may not submit posts that contain these words.</li>
-   *   <li>{@code body_restriction_policy}: String. One of "required", "notAllowed", or "none", meaning that a self-post body is required, not allowed, or optional, respectively.</li>
-   *   <li>{@code domain_blacklist}: List of strings. Users may not submit links to these domains</li>
-   *   <li>{@code domain_whitelist}: List of strings. Users submissions MUST be from one of these domains</li>
-   *   <li>{@code is_flair_required}: Boolean. If True, flair must be set at submission time.</li>
-   *   <li>{@code title_blacklisted_strings}: List of strings. Submission titles may NOT contain any of the listed strings.</li>
-   *   <li>{@code title_required_strings}: List of strings. Submission title MUST contain at least ONE of the listed strings.</li>
-   *   <li>{@code title_text_max_length}: Integer. Maximum length of the title field.</li>
-   *   <li>{@code title_text_min_length}: Integer. Minimum length of the title field.</li>
-   * </ul>
+   * <pre>
+   *   | Parameter                 | Description                                                   |
+   *   | ------------------------- | ------------------------------------------------------------- |
+   *   | body_blacklisted_strings  | List of strings. Users may not submit posts that contain      |
+   *   |                           | these words.                                                  |
+   *   | body_restriction_policy   | String. One of "required", "notAllowed", or "none", meaning   |
+   *   |                           | that a self-post body is required, not allowed, or optional,  |
+   *   |                           | respectively.                |                                |
+   *   | domain_blacklist          | List of strings. Users may not submit links to these domains. |
+   *   | domain_whitelist          | List of strings. Users submissions MUST be from one of these  |
+   *   |                           | domains.                                                      |
+   *   | is_flair_required         | Boolean. If True, flair must be set at submission time.       |
+   *   | title_blacklisted_strings | List of strings. Submission titles may NOT contain any of the |
+   *   |                           | listed strings.                                               |
+   *   | title_required_strings    | List of strings. Submission title MUST contain at least ONE   |
+   *   |                           | of the listed strings.                                        |
+   *   | title_text_max_length     | Integer. Minimum length of the title field                    |
+   *   | title_text_min_length     | Integer. Minimum length of the title field                    |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_%28subreddit%29_post_requirements">here</a>
    */
@@ -803,11 +931,12 @@ public class Subreddits {
    * Get the current settings of a subreddit.<p/>
    * In the API, this returns the current settings of the subreddit as used by /api/site_admin. On
    * the HTML site, it will display a form for editing the subreddit.
-   * <table>
-   *   <tr><th>{@code created}</th><th>one of ({@code true}, {@code false})</th></tr>
-   *   <tr><th>{@code location}</th><th></th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description            |
+   *   | --------- | ---------------------- |
+   *   | created   | one of 'true', 'false' |
+   *   | location  |                        |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_r_%28subreddit%29_about_edit">here</a>
    */
@@ -823,10 +952,11 @@ public class Subreddits {
   /**
    * Get the traffic of a subreddit. I.e. the number of submissions, comments and overall activity
    * over time.
-   * <table>
-   *   <tr><th>{@code num}</th><th>an integer between 1 and 2 (default: 1)</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                             |
+   *   | --------- | --------------------------------------- |
+   *   | num       | an integer between 1 and 2 (default: 1) |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_r_%28subreddit%29_about_traffic">here</a>
    */
@@ -861,10 +991,11 @@ public class Subreddits {
    * subreddit.<p/>
    * Note: The endpoint, according to the <b>official API</b>, is inaccurate and the endpoint has
    * been moved.
-   * <table>
-   *   <tr><th>{@code num}</th><th>an integer between 1 and 2 (default: 1)</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                             |
+   *   | --------- | --------------------------------------- |
+   *   | num       | an integer between 1 and 2 (default: 1) |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_sticky">here</a>
    */
@@ -877,10 +1008,11 @@ public class Subreddits {
    * subreddit.<p/>
    * Note: The endpoint, according to the <b>official API</b>, is inaccurate and the endpoint has
    * been moved.
-   * <table>
-   *   <tr><th>{@code num}</th><th>an integer between 1 and 2 (default: 1)</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                             |
+   *   | --------- | --------------------------------------- |
+   *   | num       | an integer between 1 and 2 (default: 1) |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_sticky">here</a>
    */
@@ -899,15 +1031,20 @@ public class Subreddits {
   /**
    * Get all subreddits.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see #GET_SUBREDDITS_WHERE
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_default">here</a>
@@ -917,15 +1054,20 @@ public class Subreddits {
   /**
    * Get all subreddits.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see #GET_SUBREDDITS_WHERE
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_gold">here</a>
@@ -937,15 +1079,20 @@ public class Subreddits {
    * {@code popular} sorts on the activity of the subreddit and the position of the subreddits can
    * shift around.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see #GET_SUBREDDITS_WHERE
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_popular">here</a>
@@ -956,15 +1103,20 @@ public class Subreddits {
    * Get all subreddits.<p/>
    * {@code new} sorts the subreddits based on their creation date, newest first.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see #GET_SUBREDDITS_WHERE
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_new">here</a>
@@ -974,15 +1126,20 @@ public class Subreddits {
   /**
    * Search subreddits by title and description.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_search">here</a>
    */
@@ -991,15 +1148,20 @@ public class Subreddits {
   /**
    * Get subreddits the user has a relationship with.<p/>
    * The where parameter chooses which subreddits are returned.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_mine_%28where%29">here</a>
    */
@@ -1007,15 +1169,20 @@ public class Subreddits {
         new Endpoint("subreddits", "mine", "{where}");
   /**
    * Get subreddits the user is an approved user in.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_mine_contributor">here</a>
    */
@@ -1023,15 +1190,20 @@ public class Subreddits {
         new Endpoint(GET_SUBREDDITS_MINE_WHERE.getPath("contributor"));
   /**
    * Get subreddits the user is a moderator of.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_mine_moderator">here</a>
    */
@@ -1039,15 +1211,20 @@ public class Subreddits {
         new Endpoint(GET_SUBREDDITS_MINE_WHERE.getPath("moderator"));
   /**
    * Get subreddits the user subscribed to subreddits that contain hosted video links.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_mine_streams">here</a>
    */
@@ -1055,15 +1232,20 @@ public class Subreddits {
         new Endpoint(GET_SUBREDDITS_MINE_WHERE.getPath("streams"));
   /**
    * Get subreddits the user is subscribed to.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_subreddits_mine_subscriber">here</a>
    */
@@ -1073,15 +1255,20 @@ public class Subreddits {
    * Get all user subreddits.<p/>
    * The {@code where} parameter chooses the order in which the subreddits are displayed.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_users_%28where%29">here</a>
    */
@@ -1091,15 +1278,20 @@ public class Subreddits {
    * Get all user subreddits.<p/>
    * {@code new} sorts the user subreddits based on their creation date, newest first.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see #GET_USERS_WHERE
    * @see <a href="https://www.reddit.com/dev/api#GET_users_new">here</a>
@@ -1111,15 +1303,20 @@ public class Subreddits {
    * {@code popular} sorts on the activity of the subreddit and the position of the subreddits can
    * shift around.<p/>
    * This endpoint is a {@link Listing} of subreddits.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter | Description                         |
+   *   | --------- | ----------------------------------- |
+   *   | after     | fullname of a thing                 |
+   *   | before    | fullname of a thing                 |
+   *   | count     | a positive integer                  |
+   *   |           | (default:0)                         |
+   *   | limit     | the maximum number of items desired |
+   *   |           | (default:25, maximum:100)           |
+   *   | show      | the string 'all'                    |
+   *   |           | (optional)                          |
+   *   | sr_detail | expand subreddits                   |
+   *   |           | (optional)                          |
+   * </pre>
    *
    * @see #GET_USERS_WHERE
    * @see <a href="https://www.reddit.com/dev/api#GET_users_popular">here</a>
@@ -1129,19 +1326,24 @@ public class Subreddits {
   /**
    * Search user profiles by title and description.<p/>
    * This endpoint is a {@link Listing} of accounts.
-   * <table>
-   *   <tr><th>{@code after}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code before}</th><th><i>fullname</i> of a thing</th></tr>
-   *   <tr><th>{@code count}</th><th>a positive integer (default:0)</th></tr>
-   *   <tr><th>{@code limit}</th><th>the maximum number of items desired (default:25, maximum:100)</th></tr>
-   *   <tr><th>{@code q}</th><th>a search query</th></tr>
-   *   <tr><th>{@code search_query_id}</th><th>a uuid</th></tr>
-   *   <tr><th>{@code show}</th><th>(optional) the string {@code all}</th></tr>
-   *   <tr><th>{@code sort}</th><th>one of ({@code relevance}, {@code activity})</th></tr>
-   *   <tr><th>{@code sr_detail}</th><th>(optional) expand subreddits</th></tr>
-   *   <tr><th>{@code typeahead_active}</th><th>boolean value or {@code None}</th></tr>
-   *   <caption>Supported Arguments</caption>
-   * </table>
+   * <pre>
+   *   | Parameter        | Description                         |
+   *   | ---------------- | ----------------------------------- |
+   *   | after            | fullname of a thing                 |
+   *   | before           | fullname of a thing                 |
+   *   | count            | a positive integer                  |
+   *   |                  | (default:0)                         |
+   *   | limit            | the maximum number of items desired |
+   *   |                  | (default:25, maximum:100)           |
+   *   | q                |  search query                       |
+   *   | search_query_id  | a uuid                              |
+   *   | show             | the string 'all'                    |
+   *   |                  | (optional)                          |
+   *   | sort             | one of 'relevance', 'activity'      |
+   *   | sr_detail        | expand subreddits                   |
+   *   |                  | (optional)                          |
+   *   | typeahead_active | boolean value or None               |
+   * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_users_search">here</a>
    */

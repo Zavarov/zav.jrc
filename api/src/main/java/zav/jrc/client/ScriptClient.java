@@ -28,8 +28,8 @@ import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.Client;
 import zav.jrc.Duration;
-import zav.jrc.GrantType;
 import zav.jrc.FailedRequestException;
+import zav.jrc.GrantType;
 import zav.jrc.OAuth2;
 import zav.jrc.databind.api.Token;
 import zav.jrc.http.RestRequest;
@@ -54,7 +54,7 @@ public class ScriptClient extends Client {
    * for scripts. Once the access token expires, a new one has to be requested.
    *
    * @param duration The lifetime of the token.
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   @Override
   public void login(@NonNull Duration duration) throws FailedRequestException {

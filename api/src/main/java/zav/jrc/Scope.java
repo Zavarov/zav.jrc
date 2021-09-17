@@ -29,7 +29,8 @@ public enum Scope {
    */
   CREDDITS("creddits"),
   /**
-   * Add/remove users to approved user lists and ban/unban or mute/unmute users from subreddits I moderate.
+   * Add/remove users to approved user lists and ban/unban or mute/unmute users from subreddits I
+   * moderate.
    */
   MODCONTRIBUTORS("modcontributors"),
   /**
@@ -105,7 +106,8 @@ public enum Scope {
    */
   LIVEMANAGE("livemanage"),
   /**
-   * Update preferences and related account information. Will not have access to your email or password.
+   * Update preferences and related account information. Will not have access to your email or
+   * password.
    */
   ACCOUNT("account"),
   /**
@@ -125,8 +127,8 @@ public enum Scope {
    */
   MODWIKI("modwiki"),
   /**
-   * Accept invitations to moderate a subreddit. Remove myself as a moderator or contributor of subreddits I moderate
-   * or contribute to.
+   * Accept invitations to moderate a subreddit. Remove myself as a moderator or contributor of
+   * subreddits I moderate or contribute to.
    */
   MODSELF("modself"),
   /**

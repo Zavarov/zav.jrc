@@ -28,8 +28,8 @@ import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.Client;
 import zav.jrc.Duration;
-import zav.jrc.GrantType;
 import zav.jrc.FailedRequestException;
+import zav.jrc.GrantType;
 import zav.jrc.OAuth2;
 import zav.jrc.databind.api.Token;
 import zav.jrc.http.RestRequest;
@@ -49,7 +49,7 @@ public class UserlessClient extends Client {
    * the client is able to retrieve a new access token, once the old one expired.
    *
    * @param duration The lifetime of the token.
-   * @throws FailedRequestException If the request failed.
+   * @throws FailedRequestException In case the request was rejected by the API.
    */
   @Override
   public void login(@NonNull Duration duration) throws FailedRequestException {
