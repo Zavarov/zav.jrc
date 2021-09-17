@@ -17,12 +17,16 @@
 package zav.jrc.databind.api;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
-
+/**
+ * This class implements the token of the current session and optionally, the refresh token
+ * necessary to acquire a new token, once the current one expires. The token is attached to every
+ * API request, in order to verify the identify of the requester.
+ */
 public class Token extends TokenTOP {
   private static final Logger LOGGER = LogManager.getLogger(Token.class);
   /**
@@ -33,15 +37,17 @@ public class Token extends TokenTOP {
   private final LocalDateTime creationTime = LocalDateTime.now();
   
   /**
-   * Checks if the access token has expired. In order to allow a little bit of tolerance, the access token
-   * will be treated as expired, the moment it is less than one minute valid. This minimizes the risk of the token
-   * expiring between calling this method and sending the request.
+   * Checks if the access token has expired. In order to allow a little bit of tolerance, the access
+   * token will be treated as expired, the moment it is less than one minute valid. This minimizes
+   * the risk of the token expiring between calling this method and sending the request.
+   *
    * @return {@code true}, if the access token is no longer valid.
    */
   @JsonIgnore
   public boolean isExpired() {
     LocalDateTime expirationTime = creationTime.plusSeconds(this.getExpiresIn());
-    LOGGER.info("Token expires in {} minute(s)", ChronoUnit.MINUTES.between(LocalDateTime.now(), expirationTime));
+    long remainingMinutes = ChronoUnit.MINUTES.between(LocalDateTime.now(), expirationTime);
+    LOGGER.info("Token expires in {} minute(s)", remainingMinutes);
     //In order to prevent using an expired token, a fresh one
     //has to be requested a minute before the current one expires
     return expirationTime.minusMinutes(1).isBefore(LocalDateTime.now());

@@ -16,14 +16,16 @@
 
 package zav.jrc.databind.api;
 
-import zav.jrc.databind.api.CredentialsTOP;
-
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
+/**
+ * This class contains the credentials required to authenticate the application.
+ */
 public class Credentials extends CredentialsTOP {
   @Override
   public String toString() {
-    return Base64.getEncoder().encodeToString((getId()+":"+getSecret()).getBytes(StandardCharsets.UTF_8));
+    String source = getId() + ":" + getSecret();
+    return Base64.getEncoder().encodeToString(source.getBytes(StandardCharsets.UTF_8));
   }
 }

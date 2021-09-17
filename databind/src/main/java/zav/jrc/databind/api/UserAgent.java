@@ -16,15 +16,21 @@
 
 package zav.jrc.databind.api;
 
-public class UserAgent extends UserAgentTOP{
-  
+/**
+ * This class implements the user agent, attach to every API request in order to uniquely identify
+ * the application.
+ */
+public class UserAgent extends UserAgentTOP {
   /**
-   * The user agent string is of the form:<p>
+   * Calculates the user agent of the application.<p/>
+   * The user agent string is of the form:<p/>
    * {@code <platform>:<app ID>:<version string> (by /u/<reddit username>)}
+   *
    * @return The user agent string.
    */
   @Override
-  public String toString(){
-    return String.format("%s:%s:%s (by /u/%s)", getPlatform(), getName(), getVersion(), getAuthor());
+  public String toString() {
+    String pattern = "%s:%s:%s (by /u/%s)";
+    return String.format(pattern, getPlatform(), getName(), getVersion(), getAuthor());
   }
 }
