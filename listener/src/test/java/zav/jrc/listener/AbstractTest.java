@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.view.internal;
+package zav.jrc.listener;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
@@ -23,21 +23,23 @@ import org.junit.jupiter.api.BeforeAll;
 import zav.jrc.Client;
 import zav.jrc.Duration;
 import zav.jrc.FailedRequestException;
+import zav.jrc.guice.ScriptModule;
+import zav.jrc.listener.guice.ListenerModule;
 import zav.jrc.view.guice.ViewModule;
 
 public abstract class AbstractTest {
-  protected static Injector GUICE;
-  protected static Client CLIENT;
-  
-  @BeforeAll
-  public static void setUpAll() throws FailedRequestException {
-    GUICE = Guice.createInjector(new ClientMockModule(), new ViewModule());
-    CLIENT = GUICE.getInstance(Client.class);
-    CLIENT.login(Duration.TEMPORARY);
-  }
-  
-  @AfterAll
-  public static void tearDown() throws FailedRequestException {
-    CLIENT.logout();
-  }
+    protected static Injector GUICE;
+    protected static Client CLIENT;
+    
+    @BeforeAll
+    public static void setUpAll() throws FailedRequestException {
+        GUICE = Guice.createInjector(new ScriptModule(), new ViewModule(), new ListenerModule());
+        CLIENT = GUICE.getInstance(Client.class);
+        CLIENT.login(Duration.TEMPORARY);
+    }
+    
+    @AfterAll
+    public static void tearDown() throws FailedRequestException {
+        CLIENT.logout();
+    }
 }

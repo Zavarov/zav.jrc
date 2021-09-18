@@ -21,7 +21,6 @@ import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
 import zav.jrc.view.guice.FrontPageViewFactory;
-import zav.jrc.view.internal.AbstractTest;
 
 public class FrontPageViewTest extends AbstractTest {
   

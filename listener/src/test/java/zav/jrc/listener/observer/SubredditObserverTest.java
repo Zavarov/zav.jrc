@@ -14,42 +14,40 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.observer;
+package zav.jrc.listener.observer;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
-import zav.jrc.databind.Subreddit;
 import zav.jrc.listener.guice.SubredditObserverFactory;
-import zav.jrc.listener.interal.AbstractTest;
-import zav.jrc.listener.SubredditListener;
+import zav.jrc.listener.AbstractTest;
 import zav.jrc.listener.interal.SubredditListenerMock;
 import zav.jrc.listener.observer.SubredditObserver;
 import zav.jrc.view.SubredditView;
 import zav.jrc.view.guice.SubredditViewFactory;
 
 public class SubredditObserverTest extends AbstractTest {
-    private static SubredditObserver observer;
-    private static SubredditView subreddit;
-    @BeforeAll
-    public static void setUpObserver() {
-        SubredditViewFactory factory = GUICE.getInstance(SubredditViewFactory.class);
-        subreddit = factory.create("discordapp");
-    }
+  private static SubredditObserver observer;
+  private static SubredditView subreddit;
+  @BeforeAll
+  public static void setUpObserver() {
+    SubredditViewFactory factory = GUICE.getInstance(SubredditViewFactory.class);
+    subreddit = factory.create("discordapp");
+  }
 
-    @BeforeEach
-    public void setUp(){
-        SubredditObserverFactory factory = GUICE.getInstance(SubredditObserverFactory.class);
-        observer = factory.create(subreddit);
-        observer.addListener(new SubredditListenerMock());
-    }
+  @BeforeEach
+  public void setUp(){
+    SubredditObserverFactory factory = GUICE.getInstance(SubredditObserverFactory.class);
+    observer = factory.create(subreddit);
+    observer.addListener(new SubredditListenerMock());
+  }
 
-    @Test
-    public void test() throws InterruptedException, FailedRequestException {
-        while(true){
-            observer.notifyAllListener();
-            Thread.sleep(60000);
-        }
+  @Test
+  public void test() throws InterruptedException, FailedRequestException {
+    while(true){
+      observer.notifyAllListener();
+      Thread.sleep(60000);
     }
+  }
 }

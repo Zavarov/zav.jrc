@@ -22,7 +22,6 @@ import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
 import zav.jrc.databind.*;
 import zav.jrc.view.guice.SubredditViewFactory;
-import zav.jrc.view.internal.AbstractTest;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

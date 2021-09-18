@@ -19,7 +19,6 @@ package zav.jrc.view;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
-import zav.jrc.view.internal.AbstractTest;
 import zav.jrc.view.internal.ClientMock;
 import zav.jrc.view.guice.AccountViewFactory;
 
