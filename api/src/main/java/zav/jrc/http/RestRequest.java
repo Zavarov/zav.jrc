@@ -39,6 +39,16 @@ import zav.jrc.Parameter;
 /**
  * The base class for every REST request.<br>
  * There are five different type of requests:
+ *
+ * <pre>
+ *   | Parameter | Description    |
+ *   | --------- | -------------- |
+ *   | POST      | Create         |
+ *   | GET       | Read           |
+ *   | PUT       | Update/Replace |
+ *   | PATCH     | Update/Modify  |
+ *   | DELETE    | Delete         |
+ * </pre>
  * <table>
  *   <tr><td> POST   </td><td> Create         </td></tr>
  *   <tr><td> GET    </td><td> Read           </td></tr>

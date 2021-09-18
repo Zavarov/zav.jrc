@@ -36,7 +36,7 @@ import zav.jrc.http.RestRequest;
 
 /**
  * Runs on hardware you control, such as your own laptop or server. Can keep a secret. Only has
- * access to your account.</p>
+ * access to your account.<br>
  * The script therefore requires both your username and password.
  */
 @Singleton // All requests have to go through a single client

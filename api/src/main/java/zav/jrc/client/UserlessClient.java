@@ -36,7 +36,7 @@ import zav.jrc.http.RestRequest;
 
 /**
  * Runs on hardware you control, such as your own laptop or server. Doesn't have a user context
- * and therefore can't keep a secret.</p>
+ * and therefore can't keep a secret.<br>
  */
 @Singleton // All requests have to go through a single client
 public class UserlessClient extends Client {
