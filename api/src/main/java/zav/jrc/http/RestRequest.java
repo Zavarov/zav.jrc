@@ -49,13 +49,6 @@ import zav.jrc.Parameter;
  *   | PATCH     | Update/Modify  |
  *   | DELETE    | Delete         |
  * </pre>
- * <table>
- *   <tr><td> POST   </td><td> Create         </td></tr>
- *   <tr><td> GET    </td><td> Read           </td></tr>
- *   <tr><td> PUT    </td><td> Update/Replace </td></tr>
- *   <tr><td> PATCH  </td><td> Update/Modify  </td></tr>
- *   <tr><td> DELETE </td><td> Delete         </td></tr>
- * </table>
  */
 @NonNull
 public class RestRequest {
