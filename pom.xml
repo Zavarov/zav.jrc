@@ -33,6 +33,7 @@
 
     <properties>
         <!-- .. Libraries .......................................................................................... -->
+        <jakarta.inject.version>1.0.3</jakarta.inject.version>
         <fasterxml.version>2.12.5</fasterxml.version>
         <guice.version>5.0.1</guice.version>
         <okhttp.version>4.9.1</okhttp.version>

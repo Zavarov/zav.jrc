@@ -2,7 +2,7 @@ module zav.jrc.api {
   requires com.fasterxml.jackson.databind;
   requires com.google.common;
   requires com.google.guice;
-  requires javax.inject;
+  requires java.inject;
   requires org.apache.logging.log4j;
   requires org.eclipse.jdt.annotation;
   requires okhttp3;

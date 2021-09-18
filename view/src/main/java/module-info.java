@@ -4,7 +4,7 @@ module zav.jcr.view {
   requires okhttp3;
   requires zav.jrc.api;
   requires zav.jrc.databind;
-  requires javax.inject;
+  requires java.inject;
   requires org.eclipse.jdt.annotation;
   requires com.fasterxml.jackson.databind;
   requires com.google.guice;
