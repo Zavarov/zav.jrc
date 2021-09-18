@@ -23,7 +23,6 @@ import zav.jrc.FailedRequestException;
 import zav.jrc.listener.guice.SubredditObserverFactory;
 import zav.jrc.listener.AbstractTest;
 import zav.jrc.listener.interal.SubredditListenerMock;
-import zav.jrc.listener.observer.SubredditObserver;
 import zav.jrc.view.SubredditView;
 import zav.jrc.view.guice.SubredditViewFactory;
 

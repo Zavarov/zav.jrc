@@ -49,6 +49,7 @@
 
     <build>
         <plugins>
+            <!-- Generate sources -->
             <plugin>
                 <groupId>org.jsonschema2pojo</groupId>
                 <artifactId>jsonschema2pojo-maven-plugin</artifactId>
@@ -64,6 +65,15 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <!-- Create docs jar -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <configuration>
+                    <doclint>none</doclint>
+                </configuration>
             </plugin>
         </plugins>
     </build>
