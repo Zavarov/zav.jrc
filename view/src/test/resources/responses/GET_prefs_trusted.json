@@ -1,0 +1,13 @@
+{
+  "kind": "UserList",
+  "data": {
+    "children": [
+      {
+        "date": 1630585840,
+        "rel_id": "r9_ABCDEF",
+        "name": "Username",
+        "id": "t2_abcdef"
+      }
+    ]
+  }
+}
