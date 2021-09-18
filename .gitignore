@@ -91,3 +91,11 @@ fabric.properties
 **/buildSrc/.gradle
 **/buildSrc/build
 **/buildSrc/src/main/java
+/api/src/test/resources/Credentials.json
+/api/src/test/resources/UserAgent.json
+/jra/src/test/resources/Credentials.json
+/jra/src/test/resources/UserAgent.json
+/view/src/test/resources/Credentials.json
+/view/src/test/resources/UserAgent.json
+/listener/src/test/resources/Credentials.json
+/listener/src/test/resources/UserAgent.json
