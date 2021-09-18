@@ -1,20 +1,11 @@
 {
   "type" : "object",
   "properties" : {
-    "data" : {
-      "javaType" : "TrophyListData",
-      "type" : "object",
-      "properties" : {
-        "trophies" : {
-          "type" : "array",
-          "items" : {
-            "$ref" : "core/Thing.json"
-          }
-        }
+    "trophies" : {
+      "type" : "array",
+      "items" : {
+        "$ref" : "core/Thing.json"
       }
-    },
-    "kind" : {
-      "type"  : "string"
     }
   }
 }

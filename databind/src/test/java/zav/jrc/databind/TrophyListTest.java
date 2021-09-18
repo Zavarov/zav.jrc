@@ -23,32 +23,21 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrophyListTest extends AbstractTest {
   static TrophyList trophyList;
-  static TrophyListData trophyListData;
   static Award threeYearClub;
   static Award verifiedEmail;
   
   @BeforeAll
   public static void setUpAll() {
     trophyList = read("TrophyList.json", TrophyList.class);
-    trophyListData = trophyList.getData();
-    threeYearClub = read(trophyListData.getTrophies().get(0).getData(), Award.class);
-    verifiedEmail = read(trophyListData.getTrophies().get(1).getData(), Award.class);
-  }
-  
-  @Test
-  public void testGetKind() {
-    assertThat(trophyList.getKind()).isEqualTo("TrophyList");
-  }
-  
-  @Test
-  public void testGetData() {
-    assertThat(trophyListData.getTrophies()).hasSize(2);
+    threeYearClub = read(trophyList.getTrophies().get(0).getData(), Award.class);
+    verifiedEmail = read(trophyList.getTrophies().get(1).getData(), Award.class);
   }
   
   @Test
   public void testGetTrophies() {
-    assertThat(trophyListData.getTrophies()).hasSize(2);
+    assertThat(trophyList.getTrophies()).hasSize(2);
   }
+  
   @Test
   public void testGetThreeYearClubTrophy() {
     assertThat(threeYearClub.getIcon70()).isEqualTo("https://www.redditstatic.com/awards2/3_year_club-70.png");
