@@ -13,5 +13,4 @@ module zav.jrc.api {
   exports zav.jrc.endpoint;
   exports zav.jrc.guice;
   exports zav.jrc.http;
-  exports zav.jrc.http.exception;
 }
