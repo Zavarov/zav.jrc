@@ -106,8 +106,7 @@
       "type" : "string"
     },
     "edited" : {
-      "description" : "Indicates if link has been edited. Will be the edit timestamp if the link has been edited and return empty otherwise.",
-      "type" : "number"
+      "description" : "Indicates if link has been edited. Will be the edit timestamp if the link has been edited and return false otherwise."
     },
     "distinguished" : {
       "description" : "To allow determining whether they have been distinguished by moderators/admins.\n{@code null} = not distinguished.\nModerator = the green [M].\nAdmin = the red [A].\nSpecial = various other special distinguishes.\nsee http://redd.it/19ak1b",
