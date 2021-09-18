@@ -20,6 +20,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
+import zav.jrc.databind.Link;
+import zav.jrc.databind.Rules;
+import zav.jrc.databind.Subreddit;
 import zav.jrc.databind.SubredditSettings;
 import zav.jrc.view.guice.SubredditViewFactory;
 import zav.jrc.view.internal.AbstractTest;
@@ -32,6 +35,8 @@ import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 public class SubredditViewTest extends AbstractTest {
   SubredditView view;
   
@@ -43,39 +48,44 @@ public class SubredditViewTest extends AbstractTest {
   
   @Test
   public void testGetControversial() throws FailedRequestException {
-    view.getControversial();
+    assertThat(view.getControversial()).hasSize(3);
   }
   
   @Test
   public void testGetHot() throws FailedRequestException {
-    view.getHot();
+    assertThat(view.getHot()).hasSize(25);
   }
   
   @Test
   public void testGetNew() throws FailedRequestException {
-    view.getNew();
+    assertThat(view.getNew()).hasSize(25);
   }
   
   @Test
   public void testGetRandom() throws FailedRequestException {
-    view.getRandom();
+    assertThat(view.getRandom()).hasSize(2);
   }
   
   @Test
   public void testGetRising() throws FailedRequestException {
-    view.getRising();
+    assertThat(view.getRising()).hasSize(25);
   }
   
   @Test
   public void testGetTop() throws FailedRequestException {
-    view.getTop();
+    assertThat(view.getTop()).hasSize(3);
   }
   
   // Search
   
   @Test
   public void testGetSearch() throws FailedRequestException {
-    view.getSearch(new Parameter("q", "api"), new Parameter("restrict_sr", true));
+    Parameter[] params = new Parameter[]{
+          new Parameter("q", "api"),
+          new Parameter("restrict_sr", true)
+    };
+    
+    assertThat(view.getSearch(params)).hasSize(25);
   }
   
   // Subreddits
@@ -83,14 +93,17 @@ public class SubredditViewTest extends AbstractTest {
   @Test
   public void testPostCreate() throws FailedRequestException {
     SubredditSettings settings = view.getEdit();
-    
-    view.postCreate(settings);
+    SubredditSettings response = view.postCreate(settings);
+  
+    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
   
   @Test
   public void testPostConfigure() throws FailedRequestException {
     SubredditSettings settings = view.getEdit();
-    view.postConfigure(settings);
+    SubredditSettings response = view.postConfigure(settings);
+  
+    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
   
   @Test
@@ -105,62 +118,62 @@ public class SubredditViewTest extends AbstractTest {
   
   @Test
   public void testGetPostRequirements() throws FailedRequestException {
-    view.getPostRequirements();
+    assertThat(view.getPostRequirements()).isNotEmpty();
   }
   
   @Test
   public void testGetBanned() throws FailedRequestException {
-    view.getBanned();
+    assertThat(view.getBanned()).isEmpty();
   }
   
   @Test
   public void testGetContributors() throws FailedRequestException {
-    view.getContributors();
+    assertThat(view.getContributors()).isNotEmpty();
   }
   
   @Test
   public void testGetModerators() throws FailedRequestException {
-    view.getModerators();
+    assertThat(view.getModerators()).hasSize(1);
   }
   
   @Test
   public void testGetMuted() throws FailedRequestException {
-    view.getMuted();
+    assertThat(view.getMuted()).isEmpty();
   }
   
   @Test
   public void testGetWikiBanned() throws FailedRequestException {
-    view.getWikiBanned();
+    assertThat(view.getWikiBanned()).isEmpty();
   }
   
   @Test
   public void testGetWikiContributors() throws FailedRequestException {
-    view.getWikiContributors();
+    assertThat(view.getWikiContributors()).isEmpty();
   }
   
   @Test
   public void testPostDeleteBanner() throws FailedRequestException {
-    view.postDeleteBanner();
+    assertThat(view.postDeleteBanner()).isNotEmpty();
   }
   
   @Test
   public void testPostDeleteHeader() throws FailedRequestException {
-    view.postDeleteHeader();
+    assertThat(view.postDeleteHeader()).isNotEmpty();
   }
   
   @Test
   public void testPostDeleteIcon() throws FailedRequestException {
-    view.postDeleteIcon();
+    assertThat(view.postDeleteIcon()).isNotEmpty();
   }
   
   @Test
   public void testPostDeleteImage() throws FailedRequestException {
-    view.postDeleteImage("image");
+    assertThat(view.postDeleteImage("image")).isNotEmpty();
   }
   
   @Test
   public void testGetSubmitText() throws FailedRequestException {
-    view.getSubmitText();
+    assertThat(view.getSubmitText()).contains("Get faster, better responses by including more information");
   }
   
   @Test
@@ -169,7 +182,14 @@ public class SubredditViewTest extends AbstractTest {
     Objects.requireNonNull(is);
     String css = new String(is.readAllBytes(), StandardCharsets.UTF_8);
     
-    view.postSubredditStylesheet(new Parameter("api_type", "json"), new Parameter("op", "save"), new Parameter("reason", "test"), new Parameter("stylesheet_contents", css));
+    Parameter[] params = new Parameter[]{
+          new Parameter("api_type", "json"),
+          new Parameter("op", "save"),
+          new Parameter("reason", "test"),
+          new Parameter("stylesheet_contents", css)
+    };
+    
+    assertThat(view.postSubredditStylesheet(params)).isNotEmpty();
   }
   
   @Test
@@ -178,7 +198,7 @@ public class SubredditViewTest extends AbstractTest {
     Objects.requireNonNull(url);
     BufferedImage image = ImageIO.read(url);
     
-    view.postUploadImage(image, "image");
+    assertThat(view.postUploadImage(image, "image")).isNotEmpty();
   }
   
   @Test
@@ -187,7 +207,7 @@ public class SubredditViewTest extends AbstractTest {
     Objects.requireNonNull(url);
     BufferedImage header = ImageIO.read(url);
   
-    view.postUploadHeader(header);
+    assertThat(view.postUploadHeader(header)).isNotEmpty();
   }
   
   @Test
@@ -196,7 +216,7 @@ public class SubredditViewTest extends AbstractTest {
     Objects.requireNonNull(url);
     BufferedImage icon = ImageIO.read(url);
   
-    view.postUploadIcon(icon);
+    assertThat(view.postUploadIcon(icon)).isNotEmpty();
   }
   
   @Test
@@ -205,31 +225,37 @@ public class SubredditViewTest extends AbstractTest {
     Objects.requireNonNull(url);
     BufferedImage banner = ImageIO.read(url);
   
-    view.postUploadBanner(banner);
+    assertThat(view.postUploadBanner(banner)).isNotEmpty();
   }
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    view.getAbout();
+    Subreddit response = view.getAbout();
+    assertThat(response.getDisplayName()).isEqualToIgnoringCase("RedditDev");
   }
   
   @Test
   public void testGetEdit() throws FailedRequestException {
-    view.getEdit();
+    SubredditSettings response = view.getEdit();
+    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
   
   @Test
   public void testGetRules() throws FailedRequestException {
-    view.getRules();
+    Rules response = view.getRules();
+    assertThat(response.getRules()).isEmpty();
+    assertThat(response.getSiteRules()).hasSize(3);
+    assertThat(response.getSiteRulesFlow()).hasSize(4);
   }
   
   @Test
   public void testGetTraffic() throws FailedRequestException {
-    view.getTraffic();
+    assertThat(view.getTraffic()).isNotEmpty();
   }
   
   @Test
   public void testGetSticky() throws FailedRequestException {
-    view.getSticky(1);
+    Link response = view.getSticky(1);
+    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
 }
