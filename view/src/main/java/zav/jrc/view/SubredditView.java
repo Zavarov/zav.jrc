@@ -73,8 +73,7 @@ public class SubredditView {
           .build()
           .get();
   
-    Listing response = JsonUtils.transformThing(client.send(query), Listing.class);
-    return JsonUtils.transformListing(response, Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getHot(Parameter... params) throws FailedRequestException {
@@ -85,8 +84,7 @@ public class SubredditView {
           .build()
           .get();
   
-    Listing response = JsonUtils.transformThing(client.send(query), Listing.class);
-    return JsonUtils.transformListing(response, Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getNew(Parameter... params) throws FailedRequestException {
@@ -97,8 +95,7 @@ public class SubredditView {
           .build()
           .get();
   
-    Listing response = JsonUtils.transformThing(client.send(query), Listing.class);
-    return JsonUtils.transformListing(response, Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getRandom(Parameter... params) throws FailedRequestException {
@@ -109,8 +106,9 @@ public class SubredditView {
           .build()
           .get();
   
-    Listing[] listings = JsonUtils.transform(client.send(query), Listing[].class);
-    return Arrays.stream(listings).map(object -> JsonUtils.transform(object, Link.class));
+    Thing[] response = JsonUtils.transform(client.send(query), Thing[].class);
+    Listing listing = JsonUtils.transformThing(response[0], Listing.class);
+    return JsonUtils.transformListingOfThings(listing, Link.class);
   }
   
   public Stream<Link> getRising(Parameter... params) throws FailedRequestException {
@@ -121,8 +119,7 @@ public class SubredditView {
           .build()
           .get();
   
-    Listing response = JsonUtils.transformThing(client.send(query), Listing.class);
-    return JsonUtils.transformListing(response, Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getTop(Parameter... params) throws FailedRequestException {
@@ -133,8 +130,7 @@ public class SubredditView {
           .build()
           .get();
   
-    Listing response = JsonUtils.transformThing(client.send(query), Listing.class);
-    return JsonUtils.transformListing(response, Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -532,7 +528,6 @@ public class SubredditView {
     Thing[] response = JsonUtils.transform(client.send(query), Thing[].class);
     Listing listing = JsonUtils.transform(response[0].getData(), Listing.class);
     Thing thing = JsonUtils.transformListing(listing, Thing.class).findFirst().orElseThrow();
-    System.out.println(thing.getData());
     return JsonUtils.transformThing(thing, Link.class);
   }
 }

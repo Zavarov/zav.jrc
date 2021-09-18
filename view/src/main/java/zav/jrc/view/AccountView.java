@@ -17,9 +17,8 @@
 package zav.jrc.view;
 
 import com.google.inject.assistedinject.Assisted;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+
+import java.util.*;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
@@ -27,10 +26,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.Client;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
-import zav.jrc.databind.Account;
-import zav.jrc.databind.Award;
-import zav.jrc.databind.Comment;
-import zav.jrc.databind.Link;
+import zav.jrc.databind.*;
 import zav.jrc.endpoint.Users;
 import zav.jrc.http.RestRequest;
 import zav.jrc.view.internal.JsonUtils;
@@ -150,8 +146,11 @@ public class AccountView {
           .setArgs(name)
           .build()
           .get();
-    
-    return JsonUtils.transformListing(client.send(query), Award.class);
+  
+    return JsonUtils.transform(client.send(query), TrophyList.class)
+          .getTrophies()
+          .stream()
+          .map(thing -> JsonUtils.transformThing(thing, Award.class));
   }
   
   public Account getAbout() throws FailedRequestException {

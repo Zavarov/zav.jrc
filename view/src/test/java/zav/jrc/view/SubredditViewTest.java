@@ -20,10 +20,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Rules;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.SubredditSettings;
+import zav.jrc.databind.*;
 import zav.jrc.view.guice.SubredditViewFactory;
 import zav.jrc.view.internal.AbstractTest;
 
@@ -49,31 +46,49 @@ public class SubredditViewTest extends AbstractTest {
   @Test
   public void testGetControversial() throws FailedRequestException {
     assertThat(view.getControversial()).hasSize(3);
+    
+    Link response = view.getControversial().findFirst().orElseThrow();
+    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetHot() throws FailedRequestException {
     assertThat(view.getHot()).hasSize(25);
+  
+    Link response = view.getHot().findFirst().orElseThrow();
+    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetNew() throws FailedRequestException {
     assertThat(view.getNew()).hasSize(25);
+  
+    Link response = view.getNew().findFirst().orElseThrow();
+    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetRandom() throws FailedRequestException {
-    assertThat(view.getRandom()).hasSize(2);
+    assertThat(view.getRandom()).hasSize(1);
+  
+    Link response = view.getRandom().findFirst().orElseThrow();
+    assertThat(response.getTitle()).isEqualTo("I'm making a reddit bot that deletes spam mesages based on a specific keyword, but for some reason the message doesn't delete.");
   }
   
   @Test
   public void testGetRising() throws FailedRequestException {
     assertThat(view.getRising()).hasSize(25);
+  
+    Link response = view.getRising().findFirst().orElseThrow();
+    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetTop() throws FailedRequestException {
     assertThat(view.getTop()).hasSize(3);
+  
+    Link response = view.getTop().findFirst().orElseThrow();
+    assertThat(response.getTitle()).isEqualTo("Getting user description");
   }
   
   // Search
@@ -129,11 +144,17 @@ public class SubredditViewTest extends AbstractTest {
   @Test
   public void testGetContributors() throws FailedRequestException {
     assertThat(view.getContributors()).isNotEmpty();
+  
+    User user = view.getContributors().findFirst().orElseThrow();
+    assertThat(user.getName()).isEqualTo("Name");
   }
   
   @Test
   public void testGetModerators() throws FailedRequestException {
     assertThat(view.getModerators()).hasSize(1);
+    
+    User user = view.getModerators().findFirst().orElseThrow();
+    assertThat(user.getName()).isEqualTo("User");
   }
   
   @Test

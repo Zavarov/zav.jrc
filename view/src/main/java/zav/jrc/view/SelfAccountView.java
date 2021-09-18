@@ -90,7 +90,6 @@ public class SelfAccountView {
           .get();
   
     return JsonUtils.transform(client.send(query), TrophyList.class)
-          .getData()
           .getTrophies()
           .stream()
           .map(thing -> JsonUtils.transformThing(thing, Award.class));
