@@ -24,7 +24,7 @@ import zav.jrc.Client;
 import zav.jrc.Duration;
 import zav.jrc.FailedRequestException;
 import zav.jrc.view.guice.ViewModule;
-import zav.jrc.view.internal.ClientMockModule;
+import zav.jrc.view.guice.ClientMockModule;
 
 public abstract class AbstractTest {
   protected static Injector GUICE;

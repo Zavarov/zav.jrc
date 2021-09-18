@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.view.internal;
+package zav.jrc.listener.guice;
 
 import com.google.inject.name.Names;
 import zav.jrc.Client;

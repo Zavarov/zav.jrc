@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.interal;
+package zav.jrc.listener.guice;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

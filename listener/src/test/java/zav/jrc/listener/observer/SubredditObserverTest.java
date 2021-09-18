@@ -22,7 +22,7 @@ import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
 import zav.jrc.listener.guice.SubredditObserverFactory;
 import zav.jrc.listener.AbstractTest;
-import zav.jrc.listener.interal.SubredditListenerMock;
+import zav.jrc.listener.guice.SubredditListenerMock;
 import zav.jrc.view.SubredditView;
 import zav.jrc.view.guice.SubredditViewFactory;
 
@@ -42,7 +42,7 @@ public class SubredditObserverTest extends AbstractTest {
     observer.addListener(new SubredditListenerMock());
   }
 
-  @Test
+  //@Test
   public void test() throws InterruptedException, FailedRequestException {
     while(true){
       observer.notifyAllListener();

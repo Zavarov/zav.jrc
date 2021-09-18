@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.view.internal;
+package zav.jrc.listener.guice;
 
 import okhttp3.Request;
 import zav.jrc.Client;
@@ -46,20 +46,6 @@ public class ClientMock extends Client {
   
   @Override
   public synchronized String send(Request request) throws FailedRequestException {
-    String method = request.method();
-    String path = String.join("_", request.url().pathSegments());
-    String fileName = method + "_" + path + ".json";
-    
-    String dir = "responses";
-    InputStream is = getClass().getClassLoader().getResourceAsStream(dir + "/" + fileName);
-    if (is == null) {
-      throw FailedRequestException.wrap(new FileNotFoundException(fileName));
-    }
-    
-    try {
-      return new String(is.readAllBytes(), StandardCharsets.UTF_8);
-    } catch(IOException e) {
-      throw FailedRequestException.wrap(e);
-    }
+    throw FailedRequestException.wrap(new UnsupportedOperationException());
   }
 }

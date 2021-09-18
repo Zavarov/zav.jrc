@@ -10,7 +10,6 @@ module zav.jcr.view {
   requires com.google.guice;
   
   exports zav.jrc.view;
-  exports zav.jrc.view.internal to com.google.guice;
   exports zav.jrc.view.guice;
   
   opens zav.jrc.view to com.google.guice;

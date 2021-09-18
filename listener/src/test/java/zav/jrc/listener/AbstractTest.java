@@ -24,7 +24,7 @@ import zav.jrc.Client;
 import zav.jrc.Duration;
 import zav.jrc.FailedRequestException;
 import zav.jrc.listener.guice.ListenerModule;
-import zav.jrc.listener.interal.ClientMockModule;
+import zav.jrc.listener.guice.ClientMockModule;
 import zav.jrc.view.guice.ViewModule;
 
 public abstract class AbstractTest {
