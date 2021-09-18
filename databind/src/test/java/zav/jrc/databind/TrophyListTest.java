@@ -24,15 +24,15 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class TrophyListTest extends AbstractTest {
   static TrophyList trophyList;
   static TrophyListData trophyListData;
-  static Trophy threeYearClub;
-  static Trophy verifiedEmail;
+  static Award threeYearClub;
+  static Award verifiedEmail;
   
   @BeforeAll
   public static void setUpAll() {
     trophyList = read("TrophyList.json", TrophyList.class);
     trophyListData = trophyList.getData();
-    threeYearClub = read(trophyListData.getTrophies().get(0).getData(), Trophy.class);
-    verifiedEmail = read(trophyListData.getTrophies().get(1).getData(), Trophy.class);
+    threeYearClub = read(trophyListData.getTrophies().get(0).getData(), Award.class);
+    verifiedEmail = read(trophyListData.getTrophies().get(1).getData(), Award.class);
   }
   
   @Test

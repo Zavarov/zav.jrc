@@ -28,9 +28,9 @@ import zav.jrc.Client;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
 import zav.jrc.databind.Account;
+import zav.jrc.databind.Award;
 import zav.jrc.databind.Comment;
 import zav.jrc.databind.Link;
-import zav.jrc.databind.Trophy;
 import zav.jrc.endpoint.Users;
 import zav.jrc.http.RestRequest;
 import zav.jrc.view.internal.JsonUtils;
@@ -144,14 +144,14 @@ public class AccountView {
     return client.send(query);
   }
   
-  public Stream<Trophy> getTrophies() throws FailedRequestException {
+  public Stream<Award> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES)
           .setArgs(name)
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Trophy.class);
+    return JsonUtils.transformListing(client.send(query), Award.class);
   }
   
   public Account getAbout() throws FailedRequestException {

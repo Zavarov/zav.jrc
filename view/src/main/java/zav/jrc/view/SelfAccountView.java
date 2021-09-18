@@ -23,12 +23,12 @@ import okhttp3.Request;
 import zav.jrc.Client;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
+import zav.jrc.databind.Award;
 import zav.jrc.databind.Karma;
 import zav.jrc.databind.KarmaList;
 import zav.jrc.databind.Preferences;
 import zav.jrc.databind.SelfAccount;
 import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.Trophy;
 import zav.jrc.databind.TrophyList;
 import zav.jrc.databind.User;
 import zav.jrc.databind.UserList;
@@ -83,7 +83,7 @@ public class SelfAccountView {
     return JsonUtils.transform(client.send(query), Preferences.class);
   }
   
-  public Stream<Trophy> getTrophies() throws FailedRequestException {
+  public Stream<Award> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_TROPHIES)
           .build()
@@ -93,7 +93,7 @@ public class SelfAccountView {
           .getData()
           .getTrophies()
           .stream()
-          .map(thing -> JsonUtils.transformThing(thing, Trophy.class));
+          .map(thing -> JsonUtils.transformThing(thing, Award.class));
   }
   
   public Stream<User> getBlocked() throws FailedRequestException {
