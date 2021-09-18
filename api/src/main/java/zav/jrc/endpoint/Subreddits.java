@@ -29,7 +29,7 @@ import zav.jrc.databind.core.Listing;
 @SuppressWarnings("unused")
 public class Subreddits {
   /**
-   * The endpoint for retrieving information about a subreddit with respect to a user.<p/>
+   * The endpoint for retrieving information about a subreddit with respect to a user.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -51,7 +51,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_WHERE =
         new Endpoint("r", "{subreddit}", "about", "{where}");
   /**
-   * The endpoint for retrieving information about a subreddit with respect to a user.<p/>
+   * The endpoint for retrieving information about a subreddit with respect to a user.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -73,7 +73,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_WHERE =
         new Endpoint("about", "{where}");
   /**
-   * All currently banned users.<p/>
+   * All currently banned users.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -95,7 +95,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_BANNED =
         new Endpoint(GET_R_SUBREDDIT_ABOUT_WHERE.getPath("{subreddit}", "banned"));
   /**
-   * All currently banned users.<p/>
+   * All currently banned users.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -117,7 +117,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_BANNED =
         new Endpoint(GET_ABOUT_WHERE.getPath("banned"));
   /**
-   * All contributors.<p/>
+   * All contributors.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -139,7 +139,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS =
         new Endpoint(GET_R_SUBREDDIT_ABOUT_WHERE.getPath("{subreddit}", "contributors"));
   /**
-   * All contributors.<p/>
+   * All contributors.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -161,7 +161,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_CONTRIBUTORS =
         new Endpoint(GET_ABOUT_WHERE.getPath("contributors"));
   /**
-   * All moderators.<p/>
+   * All moderators.<br>
    * This endpoint is a {@link UserList}.
    * <pre>
    *   | Parameter | Description                         |
@@ -183,7 +183,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_MODERATORS =
         new Endpoint(GET_R_SUBREDDIT_ABOUT_WHERE.getPath("{subreddit}", "moderators"));
   /**
-   * All moderators.<p/>
+   * All moderators.<br>
    * This endpoint is a {@link UserList}.
    * <pre>
    *   | Parameter | Description                         |
@@ -205,7 +205,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_MODERATORS =
         new Endpoint(GET_ABOUT_WHERE.getPath("moderators"));
   /**
-   * All currently muted users.<p/>
+   * All currently muted users.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -227,7 +227,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_MUTED =
         new Endpoint(GET_R_SUBREDDIT_ABOUT_WHERE.getPath("{subreddit}", "muted"));
   /**
-   * All currently muted users.<p/>
+   * All currently muted users.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -249,7 +249,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_MUTED =
         new Endpoint(GET_ABOUT_WHERE.getPath("muted"));
   /**
-   * All users banned from the wiki.<p/>
+   * All users banned from the wiki.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -271,7 +271,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_WIKIBANNED =
         new Endpoint(GET_R_SUBREDDIT_ABOUT_WHERE.getPath("{subreddit}", "wikibanned"));
   /**
-   * All users banned from the wiki.<p/>
+   * All users banned from the wiki.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -293,7 +293,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_WIKIBANNED =
         new Endpoint(GET_ABOUT_WHERE.getPath("wikibanned"));
   /**
-   * All users contributing to the wiki.<p/>
+   * All users contributing to the wiki.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -315,7 +315,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS =
         new Endpoint(GET_R_SUBREDDIT_ABOUT_WHERE.getPath("{subreddit}", "wikicontributors"));
   /**
-   * All users contributing to the wiki.<p/>
+   * All users contributing to the wiki.<br>
    * This endpoint is a list of users.
    * <pre>
    *   | Parameter | Description                         |
@@ -337,7 +337,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_WIKICONTRIBUTORS =
         new Endpoint(GET_ABOUT_WHERE.getPath("wikicontributors"));
   /**
-   * Remove the subreddit's custom mobile banner.<p/>
+   * Remove the subreddit's custom mobile banner.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description       |
@@ -351,7 +351,7 @@ public class Subreddits {
   public static final Endpoint POST_R_SUBREDDIT_API_DELETE_SR_BANNER =
         new Endpoint("r", "{subreddit}", "api", "delete_sr_banner");
   /**
-   * Remove the subreddit's custom mobile banner.<p/>
+   * Remove the subreddit's custom mobile banner.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description       |
@@ -365,8 +365,8 @@ public class Subreddits {
   public static final Endpoint POST_API_DELETE_SR_BANNER =
         new Endpoint("api", "delete_sr_banner");
   /**
-   * Remove the subreddit's custom header image.<p/>
-   * The sitewide-default header image will be shown again after this call.<p/>
+   * Remove the subreddit's custom header image.<br>
+   * The sitewide-default header image will be shown again after this call.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description       |
@@ -380,8 +380,8 @@ public class Subreddits {
   public static final Endpoint POST_R_SUBREDDIT_API_DELETE_SR_HEADER =
         new Endpoint("r", "{subreddit}", "api", "delete_sr_header");
   /**
-   * Remove the subreddit's custom header image.<p/>
-   * The sitewide-default header image will be shown again after this call.<p/>
+   * Remove the subreddit's custom header image.<br>
+   * The sitewide-default header image will be shown again after this call.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description       |
@@ -395,7 +395,7 @@ public class Subreddits {
   public static final Endpoint POST_API_DELETE_SR_HEADER =
         new Endpoint("api", "delete_sr_header");
   /**
-   * Remove the subreddit's custom mobile icon.<p/>
+   * Remove the subreddit's custom mobile icon.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description       |
@@ -409,7 +409,7 @@ public class Subreddits {
   public static final Endpoint POST_R_SUBREDDIT_API_DELETE_SR_ICON =
         new Endpoint("r", "{subreddit}", "api", "delete_sr_icon");
   /**
-   * Remove the subreddit's custom mobile icon.<p/>
+   * Remove the subreddit's custom mobile icon.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description       |
@@ -423,11 +423,11 @@ public class Subreddits {
   public static final Endpoint POST_API_DELETE_SR_ICON =
         new Endpoint("api", "delete_sr_icon");
   /**
-   * Remove an image from the subreddit's custom image set.<p/>
+   * Remove an image from the subreddit's custom image set.<br>
    * The image will no longer count against the subreddit's image limit. However, the actual image
    * data may still be accessible for an unspecified amount of time. If the image is currently
    * referenced by the subreddit's stylesheet, that stylesheet will no longer validate and won't be
-   * editable until the image reference is removed.<p/>
+   * editable until the image reference is removed.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description                  |
@@ -442,11 +442,11 @@ public class Subreddits {
   public static final Endpoint POST_R_SUBREDDIT_DELETE_SR_IMAGE =
         new Endpoint("r", "{subreddit}", "api", "delete_sr_img");
   /**
-   * Remove an image from the subreddit's custom image set.<p/>
+   * Remove an image from the subreddit's custom image set.<br>
    * The image will no longer count against the subreddit's image limit. However, the actual image
    * data may still be accessible for an unspecified amount of time. If the image is currently
    * referenced by the subreddit's stylesheet, that stylesheet will no longer validate and won't be
-   * editable until the image reference is removed.<p/>
+   * editable until the image reference is removed.<br>
    * This endpoints returns a jQuery response.
    * <pre>
    *   | Parameter             | Description                  |
@@ -461,7 +461,7 @@ public class Subreddits {
   public static final Endpoint POST_API_DELETE_SR_IMAGE =
         new Endpoint("api", "delete_sr_img");
   /**
-   * Return subreddits recommended for the given subreddit(s).<p/>
+   * Return subreddits recommended for the given subreddit(s).<br>
    * Gets a list of subreddits recommended for {@code srnames}, filtering out any that appear in the
    * optional {@code omit} param.
    * <pre>
@@ -478,15 +478,15 @@ public class Subreddits {
   public static final Endpoint GET_API_RECOMMEND_SR_SRNAMES =
         new Endpoint("api", "recommend", "sr", "{srnames}");
   /**
-   * List subreddit names that begin with a query string.<p/>
+   * List subreddit names that begin with a query string.<br>
    * Subreddits whose names begin with {@code query} will be returned. If {@code include_over_18} is
    * {@code false}, subreddits with over-18 content restrictions will be filtered from the
-   * results.<p/>
+   * results.<br>
    * If {@code include_unadvertisable} is {@code false}, subreddits that have {@code hide_ad} set to
-   * {@code true} or are on the {@code anti_ads_subreddits} list will be filtered.<p/>
+   * {@code true} or are on the {@code anti_ads_subreddits} list will be filtered.<br>
    * If {@code exact} is {@code true}, only an exact match will be returned. Exact matches are
    * inclusive of {@code over_18} subreddits, but not {@code hide_ad} subreddits when
-   * {@code include_unadvertisable} is {@code false}.<p/>
+   * {@code include_unadvertisable} is {@code false}.<br>
    * Example response for this endpoint:
    * <pre>
    * {@code
@@ -512,15 +512,15 @@ public class Subreddits {
   public static final Endpoint GET_API_SEARCH_REDDIT_NAMES =
         new Endpoint("api", "search_reddit_names");
   /**
-   * List subreddit names that begin with a query string.<p/>
+   * List subreddit names that begin with a query string.<br>
    * Subreddits whose names begin with {@code query} will be returned. If {@code include_over_18} is
    * {@code false}, subreddits with over-18 content restrictions will be filtered from the
-   * results.<p/>
+   * results.<br>
    * If {@code include_unadvertisable} is {@code false}, subreddits that have {@code hide_ad} set to
-   * {@code true} or are on the {@code anti_ads_subreddits} list will be filtered.<p/>
+   * {@code true} or are on the {@code anti_ads_subreddits} list will be filtered.<br>
    * If {@code exact} is {@code true}, only an exact match will be returned. Exact matches are
    * inclusive of {@code over_18} subreddits, but not {@code hide_ad} subreddits when
-   * {@code include_unadvertisable} is {@code false}.<p/>
+   * {@code include_unadvertisable} is {@code false}.<br>
    * Example response for this endpoint:
    * <pre>
    * {@code
@@ -546,15 +546,15 @@ public class Subreddits {
   public static final Endpoint POST_API_SEARCH_REDDIT_NAMES =
         new Endpoint("api", "search_reddit_names");
   /**
-   * List subreddit names that begin with a query string.<p/>
+   * List subreddit names that begin with a query string.<br>
    * Subreddits whose names begin with {@code query} will be returned. If {@code include_over_18} is
    * {@code false}, subreddits with over-18 content restrictions will be filtered from the
-   * results.<p/>
+   * results.<br>
    * If {@code include_unadvertisable} is {@code false}, subreddits that have {@code hide_ad} set to
-   * {@code true} or are on the {@code anti_ads_subreddits} list will be filtered.<p/>
+   * {@code true} or are on the {@code anti_ads_subreddits} list will be filtered.<br>
    * If {@code exact} is {@code true}, only an exact match will be returned. Exact matches are
    * inclusive of {@code over_18} subreddits, but not {@code hide_ad} subreddits when
-   * {@code include_unadvertisable} is {@code false}.<p/>
+   * {@code include_unadvertisable} is {@code false}.<br>
    * Example response for this endpoint:
    * <pre>
    * {@code
@@ -580,13 +580,13 @@ public class Subreddits {
   public static final Endpoint POST_API_SEARCH_SUBREDDITS =
         new Endpoint("api", "search_subreddits");
   /**
-   * Create or configure a subreddit.<p/>
+   * Create or configure a subreddit.<br>
    * If {@code sr} is specified, the request will attempt to modify the specified subreddit. If not,
-   * a subreddit with name {@code name} will be created.<p/>
+   * a subreddit with name {@code name} will be created.<br>
    * This endpoint expects all values to be supplied on every request. If modifying a subset of
-   * options, it may be useful to get the current settings from /about/edit.json first.<p/>
+   * options, it may be useful to get the current settings from /about/edit.json first.<br>
    * For backwards compatibility, {@code description} is the sidebar text and
-   * {@code public_description} is the publicly visible subreddit description.<p/>
+   * {@code public_description} is the publicly visible subreddit description.<br>
    * Most of the parameters for this endpoint are identical to options visible in the user interface
    * and their meanings are best explained there.
    * <pre>
@@ -665,7 +665,7 @@ public class Subreddits {
   public static final Endpoint POST_API_SITE_ADMIN =
         new Endpoint("api", "site_admin");
   /**
-   * Get the submission text for the subreddit.<p/>
+   * Get the submission text for the subreddit.<br>
    * This text is set by the subreddit moderators and intended to be displayed on the submission
    * form.
    *
@@ -674,7 +674,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_API_SUBMIT_TEXT =
         new Endpoint("r", "{subreddit}", "api", "submit_text");
   /**
-   * Get the submission text for the subreddit.<p/>
+   * Get the submission text for the subreddit.<br>
    * This text is set by the subreddit moderators and intended to be displayed on the submission
    * form.
    *
@@ -683,10 +683,10 @@ public class Subreddits {
   public static final Endpoint GET_API_SUBMIT_TEXT =
         new Endpoint("api", "submit_text");
   /**
-   * Return a list of subreddits and data for subreddits whose names start with 'query'.<p/>
+   * Return a list of subreddits and data for subreddits whose names start with 'query'.<br>
    * Uses typeahead endpoint to recieve the list of subreddits names. Typeahead provides exact
    * matches, typo correction, fuzzy matching and boosts subreddits to the top that the user is
-   * subscribed to.<p/>
+   * subscribed to.<br>
    * Example response for this endpoint:
    * <pre>
    * {@code
@@ -718,10 +718,10 @@ public class Subreddits {
   public static final Endpoint GET_API_SUBREDDIT_AUTOCOMPLETE =
         new Endpoint("api", "subreddit_autocomplete");
   /**
-   * Return a list of subreddits and data for subreddits whose names start with 'query'.<p/>
+   * Return a list of subreddits and data for subreddits whose names start with 'query'.<br>
    * Uses typeahead endpoint to recieve the list of subreddits names. Typeahead provides exact
    * matches, typo correction, fuzzy matching and boosts subreddits to the top that the user is
-   * subscribed to.<p/>
+   * subscribed to.<br>
    * This endpoint is a listing of things. Those things can either be subreddits or accounts, i.e.
    * personal subreddits.
    * <pre>
@@ -740,7 +740,7 @@ public class Subreddits {
   public static final Endpoint GET_API_SUBREDDIT_AUTOCOMPLETE_V2 =
         new Endpoint("api", "subreddit_autocomplete_v2");
   /**
-   * Update a subreddit's stylesheet.<p/>
+   * Update a subreddit's stylesheet.<br>
    * {@code op} should be {@code save} to update the contents of the stylesheet.
    * <pre>
    *   | Parameter             | Description                         |
@@ -758,7 +758,7 @@ public class Subreddits {
   public static final Endpoint POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET =
         new Endpoint("r", "{subreddit}", "api", "subreddit_stylesheet");
   /**
-   * Update a subreddit's stylesheet.<p/>
+   * Update a subreddit's stylesheet.<br>
    * {@code op} should be {@code save} to update the contents of the stylesheet.
    * <pre>
    *   | Parameter             | Description                         |
@@ -776,11 +776,11 @@ public class Subreddits {
   public static final Endpoint POST_API_SUBREDDIT_STYLESHEET =
         new Endpoint("api", "subreddit_stylesheet");
   /**
-   * Subscribe to or unsubscribe from a subreddit.<p/>
+   * Subscribe to or unsubscribe from a subreddit.<br>
    * To subscribe, {@code action} should be {@code sub}. To unsubscribe, {@code action} should be
-   * {@code unsub}. The user must have access to the subreddit to be able to subscribe to it.<p/>
+   * {@code unsub}. The user must have access to the subreddit to be able to subscribe to it.<br>
    * The {@code skip_initial_defaults} param can be set to True to prevent automatically subscribing
-   * the user to the current set of defaults when they take their first subscription action.<p/>
+   * the user to the current set of defaults when they take their first subscription action.<br>
    * <pre>
    *   | Parameter             | Description                                             |
    *   | --------------------- | ------------------------------------------------------- |
@@ -820,11 +820,11 @@ public class Subreddits {
    *   | 0      | 'upload_type' is 'img'    |
    *   | 1      | 'upload_type' is 'header' |
    * </pre>
-   * The {@code img_type} field specifies whether to store the uploaded image as a PNG or JPEG.<p/>
+   * The {@code img_type} field specifies whether to store the uploaded image as a PNG or JPEG.<br>
    * Subreddits have a limited number of images that can be in use at any given time. If no image
-   * with the specified name already exists, one of the slots will be consumed.<p/>
+   * with the specified name already exists, one of the slots will be consumed.<br>
    * If an image with the specified name already exists, it will be replaced. This does not affect
-   * the stylesheet immediately, but will take effect the next time the stylesheet is saved.<p/>
+   * the stylesheet immediately, but will take effect the next time the stylesheet is saved.<br>
    * <pre>
    *   | Parameter             | Description                              |
    *   | --------------------- | ---------------------------------------- |
@@ -864,9 +864,9 @@ public class Subreddits {
    *   | 0      | 'upload_type' is 'img'    |
    *   | 1      | 'upload_type' is 'header' |
    * </pre>
-   * The {@code img_type} field specifies whether to store the uploaded image as a PNG or JPEG.<p/>
+   * The {@code img_type} field specifies whether to store the uploaded image as a PNG or JPEG.<br>
    * Subreddits have a limited number of images that can be in use at any given time. If no image
-   * with the specified name already exists, one of the slots will be consumed.<p/>
+   * with the specified name already exists, one of the slots will be consumed.<br>
    * If an image with the specified name already exists, it will be replaced. This does not affect
    * the stylesheet immediately, but will take effect the next time the stylesheet is saved.
    * <pre>
@@ -886,13 +886,13 @@ public class Subreddits {
   public static final Endpoint POST_API_UPLOAD_SR_IMAGE =
         new Endpoint("api", "upload_sr_img");
   /**
-   * Fetch moderator-designated requirements to post to the subreddit.<p/>
+   * Fetch moderator-designated requirements to post to the subreddit.<br>
    * Moderators may enable certain restrictions, such as minimum title length, when making a
-   * submission to their subreddit.<p/>
+   * submission to their subreddit.<br>
    * Clients may use the values returned by this endpoint to pre-validate fields before making a
    * request to POST /api/submit. This may allow the client to provide a better user experience to
    * the user, for example by creating a text field in their app that does not allow the user to
-   * enter more characters than the max title length.<p/>
+   * enter more characters than the max title length.<br>
    * A non-exhaustive list of possible requirements a moderator may enable:
    * <pre>
    *   | Parameter                 | Description                                                   |
@@ -919,8 +919,8 @@ public class Subreddits {
   public static final Endpoint GET_API_V1_SUBREDDIT_POST_REQUIREMENTS =
         new Endpoint("api", "v1", "{subreddit}", "post_requirements");
   /**
-   * Return information about the subreddit.<p/>
-   * Data includes the subscriber count, description, and header image.<p/>
+   * Return information about the subreddit.<br>
+   * Data includes the subscriber count, description, and header image.<br>
    * This endpoint is a {@link Subreddit}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_r_%28subreddit%29_about">here</a>
@@ -928,7 +928,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT =
         new Endpoint("r", "{subreddit}", "about");
   /**
-   * Get the current settings of a subreddit.<p/>
+   * Get the current settings of a subreddit.<br>
    * In the API, this returns the current settings of the subreddit as used by /api/site_admin. On
    * the HTML site, it will display a form for editing the subreddit.
    * <pre>
@@ -963,7 +963,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_TRAFFIC =
         new Endpoint("r", "{subreddit}", "about", "traffic");
   /**
-   * Get the sidebar for the current subreddit.<p/>
+   * Get the sidebar for the current subreddit.<br>
    * Note: The endpoint, according to the <b>official API</b>, is inaccurate and the endpoint has
    * been moved.
    *
@@ -974,7 +974,7 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_SIDEBAR =
         new Endpoint("r", "{subreddit}", "about", "sidebar");
   /**
-   * Get the sidebar for the current subreddit.<p/>
+   * Get the sidebar for the current subreddit.<br>
    * Note: The endpoint, according to the <b>official API</b>, is inaccurate and the endpoint has
    * been moved.
    *
@@ -985,10 +985,10 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_SIDEBAR =
         new Endpoint("about", "sidebar");
   /**
-   * Redirect to one of the posts stickied in the current subreddit.<p/>
+   * Redirect to one of the posts stickied in the current subreddit.<br>
    * The {@code num} argument can be used to select a specific sticky, and will default to 1
    * (the top sticky) if not specified. Will 404 if there is not currently a sticky post in this
-   * subreddit.<p/>
+   * subreddit.<br>
    * Note: The endpoint, according to the <b>official API</b>, is inaccurate and the endpoint has
    * been moved.
    * <pre>
@@ -1002,10 +1002,10 @@ public class Subreddits {
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_STICKY =
         new Endpoint("r", "{subreddit}", "about", "sticky");
   /**
-   * Redirect to one of the posts stickied in the current subreddit.<p/>
+   * Redirect to one of the posts stickied in the current subreddit.<br>
    * The {@code num} argument can be used to select a specific sticky, and will default to 1
    * (the top sticky) if not specified. Will 404 if there is not currently a sticky post in this
-   * subreddit.<p/>
+   * subreddit.<br>
    * Note: The endpoint, according to the <b>official API</b>, is inaccurate and the endpoint has
    * been moved.
    * <pre>
@@ -1019,7 +1019,7 @@ public class Subreddits {
   public static final Endpoint GET_ABOUT_STICKY =
         new Endpoint("about", "sticky");
   /**
-   * Get all subreddits.<p/>
+   * Get all subreddits.<br>
    * The {@code where} parameter chooses the order in which the subreddits are displayed.
    * {@code popular} sorts on the activity of the subreddit and the position of the subreddits can
    * shift around. {@code new} sorts the subreddits based on their creation date, newest first.
@@ -1029,7 +1029,7 @@ public class Subreddits {
   public static final Endpoint GET_SUBREDDITS_WHERE =
         new Endpoint("subreddits", "{where}");
   /**
-   * Get all subreddits.<p/>
+   * Get all subreddits.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1052,7 +1052,7 @@ public class Subreddits {
   public static final Endpoint GET_SUBREDDITS_DEFAULT =
         new Endpoint(GET_SUBREDDITS_WHERE.getPath("default"));
   /**
-   * Get all subreddits.<p/>
+   * Get all subreddits.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1075,9 +1075,9 @@ public class Subreddits {
   public static final Endpoint GET_SUBREDDITS_GOLD =
         new Endpoint(GET_SUBREDDITS_WHERE.getPath("gold"));
   /**
-   * Get all subreddits.<p/>
+   * Get all subreddits.<br>
    * {@code popular} sorts on the activity of the subreddit and the position of the subreddits can
-   * shift around.<p/>
+   * shift around.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1100,8 +1100,8 @@ public class Subreddits {
   public static final Endpoint GET_SUBREDDITS_POPULAR =
         new Endpoint(GET_SUBREDDITS_WHERE.getPath("popular"));
   /**
-   * Get all subreddits.<p/>
-   * {@code new} sorts the subreddits based on their creation date, newest first.<p/>
+   * Get all subreddits.<br>
+   * {@code new} sorts the subreddits based on their creation date, newest first.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1124,7 +1124,7 @@ public class Subreddits {
   public static final Endpoint GET_SUBREDDITS_NEW =
         new Endpoint(GET_SUBREDDITS_WHERE.getPath("new"));
   /**
-   * Search subreddits by title and description.<p/>
+   * Search subreddits by title and description.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1146,7 +1146,7 @@ public class Subreddits {
   public static final Endpoint GET_SUBREDDITS_SEARCH =
         new Endpoint("subreddits", "search");
   /**
-   * Get subreddits the user has a relationship with.<p/>
+   * Get subreddits the user has a relationship with.<br>
    * The where parameter chooses which subreddits are returned.
    * <pre>
    *   | Parameter | Description                         |
@@ -1252,8 +1252,8 @@ public class Subreddits {
   public static final Endpoint GET_SUBREDDITS_MINE_SUBSCRIBER =
         new Endpoint(GET_SUBREDDITS_MINE_WHERE.getPath("subscriber"));
   /**
-   * Get all user subreddits.<p/>
-   * The {@code where} parameter chooses the order in which the subreddits are displayed.<p/>
+   * Get all user subreddits.<br>
+   * The {@code where} parameter chooses the order in which the subreddits are displayed.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1275,8 +1275,8 @@ public class Subreddits {
   public static final Endpoint GET_USERS_WHERE =
         new Endpoint("users", "{where}");
   /**
-   * Get all user subreddits.<p/>
-   * {@code new} sorts the user subreddits based on their creation date, newest first.<p/>
+   * Get all user subreddits.<br>
+   * {@code new} sorts the user subreddits based on their creation date, newest first.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1299,9 +1299,9 @@ public class Subreddits {
   public static final Endpoint GET_USERS_NEW =
         new Endpoint(GET_USERS_WHERE.getPath("new"));
   /**
-   * Get all user subreddits.<p/>
+   * Get all user subreddits.<br>
    * {@code popular} sorts on the activity of the subreddit and the position of the subreddits can
-   * shift around.<p/>
+   * shift around.<br>
    * This endpoint is a {@link Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
@@ -1324,7 +1324,7 @@ public class Subreddits {
   public static final Endpoint GET_USERS_POPULAR =
         new Endpoint(GET_USERS_WHERE.getPath("popular"));
   /**
-   * Search user profiles by title and description.<p/>
+   * Search user profiles by title and description.<br>
    * This endpoint is a {@link Listing} of accounts.
    * <pre>
    *   | Parameter        | Description                         |

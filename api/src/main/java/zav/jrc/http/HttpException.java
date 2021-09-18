@@ -19,7 +19,7 @@ package zav.jrc.http;
 import java.io.IOException;
 
 /**
- * The base class for every exception.<p/>
+ * The base class for every exception.<br>
  * This exception is thrown when there is no more specific exception for the error code.
  */
 public class HttpException extends IOException {

@@ -33,7 +33,7 @@ public final class Account {
   private Account() {}
   
   /**
-   * The identity of the authenticated user.<p/>
+   * The identity of the authenticated user.<br>
    * This endpoint is a {@link SelfAccount}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me">here</a>
@@ -41,7 +41,7 @@ public final class Account {
   public static final Endpoint GET_API_V1_ME =
         new Endpoint("api", "v1", "me");
   /**
-   * Returns all blocked users.<p/>
+   * Returns all blocked users.<br>
    * This endpoint is a {@link UserList}.
    * <pre>
    *   | Parameter | Description                         |
@@ -65,7 +65,7 @@ public final class Account {
   public static final Endpoint GET_API_V1_ME_BLOCKED =
         new Endpoint("api", "v1", "me", "blocked");
   /**
-   * Returns all friends.<p/>
+   * Returns all friends.<br>
    * This endpoint is a {@link UserList}.
    * <pre>
    *   | Parameter | Description                         |
@@ -89,7 +89,7 @@ public final class Account {
   public static final Endpoint GET_API_V1_ME_FRIENDS =
         new Endpoint("api", "v1", "me", "friends");
   /**
-   * Return a breakdown of subreddit karma.<p/>
+   * Return a breakdown of subreddit karma.<br>
    * This endpoint is a {@link KarmaList}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_karma">here</a>
@@ -97,7 +97,7 @@ public final class Account {
   public static final Endpoint GET_API_V1_ME_KARMA =
         new Endpoint("api", "v1", "me", "karma");
   /**
-   * Return the preference settings of the logged in user.<p/>
+   * Return the preference settings of the logged in user.<br>
    * This endpoint is a {@link Preferences}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_prefs">here</a>
@@ -105,14 +105,14 @@ public final class Account {
   public static final Endpoint GET_API_V1_ME_PREFS =
         new Endpoint("api", "v1", "me", "prefs");
   /**
-   * Update the preference settings of the logged in user.<p/>
+   * Update the preference settings of the logged in user.<br>
    *
    * @see <a href="https://www.reddit.com/dev/api#PATCH_api_v1_me_prefs">here</a>
    */
   public static final Endpoint PATCH_API_V1_ME_PREFS =
         new Endpoint("api", "v1", "me", "prefs");
   /**
-   * Return a list of trophies for the current user.<p/>
+   * Return a list of trophies for the current user.<br>
    * This endpoint is a {@link TrophyList}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_trophies">here</a>
@@ -141,7 +141,7 @@ public final class Account {
   public static final Endpoint GET_PREFS_WHERE =
         new Endpoint("prefs", "{where}");
   /**
-   * Returns all blocked users.<p/>
+   * Returns all blocked users.<br>
    * This endpoint is a {@link UserList}.
    * <pre>
    *   | Parameter | Description                         |
@@ -163,7 +163,7 @@ public final class Account {
   public static final Endpoint GET_PREFS_BLOCKED =
         new Endpoint(GET_PREFS_WHERE.getPath("blocked"));
   /**
-   * Returns all friends.<p/>
+   * Returns all friends.<br>
    * This endpoint is a {@link UserList}.
    * <pre>
    *   | Parameter | Description                         |
@@ -185,7 +185,7 @@ public final class Account {
   public static final Endpoint GET_PREFS_FRIENDS =
         new Endpoint(GET_PREFS_WHERE.getPath("friends"));
   /**
-   * Returns all blocked and trusted users.<p/>
+   * Returns all blocked and trusted users.<br>
    * This endpoint is a {@link Messaging}.
    * <pre>
    *   | Parameter | Description                         |
@@ -209,7 +209,7 @@ public final class Account {
   public static final Endpoint GET_PREFS_MESSAGING =
         new Endpoint(GET_PREFS_WHERE.getPath("messaging"));
   /**
-   * Returns all trusted users.<p/>
+   * Returns all trusted users.<br>
    * This endpoint is a {@link UserList}.
    * <pre>
    *   | Parameter | Description                         |

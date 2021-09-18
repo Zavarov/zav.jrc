@@ -29,7 +29,7 @@ public final class Captcha {
   private Captcha() {}
   
   /**
-   * Check whether ReCAPTCHAs are needed for API methods.<p/>
+   * Check whether ReCAPTCHAs are needed for API methods.<br>
    * This endpoint returns a boolean.
    *
    * @deprecated Reddit no longer requires captchas and thus this endpoint returns 403

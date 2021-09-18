@@ -19,7 +19,7 @@ package zav.jrc;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
- * Specifies the type of authentication that is used when requesting an access token.<p/>
+ * Specifies the type of authentication that is used when requesting an access token.<br>
  * Depending on the type of authentication, different endpoints may become available. e.g. an
  * application without user context is unable to use any of the endpoints related to accounts.
  */

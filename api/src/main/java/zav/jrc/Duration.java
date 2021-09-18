@@ -22,7 +22,7 @@ import org.eclipse.jdt.annotation.NonNull;
 /**
  * If {@link #PERMANENT} is selected, a refresh token is provided together with the access token
  * when authenticating the application. When the access token expires, this refresh token can
- * then be used to request a new access token.<p/>
+ * then be used to request a new access token.<br>
  * If {@link #TEMPORARY} is selected, only the access token is provided.
  */
 @NonNull

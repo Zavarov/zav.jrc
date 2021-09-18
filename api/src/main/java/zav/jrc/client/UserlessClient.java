@@ -44,7 +44,7 @@ public class UserlessClient extends Client {
   private UUID uuid;
   
   /**
-   * Requests a new access token.<p/>
+   * Requests a new access token.<br>
    * Depending on the value of {@code duration}, Reddit will also return a refresh token with which
    * the client is able to retrieve a new access token, once the old one expired.
    *

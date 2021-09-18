@@ -37,7 +37,7 @@ import zav.jrc.Endpoint;
 import zav.jrc.Parameter;
 
 /**
- * The base class for every REST request.<p/>
+ * The base class for every REST request.<br>
  * There are five different type of requests:
  * <table>
  *   <tr><td> POST   </td><td> Create         </td></tr>
@@ -160,8 +160,8 @@ public class RestRequest {
   
     /**
      * Sets the request body, containing information about the requested resources. Elements within
-     * the body are stored as key-value pairs.<p/>
-     * This method will overwrite the existing body.<p/>
+     * the body are stored as key-value pairs.<br>
+     * This method will overwrite the existing body.<br>
      * API request have to use the type {@link BodyType#JSON}, while authentication requests have to
      * use {@link BodyType#FORM}.
      *
@@ -220,9 +220,9 @@ public class RestRequest {
   
     /**
      * Sets additional parameters attached to the query. Parameters are stored as key-value
-     * pairs.<p/>
-     * e.g. {@code /foo/bar?new=true&time=now}.<p/>
-     * This method will overwrite the existing arguments.<p/>
+     * pairs.<br>
+     * e.g. {@code /foo/bar?new=true&time=now}.<br>
+     * This method will overwrite the existing arguments.<br>
      *
      * @param params A map of key-value pairs attached to the query.
      * @return The current builder instance.
@@ -238,9 +238,9 @@ public class RestRequest {
   
     /**
      * Sets additional parameters attached to the query. Parameters are stored as key-value
-     * pairs.<p/>
-     * e.g. {@code /foo/bar?new=true&time=now}.<p/>
-     * This method will overwrite the existing arguments.<p/>
+     * pairs.<br>
+     * e.g. {@code /foo/bar?new=true&time=now}.<br>
+     * This method will overwrite the existing arguments.<br>
      *
      * @param params A list of key-value pairs attached to the query.
      * @return The current builder instance.
@@ -262,8 +262,8 @@ public class RestRequest {
   
     /**
      * Sets the arguments that are used to replace the wildcards within the unqualified
-     * endpoint.<p/>
-     * This method will overwrite the existing arguments.<p/>
+     * endpoint.<br>
+     * This method will overwrite the existing arguments.<br>
      *
      * @param args A list of objects.
      * @return The current builder instance.

@@ -33,7 +33,7 @@ public class Users {
   public static final Endpoint POST_API_BLOCK_USER =
         new Endpoint("api", "block_user");
   /**
-   * Create a relationship between a user and another user or subreddit.<p/>
+   * Create a relationship between a user and another user or subreddit.<br>
    * OAuth2 use requires appropriate scope based on the 'type' of the relationship:
    * <ul>
    *   <li>moderator: Use "moderator_invite"</li>
@@ -54,7 +54,7 @@ public class Users {
   public static final Endpoint POST_R_SUBREDDIT_API_FRIEND =
         new Endpoint("r", "{subreddit}", "api", "friend");
   /**
-   * Create a relationship between a user and another user or subreddit.<p/>
+   * Create a relationship between a user and another user or subreddit.<br>
    * OAuth2 use requires appropriate scope based on the 'type' of the relationship:
    * <ul>
    *   <li>moderator: Use "moderator_invite"</li>
@@ -96,10 +96,10 @@ public class Users {
   public static final Endpoint POST_API_SETPERMISSION =
         new Endpoint("api", "setpermission");
   /**
-   * Remove a relationship between a user and another user or subreddit.<p/>
+   * Remove a relationship between a user and another user or subreddit.<br>
    * The user can either be passed in by name (nuser) or by fullname (iuser). If type is friend or enemy, 'container'
    * MUST be the current user's fullname; for other types, the subreddit must be set via URL
-   * (e.g., /r/funny/api/unfriend).<p/>
+   * (e.g., /r/funny/api/unfriend).<br>
    * OAuth2 use requires appropriate scope based on the 'type' of the relationship:
    * <ul>
    *   <li>moderator: modothers</li>
@@ -120,13 +120,13 @@ public class Users {
   public static final Endpoint POST_R_SUBREDDIT_API_UNFRIEND =
         new Endpoint("r", "{subreddit}", "api", "unfriend");
   /**
-   * Remove a relationship between a user and another user or subreddit.<p/>
+   * Remove a relationship between a user and another user or subreddit.<br>
    * The user can either be passed in by name (nuser) or by fullname (iuser). If type is friend or
    * enemy, 'container' MUST be the current user's fullname; for other types, the subreddit must be
-   * set via URL (e.g., /r/funny/api/unfriend).<p/>
+   * set via URL (e.g., /r/funny/api/unfriend).<br>
    * The user can either be passed in by name (nuser) or by fullname (iuser). If type is friend or
    * enemy, 'container' MUST be the current user's fullname; for other types, the subreddit must be
-   * set via URL (e.g., /r/funny/api/unfriend).<p/>
+   * set via URL (e.g., /r/funny/api/unfriend).<br>
    * OAuth2 use requires appropriate scope based on the 'type' of the relationship:
    * <ul>
    *   <li>moderator: modothers</li>
@@ -175,7 +175,7 @@ public class Users {
   public static final Endpoint GET_API_V1_ME_FRIENDS_USERNAME =
         new Endpoint("api", "v1", "me", "friends", "{username}");
   /**
-   * Create or update a "friend" relationship.<p/>
+   * Create or update a "friend" relationship.<br>
    * This operation is idempotent. It can be used to add a new friend, or update an existing friend
    * (e.g., add/change the note on that friend).
    *

@@ -22,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * The base class for all Reddit endpoints.<p/>
+ * The base class for all Reddit endpoints.<br>
  * An endpoint is an URL to which REST request can be made.
  */
 public final class Endpoint {
@@ -38,8 +38,8 @@ public final class Endpoint {
   
   /**
    * Calculates the qualified path of an endpoint. An endpoint may contain wildcards, represented by
-   * the string "{...}". Each of those wildcard is replaced with one of the arguments.<p/>
-   * The arguments are substituted in the order they are provided.<p/>
+   * the string "{...}". Each of those wildcard is replaced with one of the arguments.<br>
+   * The arguments are substituted in the order they are provided.<br>
    * The number of wildcards has to match the number of provided arguments.
    *
    * @param args A list of arguments with which the wildcards are substituted with.

@@ -49,7 +49,7 @@ public class ScriptClient extends Client {
   private String password;
   
   /**
-   * Requests a new access token.<p/>
+   * Requests a new access token.<br>
    * It seems like Reddit ignores the value of {@code duration} and never returns a refresh token
    * for scripts. Once the access token expires, a new one has to be requested.
    *

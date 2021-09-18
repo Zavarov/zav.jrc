@@ -38,9 +38,9 @@ import zav.jrc.http.HttpException;
 import zav.jrc.http.RestRequest;
 
 /**
- * The base class for authenticating the application.<p/>
+ * The base class for authenticating the application.<br>
  * This class should be inherited by the clients implementing the individual authenticating methods
- * (e.g. via password, userless, etc.).<p/>
+ * (e.g. via password, userless, etc.).<br>
  * It is responsible for requesting and invalidating the access token, as well as performing all
  * API requests.
  */
@@ -87,9 +87,9 @@ public abstract class Client {
   /**
    * This method serves three purposes. The primary purpose is to execute the provided
    * {@link Request}. In addition, it also makes sure that all requests are made within the rate
-   * limit and, if necessary, waits until the next {@link Request} can be made.<p/>
+   * limit and, if necessary, waits until the next {@link Request} can be made.<br>
    * It also checks if the {@link Request} was accepted and, upon error, throws the corresponding
-   * exception.<p/>
+   * exception.<br>
    * This method should <b>NEVER</b> be used anywhere outside the {@code login()} and
    * {@code refresh} methods as it bypasses the token validation.
    *
@@ -182,7 +182,7 @@ public abstract class Client {
   //----------------------------------------------------------------------------------------------//
   
   /**
-   * Invalidates both the access and (if present) the refresh token.<p/>
+   * Invalidates both the access and (if present) the refresh token.<br>
    * Returns immediately in case the application isn't authenticated.
    *
    * @throws FailedRequestException In case the request was rejected by the API.
