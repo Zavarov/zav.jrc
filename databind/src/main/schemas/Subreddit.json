@@ -18,22 +18,22 @@
     },
     "description" : {
       "description" : "Sidebar text.",
-      "type" : "integer"
+      "type" : "string"
     },
     "description_html" : {
       "description" : "Sidebar text, escaped HTML format.",
       "javaName" : "descriptionHtml",
-      "type" : "integer"
+      "type" : "string"
     },
     "display_name" : {
       "description" : "Human readable name of the subreddit.",
       "javaName" : "displayName",
-      "type" : "integer"
+      "type" : "string"
     },
     "header_img" : {
       "description" : "Full URL to the header image, or {@code null} if none is set.",
       "javaName" : "headerImage",
-      "type" : "integer"
+      "type" : "string"
     },
     "header_size" : {
       "description" : "Width and height of the header image, or empty.",
@@ -45,7 +45,7 @@
     "header_title" : {
       "description" : "Description of header image shown on hover, or {@code null} if none is set.",
       "javaName" : "headerTitle",
-      "type" : "integer"
+      "type" : "string"
     },
     "icon_img" : {
       "javaName" : "iconImage",
@@ -71,7 +71,7 @@
     "submission_type" : {
       "description" : "The type of submissions the subreddit allows - one of {@code any}, {@code link} or {@code self}.",
       "javaName" : "submissionType",
-      "type" : "boolean"
+      "type" : "string"
     },
     "submit_link_label" : {
       "description" : "The subreddit's custom label for the submit link button, if any. {@code null} is no custom label is set.",
