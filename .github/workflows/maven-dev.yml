@@ -18,10 +18,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 1.11
-    - name: Run java checkstyle
-      uses: nikitasavinov/checkstyle-action@0.4.0
-      with:
-        checkstyle_version: '8.45.1'
     - name: Build with Maven
       env:
         GITHUB_ACCOUNT: ${{ github.actor }}
