@@ -40,14 +40,14 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   }
 
   @Override
-  public void notifyAllListener() throws FailedRequestException {
+  public void notifyAllListeners() throws FailedRequestException {
     try {
       history = requester.next(); //History is computed once for all listeners
-      super.notifyAllListener();
+      super.notifyAllListeners();
     } catch (LinkRequester.IteratorException e) {
       throw e.getCause();
     } finally {
-      history = null; //Clear cache even in case an IOException was thrown.
+      history = null; //Clear cache even in case an exception was thrown.
     }
   }
 
