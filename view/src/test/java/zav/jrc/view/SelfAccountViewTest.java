@@ -19,7 +19,13 @@ package zav.jrc.view;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
+import zav.jrc.databind.*;
 import zav.jrc.view.guice.SelfAccountViewFactory;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class SelfAccountViewTest extends AbstractTest {
   
@@ -33,58 +39,78 @@ public class SelfAccountViewTest extends AbstractTest {
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    view.getAbout();
+    SelfAccount response = view.getAbout();
+    assertThat(response.getId()).isEqualTo("abcdef");
   }
   
   @Test
   public void testGetKarma() throws FailedRequestException {
-    view.getKarma();
+    List<Karma> response = view.getKarma().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getSubreddit()).isEqualTo("Subreddit");
   }
   
   @Test
   public void testGetPreferences() throws FailedRequestException {
-    view.getPreferences();
+    Preferences response = view.getPreferences();
+    assertThat(response.getCountryCode()).isEqualTo("XX");
   }
   
   @Test
   public void testPatchPreferences() throws FailedRequestException {
-    view.patchPreferences(view.getPreferences());
+    Preferences response = view.patchPreferences(view.getPreferences());
+    assertThat(response.getCountryCode()).isEqualTo("XX");
   }
   
   @Test
   public void testGetTrophies() throws FailedRequestException {
-    view.getTrophies();
+    List<Award> response = view.getTrophies().collect(Collectors.toList());
+    assertThat(response).hasSize(2);
+    assertThat(response.get(0).getName()).isEqualTo("Four-Year Club");
+    assertThat(response.get(1).getName()).isEqualTo("Verified Email");
   }
   
   @Test
   public void testGetBlocked() throws FailedRequestException {
-    view.getBlocked();
+    List<User> response = view.getBlocked().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetFriends() throws FailedRequestException {
-    view.getFriends();
+    List<User> response = view.getFriends().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetTrusted() throws FailedRequestException {
-    view.getTrusted();
+    List<User> response = view.getTrusted().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getName()).isEqualTo("Username");
   }
   
   // Subreddit
   
   @Test
   public void testGetMineContributor() throws FailedRequestException {
-    view.getMineContributor();
+    List<Subreddit> response = view.getMineContributor().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
   }
   
   @Test
   public void testGetMineModerator() throws FailedRequestException {
-    view.getMineModerator();
+    List<Subreddit> response = view.getMineModerator().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
   }
   
   @Test
   public void testGetMineSubscriber() throws FailedRequestException {
-    view.getMineSubscriber();
+    List<Subreddit> response = view.getMineSubscriber().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
   }
 }

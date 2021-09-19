@@ -28,11 +28,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.Client;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
-import zav.jrc.databind.Account;
-import zav.jrc.databind.Award;
-import zav.jrc.databind.Comment;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.TrophyList;
+import zav.jrc.databind.*;
 import zav.jrc.endpoint.Users;
 import zav.jrc.http.RestRequest;
 import zav.jrc.view.internal.JsonUtils;
@@ -126,17 +122,17 @@ public class AccountView {
     client.send(query);
   }
   
-  public String getFriends() throws FailedRequestException {
+  public User getFriends() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME)
           .setArgs(name)
           .build()
           .get();
     
-    return client.send(query);
+    return JsonUtils.transform(client.send(query), User.class);
   }
   
-  public String putFriends(@Nullable String note) throws FailedRequestException {
+  public User putFriends(@Nullable String note) throws FailedRequestException {
     Map<String, String> body = new HashMap<>();
     if (note != null) {
       body.put("note", note);
@@ -148,8 +144,8 @@ public class AccountView {
           .setArgs(name)
           .build()
           .put();
-    
-    return client.send(query);
+  
+    return JsonUtils.transform(client.send(query), User.class);
   }
   
   public Stream<Award> getTrophies() throws FailedRequestException {
@@ -159,7 +155,7 @@ public class AccountView {
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), TrophyList.class)
+    return JsonUtils.transformThing(client.send(query), TrophyList.class)
           .getTrophies()
           .stream()
           .map(thing -> JsonUtils.transformThing(thing, Award.class));
@@ -183,10 +179,10 @@ public class AccountView {
           .build()
           .get();
 
-    return JsonUtils.transformListing(client.send(query), Comment.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Comment.class);
   }
   
-  public Stream<Comment> getDownvoted(Parameter... params) throws FailedRequestException {
+  public Stream<Thing> getDownvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED)
           .setParams(params)
@@ -194,10 +190,10 @@ public class AccountView {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Comment.class);
+    return JsonUtils.transformListing(client.send(query), Thing.class);
   }
   
-  public Stream<Comment> getGilded(Parameter... params) throws FailedRequestException {
+  public Stream<Thing> getGilded(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_GILDED)
           .setParams(params)
@@ -205,10 +201,10 @@ public class AccountView {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Comment.class);
+    return JsonUtils.transformListing(client.send(query), Thing.class);
   }
   
-  public Stream<Comment> getHidden(Parameter... params) throws FailedRequestException {
+  public Stream<Thing> getHidden(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_HIDDEN)
           .setParams(params)
@@ -216,10 +212,10 @@ public class AccountView {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Comment.class);
+    return JsonUtils.transformListing(client.send(query), Thing.class);
   }
   
-  public Stream<Comment> getOverview(Parameter... params) throws FailedRequestException {
+  public Stream<Thing> getOverview(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_OVERVIEW)
           .setParams(params)
@@ -227,10 +223,10 @@ public class AccountView {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Comment.class);
+    return JsonUtils.transformListing(client.send(query), Thing.class);
   }
   
-  public Stream<Comment> getSaved(Parameter... params) throws FailedRequestException {
+  public Stream<Thing> getSaved(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_SAVED)
           .setParams(params)
@@ -238,10 +234,10 @@ public class AccountView {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Comment.class);
+    return JsonUtils.transformListing(client.send(query), Thing.class);
   }
   
-  public Stream<Link> getSubmitted(Parameter... params) throws FailedRequestException {
+  public Stream<Thing> getSubmitted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_SUBMITTED)
           .setParams(params)
@@ -249,10 +245,10 @@ public class AccountView {
           .build()
           .get();
 
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListing(client.send(query), Thing.class);
   }
   
-  public Stream<Comment> getUpvoted(Parameter... params) throws FailedRequestException {
+  public Stream<Thing> getUpvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_UPVOTED)
           .setParams(params)
@@ -260,6 +256,6 @@ public class AccountView {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Comment.class);
+    return JsonUtils.transformListing(client.send(query), Thing.class);
   }
 }

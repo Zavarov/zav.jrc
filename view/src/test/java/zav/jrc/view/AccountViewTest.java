@@ -19,8 +19,14 @@ package zav.jrc.view;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
+import zav.jrc.databind.*;
 import zav.jrc.view.guice.ClientMock;
 import zav.jrc.view.guice.AccountViewFactory;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountViewTest extends AbstractTest {
   
@@ -34,7 +40,7 @@ public class AccountViewTest extends AbstractTest {
   
   @Test
   public void testPostBlock() throws FailedRequestException {
-    view.postBlock();
+    assertThat(view.postBlock()).isNotEmpty();
   }
   
   @Test
@@ -57,7 +63,7 @@ public class AccountViewTest extends AbstractTest {
   
   @Test
   public void testIsAvailable() throws FailedRequestException {
-    view.getAvailable();
+    assertThat(view.getAvailable()).isFalse();
   }
   
   @Test
@@ -67,61 +73,82 @@ public class AccountViewTest extends AbstractTest {
   
   @Test
   public void testGetFriends() throws FailedRequestException {
-    view.getFriends();
+    User response = view.getFriends();
+    assertThat(response.getName()).isEqualTo("Username");
   }
   
   @Test
   public void testPutFriends() throws FailedRequestException {
-    view.putFriends(null);
+    User response = view.putFriends("note");
+    assertThat(response.getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetTrophies() throws FailedRequestException {
-    view.getTrophies();
+    List<Award> response = view.getTrophies().collect(Collectors.toList());
+    assertThat(response).hasSize(2);
+    assertThat(response.get(0).getName()).isEqualTo("Four-Year Club");
+    assertThat(response.get(1).getName()).isEqualTo("Verified Email");
   }
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    view.getAbout();
+    Account response = view.getAbout();
+    assertThat(response.getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetComments() throws FailedRequestException {
-    view.getComments();
+    List<Comment> response = view.getComments().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getName()).isEqualTo("t1_Comment");
   }
   
   @Test
   public void testGetDownvoted() throws FailedRequestException {
-    view.getDownvoted();
+    List<Thing> response = view.getDownvoted().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getKind()).isEqualTo("t3");
   }
   
   @Test
   public void testGetGilded() throws FailedRequestException {
-    view.getGilded();
+    List<Thing> response = view.getGilded().collect(Collectors.toList());
+    assertThat(response).isEmpty();
   }
   
   @Test
   public void testGetHidden() throws FailedRequestException {
-    view.getHidden();
+    List<Thing> response = view.getHidden().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getKind()).isEqualTo("t3");
   }
   
   @Test
   public void testGetOverview() throws FailedRequestException {
-    view.getOverview();
+    List<Thing> response = view.getOverview().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getKind()).isEqualTo("t1");
   }
   
   @Test
   public void testGetSaved() throws FailedRequestException {
-    view.getSaved();
+    List<Thing> response = view.getSaved().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getKind()).isEqualTo("t1");
   }
   
   @Test
   public void testGetSubmitted() throws FailedRequestException {
-    view.getSubmitted();
+    List<Thing> response = view.getSubmitted().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getKind()).isEqualTo("t3");
   }
   
   @Test
   public void testGetUpvoted() throws FailedRequestException {
-    view.getUpvoted();
+    List<Thing> response = view.getUpvoted().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getKind()).isEqualTo("t3");
   }
 }

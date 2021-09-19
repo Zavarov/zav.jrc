@@ -27,6 +27,7 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import zav.jrc.databind.Account;
 import zav.jrc.databind.Award;
+import zav.jrc.databind.Comment;
 import zav.jrc.databind.Link;
 import zav.jrc.databind.Subreddit;
 import zav.jrc.databind.SubredditSettings;
@@ -41,7 +42,7 @@ public class JsonUtils {
   private static final Map<String, Class<?>> KINDS = new HashMap<>();
   
   static {
-    //KINDS.put("t1", Comment.class);
+    KINDS.put("t1", Comment.class);
     KINDS.put("t2", Account.class);
     KINDS.put("t3", Link.class);
     //KINDS.put("t4", Message.class);
@@ -53,7 +54,8 @@ public class JsonUtils {
   }
   
   /**
-   * Deserialized all objects contained by the {@code Listing}.
+   * Deserialized all objects contained by the {@code Listing}.<br>
+   * The listing is contained within a {@link Thing}.
    *
    * @param source A serialized {@link Listing} of Things.
    * @param target Desired class.
@@ -84,7 +86,8 @@ public class JsonUtils {
   }
   
   /**
-   * Deserialized all objects contained by the {@code Listing}.
+   * Deserialized all objects contained by the {@code Listing}.<br>
+   *    * The listing is contained within a {@link Thing}.
    *
    * @param source A serialized {@link Listing}.
    * @param target Desired class.

@@ -20,7 +20,15 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
+import zav.jrc.databind.Account;
+import zav.jrc.databind.Link;
+import zav.jrc.databind.Subreddit;
 import zav.jrc.view.guice.FrontPageViewFactory;
+
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class FrontPageViewTest extends AbstractTest {
   
@@ -34,100 +42,143 @@ public class FrontPageViewTest extends AbstractTest {
   
   @Test
   public void testGetBest() throws FailedRequestException {
-    view.getBest();
+    List<Link> response = view.getBest().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Omfgg!!!");
   }
   
   @Test
   public void testGetControversial() throws FailedRequestException {
-    view.getControversial();
+    List<Link> response = view.getControversial().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Evil Texas legislators smiling as they sign law to take away rights");
   }
   
   @Test
   public void testGetHot() throws FailedRequestException {
-    view.getHot();
+    List<Link> response = view.getHot().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Omfgg!!!");
   }
   
   @Test
   public void testGetNew() throws FailedRequestException {
-    view.getNew();
+    List<Link> response = view.getNew().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Uk. i can print 600*600*800 on resin printer anyone interested?");
   }
   
   @Test
   public void testGetRandom() throws FailedRequestException {
-    view.getRandom();
+    List<Link> response = view.getRandom().collect(Collectors.toList());
+    assertThat(response).hasSize(1);
+    assertThat(response.get(0).getTitle()).isEqualTo("Philadelphia’s Vine Street Expressway after Hurricane Ida 02 September 2021");
   }
   
   @Test
   public void testGetRising() throws FailedRequestException {
-    view.getRising();
+    List<Link> response = view.getRising().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Come again?");
   }
   
   @Test
   public void testGetTop() throws FailedRequestException {
-    view.getTop();
+    List<Link> response = view.getTop().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("People of Reddit, it is our duty!");
   }
   
   // Search
   
   @Test
   public void testGetSearch() throws FailedRequestException {
-    view.getSearch(new Parameter("q", "bananapics"));
+    Parameter param = new Parameter("q", "bananapics");
+    List<Link> response = view.getSearch(param).collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Having only one power hotkey is crazytown bananapants");
   }
   
   // Subreddits
   
   @Test
   public void testPostSearchRedditNames() throws FailedRequestException {
-    view.postSearchRedditNames(new Parameter("query", "banana"));
+    Parameter param = new Parameter("q", "banana");
+    List<String> response = view.postSearchRedditNames(param).collect(Collectors.toList());
+    assertThat(response).hasSize(5);
+    assertThat(response).containsExactly("banana", "BananasForScale", "BananaFish", "bananarchist", "Bananafight");
   }
   
   @Test
   public void testPostSearchSubreddits() throws FailedRequestException {
-    view.postSearchSubreddits(new Parameter("query", "banana"));
+    Parameter param = new Parameter("q", "banana");
+    List<Subreddit> response = view.postSearchSubreddits(param).collect(Collectors.toList());
+    assertThat(response).hasSize(9);
+    assertThat(response.get(0).getName()).contains("banana");
   }
   
   @Test
   public void testGetSubredditAutocomplete() throws FailedRequestException {
-    view.getSubredditAutocomplete(new Parameter("query", "banana"));
+    Parameter param = new Parameter("q", "banana");
+    List<Subreddit> response = view.getSubredditAutocomplete(param).collect(Collectors.toList());
+    assertThat(response).hasSize(5);
+    assertThat(response.get(0).getDisplayName()).contains("banana");
   }
   
   @Test
   public void testGetDefaultSubreddits() throws FailedRequestException {
-    view.getDefaultSubreddits();
+    List<Subreddit> response = view.getDefaultSubreddits().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("gadgets");
   }
   
   @Test
   public void testGetGoldSubreddits() throws FailedRequestException {
-    view.getGoldSubreddits();
+    List<Subreddit> response = view.getGoldSubreddits().collect(Collectors.toList());
+    assertThat(response).isEmpty();
   }
   
   @Test
   public void testGetNewSubreddits() throws FailedRequestException {
-    view.getNewSubreddits();
+    List<Subreddit> response = view.getNewSubreddits().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("pusaneko");
   }
   
   @Test
   public void testGetPopularSubreddits() throws FailedRequestException {
-    view.getPopularSubreddits();
+    List<Subreddit> response = view.getPopularSubreddits().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Home");
   }
   
   @Test
   public void testGetSearchSubreddits() throws FailedRequestException {
-    view.getSearchSubreddits(new Parameter("q", "banana"));
+    Parameter param = new Parameter("q", "banana");
+    List<Subreddit> response = view.getSearchSubreddits(param).collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("banana");
   }
   
   @Test
   public void testGetNewUserSubreddits() throws FailedRequestException {
-    view.getNewUserSubreddits();
+    List<Subreddit> response = view.getNewUserSubreddits().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("");
   }
   
   @Test
   public void testGetPopularUserSubreddits() throws FailedRequestException {
-    view.getPopularUserSubreddits();
+    List<Subreddit> response = view.getPopularUserSubreddits().collect(Collectors.toList());
+    assertThat(response).hasSize(25);
+    assertThat(response.get(0).getTitle()).isEqualTo("Selben");
   }
   
   @Test
   public void testGetSearchUserSubreddits() throws FailedRequestException {
-    view.getSearchUserSubreddits(new Parameter("q", "banana"));
+    Parameter param = new Parameter("q", "banana");
+    List<Account> response = view.getSearchUserSubreddits(param).collect(Collectors.toList());
+    assertThat(response).hasSize(11);
+    assertThat(response.get(0).getName()).isEqualTo("Hates_escalators");
   }
 }

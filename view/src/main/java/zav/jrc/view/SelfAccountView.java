@@ -89,7 +89,7 @@ public class SelfAccountView {
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), TrophyList.class)
+    return JsonUtils.transformThing(client.send(query), TrophyList.class)
           .getTrophies()
           .stream()
           .map(thing -> JsonUtils.transformThing(thing, Award.class));
@@ -148,7 +148,7 @@ public class SelfAccountView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getMineModerator(Parameter... params) throws FailedRequestException {
@@ -158,7 +158,7 @@ public class SelfAccountView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getMineStreams(Parameter... params) throws FailedRequestException {
@@ -168,7 +168,7 @@ public class SelfAccountView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getMineSubscriber(Parameter... params) throws FailedRequestException {
@@ -178,6 +178,6 @@ public class SelfAccountView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
 }

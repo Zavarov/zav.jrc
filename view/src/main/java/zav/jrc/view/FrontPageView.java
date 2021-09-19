@@ -30,6 +30,7 @@ import zav.jrc.Parameter;
 import zav.jrc.databind.Account;
 import zav.jrc.databind.Link;
 import zav.jrc.databind.Subreddit;
+import zav.jrc.databind.Thing;
 import zav.jrc.databind.core.Listing;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
@@ -54,7 +55,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getControversial(Parameter... params) throws FailedRequestException {
@@ -64,7 +65,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getHot(Parameter... params) throws FailedRequestException {
@@ -74,7 +75,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getNew(Parameter... params) throws FailedRequestException {
@@ -84,7 +85,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getRandom(Parameter... params) throws FailedRequestException {
@@ -94,8 +95,9 @@ public class FrontPageView {
           .build()
           .get();
   
-    Listing[] listings = JsonUtils.transform(client.send(query), Listing[].class);
-    return Arrays.stream(listings).map(object -> JsonUtils.transform(object, Link.class));
+    Thing[] response = JsonUtils.transform(client.send(query), Thing[].class);
+    Listing listing = JsonUtils.transformThing(response[0], Listing.class);
+    return JsonUtils.transformListingOfThings(listing, Link.class);
   }
   
   public Stream<Link> getRising(Parameter... params) throws FailedRequestException {
@@ -105,7 +107,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   public Stream<Link> getTop(Parameter... params) throws FailedRequestException {
@@ -115,7 +117,7 @@ public class FrontPageView {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -131,7 +133,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -173,7 +175,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getDefaultSubreddits(Parameter... params) throws FailedRequestException {
@@ -183,7 +185,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getGoldSubreddits(Parameter... params) throws FailedRequestException {
@@ -193,7 +195,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getNewSubreddits(Parameter... params) throws FailedRequestException {
@@ -203,7 +205,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getPopularSubreddits(Parameter... params) throws FailedRequestException {
@@ -213,7 +215,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getSearchSubreddits(Parameter... params) throws FailedRequestException {
@@ -223,7 +225,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getNewUserSubreddits(Parameter... params) throws FailedRequestException {
@@ -233,7 +235,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Subreddit> getPopularUserSubreddits(Parameter... params) throws FailedRequestException {
@@ -243,7 +245,7 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Subreddit.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Subreddit.class);
   }
   
   public Stream<Account> getSearchUserSubreddits(Parameter... params) throws FailedRequestException {
@@ -253,6 +255,6 @@ public class FrontPageView {
           .build()
           .get();
   
-    return JsonUtils.transformListing(client.send(query), Account.class);
+    return JsonUtils.transformListingOfThings(client.send(query), Account.class);
   }
 }
