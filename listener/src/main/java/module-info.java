@@ -4,10 +4,10 @@ module zav.jcr.listener {
   requires com.google.guice.extensions.assistedinject;
   requires java.inject;
   requires org.apache.logging.log4j;
-  requires org.eclipse.jdt.annotation;
   requires zav.jrc.api;
   requires zav.jrc.databind;
   requires zav.jcr.view;
+  requires static org.eclipse.jdt.annotation;
   
   exports zav.jrc.listener;
   exports zav.jrc.listener.guice;

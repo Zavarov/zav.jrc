@@ -4,9 +4,9 @@ module zav.jrc.api {
   requires com.google.guice;
   requires java.inject;
   requires org.apache.logging.log4j;
-  requires org.eclipse.jdt.annotation;
   requires okhttp3;
   requires zav.jrc.databind;
+  requires static org.eclipse.jdt.annotation;
   
   exports zav.jrc;
   exports zav.jrc.client;
