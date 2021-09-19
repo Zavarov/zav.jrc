@@ -52,7 +52,8 @@ public class ObserverTest extends AbstractTest {
     assertThat(observer.size()).isEqualTo(1);
   }
   
-  @Test void testRemoveListener() {
+  @Test
+  public void testRemoveListener() {
     assertThat(observer.size()).isEqualTo(0);
     assertThat(observer.addListener(foo)).isTrue();
     assertThat(observer.size()).isEqualTo(1);
