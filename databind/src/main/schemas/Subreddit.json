@@ -76,12 +76,12 @@
     "submit_link_label" : {
       "description" : "The subreddit's custom label for the submit link button, if any. {@code null} is no custom label is set.",
       "javaName" : "submitLinkLabel",
-      "type" : "boolean"
+      "type" : "string"
     },
     "submit_text_label" : {
       "description" : "The subreddit's custom label for the submit text button, if any. {@code null} is no custom label is set.",
       "javaName" : "submitTextLabel",
-      "type" : "boolean"
+      "type" : "string"
     },
     "subreddit_type" : {
       "description" : "The subreddit's type - one of {@code public}, {@code private}, {@code restricted}, or in very special cases {@code gold_restricted}.",
