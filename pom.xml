@@ -29,6 +29,7 @@
         <module>api</module>
         <module>databind</module>
         <module>view</module>
+        <module>example</module>
     </modules>
 
     <properties>
@@ -38,7 +39,6 @@
         <guice.version>5.0.1</guice.version>
         <okhttp.version>4.9.1</okhttp.version>
         <log4j.version>2.14.1</log4j.version>
-        <commons-validator.version>1.7</commons-validator.version>
 
         <!-- .. Annotations ........................................................................................ -->
         <org.eclipse.jdt.annotation.version>2.2.600</org.eclipse.jdt.annotation.version>

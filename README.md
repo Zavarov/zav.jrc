@@ -1,22 +1,22 @@
 [![Java CI with Maven](https://github.com/Zavarov/JRA/actions/workflows/maven.yml/badge.svg)](https://github.com/Zavarov/JRA/actions/workflows/maven.yml)
 
-# JDA (Java Reddit API)
+# JRC (Java Reddit Client)
 
-JDA provides a simple way to exchange information between a Java application and the Reddit endpoints. 
+An implementation of the Reddit API in Java.
 
 ### Getting started
 
-By creating a new instance of the `Client` class and calling the `login` method, the user 
-establishes the initial authentication with the Reddit API.
+This project heavily utilizes dependency injection via [Guice](https://github.com/google/guice) in order to instantiate
+the client and auxiliary classes.
 
-While not enforced, it is highly recommended to always call the `logout` once the program
-is about to terminate. This not only minimizes the risk of a third party misusing a token
-that has been leaked accidentally, but also makes the life easier for Reddit, since they
-don't have to store the granted tokens longer than necessary.
+When creating a new instance of the `Client`, Guice will try to load the configuration files
+`UserAgent.json` and `Crendentials.json` from the root directory.
 
-In order to simply this process, two Client implementation are already provided. ScriptClient
-can be used to create an instance, acting on behalf of a user. The class UserlessClient creates
-an anonymous instance.
+Furthermore, the type of client can be specified by either using the `ScriptModule` or the `UserlessModule`. For more 
+information on a script and userless app, see [here](https://github.com/reddit-archive/reddit/wiki/OAuth2).
+
+Access to the API is made available using *views*, an abstract overview over the different Reddit entities. Each view
+then contains methods reflecting individual API calls. See the [example](example) project for reference.
 
 ### Installing
 
@@ -26,10 +26,23 @@ In order to install this project, simply execute the maven command:
 mvn clean install
 ```
 
+## Runtime Dependencies
+
+* [Guice 5.0.1](https://github.com/google/guice/tree/5.0.1),
+  Apache License 2.0
+* [Jackson 2.12.5](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.12.5),
+  Apache License 2.0
+* [Jakarta Inject 1.0.3](https://github.com/eclipse-ee4j/injection-api/tree/1.0.3),
+  Apache License 2.0
+* [Log4j2 2.14.1](https://github.com/apache/logging-log4j2/tree/rel/2.14.1),
+  Apache License 2.0
+* [OkHttp 4.9.1](https://github.com/square/okhttp/tree/parent-4.9.1),
+  Apache License 2.0
+
 ## Built With
 
-* [MontiCore](https://github.com/MontiCore/monticore) - For generating the source code for the architecture.
-* [Maven](https://maven.apache.org/) - Dependency Management
+* [JSONSchema2Pojo](https://github.com/joelittlejohn/jsonschema2pojo) - For generating Java classes out of JSON schemas.
+* [Maven](https://maven.apache.org/) - Dependency management and build tool.
 
 ## Authors
 
@@ -37,8 +50,5 @@ mvn clean install
 
 ## License
 
-This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the GPLv3 License - see the [LICENSE](LICENSE) file for details.
 
-## Acknowledgments
-A big shoutout to all the people involved with [pushshift.io](https://pushshift.io/). They do an awesome job
-and their site was fundamental for circumventing the 1000 submissions restriction.
