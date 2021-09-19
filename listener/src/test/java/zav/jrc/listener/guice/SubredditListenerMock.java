@@ -16,16 +16,21 @@
 
 package zav.jrc.listener.guice;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.listener.SubredditListener;
 import zav.jrc.databind.Link;
+import zav.jrc.listener.SubredditListener;
+
+import java.util.function.Consumer;
 
 public class SubredditListenerMock implements SubredditListener {
-    private static final Logger LOGGER = LogManager.getLogger(SubredditListenerMock.class);
-    @Override
-    public void handle(@NonNull Link link) {
-        LOGGER.info(link.getTitle());
-    }
+  private final Consumer<SubredditListener> consumer;
+
+  public SubredditListenerMock(Consumer<SubredditListener> consumer) {
+    this.consumer = consumer;
+  }
+
+  @Override
+  public void handle(@NonNull Link link) {
+    consumer.accept(this);
+  }
 }

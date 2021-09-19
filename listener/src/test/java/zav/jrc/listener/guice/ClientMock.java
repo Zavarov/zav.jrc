@@ -19,14 +19,13 @@ package zav.jrc.listener.guice;
 import okhttp3.Request;
 import zav.jrc.Client;
 import zav.jrc.Duration;
-import zav.jrc.FailedRequestException;
 import zav.jrc.databind.api.Token;
 
 import javax.inject.Singleton;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
+import java.util.Objects;
 
 @Singleton // Client is shared among all views
 public class ClientMock extends Client {
@@ -45,7 +44,13 @@ public class ClientMock extends Client {
   }
   
   @Override
-  public synchronized String send(Request request) throws FailedRequestException {
-    throw FailedRequestException.wrap(new UnsupportedOperationException());
+  public synchronized String send(Request request) {
+    try {
+      InputStream is = getClass().getClassLoader().getResourceAsStream("Response.json");
+      Objects.requireNonNull(is);
+      return new String(is.readAllBytes(), StandardCharsets.UTF_8);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }
