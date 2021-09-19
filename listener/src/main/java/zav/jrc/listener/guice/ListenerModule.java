@@ -18,11 +18,21 @@ package zav.jrc.listener.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
+import org.eclipse.jdt.annotation.NonNull;
+import zav.jrc.listener.observer.Observer;
 import zav.jrc.listener.observer.SubredditObserver;
 
+/**
+ * The Guice module responsible for creating the {@link Observer} instances.
+ */
+@NonNull
 public class ListenerModule extends AbstractModule {
   @Override
   protected void configure() {
-    install(new FactoryModuleBuilder().implement(SubredditObserver.class, SubredditObserver.class).build(SubredditObserverFactory.class));
+    com.google.inject.Module module = new FactoryModuleBuilder()
+          .implement(SubredditObserver.class, SubredditObserver.class)
+          .build(SubredditObserverFactory.class);
+    
+    install(module);
   }
 }

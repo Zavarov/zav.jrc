@@ -19,7 +19,12 @@ package zav.jrc.listener;
 import java.util.EventListener;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.databind.Link;
+import zav.jrc.databind.Subreddit;
 
+/**
+ * This class handles all events associated with a given {@link Subreddit}.
+ */
+@NonNull
 public interface SubredditListener extends EventListener {
   default void handle(@NonNull Link link) {
   }

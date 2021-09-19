@@ -20,6 +20,13 @@ import java.util.EventListener;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.FailedRequestException;
 
+/**
+ * Implements the observer pattern. Notifications to the observer are automatically delegated to
+ * either all registered listeners or specific ones.
+ *
+ * @param <T> The type of listener that are observed by this class.
+ */
+@NonNull
 public interface Observer<T extends EventListener> {
   boolean addListener(@NonNull T listener);
   

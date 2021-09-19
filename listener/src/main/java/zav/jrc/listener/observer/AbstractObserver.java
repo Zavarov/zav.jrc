@@ -22,7 +22,15 @@ import java.util.concurrent.CopyOnWriteArraySet;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.FailedRequestException;
 
+/**
+ * This class provides a skeleton implementation of the observer interface. All observers should
+ * inherit from this class.
+ *
+ * @param <T> The type of listener that are observed by this class.
+ */
+@NonNull
 public abstract class AbstractObserver<T extends EventListener> implements Observer<T> {
+  @NonNull
   private final Set<T> listeners = new CopyOnWriteArraySet<>();
 
   @Override

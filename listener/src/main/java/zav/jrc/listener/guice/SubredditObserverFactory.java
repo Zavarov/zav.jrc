@@ -26,5 +26,6 @@ import zav.jrc.view.SubredditView;
  */
 @NonNull
 public interface SubredditObserverFactory {
+  @NonNull
   SubredditObserver create(@NonNull SubredditView subreddit);
 }
