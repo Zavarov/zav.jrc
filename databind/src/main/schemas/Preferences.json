@@ -1,14 +1,324 @@
 {
   "type" : "object",
   "properties" : {
-    "source" : {
-      "$ref": "Link.json"
+    "beta" : {
+      "type" : "boolean"
     },
-    "duplicates" : {
-      "type": "array",
-      "items": {
-        "$ref": "Link.json"
-      }
+    "default_theme_sr" : {
+      "javaType" : "defaultThemeSubreddit"
+    },
+    "threaded_messages" : {
+      "javaType" : "threadedMessages",
+      "type" : "boolean"
+    },
+    "email_comment_reply" : {
+      "javaType" : "emailCommentReply",
+      "type" : "boolean"
+    },
+    "private_feeds" : {
+      "javaType" : "privateFeeds",
+      "type" : "boolean"
+    },
+    "activity_relevant_ads" : {
+      "javaType" : "activityRelevantAds",
+      "type" : "boolean"
+    },
+    "emailMessages" : {
+      "javaType" : "email_messages",
+      "type" : "boolean"
+    },
+    "profile_opt_out" : {
+      "javaType" : "profileOptOut",
+      "type" : "boolean"
+    },
+    "video_autoplay" : {
+      "javaType" : "videoAutoplay",
+      "type" : "boolean"
+    },
+    "accept_pms" : {
+      "javaType" : "acceptPrivateMessages",
+      "type" : "string"
+    },
+    "geopopular" : {
+      "type" : "string"
+    },
+    "show_link_flair" : {
+      "javaType" : "showLinkFlair",
+      "type" : "boolean"
+    },
+    "show_trending" : {
+      "javaType" : "showTrending",
+      "type" : "boolean"
+    },
+    "send_welcome_messages" : {
+      "javaType" : "sendWelcomeMessages",
+      "type" : "boolean"
+    },
+    "country_code" : {
+      "javaType" : "countryCode",
+      "type" : "string"
+    },
+    "design_beta" : {
+      "javaType" : "designBeta",
+      "type" : "boolean"
+    },
+    "monitor_mentions" : {
+      "javaType" : "monitorMentions",
+      "type" : "boolean"
+    },
+    "hide_downs" : {
+      "javaType" : "hideDownvotes",
+      "type" : "boolean"
+    },
+    "clickgadget" : {
+      "type" : "boolean"
+    },
+    "lang" : {
+      "javaType" : "language",
+      "type" : "string"
+    },
+    "ignore_suggested_sort" : {
+      "javaType" : "ignoreSuggestedSort",
+      "type" : "boolean"
+    },
+    "show_presence" : {
+      "javaType" : "showPresence",
+      "type" : "boolean"
+    },
+    "email_upvote_comment" : {
+      "javaType" : "emailUpvoteComment",
+      "type" : "boolean"
+    },
+    "email_digests" : {
+      "javaType" : "emailDigests",
+      "type" : "boolean"
+    },
+    "layout" : {
+      "type" : "integer"
+    },
+    "num_comments" : {
+      "javaType" : "numberOfComments",
+      "type" : "integer"
+    },
+    "feed_recommendations_enabled" : {
+      "javaType" : "feedRecommendationsEnabled",
+      "type" : "boolean"
+    },
+    "label_nsfw" : {
+      "javaType" : "labelNsfw",
+      "type" : "boolean"
+    },
+    "research" : {
+      "type" : "boolean"
+    },
+    "use_global_defaults" : {
+      "javaType" : "useGlobalDefaults",
+      "type" : "boolean"
+    },
+    "show_snoovatar" : {
+      "javaType" : "showSnoovatar",
+      "type" : "boolean"
+    },
+    "over_18" : {
+      "javaType" : "over18",
+      "type" : "boolean"
+    },
+    "legacy_search" : {
+      "javaType" : "legacySearch",
+      "type" : "boolean"
+    },
+    "live_orangereds" : {
+      "javaType" : "liveOrangereds",
+      "type" : "boolean"
+    },
+    "highlight_controversial" : {
+      "javaType" : "highlightControversial",
+      "type" : "boolean"
+    },
+    "no_profanity" : {
+      "javaType" : "noProfanity",
+      "type" : "boolean"
+    },
+    "domain_details" : {
+      "javaType" : "domainDetails",
+      "type" : "boolean"
+    },
+    "collapse_left_bar" : {
+      "javaType" : "collapseLeftBar",
+      "type" : "boolean"
+    },
+    "email_community_discovery" : {
+      "javaType" : "emailCommunityDiscovery",
+      "type" : "boolean"
+    },
+    "bad_comment_autocollapse" : {
+      "javaType" : "badCommentAutoCollapse",
+      "type" : "string"
+    },
+    "hide_ups" : {
+      "javaType" : "hideUpvotes",
+      "type" : "boolean"
+    },
+    "third_party_data_personalized_ads" : {
+      "javaType" : "thirdPartyDataPersonalizedAds",
+      "type" : "boolean"
+    },
+    "email_chat_request" : {
+      "javaType" : "emailChatRequest",
+      "type" : "boolean"
+    },
+    "allow_clicktracking" : {
+      "javaType" : "allowClickTracking",
+      "type" : "boolean"
+    },
+    "hide_from_robots" : {
+      "javaType" : "hideFromRobots",
+      "type" : "boolean"
+    },
+    "show_twitter" : {
+      "javaType" : "showTwitter",
+      "type" : "boolean"
+    },
+    "compress" : {
+      "type" : "boolean"
+    },
+    "store_visits" : {
+      "javaType" : "storeVisits",
+      "type" : "boolean"
+    },
+    "threaded_modmail" : {
+      "javaType" : "threadedModMail",
+      "type" : "boolean"
+    },
+    "email_upvote_post" : {
+      "javaType" : "emailUpvotePost",
+      "type" : "boolean"
+    },
+    "min_link_score" : {
+      "javaType" : "minLinkScore",
+      "type" : "integer"
+    },
+    "media_preview" : {
+      "javaType" : "mediaPreview",
+      "type" : "string"
+    },
+    "email_user_new_follower" : {
+      "javaType" : "emailUserNewFollower",
+      "type" : "boolean"
+    },
+    "nightmode" : {
+      "type" : "boolean"
+    },
+    "enable_default_themes" : {
+      "javaType" : "enableDefaultThemes",
+      "type" : "boolean"
+    },
+    "third_party_site_data_personalized_content" : {
+      "javaType" : "thirdPartySiteDataPersonalizedContent",
+      "type" : "boolean"
+    },
+    "third_party_site_data_personalized_ads" : {
+      "javaType" : "thirdPartySiteDataPersonalizedAds",
+      "type" : "boolean"
+    },
+    "survey_last_seen_time" : {
+      "javaType" : "surveyLastSeenTime",
+      "type" : "number"
+    },
+    "show_stylesheets" : {
+      "javaType" : "showStylesheets",
+      "type" : "boolean"
+    },
+    "enable_followers" : {
+      "javaType" : "enableFollowers",
+      "type" : "boolean"
+    },
+    "min_comment_score" : {
+      "javaType" : "minCommentScore",
+      "type" : "integer"
+    },
+    "public_votes" : {
+      "javaType" : "publicVotes",
+      "type" : "boolean"
+    },
+    "email_post_reply" : {
+      "javaType" : "emailPostReply",
+      "type" : "boolean"
+    },
+    "collapse_read_messages" : {
+      "javaType" : "collapseReadMessages",
+      "type" : "boolean"
+    },
+    "show_flair" : {
+      "javaType" : "showFlair",
+      "type" : "boolean"
+    },
+    "mark_messages_read" : {
+      "javaType" : "markMessagesRead",
+      "type" : "boolean"
+    },
+    "search_include_over_18" : {
+      "javaType" : "searchIncludeOver18",
+      "type" : "boolean"
+    },
+    "hide_ads" : {
+      "javaType" : "hideAds",
+      "type" : "boolean"
+    },
+    "third_party_personalized_ads" : {
+      "javaType" : "thirdPartyPersonalizedAds",
+      "type" : "boolean"
+    },
+    "email_username_mention" : {
+      "javaType" : "emailUsernameMention",
+      "type" : "boolean"
+    },
+    "top_karma_subreddits" : {
+      "javaType" : "topKarmaSubreddits",
+      "type" : "boolean"
+    },
+    "newwindow" : {
+      "javaType" : "newWindow",
+      "type" : "boolean"
+    },
+    "numsites" : {
+      "javaType" : "numberOfSites",
+      "type" : "integer"
+    },
+    "email_private_message" : {
+      "javaType" : "emailPrivateMessage",
+      "type" : "boolean"
+    },
+    "send_crosspost_messages" : {
+      "javaType" : "sendCrosspostMessages",
+      "type" : "boolean"
+    },
+    "media" : {
+      "type" : "string"
+    },
+    "public_server_seconds" : {
+      "javaType" : "publicServerSeconds",
+      "type" : "boolean"
+    },
+    "show_gold_expiration" : {
+      "javaType" : "showGoldExpiration",
+      "type" : "boolean"
+    },
+    "highlight_new_comments" : {
+      "javaType" : "highlightNewComments",
+      "type" : "boolean"
+    },
+    "email_unsubscribe_all" : {
+      "javaType" : "emailUnsubscribeAll",
+      "type" : "boolean"
+    },
+    "default_comment_sort" : {
+      "javaType" : "defaultCommentSort",
+      "type" : "string"
+    },
+    "show_location_based_recommendations" : {
+      "javaType" : "showLocationBasedRecommendations",
+      "type" : "boolean"
     }
   }
 }
