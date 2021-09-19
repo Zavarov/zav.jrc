@@ -23,13 +23,21 @@ import zav.jrc.view.FrontPageView;
 import zav.jrc.view.SelfAccountView;
 import zav.jrc.view.SubredditView;
 
+/**
+ * The Guice module responsible for creating the different views.
+ */
 public class ViewModule extends AbstractModule {
-  
   @Override
   protected void configure() {
-    install(new FactoryModuleBuilder().implement(AccountView.class, AccountView.class).build(AccountViewFactory.class));
-    install(new FactoryModuleBuilder().implement(SelfAccountView.class, SelfAccountView.class).build(SelfAccountViewFactory.class));
-    install(new FactoryModuleBuilder().implement(SubredditView.class, SubredditView.class).build(SubredditViewFactory.class));
-    install(new FactoryModuleBuilder().implement(FrontPageView.class, FrontPageView.class).build(FrontPageViewFactory.class));
+    install(module(AccountView.class, AccountViewFactory.class));
+    install(module(SelfAccountView.class, SelfAccountViewFactory.class));
+    install(module(SubredditView.class, SubredditViewFactory.class));
+    install(module(FrontPageView.class, FrontPageViewFactory.class));
+  }
+  
+  private static <T> com.google.inject.Module module(Class<T> source, Class<?> target) {
+    return new FactoryModuleBuilder()
+          .implement(source, source)
+          .build(target);
   }
 }

@@ -18,6 +18,10 @@ package zav.jrc.view.guice;
 
 import zav.jrc.view.SelfAccountView;
 
+/**
+ * Instances of {@link SelfAccountView} have to be created via this class rather than directly.
+ * Otherwise Guice is unable obtain the arguments required by the constructor.
+ */
 public interface SelfAccountViewFactory {
   SelfAccountView create();
 }

@@ -23,15 +23,28 @@ import zav.jrc.Client;
 import zav.jrc.Duration;
 import zav.jrc.FailedRequestException;
 import zav.jrc.databind.Link;
+import zav.jrc.databind.Subreddit;
 import zav.jrc.guice.UserlessModule;
 import zav.jrc.view.SubredditView;
 import zav.jrc.view.guice.SubredditViewFactory;
 import zav.jrc.view.guice.ViewModule;
 
+/**
+ * This example illustrates how to use Guice and the views to retrieve a stream of latest links from
+ * the {@link Subreddit} {@code RedditDev}.<br>
+ * Note that for this program to run, you need to specify your credentials in the
+ * {@code Credentials.json} and {@code UserAgent.json} in the {@code resources} directory.
+ */
 public class Main {
   protected static Injector GUICE;
   protected static Client CLIENT;
   
+  /**
+   * The entry point for the program.
+   *
+   * @param args An array of command-line arguments.
+   * @throws FailedRequestException If one of the API requests was rejected.
+   */
   public static void main(String[] args) throws FailedRequestException {
     GUICE = Guice.createInjector(new UserlessModule(), new ViewModule());
     CLIENT = GUICE.getInstance(Client.class);
@@ -41,9 +54,7 @@ public class Main {
     SubredditView view = factory.create("RedditDev");
     Stream<Link> links = view.getNew();
     
-    links.forEach(link -> {
-      System.out.println(link.getTitle());
-    });
+    links.forEach(link -> System.out.println(link.getTitle()));
     
     CLIENT.logout();
   }

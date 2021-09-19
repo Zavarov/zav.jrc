@@ -20,6 +20,11 @@ import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.listener.observer.SubredditObserver;
 import zav.jrc.view.SubredditView;
 
+/**
+ * Instances of {@link SubredditObserver} have to be created via this class rather than directly.
+ * Otherwise Guice is unable obtain the arguments required by the constructor.
+ */
+@NonNull
 public interface SubredditObserverFactory {
   SubredditObserver create(@NonNull SubredditView subreddit);
 }

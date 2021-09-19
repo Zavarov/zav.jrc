@@ -34,6 +34,9 @@ import zav.jrc.databind.Thing;
 import zav.jrc.databind.TrophyList;
 import zav.jrc.databind.core.Listing;
 
+/**
+ * Utility class for deserializing the API responses.
+ */
 public class JsonUtils {
   private static final Map<String, Class<?>> KINDS = new HashMap<>();
   
@@ -49,10 +52,26 @@ public class JsonUtils {
     KINDS.put("subreddit_settings", SubredditSettings.class);
   }
   
+  /**
+   * Deserialized all objects contained by the {@code Listing}.
+   *
+   * @param source A serialized {@link Listing} of Things.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return A list of {@code T} contained by the {@code Listing}.
+   */
   public static <T> Stream<T> transformListingOfThings(String source, Class<T> target) {
     return transformListingOfThings(transformThing(source, Listing.class), target);
   }
   
+  /**
+   * Deserialized all objects contained by the {@code Listing}.
+   *
+   * @param source A {@link Listing} of Things.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return A list of {@code T} contained by the {@code Listing}.
+   */
   public static <T> Stream<T> transformListingOfThings(Listing source, Class<T> target) {
     List<Thing> things = transformListing(source, Thing.class).collect(Collectors.toList());
     List<T> result = new ArrayList<>();
@@ -64,10 +83,26 @@ public class JsonUtils {
     return result.stream();
   }
   
+  /**
+   * Deserialized all objects contained by the {@code Listing}.
+   *
+   * @param source A serialized {@link Listing}.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return A list of {@code T} contained by the {@code Listing}.
+   */
   public static <T> Stream<T> transformListing(String source, Class<T> target) {
     return transformListing(transformThing(source, Listing.class), target);
   }
   
+  /**
+   * Deserialized all objects contained by the {@code Listing}.
+   *
+   * @param source A {@link Listing}.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return A list of {@code T} contained by the {@code Listing}.
+   */
   public static <T> Stream<T> transformListing(Listing source, Class<T> target) {
     List<T> objects = new ArrayList<>();
     
@@ -78,10 +113,28 @@ public class JsonUtils {
     return objects.stream();
   }
   
+  /**
+   * Deserializes the object contained by the {@link Thing}.<br>
+   * {@link Thing#getKind()} has to match the desired class.
+   *
+   * @param source A serialized {@link Thing}.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return Instance of {@code T}.
+   */
   public static <T> T transformThing(String source, Class<T> target)  {
     return transformThing(transform(source, Thing.class), target);
   }
   
+  /**
+   * Deserializes the object contained by the {@link Thing}.<br>
+   * {@link Thing#getKind()} has to match the desired class.
+   *
+   * @param source A {@link Thing}.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return Instance of {@code T}.
+   */
   public static <T> T transformThing(Thing source, Class<T> target) {
     // Validation
     Class<?> expectedClass = KINDS.get(source.getKind());
@@ -93,6 +146,14 @@ public class JsonUtils {
     return transform(source.getData(), target);
   }
   
+  /**
+   * Deserializes the provided Java object.
+   *
+   * @param source Java object.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return Instance of {@code T}.
+   */
   public static <T> T transform(Object source, Class<T> target) {
     try {
       ObjectMapper om = new ObjectMapper();
@@ -103,6 +164,14 @@ public class JsonUtils {
     }
   }
   
+  /**
+   * Deserializes the provided JSON string.
+   *
+   * @param source Raw JSON string.
+   * @param target Desired class.
+   * @param <T> Expected type.
+   * @return Instance of {@code T}.
+   */
   public static <T> T transform(String source, Class<T> target) {
     try {
       ObjectMapper om = new ObjectMapper();

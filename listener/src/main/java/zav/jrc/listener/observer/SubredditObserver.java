@@ -28,6 +28,12 @@ import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.requester.LinkRequester;
 import zav.jrc.view.SubredditView;
 
+/**
+ * The observer implementation for subreddits. Calling {@link #notifyListener(SubredditListener)} or
+ * {@link #notifyAllListeners()} will call the respective {@code handle} functions of the selected
+ * listeners.
+ */
+@NonNull
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @NonNull
   private final LinkRequester requester;

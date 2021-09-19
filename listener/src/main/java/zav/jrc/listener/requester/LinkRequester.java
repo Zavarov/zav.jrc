@@ -30,7 +30,15 @@ import zav.jrc.FailedRequestException;
 import zav.jrc.databind.Link;
 import zav.jrc.view.SubredditView;
 
-public class LinkRequester extends AbstractIterator<List<? extends Link>> {
+/**
+ * This class is used to retrieve the latest submissions from a given subreddit.<br>
+ * During the first request, the most recent link is used as a head for future requests and thus
+ * will always return an empty list.<br>
+ * On future requests, the head is compared against all retrieved links and only those that have
+ * been submitted after the head are returned. The head is then updated with the most recent link.
+ */
+@NonNull
+public class LinkRequester extends AbstractIterator<List<Link>> {
   @NonNull
   private static final Logger LOGGER = LogManager.getLogger(LinkRequester.class);
   @NonNull
@@ -43,15 +51,17 @@ public class LinkRequester extends AbstractIterator<List<? extends Link>> {
   }
 
   @Override
-  protected List<? extends Link> computeNext() throws IteratorException {
+  @NonNull
+  protected List<Link> computeNext() throws IteratorException {
     try {
-      //LOGGER.info("Computing next links for r/{}.", subreddit.getDisplayName());
+      LOGGER.info("Computing next links via {}.", subreddit);
       return head == null ? init() : request();
     } catch (FailedRequestException e) {
       throw new IteratorException(e);
     }
   }
 
+  @NonNull
   private List<Link> init() throws FailedRequestException {
     LOGGER.info("Possible first time this requester is used? Retrieve head.");
     List<? extends Link> submissions = subreddit.getNew().limit(1).collect(Collectors.toList());
@@ -64,6 +74,7 @@ public class LinkRequester extends AbstractIterator<List<? extends Link>> {
     return Collections.emptyList();
   }
 
+  @NonNull
   private List<Link> request() throws FailedRequestException {
     assert head != null;
     LOGGER.info("Requesting links after {}.", head.getName());
@@ -91,9 +102,15 @@ public class LinkRequester extends AbstractIterator<List<? extends Link>> {
 
     return result;
   }
-
+  
+  /**
+   * This exception is thrown whenever the next sequence of links couldn't be requested from the
+   * Reddit API. It wraps the {@link FailedRequestException} around an unchecked exception to
+   * satisfy due to the signature of {@link #computeNext()}.
+   */
+  @NonNull
   public static final class IteratorException extends RuntimeException {
-    public IteratorException(FailedRequestException cause) {
+    public IteratorException(@NonNull FailedRequestException cause) {
       super(cause);
     }
     

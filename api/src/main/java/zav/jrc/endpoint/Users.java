@@ -147,7 +147,7 @@ public class Users {
   public static final Endpoint POST_API_UNFRIEND =
         new Endpoint("api", "unfriend");
   /**
-   * TODO What does it do?
+   * Returns account-specific data.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_user_data_by_account_ids">here</a>
    */
@@ -191,7 +191,7 @@ public class Users {
   public static final Endpoint GET_API_V1_USER_USERNAME_TROPHIES =
         new Endpoint("api", "v1", "user", "{username}", "trophies");
   /**
-   * TODO What does it do?
+   * Endpoint for user-specific information.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_%28where%29">here</a>
    */
@@ -205,28 +205,28 @@ public class Users {
   public static final Endpoint GET_USER_USERNAME_ABOUT =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "about"));
   /**
-   * TODO What does it do?
+   * Return all comments made by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_comments">here</a>
    */
   public static final Endpoint GET_USER_USERNAME_COMMENTS =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "comments"));
   /**
-   * TODO What does it do?
+   * Return all downvoted links and comments made by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_downvoted">here</a>
    */
   public static final Endpoint GET_USER_USERNAME_DOWNVOTED =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "downvoted"));
   /**
-   * TODO What does it do?
+   * Return all gilded links and comments made by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_gilded">here</a>
    */
   public static final Endpoint GET_USER_USERNAME_GILDED =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "gilded"));
   /**
-   * TODO What does it do?
+   * Return all hidden links and comments made by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_hidden">here</a>
    */
@@ -240,21 +240,21 @@ public class Users {
   public static final Endpoint GET_USER_USERNAME_OVERVIEW =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "overview"));
   /**
-   * TODO What does it do?
+   * Return all saved links and comments made by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_saved">here</a>
    */
   public static final Endpoint GET_USER_USERNAME_SAVED =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "saved"));
   /**
-   * TODO What does it do?
+   * Return all submitted links and comments made by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_submitted">here</a>
    */
   public static final Endpoint GET_USER_USERNAME_SUBMITTED =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "submitted"));
   /**
-   * TODO What does it do?
+   * Return all upvoted links and comments made by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_upvoted">here</a>
    */

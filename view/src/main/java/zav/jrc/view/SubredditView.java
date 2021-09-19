@@ -31,6 +31,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.Client;
 import zav.jrc.FailedRequestException;
 import zav.jrc.Parameter;
@@ -57,6 +58,12 @@ public class SubredditView {
   @Inject
   public SubredditView(@Assisted String name) {
     this.name = name;
+  }
+  
+  @Override
+  @NonNull
+  public String toString() {
+    return String.format("%s[%s]", getClass(), name);
   }
   
   //----------------------------------------------------------------------------------------------//
