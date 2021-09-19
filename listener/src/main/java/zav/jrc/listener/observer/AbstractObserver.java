@@ -36,7 +36,7 @@ public abstract class AbstractObserver<T extends EventListener> implements Obser
   }
 
   @Override
-  public void notifyAllListener() throws FailedRequestException {
+  public void notifyAllListeners() throws FailedRequestException {
     for (T listener : listeners) {
       this.notifyListener(listener);
     }

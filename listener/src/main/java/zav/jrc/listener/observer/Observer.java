@@ -27,7 +27,7 @@ public interface Observer<T extends EventListener> {
   
   void notifyListener(@NonNull T listener) throws FailedRequestException;
   
-  void notifyAllListener() throws  FailedRequestException;
+  void notifyAllListeners() throws  FailedRequestException;
   
   int size();
 }
