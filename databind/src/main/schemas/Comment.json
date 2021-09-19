@@ -73,11 +73,7 @@
       "type" : "string"
     },
     "replies" : {
-      "description" : "A list of replies to this comment.",
-      "type" : "array",
-      "items" : {
-        "$ref" : "core/Thing.json"
-      }
+      "description" : "A list of replies to this comment."
     },
     "saved" : {
       "description" : "{@code} if this post is saved by the logged in user.",
