@@ -16,16 +16,13 @@
 
 package zav.jrc.listener.observer;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.FailedRequestException;
 import zav.jrc.listener.AbstractTest;
 import zav.jrc.listener.SubredditListener;
+import zav.jrc.listener.guice.ObserverMock;
 import zav.jrc.listener.guice.SubredditListenerMock;
-import zav.jrc.listener.guice.SubredditObserverFactory;
-import zav.jrc.view.SubredditView;
-import zav.jrc.view.guice.SubredditViewFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,21 +31,13 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 public class ObserverTest extends AbstractTest {
   private static Observer<SubredditListener> observer;
-  private static SubredditView subreddit;
   private List<SubredditListener> responses;
   private SubredditListener foo;
   private SubredditListener bar;
 
-  @BeforeAll
-  public static void setUpObserver() {
-    SubredditViewFactory factory = GUICE.getInstance(SubredditViewFactory.class);
-    subreddit = factory.create("RedditDev");
-  }
-
   @BeforeEach
   public void setUp(){
-    SubredditObserverFactory factory = GUICE.getInstance(SubredditObserverFactory.class);
-    observer = factory.create(subreddit);
+    observer = new ObserverMock();
     responses = new ArrayList<>();
     foo = new SubredditListenerMock(responses::add);
     bar = new SubredditListenerMock(responses::add);
