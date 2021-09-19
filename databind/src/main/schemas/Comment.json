@@ -35,8 +35,7 @@
       "type" : "string"
     },
     "edited" : {
-      "description" : "Empty if not edited, edit date in UTC epoch-seconds otherwise.",
-      "type" : "number"
+      "description" : "False if not edited, edit date in UTC epoch-seconds otherwise."
     },
     "gilded" : {
       "description" : "The number of times this comment received Reddit gold.",
