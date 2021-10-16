@@ -19,22 +19,29 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <artifactId>project</artifactId>
         <groupId>zav.jrc</groupId>
+        <artifactId>zav.jrc.project</artifactId>
         <version>0.2.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>view</artifactId>
+    <artifactId>zav.jrc.api</artifactId>
     <packaging>bundle</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-assistedinject</artifactId>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${log4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.inject</groupId>
+            <artifactId>guice</artifactId>
             <version>${guice.version}</version>
             <!-- Purge "optional" dependencies -->
             <!-- See https://github.com/google/guava/issues/2824 -->
+            <!-- See https://github.com/google/guice/issues/1383 -->
             <exclusions>
                 <exclusion>
                     <groupId>org.checkerframework</groupId>
@@ -66,8 +73,20 @@
         </dependency>
 
         <dependency>
+            <groupId>com.squareup.okhttp3</groupId>
+            <artifactId>okhttp</artifactId>
+            <version>${okhttp.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.jetbrains</groupId>
+                    <artifactId>annotations</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>api</artifactId>
+            <artifactId>databind</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

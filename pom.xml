@@ -21,16 +21,16 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>zav.jrc</groupId>
-    <artifactId>project</artifactId>
+    <artifactId>zav.jrc.project</artifactId>
     <packaging>pom</packaging>
     <version>0.2.0-SNAPSHOT</version>
 
     <modules>
-        <module>listener</module>
-        <module>api</module>
-        <module>databind</module>
-        <module>view</module>
-        <module>example</module>
+        <module>zav.jrc.listener</module>
+        <module>zav.jrc.api</module>
+        <module>zav.jrc.databind</module>
+        <module>zav.jrc.view</module>
+        <module>zav.jrc.example</module>
     </modules>
 
     <properties>
@@ -114,7 +114,7 @@
         <repository>
             <id>github</id>
             <name>GitHub Zavarov Apache Maven Packages</name>
-            <url>https://maven.pkg.github.com/zavarov/jrc</url>
+            <url>https://maven.pkg.github.com/zavarov/zav.jrc</url>
         </repository>
     </distributionManagement>
 
@@ -254,10 +254,6 @@
                     <configuration>
                         <manifestLocation>META-INF</manifestLocation>
                         <excludeDependencies>org.eclipse.jdt.annotation</excludeDependencies>
-                        <instructions>
-                            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
-                            <Bundle-Version>${project.version}</Bundle-Version>
-                        </instructions>
                     </configuration>
                 </plugin>
             </plugins>
