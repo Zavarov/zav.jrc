@@ -86,7 +86,7 @@
 
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>databind</artifactId>
+            <artifactId>zav.jrc.databind</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

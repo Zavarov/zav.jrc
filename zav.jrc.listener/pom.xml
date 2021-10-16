@@ -36,7 +36,7 @@
     <dependencies>
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>view</artifactId>
+            <artifactId>zav.jrc.view</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -67,7 +67,7 @@
 
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>api</artifactId>
+            <artifactId>zav.jrc.api</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
