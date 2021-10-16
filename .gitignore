@@ -99,4 +99,4 @@ fabric.properties
 /view/src/test/resources/UserAgent.json
 /listener/src/test/resources/Credentials.json
 /listener/src/test/resources/UserAgent.json
-**/META-INF
+**/META-INF/MANIFEST.MF
