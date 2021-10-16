@@ -97,9 +97,9 @@ public class Users {
         new Endpoint("api", "setpermission");
   /**
    * Remove a relationship between a user and another user or subreddit.<br>
-   * The user can either be passed in by name (nuser) or by fullname (iuser). If type is friend or enemy, 'container'
-   * MUST be the current user's fullname; for other types, the subreddit must be set via URL
-   * (e.g., /r/funny/api/unfriend).<br>
+   * The user can either be passed in by name (nuser) or by fullname (iuser). If type is friend or
+   * enemy, 'container' MUST be the current user's fullname; for other types, the subreddit must be
+   * set via URL (e.g., /r/funny/api/unfriend).<br>
    * OAuth2 use requires appropriate scope based on the 'type' of the relationship:
    * <ul>
    *   <li>moderator: modothers</li>
