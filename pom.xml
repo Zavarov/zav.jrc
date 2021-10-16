@@ -253,7 +253,7 @@
                     <extensions>true</extensions>
                     <configuration>
                         <manifestLocation>META-INF</manifestLocation>
-                        <excludeDependencies>org.eclipse.jdt.annotation</excludeDependencies>
+                        <excludeDependencies>org.eclipse.jdt.annotation, log4j-api, log4j-core</excludeDependencies>
                     </configuration>
                 </plugin>
             </plugins>
