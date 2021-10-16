@@ -24,6 +24,7 @@
     <artifactId>project</artifactId>
     <packaging>pom</packaging>
     <version>0.2.0-SNAPSHOT</version>
+
     <modules>
         <module>listener</module>
         <module>api</module>
@@ -54,7 +55,9 @@
         <maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
         <maven-jar-plugin.version>3.2.0</maven-jar-plugin.version>
         <maven-compiler-plugin.version>3.8.1</maven-compiler-plugin.version>
+        <maven-dependency-plugin.version>3.2.0</maven-dependency-plugin.version>
         <maven-resources-plugin.version>3.2.0</maven-resources-plugin.version>
+        <maven-bundle-plugin.version>5.1.2</maven-bundle-plugin.version>
 
         <!-- .. Misc ............................................................................................... -->
 
@@ -119,7 +122,7 @@
 
     <build>
         <plugins>
-            <!-- Newer version required for Modules -->
+            <!-- Classes -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -148,6 +151,18 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>${maven-jar-plugin.version}</version>
+            </plugin>
+            <!-- Dependencies -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <version>${maven-dependency-plugin.version}</version>
+            </plugin>
+            <!-- OSGi -->
+            <plugin>
+                <groupId>org.apache.felix</groupId>
+                <artifactId>maven-bundle-plugin</artifactId>
+                <version>${maven-bundle-plugin.version}</version>
             </plugin>
             <!-- Licenses -->
             <plugin>
@@ -182,20 +197,6 @@
                         </execution>
                     </executions>
                 </plugin>
-                <!-- Create classes jar -->
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-jar-plugin</artifactId>
-                    <version>${maven-jar-plugin.version}</version>
-                    <configuration>
-                        <archive>
-                            <manifest>
-                                <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
-                                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
-                            </manifest>
-                        </archive>
-                    </configuration>
-                </plugin>
                 <!-- Create docs jar -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
@@ -226,6 +227,38 @@
                             </goals>
                         </execution>
                     </executions>
+                </plugin>
+                <!-- Dependencies -->
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>${maven-dependency-plugin.version}</version>
+                    <executions>
+                        <execution>
+                            <id>copy-dependencies</id>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <includeScope>runtime</includeScope>
+                    </configuration>
+                </plugin>
+                <!-- OSGi -->
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <version>${maven-bundle-plugin.version}</version>
+                    <extensions>true</extensions>
+                    <configuration>
+                        <manifestLocation>META-INF</manifestLocation>
+                        <excludeDependencies>org.eclipse.jdt.annotation</excludeDependencies>
+                        <instructions>
+                            <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
+                            <Bundle-Version>${project.version}</Bundle-Version>
+                        </instructions>
+                    </configuration>
                 </plugin>
             </plugins>
         </pluginManagement>
