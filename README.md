@@ -30,13 +30,13 @@ mvn clean install
 
 * [Guice 5.0.1](https://github.com/google/guice/tree/5.0.1),
   Apache License 2.0
-* [Jackson 2.12.5](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.12.5),
+* [Jackson 2.13.0](https://github.com/FasterXML/jackson-databind/tree/jackson-databind-2.13.0),
   Apache License 2.0
-* [Jakarta Inject 1.0.3](https://github.com/eclipse-ee4j/injection-api/tree/1.0.3),
+* [Jakarta Inject 1.0.5](https://github.com/eclipse-ee4j/injection-api/tree/1.0.5),
   Apache License 2.0
-* [Log4j2 2.14.1](https://github.com/apache/logging-log4j2/tree/rel/2.14.1),
+* [Log4j2 2.17.0](https://github.com/apache/logging-log4j2/tree/rel/2.17.0),
   Apache License 2.0
-* [OkHttp 4.9.1](https://github.com/square/okhttp/tree/parent-4.9.1),
+* [OkHttp 4.9.3](https://github.com/square/okhttp/tree/parent-4.9.3),
   Apache License 2.0
 
 ## Built With
