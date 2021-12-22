@@ -54,7 +54,13 @@ public abstract class JraModule extends AbstractModule {
     bind(UUID.class).toInstance(uuid);
     bind(UserAgent.class).toInstance(userAgent);
     bind(Credentials.class).toInstance(credentials);
-    bind(String.class).annotatedWith(Names.named("username")).toInstance(credentials.getUsername());
-    bind(String.class).annotatedWith(Names.named("password")).toInstance(credentials.getPassword());
+    
+    if (credentials.getUsername() != null) {
+      bind(String.class).annotatedWith(Names.named("username")).toInstance(credentials.getUsername());
+    }
+    
+    if (credentials.getPassword() != null) {
+      bind(String.class).annotatedWith(Names.named("password")).toInstance(credentials.getPassword());
+    }
   }
 }
