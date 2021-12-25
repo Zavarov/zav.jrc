@@ -24,4 +24,4 @@ jobs:
       env:
         GITHUB_ACCOUNT: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: tree; mvn clean verify -B -f pom.xml
+      run: mvn clean generate-source -B ; tree
