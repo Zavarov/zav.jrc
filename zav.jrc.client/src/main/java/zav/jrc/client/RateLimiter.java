@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.client.internal;
+package zav.jrc.client;
 
 import static java.time.temporal.ChronoUnit.SECONDS;
 

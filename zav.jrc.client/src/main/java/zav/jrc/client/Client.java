@@ -33,7 +33,6 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
-import zav.jrc.client.internal.RateLimiter;
 import zav.jrc.client.internal.TokenType;
 import zav.jrc.databind.io.CredentialsValueObject;
 import zav.jrc.databind.io.TokenValueObject;
