@@ -29,11 +29,11 @@ import zav.jrc.databind.api.UserAgent;
  * The Guice module responsible for reading and binding the credentials required for
  * authentication.
  */
-public abstract class JraModule extends AbstractModule {
+public abstract class JrcModule extends AbstractModule {
   private static final URL USER_AGENT =
-        JraModule.class.getClassLoader().getResource("UserAgent.json");
+        JrcModule.class.getClassLoader().getResource("UserAgent.json");
   private static final URL CREDENTIALS =
-        JraModule.class.getClassLoader().getResource("Credentials.json");
+        JrcModule.class.getClassLoader().getResource("Credentials.json");
   
   @Override
   protected void configure() {

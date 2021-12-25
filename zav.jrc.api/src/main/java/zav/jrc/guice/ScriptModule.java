@@ -22,7 +22,7 @@ import zav.jrc.client.ScriptClient;
 /**
  * The Guice module for authenticating a {@link ScriptClient}.
  */
-public class ScriptModule extends JraModule {
+public class ScriptModule extends JrcModule {
   @Override
   protected void configure() {
     super.configure();

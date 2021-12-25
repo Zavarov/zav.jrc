@@ -22,7 +22,7 @@ import zav.jrc.client.UserlessClient;
 /**
  * The Guice module for authenticating a {@link UserlessClient}.
  */
-public class UserlessModule extends JraModule {
+public class UserlessModule extends JrcModule {
   @Override
   protected void configure() {
     super.configure();
