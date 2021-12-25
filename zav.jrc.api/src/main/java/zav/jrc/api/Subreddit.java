@@ -34,14 +34,14 @@ import okhttp3.RequestBody;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Rules;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.SubredditSettings;
-import zav.jrc.databind.Thing;
-import zav.jrc.databind.User;
-import zav.jrc.databind.UserList;
-import zav.jrc.databind.core.Listing;
+import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.RulesValueObject;
+import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.databind.SubredditSettingsValueObject;
+import zav.jrc.databind.ThingValueObject;
+import zav.jrc.databind.UserValueObject;
+import zav.jrc.databind.UserListValueObject;
+import zav.jrc.databind.core.ListingValueObject;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
 import zav.jrc.endpoint.Subreddits;
@@ -72,7 +72,7 @@ public class Subreddit {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
-  public Stream<Link> getControversial(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getControversial(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_CONTROVERSIAL)
           .setParams(params)
@@ -80,10 +80,10 @@ public class Subreddit {
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getHot(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getHot(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_HOT)
           .setParams(params)
@@ -91,10 +91,10 @@ public class Subreddit {
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getNew(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getNew(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
           .setParams(params)
@@ -102,10 +102,10 @@ public class Subreddit {
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getRandom(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getRandom(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_RANDOM)
           .setParams(params)
@@ -113,12 +113,12 @@ public class Subreddit {
           .build()
           .get();
   
-    Thing[] response = JsonUtils.transform(client.send(query), Thing[].class);
-    Listing listing = JsonUtils.transformThing(response[0], Listing.class);
-    return JsonUtils.transformListingOfThings(listing, Link.class);
+    ThingValueObject[] response = JsonUtils.transform(client.send(query), ThingValueObject[].class);
+    ListingValueObject listing = JsonUtils.transformThing(response[0], ListingValueObject.class);
+    return JsonUtils.transformListingOfThings(listing, LinkValueObject.class);
   }
   
-  public Stream<Link> getRising(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getRising(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_RISING)
           .setParams(params)
@@ -126,10 +126,10 @@ public class Subreddit {
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getTop(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getTop(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_TOP)
           .setParams(params)
@@ -137,7 +137,7 @@ public class Subreddit {
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -146,7 +146,7 @@ public class Subreddit {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
-  public Stream<Link> getSearch(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getSearch(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_R_SUBREDDIT_SEARCH)
           .setParams(params)
@@ -154,8 +154,8 @@ public class Subreddit {
           .build()
           .get();
   
-    Listing response = JsonUtils.transformThing(client.send(query), Listing.class);
-    return JsonUtils.transformListing(response, Link.class);
+    ListingValueObject response = JsonUtils.transformThing(client.send(query), ListingValueObject.class);
+    return JsonUtils.transformListing(response, LinkValueObject.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -164,7 +164,7 @@ public class Subreddit {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
 
-  public SubredditSettings postCreate(SubredditSettings settings) throws FailedRequestException {
+  public SubredditSettingsValueObject postCreate(SubredditSettingsValueObject settings) throws FailedRequestException {
     Map<?, ?> body = JsonUtils.transform(settings, Map.class);
     
     Request query = client.newRequest()
@@ -175,13 +175,13 @@ public class Subreddit {
           .build()
           .post();
   
-    return JsonUtils.transformThing(client.send(query), SubredditSettings.class);
+    return JsonUtils.transformThing(client.send(query), SubredditSettingsValueObject.class);
   }
   
-  public SubredditSettings postConfigure(SubredditSettings settings) throws FailedRequestException {
+  public SubredditSettingsValueObject postConfigure(SubredditSettingsValueObject settings) throws FailedRequestException {
     Map<?, ?> body = JsonUtils.transform(settings, Map.class);
   
-    Subreddit subreddit = getAbout();
+    SubredditValueObject subreddit = getAbout();
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SITE_ADMIN)
           .setBody(body, RestRequest.BodyType.JSON)
@@ -190,7 +190,7 @@ public class Subreddit {
           .build()
           .post();
   
-    return JsonUtils.transformThing(client.send(query), SubredditSettings.class);
+    return JsonUtils.transformThing(client.send(query), SubredditSettingsValueObject.class);
   }
   
   public void postSubscribe() throws FailedRequestException {
@@ -229,74 +229,74 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
-  public Stream<User> getBanned() throws FailedRequestException {
+  public Stream<UserValueObject> getBanned() throws FailedRequestException {
     Request query = client.newRequest()
         .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_BANNED)
         .setArgs(name)
         .build()
         .get();
   
-    Thing response = JsonUtils.transform(client.send(query), Thing.class);
-    Listing listing = JsonUtils.transform(response.getData(), Listing.class);
-    return JsonUtils.transformListing(listing, User.class);
+    ThingValueObject response = JsonUtils.transform(client.send(query), ThingValueObject.class);
+    ListingValueObject listing = JsonUtils.transform(response.getData(), ListingValueObject.class);
+    return JsonUtils.transformListing(listing, UserValueObject.class);
   }
   
-  public Stream<User> getContributors() throws FailedRequestException {
+  public Stream<UserValueObject> getContributors() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS)
           .setArgs(name)
           .build()
           .get();
   
-    Thing response = JsonUtils.transform(client.send(query), Thing.class);
-    Listing listing = JsonUtils.transform(response.getData(), Listing.class);
-    return JsonUtils.transformListing(listing, User.class);
+    ThingValueObject response = JsonUtils.transform(client.send(query), ThingValueObject.class);
+    ListingValueObject listing = JsonUtils.transform(response.getData(), ListingValueObject.class);
+    return JsonUtils.transformListing(listing, UserValueObject.class);
   }
   
-  public Stream<User> getModerators() throws FailedRequestException {
+  public Stream<UserValueObject> getModerators() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MODERATORS)
           .setArgs(name)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), UserList.class).getData().getChildren().stream();
+    return JsonUtils.transform(client.send(query), UserListValueObject.class).getData().getChildren().stream();
   }
   
-  public Stream<User> getMuted() throws FailedRequestException {
+  public Stream<UserValueObject> getMuted() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MUTED)
           .setArgs(name)
           .build()
           .get();
   
-    Thing response = JsonUtils.transform(client.send(query), Thing.class);
-    Listing listing = JsonUtils.transform(response.getData(), Listing.class);
-    return JsonUtils.transformListing(listing, User.class);
+    ThingValueObject response = JsonUtils.transform(client.send(query), ThingValueObject.class);
+    ListingValueObject listing = JsonUtils.transform(response.getData(), ListingValueObject.class);
+    return JsonUtils.transformListing(listing, UserValueObject.class);
   }
   
-  public Stream<User> getWikiBanned() throws FailedRequestException {
+  public Stream<UserValueObject> getWikiBanned() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKIBANNED)
           .setArgs(name)
           .build()
           .get();
   
-    Thing response = JsonUtils.transform(client.send(query), Thing.class);
-    Listing listing = JsonUtils.transform(response.getData(), Listing.class);
-    return JsonUtils.transformListing(listing, User.class);
+    ThingValueObject response = JsonUtils.transform(client.send(query), ThingValueObject.class);
+    ListingValueObject listing = JsonUtils.transform(response.getData(), ListingValueObject.class);
+    return JsonUtils.transformListing(listing, UserValueObject.class);
   }
   
-  public Stream<User> getWikiContributors() throws FailedRequestException {
+  public Stream<UserValueObject> getWikiContributors() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS)
           .setArgs(name)
           .build()
           .get();
   
-    Thing response = JsonUtils.transform(client.send(query), Thing.class);
-    Listing listing = JsonUtils.transform(response.getData(), Listing.class);
-    return JsonUtils.transformListing(listing, User.class);
+    ThingValueObject response = JsonUtils.transform(client.send(query), ThingValueObject.class);
+    ListingValueObject listing = JsonUtils.transform(response.getData(), ListingValueObject.class);
+    return JsonUtils.transformListing(listing, UserValueObject.class);
   }
   
   public Map<?, ?> postDeleteBanner() throws FailedRequestException {
@@ -484,34 +484,34 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
-  public Subreddit getAbout() throws FailedRequestException {
+  public SubredditValueObject getAbout() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT)
           .setArgs(name)
           .build()
           .get();
   
-    return JsonUtils.transformThing(client.send(query), Subreddit.class);
+    return JsonUtils.transformThing(client.send(query), SubredditValueObject.class);
   }
   
-  public SubredditSettings getEdit() throws FailedRequestException {
+  public SubredditSettingsValueObject getEdit() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_EDIT)
           .setArgs(name)
           .build()
           .get();
   
-    return JsonUtils.transformThing(client.send(query), SubredditSettings.class);
+    return JsonUtils.transformThing(client.send(query), SubredditSettingsValueObject.class);
   }
   
-  public Rules getRules() throws FailedRequestException {
+  public RulesValueObject getRules() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_RULES)
           .setArgs(name)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), Rules.class);
+    return JsonUtils.transform(client.send(query), RulesValueObject.class);
   }
   
   public Map<?, ?> getTraffic() throws FailedRequestException {
@@ -524,7 +524,7 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
-  public Link getSticky(int index) throws FailedRequestException {
+  public LinkValueObject getSticky(int index) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_STICKY)
           .setArgs(name)
@@ -532,9 +532,9 @@ public class Subreddit {
           .build()
           .get();
   
-    Thing[] response = JsonUtils.transform(client.send(query), Thing[].class);
-    Listing listing = JsonUtils.transform(response[0].getData(), Listing.class);
-    Thing thing = JsonUtils.transformListing(listing, Thing.class).findFirst().orElseThrow();
-    return JsonUtils.transformThing(thing, Link.class);
+    ThingValueObject[] response = JsonUtils.transform(client.send(query), ThingValueObject[].class);
+    ListingValueObject listing = JsonUtils.transform(response[0].getData(), ListingValueObject.class);
+    ThingValueObject thing = JsonUtils.transformListing(listing, ThingValueObject.class).findFirst().orElseThrow();
+    return JsonUtils.transformThing(thing, LinkValueObject.class);
   }
 }

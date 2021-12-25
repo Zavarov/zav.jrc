@@ -25,15 +25,15 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import zav.jrc.databind.Account;
-import zav.jrc.databind.Award;
-import zav.jrc.databind.Comment;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.SubredditSettings;
-import zav.jrc.databind.Thing;
-import zav.jrc.databind.TrophyList;
-import zav.jrc.databind.core.Listing;
+import zav.jrc.databind.AccountValueObject;
+import zav.jrc.databind.AwardValueObject;
+import zav.jrc.databind.CommentValueObject;
+import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.databind.SubredditSettingsValueObject;
+import zav.jrc.databind.ThingValueObject;
+import zav.jrc.databind.TrophyListValueObject;
+import zav.jrc.databind.core.ListingValueObject;
 
 /**
  * Utility class for deserializing the API responses.
@@ -42,43 +42,43 @@ public class JsonUtils {
   private static final Map<String, Class<?>> KINDS = new HashMap<>();
   
   static {
-    KINDS.put("t1", Comment.class);
-    KINDS.put("t2", Account.class);
-    KINDS.put("t3", Link.class);
+    KINDS.put("t1", CommentValueObject.class);
+    KINDS.put("t2", AccountValueObject.class);
+    KINDS.put("t3", LinkValueObject.class);
     //KINDS.put("t4", Message.class);
-    KINDS.put("t5", Subreddit.class);
-    KINDS.put("t6", Award.class);
-    KINDS.put("Listing", Listing.class);
-    KINDS.put("TrophyList", TrophyList.class);
-    KINDS.put("subreddit_settings", SubredditSettings.class);
+    KINDS.put("t5", SubredditValueObject.class);
+    KINDS.put("t6", AwardValueObject.class);
+    KINDS.put("Listing", ListingValueObject.class);
+    KINDS.put("TrophyList", TrophyListValueObject.class);
+    KINDS.put("subreddit_settings", SubredditSettingsValueObject.class);
   }
   
   /**
    * Deserialized all objects contained by the {@code Listing}.<br>
-   * The listing is contained within a {@link Thing}.
+   * The listing is contained within a {@link ThingValueObject}.
    *
-   * @param source A serialized {@link Listing} of Things.
+   * @param source A serialized {@link ListingValueObject} of Things.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return A list of {@code T} contained by the {@code Listing}.
    */
   public static <T> Stream<T> transformListingOfThings(String source, Class<T> target) {
-    return transformListingOfThings(transformThing(source, Listing.class), target);
+    return transformListingOfThings(transformThing(source, ListingValueObject.class), target);
   }
   
   /**
    * Deserialized all objects contained by the {@code Listing}.
    *
-   * @param source A {@link Listing} of Things.
+   * @param source A {@link ListingValueObject} of Things.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return A list of {@code T} contained by the {@code Listing}.
    */
-  public static <T> Stream<T> transformListingOfThings(Listing source, Class<T> target) {
-    List<Thing> things = transformListing(source, Thing.class).collect(Collectors.toList());
+  public static <T> Stream<T> transformListingOfThings(ListingValueObject source, Class<T> target) {
+    List<ThingValueObject> things = transformListing(source, ThingValueObject.class).collect(Collectors.toList());
     List<T> result = new ArrayList<>();
     
-    for (Thing thing : things) {
+    for (ThingValueObject thing : things) {
       result.add(transformThing(thing, target));
     }
     
@@ -87,26 +87,26 @@ public class JsonUtils {
   
   /**
    * Deserialized all objects contained by the {@code Listing}.<br>
-   *    * The listing is contained within a {@link Thing}.
+   *    * The listing is contained within a {@link ThingValueObject}.
    *
-   * @param source A serialized {@link Listing}.
+   * @param source A serialized {@link ListingValueObject}.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return A list of {@code T} contained by the {@code Listing}.
    */
   public static <T> Stream<T> transformListing(String source, Class<T> target) {
-    return transformListing(transformThing(source, Listing.class), target);
+    return transformListing(transformThing(source, ListingValueObject.class), target);
   }
   
   /**
    * Deserialized all objects contained by the {@code Listing}.
    *
-   * @param source A {@link Listing}.
+   * @param source A {@link ListingValueObject}.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return A list of {@code T} contained by the {@code Listing}.
    */
-  public static <T> Stream<T> transformListing(Listing source, Class<T> target) {
+  public static <T> Stream<T> transformListing(ListingValueObject source, Class<T> target) {
     List<T> objects = new ArrayList<>();
     
     for (Object object : source.getChildren()) {
@@ -117,28 +117,28 @@ public class JsonUtils {
   }
   
   /**
-   * Deserializes the object contained by the {@link Thing}.<br>
-   * {@link Thing#getKind()} has to match the desired class.
+   * Deserializes the object contained by the {@link ThingValueObject}.<br>
+   * {@link ThingValueObject#getKind()} has to match the desired class.
    *
-   * @param source A serialized {@link Thing}.
+   * @param source A serialized {@link ThingValueObject}.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return Instance of {@code T}.
    */
   public static <T> T transformThing(String source, Class<T> target)  {
-    return transformThing(transform(source, Thing.class), target);
+    return transformThing(transform(source, ThingValueObject.class), target);
   }
   
   /**
-   * Deserializes the object contained by the {@link Thing}.<br>
-   * {@link Thing#getKind()} has to match the desired class.
+   * Deserializes the object contained by the {@link ThingValueObject}.<br>
+   * {@link ThingValueObject#getKind()} has to match the desired class.
    *
-   * @param source A {@link Thing}.
+   * @param source A {@link ThingValueObject}.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return Instance of {@code T}.
    */
-  public static <T> T transformThing(Thing source, Class<T> target) {
+  public static <T> T transformThing(ThingValueObject source, Class<T> target) {
     // Validation
     Class<?> expectedClass = KINDS.get(source.getKind());
     Objects.requireNonNull(expectedClass, source.getKind());

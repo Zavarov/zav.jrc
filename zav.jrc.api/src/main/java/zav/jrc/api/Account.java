@@ -27,12 +27,12 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.Account;
-import zav.jrc.databind.Award;
-import zav.jrc.databind.Comment;
-import zav.jrc.databind.Thing;
-import zav.jrc.databind.TrophyList;
-import zav.jrc.databind.User;
+import zav.jrc.databind.AccountValueObject;
+import zav.jrc.databind.AwardValueObject;
+import zav.jrc.databind.CommentValueObject;
+import zav.jrc.databind.ThingValueObject;
+import zav.jrc.databind.TrophyListValueObject;
+import zav.jrc.databind.UserValueObject;
 import zav.jrc.endpoint.Users;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
@@ -95,7 +95,7 @@ public class Account {
   }
   
   public String getUserData() throws FailedRequestException {
-    Account account = getAbout();
+    AccountValueObject account = getAbout();
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_USER_DATA_BY_ACCOUNT_IDS)
           .addParam("ids", "t2_" + account.getId())
@@ -127,17 +127,17 @@ public class Account {
     client.send(query);
   }
   
-  public User getFriends() throws FailedRequestException {
+  public UserValueObject getFriends() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME)
           .setArgs(name)
           .build()
           .get();
     
-    return JsonUtils.transform(client.send(query), User.class);
+    return JsonUtils.transform(client.send(query), UserValueObject.class);
   }
   
-  public User putFriends(@Nullable String note) throws FailedRequestException {
+  public UserValueObject putFriends(@Nullable String note) throws FailedRequestException {
     Map<String, String> body = new HashMap<>();
     if (note != null) {
       body.put("note", note);
@@ -150,33 +150,33 @@ public class Account {
           .build()
           .put();
   
-    return JsonUtils.transform(client.send(query), User.class);
+    return JsonUtils.transform(client.send(query), UserValueObject.class);
   }
   
-  public Stream<Award> getTrophies() throws FailedRequestException {
+  public Stream<AwardValueObject> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES)
           .setArgs(name)
           .build()
           .get();
   
-    return JsonUtils.transformThing(client.send(query), TrophyList.class)
+    return JsonUtils.transformThing(client.send(query), TrophyListValueObject.class)
           .getTrophies()
           .stream()
-          .map(thing -> JsonUtils.transformThing(thing, Award.class));
+          .map(thing -> JsonUtils.transformThing(thing, AwardValueObject.class));
   }
   
-  public Account getAbout() throws FailedRequestException {
+  public AccountValueObject getAbout() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_ABOUT)
           .setArgs(name)
           .build()
           .get();
     
-    return JsonUtils.transformThing(client.send(query), Account.class);
+    return JsonUtils.transformThing(client.send(query), AccountValueObject.class);
   }
   
-  public Stream<Comment> getComments(Parameter... params) throws FailedRequestException {
+  public Stream<CommentValueObject> getComments(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_COMMENTS)
           .setParams(params)
@@ -184,10 +184,10 @@ public class Account {
           .build()
           .get();
 
-    return JsonUtils.transformListingOfThings(client.send(query), Comment.class);
+    return JsonUtils.transformListingOfThings(client.send(query), CommentValueObject.class);
   }
   
-  public Stream<Thing> getDownvoted(Parameter... params) throws FailedRequestException {
+  public Stream<ThingValueObject> getDownvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED)
           .setParams(params)
@@ -195,10 +195,10 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Thing.class);
+    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
   }
   
-  public Stream<Thing> getGilded(Parameter... params) throws FailedRequestException {
+  public Stream<ThingValueObject> getGilded(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_GILDED)
           .setParams(params)
@@ -206,10 +206,10 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Thing.class);
+    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
   }
   
-  public Stream<Thing> getHidden(Parameter... params) throws FailedRequestException {
+  public Stream<ThingValueObject> getHidden(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_HIDDEN)
           .setParams(params)
@@ -217,10 +217,10 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Thing.class);
+    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
   }
   
-  public Stream<Thing> getOverview(Parameter... params) throws FailedRequestException {
+  public Stream<ThingValueObject> getOverview(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_OVERVIEW)
           .setParams(params)
@@ -228,10 +228,10 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Thing.class);
+    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
   }
   
-  public Stream<Thing> getSaved(Parameter... params) throws FailedRequestException {
+  public Stream<ThingValueObject> getSaved(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_SAVED)
           .setParams(params)
@@ -239,10 +239,10 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Thing.class);
+    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
   }
   
-  public Stream<Thing> getSubmitted(Parameter... params) throws FailedRequestException {
+  public Stream<ThingValueObject> getSubmitted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_SUBMITTED)
           .setParams(params)
@@ -250,10 +250,10 @@ public class Account {
           .build()
           .get();
 
-    return JsonUtils.transformListing(client.send(query), Thing.class);
+    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
   }
   
-  public Stream<Thing> getUpvoted(Parameter... params) throws FailedRequestException {
+  public Stream<ThingValueObject> getUpvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_UPVOTED)
           .setParams(params)
@@ -261,6 +261,6 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), Thing.class);
+    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
   }
 }

@@ -22,15 +22,15 @@ import javax.inject.Inject;
 import okhttp3.Request;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.Award;
-import zav.jrc.databind.Karma;
-import zav.jrc.databind.KarmaList;
-import zav.jrc.databind.Preferences;
-import zav.jrc.databind.SelfAccount;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.TrophyList;
-import zav.jrc.databind.User;
-import zav.jrc.databind.UserList;
+import zav.jrc.databind.AwardValueObject;
+import zav.jrc.databind.KarmaValueObject;
+import zav.jrc.databind.KarmaListValueObject;
+import zav.jrc.databind.PreferencesValueObject;
+import zav.jrc.databind.SelfAccountValueObject;
+import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.databind.TrophyListValueObject;
+import zav.jrc.databind.UserValueObject;
+import zav.jrc.databind.UserListValueObject;
 import zav.jrc.endpoint.Account;
 import zav.jrc.endpoint.Subreddits;
 import zav.jrc.http.Parameter;
@@ -44,70 +44,70 @@ public class SelfAccount {
   
   // Account
   
-  public SelfAccount getAbout() throws FailedRequestException {
+  public SelfAccountValueObject getAbout() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME)
           .build()
           .get();
     
-    return JsonUtils.transform(client.send(query), SelfAccount.class);
+    return JsonUtils.transform(client.send(query), SelfAccountValueObject.class);
   }
   
-  public Stream<Karma> getKarma() throws FailedRequestException {
+  public Stream<KarmaValueObject> getKarma() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_KARMA)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), KarmaList.class)
+    return JsonUtils.transform(client.send(query), KarmaListValueObject.class)
           .getData()
           .stream();
   }
   
-  public Preferences getPreferences() throws FailedRequestException {
+  public PreferencesValueObject getPreferences() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_PREFS)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), Preferences.class);
+    return JsonUtils.transform(client.send(query), PreferencesValueObject.class);
   }
   
-  public Preferences patchPreferences(Preferences preferences) throws FailedRequestException {
+  public PreferencesValueObject patchPreferences(PreferencesValueObject preferences) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.PATCH_API_V1_ME_PREFS)
           .setBody(JsonUtils.transform(preferences, Map.class), RestRequest.BodyType.JSON)
           .build()
           .patch();
   
-    return JsonUtils.transform(client.send(query), Preferences.class);
+    return JsonUtils.transform(client.send(query), PreferencesValueObject.class);
   }
   
-  public Stream<Award> getTrophies() throws FailedRequestException {
+  public Stream<AwardValueObject> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_TROPHIES)
           .build()
           .get();
   
-    return JsonUtils.transformThing(client.send(query), TrophyList.class)
+    return JsonUtils.transformThing(client.send(query), TrophyListValueObject.class)
           .getTrophies()
           .stream()
-          .map(thing -> JsonUtils.transformThing(thing, Award.class));
+          .map(thing -> JsonUtils.transformThing(thing, AwardValueObject.class));
   }
   
-  public Stream<User> getBlocked() throws FailedRequestException {
+  public Stream<UserValueObject> getBlocked() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_BLOCKED)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), UserList.class)
+    return JsonUtils.transform(client.send(query), UserListValueObject.class)
           .getData()
           .getChildren()
           .stream();
   }
   
-  public Stream<User> getFriends() throws FailedRequestException {
+  public Stream<UserValueObject> getFriends() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_FRIENDS)
           .build()
@@ -117,19 +117,19 @@ public class SelfAccount {
     // The first structure matches that of GET /api/v1/me/friends.
     // The second one is always empty.
     // Nobody knows what it’s for.
-    return JsonUtils.transform(client.send(query), UserList[].class)[0]
+    return JsonUtils.transform(client.send(query), UserListValueObject[].class)[0]
           .getData()
           .getChildren()
           .stream();
   }
   
-  public Stream<User> getTrusted() throws FailedRequestException {
+  public Stream<UserValueObject> getTrusted() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_TRUSTED)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), UserList.class)
+    return JsonUtils.transform(client.send(query), UserListValueObject.class)
           .getData()
           .getChildren()
           .stream();

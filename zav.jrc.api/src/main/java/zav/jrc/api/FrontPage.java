@@ -25,11 +25,11 @@ import javax.inject.Inject;
 import okhttp3.Request;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.Account;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.Thing;
-import zav.jrc.databind.core.Listing;
+import zav.jrc.databind.AccountValueObject;
+import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.databind.ThingValueObject;
+import zav.jrc.databind.core.ListingValueObject;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
 import zav.jrc.endpoint.Subreddits;
@@ -47,76 +47,76 @@ public class FrontPage {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
-  public Stream<Link> getBest(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getBest(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_BEST)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getControversial(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getControversial(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_CONTROVERSIAL)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getHot(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getHot(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_HOT)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getNew(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getNew(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_NEW)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getRandom(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getRandom(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RANDOM)
           .setParams(params)
           .build()
           .get();
   
-    Thing[] response = JsonUtils.transform(client.send(query), Thing[].class);
-    Listing listing = JsonUtils.transformThing(response[0], Listing.class);
-    return JsonUtils.transformListingOfThings(listing, Link.class);
+    ThingValueObject[] response = JsonUtils.transform(client.send(query), ThingValueObject[].class);
+    ListingValueObject listing = JsonUtils.transformThing(response[0], ListingValueObject.class);
+    return JsonUtils.transformListingOfThings(listing, LinkValueObject.class);
   }
   
-  public Stream<Link> getRising(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getRising(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RISING)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
-  public Stream<Link> getTop(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getTop(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_TOP)
           .setParams(params)
           .build()
           .get();
     
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -125,14 +125,14 @@ public class FrontPage {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
-  public Stream<Link> getSearch(Parameter... params) throws FailedRequestException {
+  public Stream<LinkValueObject> getSearch(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_SEARCH)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), Link.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
   }
   
   //----------------------------------------------------------------------------------------------//
