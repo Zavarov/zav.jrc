@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view;
+package zav.jrc.api;
 
 import java.util.Collections;
 import java.util.List;
@@ -23,9 +23,8 @@ import java.util.Objects;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
-import zav.jrc.Client;
-import zav.jrc.FailedRequestException;
-import zav.jrc.Parameter;
+import zav.jrc.client.Client;
+import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.Account;
 import zav.jrc.databind.Link;
 import zav.jrc.databind.Subreddit;
@@ -34,8 +33,9 @@ import zav.jrc.databind.core.Listing;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
 import zav.jrc.endpoint.Subreddits;
+import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import view.internal.JsonUtils;
+import zav.jrc.api.internal.JsonUtils;
 
 public class FrontPageView {
   @Inject

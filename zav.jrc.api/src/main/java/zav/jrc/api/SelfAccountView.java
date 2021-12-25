@@ -14,15 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view;
+package zav.jrc.api;
 
 import java.util.Map;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
-import zav.jrc.Client;
-import zav.jrc.FailedRequestException;
-import zav.jrc.Parameter;
+import zav.jrc.client.Client;
+import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.Award;
 import zav.jrc.databind.Karma;
 import zav.jrc.databind.KarmaList;
@@ -34,8 +33,9 @@ import zav.jrc.databind.User;
 import zav.jrc.databind.UserList;
 import zav.jrc.endpoint.Account;
 import zav.jrc.endpoint.Subreddits;
+import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import view.internal.JsonUtils;
+import zav.jrc.api.internal.JsonUtils;
 
 public class SelfAccountView {
   

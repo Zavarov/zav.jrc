@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view;
+package zav.jrc.api;
 
 import com.google.inject.assistedinject.Assisted;
 import java.util.Collections;
@@ -25,9 +25,8 @@ import javax.inject.Inject;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.Client;
-import zav.jrc.FailedRequestException;
-import zav.jrc.Parameter;
+import zav.jrc.client.Client;
+import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.Account;
 import zav.jrc.databind.Award;
 import zav.jrc.databind.Comment;
@@ -35,8 +34,9 @@ import zav.jrc.databind.Thing;
 import zav.jrc.databind.TrophyList;
 import zav.jrc.databind.User;
 import zav.jrc.endpoint.Users;
+import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import view.internal.JsonUtils;
+import zav.jrc.api.internal.JsonUtils;
 
 public class AccountView {
   @Inject

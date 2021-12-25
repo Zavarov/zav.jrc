@@ -14,14 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view.guice;
+package zav.jrc.api.guice;
 
-import view.FrontPageView;
+import zav.jrc.api.AccountView;
 
 /**
- * Instances of {@link FrontPageView} have to be created via this class rather than directly.
+ * Instances of {@link AccountView} have to be created via this class rather than directly.
  * Otherwise Guice is unable obtain the arguments required by the constructor.
  */
-public interface FrontPageViewFactory {
-  FrontPageView create();
+public interface AccountViewFactory {
+  AccountView create(String name);
 }

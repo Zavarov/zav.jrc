@@ -14,14 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view.guice;
+package zav.jrc.api.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
-import view.AccountView;
-import view.FrontPageView;
-import view.SelfAccountView;
-import view.SubredditView;
+import zav.jrc.api.AccountView;
+import zav.jrc.api.FrontPageView;
+import zav.jrc.api.SelfAccountView;
+import zav.jrc.api.SubredditView;
 
 /**
  * The Guice module responsible for creating the different views.

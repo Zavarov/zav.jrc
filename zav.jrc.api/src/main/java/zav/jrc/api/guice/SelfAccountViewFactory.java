@@ -14,9 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view.guice;
+package zav.jrc.api.guice;
 
-import view.SelfAccountView;
+import zav.jrc.api.SelfAccountView;
 
 /**
  * Instances of {@link SelfAccountView} have to be created via this class rather than directly.

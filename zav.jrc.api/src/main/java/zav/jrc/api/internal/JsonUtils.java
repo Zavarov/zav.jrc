@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view.internal;
+package zav.jrc.api.internal;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;

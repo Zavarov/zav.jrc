@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package view;
+package zav.jrc.api;
 
 import com.google.inject.assistedinject.Assisted;
 import java.awt.image.RenderedImage;
@@ -32,9 +32,8 @@ import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.Client;
-import zav.jrc.FailedRequestException;
-import zav.jrc.Parameter;
+import zav.jrc.client.Client;
+import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.Link;
 import zav.jrc.databind.Rules;
 import zav.jrc.databind.Subreddit;
@@ -46,8 +45,9 @@ import zav.jrc.databind.core.Listing;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
 import zav.jrc.endpoint.Subreddits;
+import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import view.internal.JsonUtils;
+import zav.jrc.api.internal.JsonUtils;
 
 public class SubredditView {
   @Inject
