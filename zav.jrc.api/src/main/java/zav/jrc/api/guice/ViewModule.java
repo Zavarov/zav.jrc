@@ -18,10 +18,10 @@ package zav.jrc.api.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
-import zav.jrc.api.AccountView;
-import zav.jrc.api.FrontPageView;
-import zav.jrc.api.SelfAccountView;
-import zav.jrc.api.SubredditView;
+import zav.jrc.api.Account;
+import zav.jrc.api.FrontPage;
+import zav.jrc.api.SelfAccount;
+import zav.jrc.api.Subreddit;
 
 /**
  * The Guice module responsible for creating the different views.
@@ -29,10 +29,10 @@ import zav.jrc.api.SubredditView;
 public class ViewModule extends AbstractModule {
   @Override
   protected void configure() {
-    install(module(AccountView.class, AccountViewFactory.class));
-    install(module(SelfAccountView.class, SelfAccountViewFactory.class));
-    install(module(SubredditView.class, SubredditViewFactory.class));
-    install(module(FrontPageView.class, FrontPageViewFactory.class));
+    install(module(Account.class, AccountFactory.class));
+    install(module(SelfAccount.class, SelfAccountFactory.class));
+    install(module(Subreddit.class, SubredditFactory.class));
+    install(module(FrontPage.class, FrontPageFactory.class));
   }
   
   private static <T> com.google.inject.Module module(Class<T> source, Class<?> target) {

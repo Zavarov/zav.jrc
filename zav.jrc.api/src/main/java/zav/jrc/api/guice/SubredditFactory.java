@@ -16,12 +16,12 @@
 
 package zav.jrc.api.guice;
 
-import zav.jrc.api.FrontPageView;
+import zav.jrc.api.Subreddit;
 
 /**
- * Instances of {@link FrontPageView} have to be created via this class rather than directly.
+ * Instances of {@link Subreddit} have to be created via this class rather than directly.
  * Otherwise Guice is unable obtain the arguments required by the constructor.
  */
-public interface FrontPageViewFactory {
-  FrontPageView create();
+public interface SubredditFactory {
+  Subreddit create(String name);
 }

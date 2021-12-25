@@ -37,7 +37,7 @@ import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
 import zav.jrc.api.internal.JsonUtils;
 
-public class FrontPageView {
+public class FrontPage {
   @Inject
   private Client client;
   

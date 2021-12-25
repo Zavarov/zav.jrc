@@ -49,14 +49,14 @@ import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
 import zav.jrc.api.internal.JsonUtils;
 
-public class SubredditView {
+public class Subreddit {
   @Inject
   private Client client;
   
   private final String name;
   
   @Inject
-  public SubredditView(@Assisted String name) {
+  public Subreddit(@Assisted String name) {
     this.name = name;
   }
   

@@ -38,14 +38,14 @@ import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
 import zav.jrc.api.internal.JsonUtils;
 
-public class AccountView {
+public class Account {
   @Inject
   private Client client;
 
   private final String name;
 
   @Inject
-  public AccountView(@Assisted String name) {
+  public Account(@Assisted String name) {
     this.name = name;
   }
   

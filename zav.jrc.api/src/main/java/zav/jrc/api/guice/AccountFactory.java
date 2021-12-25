@@ -16,12 +16,12 @@
 
 package zav.jrc.api.guice;
 
-import zav.jrc.api.SelfAccountView;
+import zav.jrc.api.Account;
 
 /**
- * Instances of {@link SelfAccountView} have to be created via this class rather than directly.
+ * Instances of {@link Account} have to be created via this class rather than directly.
  * Otherwise Guice is unable obtain the arguments required by the constructor.
  */
-public interface SelfAccountViewFactory {
-  SelfAccountView create();
+public interface AccountFactory {
+  Account create(String name);
 }
