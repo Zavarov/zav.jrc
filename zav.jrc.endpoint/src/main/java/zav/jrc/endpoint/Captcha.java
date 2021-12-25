@@ -16,26 +16,23 @@
 
 package zav.jrc.endpoint;
 
-import zav.jrc.Endpoint;
-
 /**
- * REST endpoint for the {@code Search} section.
+ * REST endpoint for the {@code Captcha} section.
  *
- * @see <a href="https://www.reddit.com/dev/api/#section_search">here</a>
+ * @see <a href="https://www.reddit.com/dev/api/#section_captcha">here</a>
+ * @deprecated ReCAPTCHAs are no longer needed, therefore this endpoint became obsolete.
  */
-public class Search {
+@Deprecated
+public final class Captcha {
+  private Captcha() {}
+  
   /**
-   * Search links page.
+   * Check whether ReCAPTCHAs are needed for API methods.<br>
+   * This endpoint returns a boolean.
    *
-   * @see <a href="https://www.reddit.com/dev/api#GET_search">here</a>
+   * @deprecated Reddit no longer requires captchas and thus this endpoint returns 403
    */
-  public static final Endpoint GET_R_SUBREDDIT_SEARCH =
-        new Endpoint("r", "{subreddit}", "search");
-  /**
-   * Search links page.
-   *
-   * @see <a href="https://www.reddit.com/dev/api#GET_search">here</a>
-   */
-  public static final Endpoint GET_SEARCH =
-        new Endpoint("search");
+  @Deprecated
+  public static final Endpoint GET_API_NEEDS_CAPTCHA =
+        new Endpoint("api", "needs_captcha");
 }

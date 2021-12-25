@@ -16,8 +16,6 @@
 
 package zav.jrc.endpoint;
 
-import zav.jrc.Endpoint;
-
 /**
  * REST endpoint for the {@code Users} section.
  *

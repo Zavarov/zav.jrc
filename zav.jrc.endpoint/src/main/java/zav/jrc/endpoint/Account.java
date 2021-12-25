@@ -16,14 +16,6 @@
 
 package zav.jrc.endpoint;
 
-import zav.jrc.Endpoint;
-import zav.jrc.databind.KarmaList;
-import zav.jrc.databind.Messaging;
-import zav.jrc.databind.Preferences;
-import zav.jrc.databind.SelfAccount;
-import zav.jrc.databind.TrophyList;
-import zav.jrc.databind.UserList;
-
 /**
  * REST endpoint for the {@code Account}.
  *
@@ -34,7 +26,7 @@ public final class Account {
   
   /**
    * The identity of the authenticated user.<br>
-   * This endpoint is a {@link SelfAccount}.
+   * This endpoint is a {@code SelfAccount}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me">here</a>
    */
@@ -42,7 +34,7 @@ public final class Account {
         new Endpoint("api", "v1", "me");
   /**
    * Returns all blocked users.<br>
-   * This endpoint is a {@link UserList}.
+   * This endpoint is a {@code UserList}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -66,7 +58,7 @@ public final class Account {
         new Endpoint("api", "v1", "me", "blocked");
   /**
    * Returns all friends.<br>
-   * This endpoint is a {@link UserList}.
+   * This endpoint is a {@code UserList}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -90,7 +82,7 @@ public final class Account {
         new Endpoint("api", "v1", "me", "friends");
   /**
    * Return a breakdown of subreddit karma.<br>
-   * This endpoint is a {@link KarmaList}.
+   * This endpoint is a {@code KarmaList}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_karma">here</a>
    */
@@ -98,7 +90,7 @@ public final class Account {
         new Endpoint("api", "v1", "me", "karma");
   /**
    * Return the preference settings of the logged in user.<br>
-   * This endpoint is a {@link Preferences}.
+   * This endpoint is a {@code Preferences}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_prefs">here</a>
    */
@@ -113,7 +105,7 @@ public final class Account {
         new Endpoint("api", "v1", "me", "prefs");
   /**
    * Return a list of trophies for the current user.<br>
-   * This endpoint is a {@link TrophyList}.
+   * This endpoint is a {@code TrophyList}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_trophies">here</a>
    */
@@ -142,7 +134,7 @@ public final class Account {
         new Endpoint("prefs", "{where}");
   /**
    * Returns all blocked users.<br>
-   * This endpoint is a {@link UserList}.
+   * This endpoint is a {@code UserList}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -164,7 +156,7 @@ public final class Account {
         new Endpoint(GET_PREFS_WHERE.getPath("blocked"));
   /**
    * Returns all friends.<br>
-   * This endpoint is a {@link UserList}.
+   * This endpoint is a {@code UserList}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -186,7 +178,7 @@ public final class Account {
         new Endpoint(GET_PREFS_WHERE.getPath("friends"));
   /**
    * Returns all blocked and trusted users.<br>
-   * This endpoint is a {@link Messaging}.
+   * This endpoint is a {@code Messaging}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -210,7 +202,7 @@ public final class Account {
         new Endpoint(GET_PREFS_WHERE.getPath("messaging"));
   /**
    * Returns all trusted users.<br>
-   * This endpoint is a {@link UserList}.
+   * This endpoint is a {@code UserList}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |

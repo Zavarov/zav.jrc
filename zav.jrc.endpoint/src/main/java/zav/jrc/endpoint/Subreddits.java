@@ -16,11 +16,6 @@
 
 package zav.jrc.endpoint;
 
-import zav.jrc.Endpoint;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.UserList;
-import zav.jrc.databind.core.Listing;
-
 /**
  * REST endpoint for the {@code Subreddits} section.
  *
@@ -162,7 +157,7 @@ public class Subreddits {
         new Endpoint(GET_ABOUT_WHERE.getPath("contributors"));
   /**
    * All moderators.<br>
-   * This endpoint is a {@link UserList}.
+   * This endpoint is a {@code UserList}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -184,7 +179,7 @@ public class Subreddits {
         new Endpoint(GET_R_SUBREDDIT_ABOUT_WHERE.getPath("{subreddit}", "moderators"));
   /**
    * All moderators.<br>
-   * This endpoint is a {@link UserList}.
+   * This endpoint is a {@code UserList}.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -921,7 +916,7 @@ public class Subreddits {
   /**
    * Return information about the subreddit.<br>
    * Data includes the subscriber count, description, and header image.<br>
-   * This endpoint is a {@link Subreddit}.
+   * This endpoint is a {@code Subreddit}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_r_%28subreddit%29_about">here</a>
    */
@@ -968,7 +963,7 @@ public class Subreddits {
    * been moved.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_sidebar">here</a>
-   * @deprecated Deprecated in favor of {@link Subreddit#getDescription()}.
+   * @deprecated Deprecated in favor of {@code Subreddit#getDescription()}.
    */
   @Deprecated
   public static final Endpoint GET_R_SUBREDDIT_ABOUT_SIDEBAR =
@@ -979,7 +974,7 @@ public class Subreddits {
    * been moved.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_sidebar">here</a>
-   * @deprecated Deprecated in favor of {@link Subreddit#getDescription()}.
+   * @deprecated Deprecated in favor of {@code Subreddit#getDescription()}.
    */
   @Deprecated
   public static final Endpoint GET_ABOUT_SIDEBAR =
@@ -1030,7 +1025,7 @@ public class Subreddits {
         new Endpoint("subreddits", "{where}");
   /**
    * Get all subreddits.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1053,7 +1048,7 @@ public class Subreddits {
         new Endpoint(GET_SUBREDDITS_WHERE.getPath("default"));
   /**
    * Get all subreddits.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1078,7 +1073,7 @@ public class Subreddits {
    * Get all subreddits.<br>
    * {@code popular} sorts on the activity of the subreddit and the position of the subreddits can
    * shift around.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1102,7 +1097,7 @@ public class Subreddits {
   /**
    * Get all subreddits.<br>
    * {@code new} sorts the subreddits based on their creation date, newest first.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1125,7 +1120,7 @@ public class Subreddits {
         new Endpoint(GET_SUBREDDITS_WHERE.getPath("new"));
   /**
    * Search subreddits by title and description.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1254,7 +1249,7 @@ public class Subreddits {
   /**
    * Get all user subreddits.<br>
    * The {@code where} parameter chooses the order in which the subreddits are displayed.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1277,7 +1272,7 @@ public class Subreddits {
   /**
    * Get all user subreddits.<br>
    * {@code new} sorts the user subreddits based on their creation date, newest first.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1302,7 +1297,7 @@ public class Subreddits {
    * Get all user subreddits.<br>
    * {@code popular} sorts on the activity of the subreddit and the position of the subreddits can
    * shift around.<br>
-   * This endpoint is a {@link Listing} of subreddits.
+   * This endpoint is a {@code Listing} of subreddits.
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -1325,7 +1320,7 @@ public class Subreddits {
         new Endpoint(GET_USERS_WHERE.getPath("popular"));
   /**
    * Search user profiles by title and description.<br>
-   * This endpoint is a {@link Listing} of accounts.
+   * This endpoint is a {@code Listing} of accounts.
    * <pre>
    *   | Parameter        | Description                         |
    *   | ---------------- | ----------------------------------- |

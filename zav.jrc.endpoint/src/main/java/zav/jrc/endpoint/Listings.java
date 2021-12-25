@@ -16,10 +16,6 @@
 
 package zav.jrc.endpoint;
 
-import zav.jrc.Endpoint;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Subreddit;
-
 /**
  * REST endpoint for the {@code Listings} section.
  *
