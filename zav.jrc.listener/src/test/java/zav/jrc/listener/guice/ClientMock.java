@@ -17,9 +17,9 @@
 package zav.jrc.listener.guice;
 
 import okhttp3.Request;
-import zav.jrc.Client;
-import zav.jrc.Duration;
-import zav.jrc.databind.io.Token;
+import zav.jrc.client.Client;
+import zav.jrc.client.Duration;
+import zav.jrc.databind.io.TokenValueObject;
 
 import javax.inject.Singleton;
 import java.io.IOException;
@@ -31,7 +31,7 @@ import java.util.Objects;
 public class ClientMock extends Client {
   @Override
   public void login(Duration duration) {
-    token = new Token();
+    token = new TokenValueObject();
   }
   
   @Override

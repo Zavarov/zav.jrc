@@ -17,13 +17,13 @@
 package zav.jrc.listener.guice;
 
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.databind.Link;
+import zav.jrc.databind.LinkValueObject;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.observer.AbstractObserver;
 
 public class ObserverMock extends AbstractObserver<SubredditListener> {
   @Override
   public void notifyListener(@NonNull SubredditListener listener) {
-    listener.handle(new Link());
+    listener.handle(new LinkValueObject());
   }
 }

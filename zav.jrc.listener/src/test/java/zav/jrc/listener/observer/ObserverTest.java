@@ -18,7 +18,7 @@ package zav.jrc.listener.observer;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import zav.jrc.FailedRequestException;
+import zav.jrc.client.FailedRequestException;
 import zav.jrc.listener.AbstractTest;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.guice.ObserverMock;

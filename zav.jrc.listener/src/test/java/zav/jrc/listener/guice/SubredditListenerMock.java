@@ -17,7 +17,7 @@
 package zav.jrc.listener.guice;
 
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.databind.Link;
+import zav.jrc.databind.LinkValueObject;
 import zav.jrc.listener.SubredditListener;
 
 import java.util.function.Consumer;
@@ -30,7 +30,7 @@ public class SubredditListenerMock implements SubredditListener {
   }
 
   @Override
-  public void handle(@NonNull Link link) {
+  public void handle(@NonNull LinkValueObject link) {
     consumer.accept(this);
   }
 }
