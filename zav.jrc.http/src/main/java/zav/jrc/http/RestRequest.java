@@ -33,8 +33,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.Endpoint;
-import zav.jrc.Parameter;
+import zav.jrc.endpoint.Endpoint;
 
 /**
  * The base class for every REST request.<br>

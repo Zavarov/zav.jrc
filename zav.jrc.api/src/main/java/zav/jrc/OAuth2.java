@@ -17,6 +17,7 @@
 package zav.jrc;
 
 import org.eclipse.jdt.annotation.NonNull;
+import zav.jrc.endpoint.Endpoint;
 
 /**
  * The endpoints used for retrieving and invalidating an access token.

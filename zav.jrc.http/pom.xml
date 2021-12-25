@@ -19,26 +19,31 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
-        <groupId>zav.jrc</groupId>
         <artifactId>project</artifactId>
+        <groupId>zav.jrc</groupId>
         <version>0.2.0-SNAPSHOT</version>
     </parent>
-
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>api</artifactId>
+
+    <artifactId>http</artifactId>
+
+    <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+    </properties>
     <packaging>bundle</packaging>
 
     <dependencies>
         <dependency>
-            <groupId>com.google.inject</groupId>
-            <artifactId>guice</artifactId>
-            <version>${guice.version}</version>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>${fasterxml.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>jakarta.inject</groupId>
-            <artifactId>jakarta.inject-api</artifactId>
-            <version>${jakarta.inject.version}</version>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-api</artifactId>
+            <version>${log4j.version}</version>
         </dependency>
 
         <dependency>
@@ -49,20 +54,9 @@
 
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>databind</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
             <artifactId>endpoint</artifactId>
             <version>${project.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>http</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
+
 </project>
