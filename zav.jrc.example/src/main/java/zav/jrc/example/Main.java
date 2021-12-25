@@ -19,15 +19,15 @@ package zav.jrc.example;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import java.util.stream.Stream;
-import zav.jrc.Client;
-import zav.jrc.Duration;
-import zav.jrc.FailedRequestException;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.guice.UserlessModule;
-import zav.jrc.view.SubredditView;
-import zav.jrc.view.guice.SubredditViewFactory;
-import zav.jrc.view.guice.ViewModule;
+import zav.jrc.client.Client;
+import zav.jrc.client.Duration;
+import zav.jrc.client.FailedRequestException;
+import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.client.guice.UserlessModule;
+import zav.jrc.api.Subreddit;
+import zav.jrc.api.guice.SubredditFactory;
+import zav.jrc.api.guice.ViewModule;
 
 /**
  * This example illustrates how to use Guice and the views to retrieve a stream of latest links from
@@ -50,9 +50,9 @@ public class Main {
     CLIENT = GUICE.getInstance(Client.class);
     CLIENT.login(Duration.TEMPORARY);
     
-    SubredditViewFactory factory = GUICE.getInstance(SubredditViewFactory.class);
-    SubredditView view = factory.create("RedditDev");
-    Stream<Link> links = view.getNew();
+    SubredditFactory factory = GUICE.getInstance(SubredditFactory.class);
+    Subreddit view = factory.create("RedditDev");
+    Stream<LinkValueObject> links = view.getNew();
     
     links.forEach(link -> System.out.println(link.getTitle()));
     
