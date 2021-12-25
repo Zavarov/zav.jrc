@@ -14,7 +14,7 @@ module zav.jrc.api {
   
   exports zav.jrc;
   exports zav.jrc.client;
-  exports zav.jrc.guice;
+  exports zav.jrc.client.guice;
   
   opens zav.jrc to com.google.guice;
   opens zav.jrc.client to com.google.guice;

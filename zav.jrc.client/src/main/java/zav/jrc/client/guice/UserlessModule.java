@@ -14,9 +14,9 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.guice;
+package zav.jrc.client.guice;
 
-import zav.jrc.Client;
+import zav.jrc.client.Client;
 import zav.jrc.client.UserlessClient;
 
 /**

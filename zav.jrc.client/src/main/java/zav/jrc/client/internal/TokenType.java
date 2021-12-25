@@ -14,24 +14,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc;
+package zav.jrc.client.internal;
 
 import java.util.Locale;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
- * If {@link #PERMANENT} is selected, a refresh token is provided together with the access token
- * when authenticating the application. When the access token expires, this refresh token can
- * then be used to request a new access token.<br>
- * If {@link #TEMPORARY} is selected, only the access token is provided.
+ * The token type is used to inform Reddit about the kind of token that is transmitted. It is
+ * required when refreshing the access token or invalidating already existing tokens.
  */
 @NonNull
-public enum Duration {
-  PERMANENT,
-  TEMPORARY;
+public enum TokenType {
+  /**
+   * The access token is required to authenticate the application when using the OAuth2 endpoints.
+   */
+  ACCESS_TOKEN,
+  /**
+   * The refresh token is required when requesting a new access token, once the previous one
+   * expired.
+   */
+  REFRESH_TOKEN;
   
-  @Override
+  /**
+   * The resulting string can be used in the JSON request to identify the type of token.
+   *
+   * @return A string representation of the enum type.
+   */
   @NonNull
+  @Override
   public String toString() {
     return name().toLowerCase(Locale.ENGLISH);
   }

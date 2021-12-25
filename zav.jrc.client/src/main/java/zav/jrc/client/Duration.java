@@ -14,17 +14,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc;
+package zav.jrc.client;
 
+import java.util.Locale;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.endpoint.Endpoint;
 
 /**
- * The endpoints used for retrieving and invalidating an access token.
+ * If {@link #PERMANENT} is selected, a refresh token is provided together with the access token
+ * when authenticating the application. When the access token expires, this refresh token can
+ * then be used to request a new access token.<br>
+ * If {@link #TEMPORARY} is selected, only the access token is provided.
  */
-public class OAuth2 {
+@NonNull
+public enum Duration {
+  PERMANENT,
+  TEMPORARY;
+  
+  @Override
   @NonNull
-  public static final Endpoint ACCESS_TOKEN = new Endpoint("api", "v1", "access_token");
-  @NonNull
-  public static final Endpoint REVOKE_TOKEN = new Endpoint("api", "v1", "revoke_token");
+  public String toString() {
+    return name().toLowerCase(Locale.ENGLISH);
+  }
 }

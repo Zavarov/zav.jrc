@@ -26,11 +26,8 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.Client;
-import zav.jrc.Duration;
-import zav.jrc.FailedRequestException;
-import zav.jrc.GrantType;
-import zav.jrc.OAuth2;
+import zav.jrc.client.internal.GrantType;
+import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.api.Token;
 import zav.jrc.http.RestRequest;
 

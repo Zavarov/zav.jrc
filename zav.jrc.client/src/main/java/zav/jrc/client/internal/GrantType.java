@@ -14,35 +14,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc;
+package zav.jrc.client.internal;
 
-import java.util.Locale;
 import org.eclipse.jdt.annotation.NonNull;
 
 /**
- * The token type is used to inform Reddit about the kind of token that is transmitted. It is
- * required when refreshing the access token or invalidating already existing tokens.
+ * Specifies the type of authentication that is used when requesting an access token.<br>
+ * Depending on the type of authentication, different endpoints may become available. e.g. an
+ * application without user context is unable to use any of the endpoints related to accounts.
  */
 @NonNull
-public enum TokenType {
-  /**
-   * The access token is required to authenticate the application when using the OAuth2 endpoints.
-   */
-  ACCESS_TOKEN,
-  /**
-   * The refresh token is required when requesting a new access token, once the previous one
-   * expired.
-   */
-  REFRESH_TOKEN;
+public enum GrantType {
+  USERLESS("https://oauth.reddit.com/grants/installed_client"),
+  PASSWORD("password"),
+  CLIENT("client_credentials"),
+  REFRESH("refresh_token");
   
-  /**
-   * The resulting string can be used in the JSON request to identify the type of token.
-   *
-   * @return A string representation of the enum type.
-   */
+  @NonNull
+  private final String value;
+
+  GrantType(@NonNull String value) {
+    this.value = value;
+  }
+  
   @NonNull
   @Override
   public String toString() {
-    return name().toLowerCase(Locale.ENGLISH);
+    return value;
   }
 }

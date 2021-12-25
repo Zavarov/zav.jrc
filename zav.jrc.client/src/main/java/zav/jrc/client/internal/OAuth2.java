@@ -14,32 +14,17 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc;
+package zav.jrc.client.internal;
 
 import org.eclipse.jdt.annotation.NonNull;
+import zav.jrc.endpoint.Endpoint;
 
 /**
- * Specifies the type of authentication that is used when requesting an access token.<br>
- * Depending on the type of authentication, different endpoints may become available. e.g. an
- * application without user context is unable to use any of the endpoints related to accounts.
+ * The endpoints used for retrieving and invalidating an access token.
  */
-@NonNull
-public enum GrantType {
-  USERLESS("https://oauth.reddit.com/grants/installed_client"),
-  PASSWORD("password"),
-  CLIENT("client_credentials"),
-  REFRESH("refresh_token");
-  
+public class OAuth2 {
   @NonNull
-  private final String value;
-
-  GrantType(@NonNull String value) {
-    this.value = value;
-  }
-  
+  public static final Endpoint ACCESS_TOKEN = new Endpoint("api", "v1", "access_token");
   @NonNull
-  @Override
-  public String toString() {
-    return value;
-  }
+  public static final Endpoint REVOKE_TOKEN = new Endpoint("api", "v1", "revoke_token");
 }

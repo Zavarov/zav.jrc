@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc;
+package zav.jrc.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.net.HttpHeaders;
@@ -31,6 +31,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import zav.jrc.client.internal.GrantType;
+import zav.jrc.client.internal.OAuth2;
+import zav.jrc.client.internal.RateLimiter;
+import zav.jrc.client.internal.TokenType;
 import zav.jrc.databind.api.Credentials;
 import zav.jrc.databind.api.Token;
 import zav.jrc.databind.api.UserAgent;
