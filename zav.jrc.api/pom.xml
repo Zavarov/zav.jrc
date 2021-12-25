@@ -25,7 +25,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>api</artifactId>
+    <artifactId>jrc-api</artifactId>
     <packaging>bundle</packaging>
 
     <dependencies>
@@ -37,7 +37,7 @@
 
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>client</artifactId>
+            <artifactId>jrc-client</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -25,7 +25,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>client</artifactId>
+    <artifactId>jrc-client</artifactId>
     <packaging>bundle</packaging>
 
     <dependencies>
@@ -42,13 +42,13 @@
 
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>databind</artifactId>
+            <artifactId>jrc-databind</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>http</artifactId>
+            <artifactId>jrc-http</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
