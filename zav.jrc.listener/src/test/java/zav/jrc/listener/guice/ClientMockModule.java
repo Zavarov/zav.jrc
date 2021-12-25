@@ -20,11 +20,11 @@ import com.google.inject.name.Names;
 import zav.jrc.client.Client;
 import zav.jrc.databind.io.CredentialsValueObject;
 import zav.jrc.databind.io.UserAgentValueObject;
-import zav.jrc.client.guice.JrcModule;
+import zav.jrc.client.guice.ClientModule;
 
 import java.util.UUID;
 
-public class ClientMockModule extends JrcModule {
+public class ClientMockModule extends ClientModule {
   @Override
   protected void configure() {
     UserAgentValueObject userAgent = new UserAgentValueObject();

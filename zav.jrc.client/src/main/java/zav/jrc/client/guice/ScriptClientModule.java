@@ -17,15 +17,15 @@
 package zav.jrc.client.guice;
 
 import zav.jrc.client.Client;
-import zav.jrc.client.UserlessClient;
+import zav.jrc.client.ScriptClient;
 
 /**
- * The Guice module for authenticating a {@link UserlessClient}.
+ * The Guice module for authenticating a {@link ScriptClient}.
  */
-public class UserlessModule extends JrcModule {
+public class ScriptClientModule extends ClientModule {
   @Override
   protected void configure() {
     super.configure();
-    bind(Client.class).to(UserlessClient.class);
+    bind(Client.class).to(ScriptClient.class);
   }
 }

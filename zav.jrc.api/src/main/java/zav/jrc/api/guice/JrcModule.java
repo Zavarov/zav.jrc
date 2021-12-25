@@ -26,7 +26,7 @@ import zav.jrc.api.Subreddit;
 /**
  * The Guice module responsible for creating the different views.
  */
-public class ApiModule extends AbstractModule {
+public class JrcModule extends AbstractModule {
   @Override
   protected void configure() {
     install(module(Account.class, AccountFactory.class));
