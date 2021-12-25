@@ -21,10 +21,10 @@ jobs:
         java-version: 1.11
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
     - name: Build with Maven
-      run: mvn clean verify -B -f pom.xml
+      run: mvn clean verify -B
 
     - name: Publish to GitHub Packages Apache Maven
       env:
         GITHUB_ACCOUNT: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: mvn deploy -B -f pom.xml -s settings.xml -DskipTests
+      run: mvn deploy -B -s settings.xml -DskipTests
