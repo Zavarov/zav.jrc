@@ -1,21 +1,16 @@
-module zav.jrc.api {
+module zav.jcr.view {
+  requires com.fasterxml.jackson.databind;
+  requires com.google.guice;
+  requires com.google.guice.extensions.assistedinject;
+  requires java.desktop;
+  requires java.inject;
+  requires okhttp3;
+  requires zav.jrc.api;
+  requires zav.jrc.databind;
   requires static org.eclipse.jdt.annotation;
   
-  requires com.fasterxml.jackson.databind;
-  requires com.google.common;
-  requires com.google.guice;
-  requires java.inject;
-  requires org.apache.logging.log4j;
-  requires okhttp3;
+  exports view;
+  exports view.guice;
   
-  requires zav.jrc.databind;
-  requires zav.jrc.endpoint;
-  requires zav.jrc.http;
-  
-  exports zav.jrc;
-  exports zav.jrc.client;
-  exports zav.jrc.client.guice;
-  
-  opens zav.jrc to com.google.guice;
-  opens zav.jrc.client to com.google.guice;
+  opens view to com.google.guice;
 }

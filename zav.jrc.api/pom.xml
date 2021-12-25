@@ -40,29 +40,5 @@
             <artifactId>jakarta.inject-api</artifactId>
             <version>${jakarta.inject.version}</version>
         </dependency>
-
-        <dependency>
-            <groupId>com.squareup.okhttp3</groupId>
-            <artifactId>okhttp</artifactId>
-            <version>${okhttp.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>databind</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>endpoint</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>http</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 </project>
