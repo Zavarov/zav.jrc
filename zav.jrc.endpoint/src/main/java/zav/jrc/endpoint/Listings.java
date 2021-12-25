@@ -115,14 +115,14 @@ public final class Listings {
   public static final Endpoint GET_R_SUBREDDIT_NEW =
         new Endpoint("r", "{subreddit}", "new");
   /**
-   * The Serendipity button. I.e. it fetches a random {@link Link}.
+   * The Serendipity button. I.e. it fetches a random {@code Link}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_random">here</a>
    */
   public static final Endpoint GET_RANDOM =
         new Endpoint("random");
   /**
-   * The Serendipity button. I.e. it fetches a random {@link Link} from the {@link Subreddit}.
+   * The Serendipity button. I.e. it fetches a random {@code Link} from the {@code Subreddit}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_random">here</a>
    */
