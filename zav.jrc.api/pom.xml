@@ -36,32 +36,8 @@
         </dependency>
 
         <dependency>
-            <groupId>jakarta.inject</groupId>
-            <artifactId>jakarta.inject-api</artifactId>
-            <version>${jakarta.inject.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>zav.jrc</groupId>
             <artifactId>client</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>databind</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>endpoint</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>http</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
