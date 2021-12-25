@@ -14,13 +14,13 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.databind.api;
+package zav.jrc.databind.io;
 
 /**
  * This class implements the user agent, attach to every API request in order to uniquely identify
  * the application.
  */
-public class UserAgent extends UserAgentTOP {
+public class UserAgentValueObject extends UserAgentTOPValueObject {
   /**
    * Calculates the user agent of the application.<p/>
    * The user agent string is of the form:<p/>

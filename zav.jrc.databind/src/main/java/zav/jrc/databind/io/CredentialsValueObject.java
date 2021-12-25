@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.databind.api;
+package zav.jrc.databind.io;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
@@ -22,7 +22,7 @@ import java.util.Base64;
 /**
  * This class contains the credentials required to authenticate the application.
  */
-public class Credentials extends CredentialsTOP {
+public class CredentialsValueObject extends CredentialsTOPValueObject {
   @Override
   public String toString() {
     String source = getId() + ":" + getSecret();
