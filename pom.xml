@@ -26,11 +26,13 @@
     <version>0.2.0-SNAPSHOT</version>
 
     <modules>
-        <module>zav.jrc.listener</module>
         <module>zav.jrc.api</module>
+        <module>zav.jrc.client</module>
         <module>zav.jrc.databind</module>
-        <module>zav.jrc.view</module>
+        <module>zav.jrc.endpoint</module>
         <module>zav.jrc.example</module>
+        <module>zav.jrc.http</module>
+        <module>zav.jrc.listener</module>
     </modules>
 
     <properties>
@@ -75,6 +77,53 @@
     </properties>
 
     <!-- == Dependencies =========================================== -->
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+                <!-- Purge "optional" dependencies -->
+                <!-- See https://github.com/google/guava/issues/2824 -->
+                <!-- See https://github.com/google/guice/issues/1383 -->
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.checkerframework</groupId>
+                        <artifactId>checker-qual</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.errorprone</groupId>
+                        <artifactId>error_prone_annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.code.findbugs</groupId>
+                        <artifactId>jsr305</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>com.google.j2objc</groupId>
+                        <artifactId>j2objc-annotations</artifactId>
+                    </exclusion>
+                    <exclusion>
+                        <groupId>javax.inject</groupId>
+                        <artifactId>javax.inject</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <dependency>
+                <groupId>com.squareup.okhttp3</groupId>
+                <artifactId>okhttp</artifactId>
+                <version>${okhttp.version}</version>
+                <exclusions>
+                    <exclusion>
+                        <groupId>org.jetbrains</groupId>
+                        <artifactId>annotations</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <dependencies>
         <!-- NonNull annotations -->
@@ -253,7 +302,8 @@
                     <extensions>true</extensions>
                     <configuration>
                         <manifestLocation>META-INF</manifestLocation>
-                        <excludeDependencies>org.eclipse.jdt.annotation, log4j-api</excludeDependencies>
+                        <!-- Exclude all dependencies; Those have to be contributed via the pom -->
+                        <excludeDependencies>*</excludeDependencies>
                         <instructions>
                             <Bundle-SymbolicName>${project.groupId}.${project.artifactId}</Bundle-SymbolicName>
                         </instructions>
