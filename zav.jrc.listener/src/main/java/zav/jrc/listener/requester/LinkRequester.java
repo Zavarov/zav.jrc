@@ -26,9 +26,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.FailedRequestException;
-import zav.jrc.databind.Link;
-import zav.jrc.view.SubredditView;
+import zav.jrc.client.FailedRequestException;
+import zav.jrc.databind.LinkValueObject;
+import zav.jrc.api.Subreddit;
 
 /**
  * This class is used to retrieve the latest submissions from a given subreddit.<br>
@@ -38,21 +38,21 @@ import zav.jrc.view.SubredditView;
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
 @NonNull
-public class LinkRequester extends AbstractIterator<List<Link>> {
+public class LinkRequester extends AbstractIterator<List<LinkValueObject>> {
   @NonNull
   private static final Logger LOGGER = LogManager.getLogger(LinkRequester.class);
   @NonNull
-  private final SubredditView subreddit;
+  private final Subreddit subreddit;
   @Nullable
-  private Link head;
+  private LinkValueObject head;
   
-  public LinkRequester(@NonNull SubredditView subreddit) {
+  public LinkRequester(@NonNull Subreddit subreddit) {
     this.subreddit = subreddit;
   }
 
   @Override
   @NonNull
-  protected List<Link> computeNext() throws IteratorException {
+  protected List<LinkValueObject> computeNext() throws IteratorException {
     try {
       LOGGER.info("Computing next links via {}.", subreddit);
       return head == null ? init() : request();
@@ -62,9 +62,9 @@ public class LinkRequester extends AbstractIterator<List<Link>> {
   }
 
   @NonNull
-  private List<Link> init() throws FailedRequestException {
+  private List<LinkValueObject> init() throws FailedRequestException {
     LOGGER.info("Possible first time this requester is used? Retrieve head.");
-    List<? extends Link> submissions = subreddit.getNew().limit(1).collect(Collectors.toList());
+    List<LinkValueObject> submissions = subreddit.getNew().limit(1).collect(Collectors.toList());
 
     if (!submissions.isEmpty()) {
       head = submissions.get(0);
@@ -75,15 +75,15 @@ public class LinkRequester extends AbstractIterator<List<Link>> {
   }
 
   @NonNull
-  private List<Link> request() throws FailedRequestException {
+  private List<LinkValueObject> request() throws FailedRequestException {
     assert head != null;
     LOGGER.info("Requesting links after {}.", head.getName());
 
-    List<Link> result = new ArrayList<>();
-    Iterator<Link> iterator = subreddit.getNew().iterator();
+    List<LinkValueObject> result = new ArrayList<>();
+    Iterator<LinkValueObject> iterator = subreddit.getNew().iterator();
 
     while (iterator.hasNext()) {
-      Link link = iterator.next();
+      LinkValueObject link = iterator.next();
 
       //If the current link is lexicographically larger then the head
       //Then that means it was created after the head, i.e at a later point in time

@@ -19,7 +19,7 @@ package zav.jrc.listener.guice;
 import okhttp3.Request;
 import zav.jrc.Client;
 import zav.jrc.Duration;
-import zav.jrc.databind.api.Token;
+import zav.jrc.databind.io.Token;
 
 import javax.inject.Singleton;
 import java.io.IOException;

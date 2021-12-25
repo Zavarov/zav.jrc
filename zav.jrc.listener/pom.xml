@@ -28,15 +28,10 @@
     <artifactId>listener</artifactId>
     <packaging>bundle</packaging>
 
-    <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-    </properties>
-
     <dependencies>
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>view</artifactId>
+            <artifactId>api</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

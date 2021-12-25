@@ -20,7 +20,7 @@ import java.util.EventListener;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.FailedRequestException;
+import zav.jrc.client.FailedRequestException;
 
 /**
  * This class provides a skeleton implementation of the observer interface. All observers should

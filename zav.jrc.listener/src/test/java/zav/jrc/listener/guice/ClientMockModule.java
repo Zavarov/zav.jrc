@@ -18,13 +18,13 @@ package zav.jrc.listener.guice;
 
 import com.google.inject.name.Names;
 import zav.jrc.Client;
-import zav.jrc.databind.api.Credentials;
-import zav.jrc.databind.api.UserAgent;
-import zav.jrc.guice.JraModule;
+import zav.jrc.databind.io.Credentials;
+import zav.jrc.databind.io.UserAgent;
+import zav.jrc.guice.JrcModule;
 
 import java.util.UUID;
 
-public class ClientMockModule extends JraModule {
+public class ClientMockModule extends JrcModule {
   @Override
   protected void configure() {
     UserAgent userAgent = new UserAgent();

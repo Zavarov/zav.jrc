@@ -18,7 +18,7 @@ package zav.jrc.listener.observer;
 
 import java.util.EventListener;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.FailedRequestException;
+import zav.jrc.client.FailedRequestException;
 
 /**
  * Implements the observer pattern. Notifications to the observer are automatically delegated to

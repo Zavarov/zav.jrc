@@ -22,11 +22,11 @@ import java.util.List;
 import javax.inject.Inject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.FailedRequestException;
-import zav.jrc.databind.Link;
+import zav.jrc.client.FailedRequestException;
+import zav.jrc.databind.LinkValueObject;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.requester.LinkRequester;
-import zav.jrc.view.SubredditView;
+import zav.jrc.api.Subreddit;
 
 /**
  * The observer implementation for subreddits. Calling {@link #notifyListener(SubredditListener)} or
@@ -38,10 +38,10 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @NonNull
   private final LinkRequester requester;
   @Nullable
-  private List<? extends Link> history;
+  private List<LinkValueObject> history;
   
   @Inject
-  public SubredditObserver(@Assisted @NonNull SubredditView subreddit) {
+  public SubredditObserver(@Assisted @NonNull Subreddit subreddit) {
     this.requester = new LinkRequester(subreddit);
   }
 
@@ -63,7 +63,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
       //History may be null when a listener is called explicitly instead of via notifyAllListener.
       history = history == null ? requester.next() : history;
       //Notify the listener starting with the oldest link first
-      history.stream().sorted(Comparator.comparing(Link::getId)).forEach(listener::handle);
+      history.stream().sorted(Comparator.comparing(LinkValueObject::getId)).forEach(listener::handle);
     } catch (LinkRequester.IteratorException e) {
       throw e.getCause();
     }
