@@ -16,14 +16,17 @@
 
 package zav.jrc.client.guice;
 
+import static zav.jrc.client.guice.Names.PASSWORD;
+import static zav.jrc.client.guice.Names.USERNAME;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import java.io.IOException;
 import java.net.URL;
 import java.util.UUID;
-import zav.jrc.databind.api.Credentials;
-import zav.jrc.databind.api.UserAgent;
+import zav.jrc.databind.io.CredentialsValueObject;
+import zav.jrc.databind.io.UserAgentValueObject;
 
 /**
  * The Guice module responsible for reading and binding the credentials required for
@@ -38,13 +41,13 @@ public abstract class JrcModule extends AbstractModule {
   @Override
   protected void configure() {
     ObjectMapper om = new ObjectMapper();
-    UserAgent userAgent;
-    Credentials credentials;
+    UserAgentValueObject userAgent;
+    CredentialsValueObject credentials;
     UUID uuid;
     
     try {
-      userAgent = om.readValue(USER_AGENT, UserAgent.class);
-      credentials = om.readValue(CREDENTIALS, Credentials.class);
+      userAgent = om.readValue(USER_AGENT, UserAgentValueObject.class);
+      credentials = om.readValue(CREDENTIALS, CredentialsValueObject.class);
       uuid = UUID.randomUUID();
     } catch (IOException e) {
       // Client can't log in without password, user agent, etc...
@@ -52,15 +55,15 @@ public abstract class JrcModule extends AbstractModule {
     }
     
     bind(UUID.class).toInstance(uuid);
-    bind(UserAgent.class).toInstance(userAgent);
-    bind(Credentials.class).toInstance(credentials);
+    bind(UserAgentValueObject.class).toInstance(userAgent);
+    bind(CredentialsValueObject.class).toInstance(credentials);
     
     if (credentials.getUsername() != null) {
-      bind(String.class).annotatedWith(Names.named("username")).toInstance(credentials.getUsername());
+      bind(String.class).annotatedWith(Names.named(USERNAME)).toInstance(credentials.getUsername());
     }
     
     if (credentials.getPassword() != null) {
-      bind(String.class).annotatedWith(Names.named("password")).toInstance(credentials.getPassword());
+      bind(String.class).annotatedWith(Names.named(PASSWORD)).toInstance(credentials.getPassword());
     }
   }
 }

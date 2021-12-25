@@ -35,9 +35,9 @@ import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.client.internal.RateLimiter;
 import zav.jrc.client.internal.TokenType;
-import zav.jrc.databind.api.Credentials;
-import zav.jrc.databind.api.Token;
-import zav.jrc.databind.api.UserAgent;
+import zav.jrc.databind.io.CredentialsValueObject;
+import zav.jrc.databind.io.TokenValueObject;
+import zav.jrc.databind.io.UserAgentValueObject;
 import zav.jrc.http.HttpException;
 import zav.jrc.http.RestRequest;
 
@@ -52,15 +52,15 @@ public abstract class Client {
   @NonNull
   private static final Logger LOGGER = LogManager.getLogger(Client.class);
   @Inject
-  protected UserAgent userAgent;
+  protected UserAgentValueObject userAgent;
   @Inject
-  protected Credentials credentials;
+  protected CredentialsValueObject credentials;
   @Inject
   protected RateLimiter rateLimiter;
   @Inject
   protected OkHttpClient http;
   @Nullable
-  protected Token token;
+  protected TokenValueObject token;
 
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
@@ -173,7 +173,7 @@ public abstract class Client {
     //_send(...) -> Skip token validation
     try {
       ObjectMapper om = new ObjectMapper();
-      token = om.readValue(_send(request), Token.class);
+      token = om.readValue(_send(request), TokenValueObject.class);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
