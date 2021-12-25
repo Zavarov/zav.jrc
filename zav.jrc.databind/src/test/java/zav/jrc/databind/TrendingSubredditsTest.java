@@ -22,11 +22,11 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrendingSubredditsTest extends AbstractTest{
-  static TrendingSubreddits trendingSubreddits;
+  static TrendingSubredditsValueObject trendingSubreddits;
   
   @BeforeAll
   public static void setUpAll() {
-    trendingSubreddits = read("TrendingSubreddits.json", TrendingSubreddits.class);
+    trendingSubreddits = read("TrendingSubreddits.json", TrendingSubredditsValueObject.class);
   }
   
   @Test

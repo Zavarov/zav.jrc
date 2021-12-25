@@ -25,13 +25,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class ErrorResponseTest extends AbstractTest {
-  static ErrorResponse error;
-  static ErrorResponseData data;
+  static ErrorResponseValueObject error;
+  static ErrorResponseDataValueObject data;
   static List<List<String>> messages;
   
   @BeforeAll
   public static void setUpAll() {
-    error = read("ErrorResponse.json", ErrorResponse.class);
+    error = read("ErrorResponse.json", ErrorResponseValueObject.class);
     data = error.getJson();
     messages = data.getErrors();
   }

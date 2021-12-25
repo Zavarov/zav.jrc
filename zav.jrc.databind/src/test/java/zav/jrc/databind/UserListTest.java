@@ -22,12 +22,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class UserListTest extends AbstractTest {
-  static UserList userList;
-  static User user;
+  static UserListValueObject userList;
+  static UserValueObject user;
   
   @BeforeAll
   public static void setUpAll() {
-    userList = read("UserList.json", UserList.class);
+    userList = read("UserList.json", UserListValueObject.class);
     user = userList.getData().getChildren().get(0);
   }
   

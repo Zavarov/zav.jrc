@@ -22,13 +22,13 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class AccountTest extends AbstractTest {
-  static Thing thing;
-  static Account account;
+  static ThingValueObject thing;
+  static AccountValueObject account;
   
   @BeforeAll
   public static void setUpAll() {
-    thing = read("Account.json", Thing.class);
-    account = read(thing.getData(), Account.class);
+    thing = read("Account.json", ThingValueObject.class);
+    account = read(thing.getData(), AccountValueObject.class);
   }
   
   @Test
