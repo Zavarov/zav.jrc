@@ -26,9 +26,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkValueObject;
-import zav.jrc.api.Subreddit;
 
 /**
  * This class is used to retrieve the latest submissions from a given subreddit.<br>

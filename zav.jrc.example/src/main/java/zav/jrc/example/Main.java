@@ -19,14 +19,13 @@ package zav.jrc.example;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import java.util.stream.Stream;
-
 import zav.jrc.api.Reddit;
+import zav.jrc.api.Subreddit;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.LinkValueObject;
 import zav.jrc.client.guice.UserlessClientModule;
-import zav.jrc.api.Subreddit;
+import zav.jrc.databind.LinkValueObject;
 
 /**
  * This example illustrates how to use Guice and the views to retrieve a stream of latest links from

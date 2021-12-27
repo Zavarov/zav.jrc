@@ -22,11 +22,11 @@ import java.util.List;
 import javax.inject.Inject;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkValueObject;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.requester.LinkRequester;
-import zav.jrc.api.Subreddit;
 
 /**
  * The observer implementation for subreddits. Calling {@link #notifyListener(SubredditListener)} or

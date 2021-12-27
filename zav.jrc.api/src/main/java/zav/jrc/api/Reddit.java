@@ -17,12 +17,19 @@
 package zav.jrc.api;
 
 import com.google.inject.Injector;
+import javax.inject.Inject;
 import zav.jrc.api.internal.guice.AccountFactory;
 import zav.jrc.api.internal.guice.JrcModule;
 import zav.jrc.api.internal.guice.SubredditFactory;
 
-import javax.inject.Inject;
-
+/**
+ * Entry point of the API which provides access to all further classes.<br>
+ * Create a new instance of this class using Guice:
+ * <pre>
+ *   Injector injector = Guice.createInjector(...);
+ *   Reddit reddit = injector.getInstance(Reddit.class);
+ * </pre>
+ */
 public class Reddit {
   @Inject
   private Injector injector;

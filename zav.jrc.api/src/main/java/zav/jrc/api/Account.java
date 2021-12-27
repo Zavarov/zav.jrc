@@ -30,6 +30,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
+import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.AccountValueObject;
@@ -41,7 +42,6 @@ import zav.jrc.databind.UserValueObject;
 import zav.jrc.endpoint.Users;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import zav.jrc.api.internal.JsonUtils;
 
 public class Account {
   private static Cache<String, AccountValueObject> accountCache = CacheBuilder.newBuilder()

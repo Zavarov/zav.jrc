@@ -20,22 +20,21 @@ import java.util.Map;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
+import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.AwardValueObject;
-import zav.jrc.databind.KarmaValueObject;
 import zav.jrc.databind.KarmaListValueObject;
+import zav.jrc.databind.KarmaValueObject;
 import zav.jrc.databind.PreferencesValueObject;
 import zav.jrc.databind.SelfAccountValueObject;
-import zav.jrc.databind.SubredditValueObject;
 import zav.jrc.databind.TrophyListValueObject;
-import zav.jrc.databind.UserValueObject;
 import zav.jrc.databind.UserListValueObject;
+import zav.jrc.databind.UserValueObject;
 import zav.jrc.endpoint.Account;
 import zav.jrc.endpoint.Subreddits;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import zav.jrc.api.internal.JsonUtils;
 
 public class SelfAccount {
   

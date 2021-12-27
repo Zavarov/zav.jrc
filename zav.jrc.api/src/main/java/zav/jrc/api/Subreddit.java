@@ -37,25 +37,25 @@ import okhttp3.RequestBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
+import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkValueObject;
 import zav.jrc.databind.RulesValueObject;
-import zav.jrc.databind.SubredditValueObject;
 import zav.jrc.databind.SubredditSettingsValueObject;
+import zav.jrc.databind.SubredditValueObject;
 import zav.jrc.databind.ThingValueObject;
-import zav.jrc.databind.UserValueObject;
 import zav.jrc.databind.UserListValueObject;
+import zav.jrc.databind.UserValueObject;
 import zav.jrc.databind.core.ListingValueObject;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
 import zav.jrc.endpoint.Subreddits;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import zav.jrc.api.internal.JsonUtils;
 
 public class Subreddit {
-  private static Cache<String, SubredditValueObject> subredditCache = CacheBuilder.newBuilder()
+  private static final Cache<String, SubredditValueObject> subredditCache = CacheBuilder.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
         .build();
   

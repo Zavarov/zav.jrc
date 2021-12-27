@@ -23,11 +23,10 @@ import java.util.Objects;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
+import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.AccountValueObject;
 import zav.jrc.databind.LinkValueObject;
-import zav.jrc.databind.SubredditValueObject;
 import zav.jrc.databind.ThingValueObject;
 import zav.jrc.databind.core.ListingValueObject;
 import zav.jrc.endpoint.Listings;
@@ -35,7 +34,6 @@ import zav.jrc.endpoint.Search;
 import zav.jrc.endpoint.Subreddits;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
-import zav.jrc.api.internal.JsonUtils;
 
 public class FrontPage {
   @Inject

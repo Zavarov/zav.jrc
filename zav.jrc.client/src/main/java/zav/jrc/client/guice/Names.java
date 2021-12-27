@@ -16,6 +16,10 @@
 
 package zav.jrc.client.guice;
 
+/**
+ * Utility class that contains the keywords for all named bindings which can be injected via the
+ * {@code @Named} annotation.
+ */
 public final class Names {
   public static final String USERNAME = "username";
   public static final String PASSWORD = "password";
