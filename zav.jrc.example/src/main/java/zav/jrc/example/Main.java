@@ -19,6 +19,8 @@ package zav.jrc.example;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import java.util.stream.Stream;
+
+import zav.jrc.api.Reddit;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
@@ -37,6 +39,7 @@ import zav.jrc.api.guice.JrcModule;
 public class Main {
   protected static Injector GUICE;
   protected static Client CLIENT;
+  protected static Reddit REDDIT;
   
   /**
    * The entry point for the program.
@@ -48,10 +51,10 @@ public class Main {
     GUICE = Guice.createInjector(new UserlessClientModule(), new JrcModule());
     CLIENT = GUICE.getInstance(Client.class);
     CLIENT.login(Duration.TEMPORARY);
+    REDDIT = GUICE.getInstance(Reddit.class);
     
-    SubredditFactory factory = GUICE.getInstance(SubredditFactory.class);
-    Subreddit view = factory.create("RedditDev");
-    Stream<LinkValueObject> links = view.getNew();
+    Subreddit subreddit = REDDIT.getSubreddit("RedditDev");
+    Stream<LinkValueObject> links = subreddit.getNew();
     
     links.forEach(link -> System.out.println(link.getTitle()));
     
