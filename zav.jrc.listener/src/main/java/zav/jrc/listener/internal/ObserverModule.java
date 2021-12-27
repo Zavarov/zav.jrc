@@ -14,18 +14,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.guice;
+package zav.jrc.listener.internal;
 
-import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.api.Subreddit;
-import zav.jrc.listener.observer.SubredditObserver;
+import com.google.inject.AbstractModule;
+import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.SubredditValueObject;
 
-/**
- * Instances of {@link SubredditObserver} have to be created via this class rather than directly.
- * Otherwise Guice is unable obtain the arguments required by the constructor.
- */
-@NonNull
-public interface SubredditObserverFactory {
-  @NonNull
-  SubredditObserver create(@NonNull Subreddit subreddit);
+public class ObserverModule extends AbstractModule {
+  private final SubredditValueObject subreddit;
+  private final LinkValueObject link;
+
+  public ObserverModule(SubredditValueObject subreddit, LinkValueObject link) {
+    this.subreddit = subreddit;
+    this.link = link;
+  }
+  
+  @Override
+  protected void configure() {
+    bind(SubredditValueObject.class).toInstance(subreddit);
+    bind(LinkValueObject.class).toInstance(link);
+  }
 }

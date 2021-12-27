@@ -14,16 +14,26 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.guice;
+package zav.jrc.listener.internal;
 
+import com.google.inject.Injector;
+import com.google.inject.Module;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.SubredditValueObject;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.observer.AbstractObserver;
 
+import javax.inject.Inject;
+
 public class ObserverMock extends AbstractObserver<SubredditListener> {
+  @Inject
+  private Injector injector;
+  
   @Override
   public void notifyListener(@NonNull SubredditListener listener) {
-    listener.handle(new LinkValueObject());
+    Module module = new ObserverModule(new SubredditValueObject(), new LinkValueObject());
+    
+    injector.createChildInjector(module).injectMembers(listener);
   }
 }

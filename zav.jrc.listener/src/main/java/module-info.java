@@ -13,7 +13,9 @@ module zav.jcr.listener {
   requires zav.jrc.http;
   
   exports zav.jrc.listener;
-  exports zav.jrc.listener.guice;
+  exports zav.jrc.listener.observable;
   exports zav.jrc.listener.observer;
   exports zav.jrc.listener.requester;
+  
+  opens zav.jrc.listener.internal to com.google.guice;
 }

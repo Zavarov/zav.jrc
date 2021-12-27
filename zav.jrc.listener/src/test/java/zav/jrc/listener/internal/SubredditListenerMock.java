@@ -14,25 +14,24 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.guice;
+package zav.jrc.listener.internal;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.assistedinject.FactoryModuleBuilder;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.listener.observer.Observer;
-import zav.jrc.listener.observer.SubredditObserver;
+import zav.jrc.databind.LinkValueObject;
+import zav.jrc.listener.SubredditListener;
 
-/**
- * The Guice module responsible for creating the {@link Observer} instances.
- */
-@NonNull
-public class ListenerModule extends AbstractModule {
-  @Override
-  protected void configure() {
-    com.google.inject.Module module = new FactoryModuleBuilder()
-          .implement(SubredditObserver.class, SubredditObserver.class)
-          .build(SubredditObserverFactory.class);
-    
-    install(module);
+import javax.inject.Inject;
+import java.util.function.Consumer;
+
+public class SubredditListenerMock implements SubredditListener {
+  private final Consumer<SubredditListener> consumer;
+
+  public SubredditListenerMock(Consumer<SubredditListener> consumer) {
+    this.consumer = consumer;
+  }
+
+  @Inject
+  public void handle(@NonNull LinkValueObject link) {
+    consumer.accept(this);
   }
 }

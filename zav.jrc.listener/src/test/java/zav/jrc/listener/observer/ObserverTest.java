@@ -21,8 +21,8 @@ import org.junit.jupiter.api.Test;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.listener.AbstractTest;
 import zav.jrc.listener.SubredditListener;
-import zav.jrc.listener.guice.ObserverMock;
-import zav.jrc.listener.guice.SubredditListenerMock;
+import zav.jrc.listener.internal.ObserverMock;
+import zav.jrc.listener.internal.SubredditListenerMock;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +41,8 @@ public class ObserverTest extends AbstractTest {
     responses = new ArrayList<>();
     foo = new SubredditListenerMock(responses::add);
     bar = new SubredditListenerMock(responses::add);
+
+    GUICE.injectMembers(observer);
   }
   
   @Test

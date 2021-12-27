@@ -23,8 +23,7 @@ import org.junit.jupiter.api.BeforeAll;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.listener.guice.ListenerModule;
-import zav.jrc.listener.guice.ClientMockModule;
+import zav.jrc.listener.internal.ClientMockModule;
 
 public abstract class AbstractTest {
     protected static Injector GUICE;
@@ -32,7 +31,7 @@ public abstract class AbstractTest {
     
     @BeforeAll
     public static void setUpAll() throws FailedRequestException {
-        GUICE = Guice.createInjector(new ClientMockModule(), new ListenerModule());
+        GUICE = Guice.createInjector(new ClientMockModule());
         CLIENT = GUICE.getInstance(Client.class);
         CLIENT.login(Duration.TEMPORARY);
     }

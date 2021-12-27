@@ -14,16 +14,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener;
+package zav.jrc.listener.internal;
 
-import java.util.EventListener;
+import com.google.inject.AbstractModule;
+import com.google.inject.assistedinject.FactoryModuleBuilder;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.databind.LinkValueObject;
-import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.listener.observer.Observer;
+import zav.jrc.listener.observer.SubredditObserver;
 
 /**
- * This class handles all events associated with a given {@link SubredditValueObject}.
+ * The Guice module responsible for creating the {@link Observer} instances.
  */
 @NonNull
-public interface SubredditListener extends EventListener {
+public class ObservableModule extends AbstractModule {
+  @Override
+  protected void configure() {
+    com.google.inject.Module module = new FactoryModuleBuilder()
+          .implement(SubredditObserver.class, SubredditObserver.class)
+          .build(SubredditObserverFactory.class);
+    
+    install(module);
+  }
 }

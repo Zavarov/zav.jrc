@@ -14,16 +14,18 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener;
+package zav.jrc.listener.internal;
 
-import java.util.EventListener;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.databind.LinkValueObject;
-import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.api.Subreddit;
+import zav.jrc.listener.observer.SubredditObserver;
 
 /**
- * This class handles all events associated with a given {@link SubredditValueObject}.
+ * Instances of {@link SubredditObserver} have to be created via this class rather than directly.
+ * Otherwise Guice is unable obtain the arguments required by the constructor.
  */
 @NonNull
-public interface SubredditListener extends EventListener {
+public interface SubredditObserverFactory {
+  @NonNull
+  SubredditObserver create(@NonNull Subreddit subreddit);
 }

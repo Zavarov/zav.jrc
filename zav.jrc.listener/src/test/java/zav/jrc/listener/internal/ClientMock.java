@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.guice;
+package zav.jrc.listener.internal;
 
 import okhttp3.Request;
 import zav.jrc.client.Client;

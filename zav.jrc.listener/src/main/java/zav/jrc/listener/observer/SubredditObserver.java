@@ -16,7 +16,11 @@
 
 package zav.jrc.listener.observer;
 
+import com.google.inject.Injector;
+import com.google.inject.Module;
 import com.google.inject.assistedinject.Assisted;
+
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
@@ -26,6 +30,7 @@ import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkValueObject;
 import zav.jrc.listener.SubredditListener;
+import zav.jrc.listener.internal.ObserverModule;
 import zav.jrc.listener.requester.LinkRequester;
 
 /**
@@ -36,13 +41,18 @@ import zav.jrc.listener.requester.LinkRequester;
 @NonNull
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @NonNull
+  private final Subreddit subreddit;
+  @NonNull
   private final LinkRequester requester;
   @Nullable
   private List<LinkValueObject> history;
+  @Inject
+  private Injector injector;
   
   @Inject
   public SubredditObserver(@Assisted @NonNull Subreddit subreddit) {
     this.requester = new LinkRequester(subreddit);
+    this.subreddit = subreddit;
   }
 
   @Override
@@ -62,8 +72,15 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
     try {
       //History may be null when a listener is called explicitly instead of via notifyAllListener.
       history = history == null ? requester.next() : history;
+
       //Notify the listener starting with the oldest link first
-      history.stream().sorted(Comparator.comparing(LinkValueObject::getId)).forEach(listener::handle);
+      List<LinkValueObject> result = new ArrayList<>(history);
+      result.sort(Comparator.comparing(LinkValueObject::getId));
+      
+      for (LinkValueObject link : result) {
+        Module module = new ObserverModule(subreddit.getAbout(), link);
+        injector.createChildInjector(module).injectMembers(listener);
+      }
     } catch (LinkRequester.IteratorException e) {
       throw e.getCause();
     }
