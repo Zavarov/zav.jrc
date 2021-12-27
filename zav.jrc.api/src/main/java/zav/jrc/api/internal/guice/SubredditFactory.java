@@ -14,14 +14,14 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.api.guice;
+package zav.jrc.api.internal.guice;
 
-import zav.jrc.api.FrontPage;
+import zav.jrc.api.Subreddit;
 
 /**
- * Instances of {@link FrontPage} have to be created via this class rather than directly.
+ * Instances of {@link Subreddit} have to be created via this class rather than directly.
  * Otherwise Guice is unable obtain the arguments required by the constructor.
  */
-public interface FrontPageFactory {
-  FrontPage create();
+public interface SubredditFactory {
+  Subreddit create(String name);
 }

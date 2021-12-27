@@ -25,7 +25,6 @@ import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.listener.guice.ListenerModule;
 import zav.jrc.listener.guice.ClientMockModule;
-import zav.jrc.api.guice.JrcModule;
 
 public abstract class AbstractTest {
     protected static Injector GUICE;
@@ -33,7 +32,7 @@ public abstract class AbstractTest {
     
     @BeforeAll
     public static void setUpAll() throws FailedRequestException {
-        GUICE = Guice.createInjector(new ClientMockModule(), new JrcModule(), new ListenerModule());
+        GUICE = Guice.createInjector(new ClientMockModule(), new ListenerModule());
         CLIENT = GUICE.getInstance(Client.class);
         CLIENT.login(Duration.TEMPORARY);
     }

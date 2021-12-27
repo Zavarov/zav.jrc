@@ -17,8 +17,9 @@
 package zav.jrc.api;
 
 import com.google.inject.Injector;
-import zav.jrc.api.guice.AccountFactory;
-import zav.jrc.api.guice.SubredditFactory;
+import zav.jrc.api.internal.guice.AccountFactory;
+import zav.jrc.api.internal.guice.JrcModule;
+import zav.jrc.api.internal.guice.SubredditFactory;
 
 import javax.inject.Inject;
 
@@ -31,7 +32,8 @@ public class Reddit {
   }
   
   public Account getAccount(String accountName) {
-    return injector.getInstance(AccountFactory.class).create(accountName);
+    return injector.createChildInjector(new JrcModule())
+          .getInstance(AccountFactory.class).create(accountName);
   }
   
   public SelfAccount getSelfAccount() {
@@ -39,6 +41,7 @@ public class Reddit {
   }
   
   public Subreddit getSubreddit(String subredditName) {
-    return injector.getInstance(SubredditFactory.class).create(subredditName);
+    return injector.createChildInjector(new JrcModule())
+          .getInstance(SubredditFactory.class).create(subredditName);
   }
 }

@@ -27,8 +27,6 @@ import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkValueObject;
 import zav.jrc.client.guice.UserlessClientModule;
 import zav.jrc.api.Subreddit;
-import zav.jrc.api.guice.SubredditFactory;
-import zav.jrc.api.guice.JrcModule;
 
 /**
  * This example illustrates how to use Guice and the views to retrieve a stream of latest links from
@@ -48,10 +46,11 @@ public class Main {
    * @throws FailedRequestException If one of the API requests was rejected.
    */
   public static void main(String[] args) throws FailedRequestException {
-    GUICE = Guice.createInjector(new UserlessClientModule(), new JrcModule());
+    GUICE = Guice.createInjector(new UserlessClientModule());
     CLIENT = GUICE.getInstance(Client.class);
-    CLIENT.login(Duration.TEMPORARY);
     REDDIT = GUICE.getInstance(Reddit.class);
+    
+    CLIENT.login(Duration.TEMPORARY);
     
     Subreddit subreddit = REDDIT.getSubreddit("RedditDev");
     Stream<LinkValueObject> links = subreddit.getNew();

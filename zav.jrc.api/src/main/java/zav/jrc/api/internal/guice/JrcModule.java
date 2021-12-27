@@ -14,13 +14,11 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.api.guice;
+package zav.jrc.api.internal.guice;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.assistedinject.FactoryModuleBuilder;
 import zav.jrc.api.Account;
-import zav.jrc.api.FrontPage;
-import zav.jrc.api.SelfAccount;
 import zav.jrc.api.Subreddit;
 
 /**
@@ -30,9 +28,7 @@ public class JrcModule extends AbstractModule {
   @Override
   protected void configure() {
     install(module(Account.class, AccountFactory.class));
-    install(module(SelfAccount.class, SelfAccountFactory.class));
     install(module(Subreddit.class, SubredditFactory.class));
-    install(module(FrontPage.class, FrontPageFactory.class));
   }
   
   private static <T> com.google.inject.Module module(Class<T> source, Class<?> target) {

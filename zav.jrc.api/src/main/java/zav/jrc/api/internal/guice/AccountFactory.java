@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.api.guice;
+package zav.jrc.api.internal.guice;
 
 import zav.jrc.api.Account;
 
