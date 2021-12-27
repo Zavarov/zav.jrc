@@ -16,13 +16,18 @@
 
 package zav.jrc.api;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.google.inject.assistedinject.Assisted;
+import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.Client;
@@ -39,6 +44,12 @@ import zav.jrc.http.RestRequest;
 import zav.jrc.api.internal.JsonUtils;
 
 public class Account {
+  private static Cache<String, AccountValueObject> accountCache = CacheBuilder.newBuilder()
+        .expireAfterWrite(Duration.ofDays(1))
+        .build();
+  
+  private static final Logger LOGGER = LogManager.getLogger(Account.class);
+  
   @Inject
   private Client client;
 
@@ -167,13 +178,24 @@ public class Account {
   }
   
   public AccountValueObject getAbout() throws FailedRequestException {
-    Request query = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_ABOUT)
-          .setArgs(name)
-          .build()
-          .get();
+    AccountValueObject result = accountCache.getIfPresent(name);
     
-    return JsonUtils.transformThing(client.send(query), AccountValueObject.class);
+    // Only perform a new request if the account hasn't been cached.
+    if (result == null) {
+      Request query = client.newRequest()
+            .setEndpoint(Users.GET_USER_USERNAME_ABOUT)
+            .setArgs(name)
+            .build()
+            .get();
+  
+      result = JsonUtils.transformThing(client.send(query), AccountValueObject.class);
+  
+      accountCache.put(name, result);
+      
+      LOGGER.debug("Cached new account with name {}.", name);
+    }
+    
+    return result;
   }
   
   public Stream<CommentValueObject> getComments(Parameter... params) throws FailedRequestException {

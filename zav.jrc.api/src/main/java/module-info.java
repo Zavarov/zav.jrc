@@ -2,8 +2,10 @@ module zav.jrc.api {
   requires static org.eclipse.jdt.annotation;
   
   requires com.fasterxml.jackson.databind;
+  requires com.google.common;
   requires com.google.guice;
   requires com.google.guice.extensions.assistedinject;
+  requires org.apache.logging.log4j;
   requires java.inject;
   requires okhttp3;
   

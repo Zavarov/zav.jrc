@@ -16,10 +16,13 @@
 
 package zav.jrc.api;
 
+import com.google.common.cache.Cache;
+import com.google.common.cache.CacheBuilder;
 import com.google.inject.assistedinject.Assisted;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -31,6 +34,8 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
@@ -50,6 +55,12 @@ import zav.jrc.http.RestRequest;
 import zav.jrc.api.internal.JsonUtils;
 
 public class Subreddit {
+  private static Cache<String, SubredditValueObject> subredditCache = CacheBuilder.newBuilder()
+        .expireAfterWrite(Duration.ofDays(1))
+        .build();
+  
+  private static final Logger LOGGER = LogManager.getLogger(Subreddit.class);
+  
   @Inject
   private Client client;
   
@@ -485,13 +496,24 @@ public class Subreddit {
   }
   
   public SubredditValueObject getAbout() throws FailedRequestException {
-    Request query = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT)
-          .setArgs(name)
-          .build()
-          .get();
+    SubredditValueObject result = subredditCache.getIfPresent(name);
   
-    return JsonUtils.transformThing(client.send(query), SubredditValueObject.class);
+    // Only perform a new request if the account hasn't been cached.
+    if (result == null) {
+      Request query = client.newRequest()
+            .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT)
+            .setArgs(name)
+            .build()
+            .get();
+    
+      result = JsonUtils.transformThing(client.send(query), SubredditValueObject.class);
+  
+      subredditCache.put(name, result);
+    
+      LOGGER.debug("Cached new subreddit with name {}.", name);
+    }
+  
+    return result;
   }
   
   public SubredditSettingsValueObject getEdit() throws FailedRequestException {
