@@ -15,7 +15,6 @@ module zav.jrc.api {
   requires java.desktop;
   
   exports zav.jrc.api;
-  exports zav.jrc.api.internal.guice;
   
   opens zav.jrc.api to com.google.guice;
 }
