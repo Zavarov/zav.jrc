@@ -25,6 +25,8 @@ import java.util.UUID;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
@@ -37,6 +39,9 @@ import zav.jrc.http.RestRequest;
  */
 @Singleton // All requests have to go through a single client
 public class UserlessClient extends Client {
+  @NonNull
+  private static final Logger LOGGER = LogManager.getLogger(UserlessClient.class);
+  
   @Inject
   private UUID uuid;
   
@@ -55,6 +60,13 @@ public class UserlessClient extends Client {
     body.put("device_id", uuid);
     body.put("duration", duration);
     
+    // Using a permanent token for an userless client doesn't make much sense, as it has to send
+    // its credentials anyways. Therefore it would make more sense to request a new access token
+    // directly.
+    if (duration == Duration.PERMANENT) {
+      LOGGER.warn("You're requesting a permanent token for an userless client. Are you sure?");
+    }
+    
     Request request = new RestRequest.Builder()
           .setHost(RestRequest.WWW)
           .setEndpoint(OAuth2.ACCESS_TOKEN)
@@ -71,5 +83,10 @@ public class UserlessClient extends Client {
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
+  }
+  
+  @Override
+  public synchronized void refresh() throws FailedRequestException {
+    login(Duration.TEMPORARY);
   }
 }
