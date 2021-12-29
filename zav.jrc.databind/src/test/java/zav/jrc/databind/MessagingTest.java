@@ -16,18 +16,23 @@
 
 package zav.jrc.databind;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class MessagingTest extends AbstractTest{
+/**
+ * Checks whether the attributes of a messaging DTO have been properly deserialized.
+ */
+public class MessagingTest extends AbstractTest {
   static UserListDto[] messaging;
   static UserListDto blocked;
   static UserListDto trusted;
   
+  /**
+   * Instantiates the messaging DTO and retrieves the trusted and blocked users.
+   */
   @BeforeAll
   public static void setUpAll() {
     messaging = read("Messaging.json", UserListDto[].class);

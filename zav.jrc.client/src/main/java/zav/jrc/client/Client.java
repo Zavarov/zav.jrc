@@ -29,7 +29,6 @@ import okhttp3.Response;
 import okhttp3.ResponseBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
@@ -48,7 +47,6 @@ import zav.jrc.http.RestRequest;
  * API requests.
  */
 public abstract class Client {
-  @NonNull
   private static final Logger LOGGER = LogManager.getLogger(Client.class);
   @Inject
   protected UserAgentDto userAgent;
@@ -77,6 +75,8 @@ public abstract class Client {
    * @throws FailedRequestException In case the request was rejected by the API.
    */
   public synchronized String send(Request request) throws FailedRequestException {
+    assert token != null;
+    
     Objects.requireNonNull(token);
     
     //Make sure that the token is still valid
@@ -109,13 +109,13 @@ public abstract class Client {
       Response response = http.newCall(request).execute();
       rateLimiter.update(response);
       LOGGER.debug("<-- {}", response);
-      LOGGER.debug("{} used, {} remain, {} seconds until next period", rateLimiter.getUsed(), rateLimiter.getRemaining(), rateLimiter.getReset());
+      LOGGER.debug("{} calls used, {} remain, {} seconds until next period", rateLimiter.getUsed(), rateLimiter.getRemaining(), rateLimiter.getReset());
       
       if (!response.isSuccessful()) {
         throw FailedRequestException.wrap(new HttpException(response.code(), response.message()));
       }
       
-      ResponseBody responseBody = response.body();
+      @Nullable ResponseBody responseBody = response.body();
       return Objects.requireNonNull(responseBody).string();
     } catch (IOException | InterruptedException e) {
       throw FailedRequestException.wrap(e);
@@ -130,16 +130,6 @@ public abstract class Client {
 
   public abstract void login(Duration duration) throws FailedRequestException;
 
-  /**
-   * Requests a new access and refresh token.
-   *
-   * @throws FailedRequestException In case the request was rejected by the API.
-   */
-  public void login() throws FailedRequestException {
-    LOGGER.info("Request token.");
-    login(Duration.PERMANENT);
-  }
-
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Refresh                                                                                   //
@@ -152,6 +142,8 @@ public abstract class Client {
    * @throws FailedRequestException In case the request was rejected by the API.
    */
   public synchronized void refresh() throws FailedRequestException {
+    assert token != null;
+    
     LOGGER.info("Refresh access token.");
     Objects.requireNonNull(token);
     Objects.requireNonNull(token.getRefreshToken());
@@ -271,6 +263,8 @@ public abstract class Client {
    * @return A new builder instance for a REST request.
    */
   public RestRequest.Builder newRequest() {
+    assert token != null;
+    
     Objects.requireNonNull(token);
     
     return new RestRequest.Builder()

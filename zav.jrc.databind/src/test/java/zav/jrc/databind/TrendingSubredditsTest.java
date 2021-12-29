@@ -16,12 +16,15 @@
 
 package zav.jrc.databind;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
-public class TrendingSubredditsTest extends AbstractTest{
+/**
+ * Checks whether the attributes of a trending subreddits DTO have been properly deserialized.
+ */
+public class TrendingSubredditsTest extends AbstractTest {
   static TrendingSubredditsDto trendingSubreddits;
   
   @BeforeAll

@@ -16,18 +16,21 @@
 
 package zav.jrc.api.internal.guice;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
+import javax.inject.Singleton;
 import okhttp3.Request;
+import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.io.TokenDto;
 
-import javax.inject.Singleton;
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
-import java.nio.charset.StandardCharsets;
-
+/**
+ * Mock client instance that uses pre-recorded responses instead of performing actual API calls.
+ */
 @Singleton // Client is shared among all views
 public class ClientMock extends Client {
   @Override
@@ -51,14 +54,14 @@ public class ClientMock extends Client {
     String fileName = method + "_" + path + ".json";
     
     String dir = "responses";
-    InputStream is = getClass().getClassLoader().getResourceAsStream(dir + "/" + fileName);
+    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream(dir + "/" + fileName);
     if (is == null) {
       throw FailedRequestException.wrap(new FileNotFoundException(fileName));
     }
     
     try {
       return new String(is.readAllBytes(), StandardCharsets.UTF_8);
-    } catch(IOException e) {
+    } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
   }

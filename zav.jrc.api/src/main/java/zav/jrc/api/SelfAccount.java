@@ -23,12 +23,23 @@ import okhttp3.Request;
 import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.*;
+import zav.jrc.databind.AwardDto;
+import zav.jrc.databind.KarmaDto;
+import zav.jrc.databind.KarmaListDto;
+import zav.jrc.databind.PreferencesDto;
+import zav.jrc.databind.SelfAccountDto;
+import zav.jrc.databind.SubredditDto;
+import zav.jrc.databind.TrophyListDto;
+import zav.jrc.databind.UserDto;
+import zav.jrc.databind.UserListDto;
 import zav.jrc.endpoint.Account;
 import zav.jrc.endpoint.Subreddits;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
 
+/**
+ * Representation of the account through which the client is logged in.
+ */
 public class SelfAccount {
   
   @Inject
@@ -36,6 +47,13 @@ public class SelfAccount {
   
   // Account
   
+  /**
+   * Returns the DTO object of this account.
+   *
+   * @return The DTO object corresponding to this account.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#GET_API_V1_ME
+   */
   public SelfAccountDto getAbout() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME)
@@ -45,6 +63,14 @@ public class SelfAccount {
     return JsonUtils.transform(client.send(query), SelfAccountDto.class);
   }
   
+  /**
+   * Returns a stream over the karma of this account. Each entry corresponds to the karma gained
+   * from a single subreddit. The sum of those entries results in the total account karma.
+   *
+   * @return A stream over the DTOs corresponding to the karma instances.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#GET_API_V1_ME_KARMA
+   */
   public Stream<KarmaDto> getKarma() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_KARMA)
@@ -56,6 +82,13 @@ public class SelfAccount {
           .stream();
   }
   
+  /**
+   * Returns the DTO object of this account preferences.
+   *
+   * @return The DTO object corresponding to this account preferences.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#GET_API_V1_ME_PREFS
+   */
   public PreferencesDto getPreferences() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_PREFS)
@@ -65,6 +98,13 @@ public class SelfAccount {
     return JsonUtils.transform(client.send(query), PreferencesDto.class);
   }
   
+  /**
+   * Updates the account preferences.
+   *
+   * @return The DTO object corresponding to this account preferences.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#PATCH_API_V1_ME_PREFS
+   */
   public PreferencesDto patchPreferences(PreferencesDto preferences) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.PATCH_API_V1_ME_PREFS)
@@ -75,6 +115,13 @@ public class SelfAccount {
     return JsonUtils.transform(client.send(query), PreferencesDto.class);
   }
   
+  /**
+   * Returns a stream over all awards this account possesses.
+   *
+   * @return A stream over the DTOs corresponding to the awards.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#GET_API_V1_ME_TROPHIES
+   */
   public Stream<AwardDto> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_TROPHIES)
@@ -87,6 +134,13 @@ public class SelfAccount {
           .map(thing -> JsonUtils.transformThing(thing, AwardDto.class));
   }
   
+  /**
+   * Returns a stream over all users that have been blocked by this account.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#GET_PREFS_BLOCKED
+   */
   public Stream<UserDto> getBlocked() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_BLOCKED)
@@ -99,6 +153,13 @@ public class SelfAccount {
           .stream();
   }
   
+  /**
+   * Returns a stream over all users that have been befriended by this account.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#GET_PREFS_FRIENDS
+   */
   public Stream<UserDto> getFriends() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_FRIENDS)
@@ -115,6 +176,13 @@ public class SelfAccount {
           .stream();
   }
   
+  /**
+   * Returns a stream over all users that are trusted by this account.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Account#GET_PREFS_TRUSTED
+   */
   public Stream<UserDto> getTrusted() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_TRUSTED)
@@ -133,6 +201,13 @@ public class SelfAccount {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
+  /**
+   * Returns a stream over all subreddits this account has contributed to.
+   *
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_MINE_CONTRIBUTOR
+   */
   public Stream<SubredditDto> getMineContributor(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR)
@@ -143,6 +218,13 @@ public class SelfAccount {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all subreddits this account moderates.
+   *
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_MINE_MODERATOR
+   */
   public Stream<SubredditDto> getMineModerator(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR)
@@ -153,6 +235,14 @@ public class SelfAccount {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all subreddits this account is subscribed to that contain hosted video
+   * links.
+   *
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_MINE_STREAMS
+   */
   public Stream<SubredditDto> getMineStreams(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS)
@@ -163,6 +253,13 @@ public class SelfAccount {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all subreddits this account is subscribed to.
+   *
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_MINE_SUBSCRIBER
+   */
   public Stream<SubredditDto> getMineSubscriber(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER)

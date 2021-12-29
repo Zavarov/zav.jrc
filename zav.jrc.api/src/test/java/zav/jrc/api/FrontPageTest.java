@@ -16,6 +16,10 @@
 
 package zav.jrc.api;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.client.FailedRequestException;
@@ -24,11 +28,9 @@ import zav.jrc.databind.LinkDto;
 import zav.jrc.databind.SubredditDto;
 import zav.jrc.http.Parameter;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the calls to the frontpage-related endpoints return the expected response.
+ */
 public class FrontPageTest extends AbstractTest {
   
   FrontPage frontPage;

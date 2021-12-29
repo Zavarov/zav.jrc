@@ -27,7 +27,6 @@ import javax.inject.Singleton;
 import okhttp3.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.TokenDto;
@@ -39,7 +38,6 @@ import zav.jrc.http.RestRequest;
  */
 @Singleton // All requests have to go through a single client
 public class UserlessClient extends Client {
-  @NonNull
   private static final Logger LOGGER = LogManager.getLogger(UserlessClient.class);
   
   @Inject
@@ -54,7 +52,7 @@ public class UserlessClient extends Client {
    * @throws FailedRequestException In case the request was rejected by the API.
    */
   @Override
-  public void login(@NonNull Duration duration) throws FailedRequestException {
+  public void login(Duration duration) throws FailedRequestException {
     Map<Object, Object> body = new HashMap<>();
     body.put("grant_type", GrantType.USERLESS);
     body.put("device_id", uuid);

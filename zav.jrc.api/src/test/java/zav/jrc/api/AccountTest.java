@@ -16,17 +16,24 @@
 
 package zav.jrc.api;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
+import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.api.internal.guice.ClientMock;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.*;
+import zav.jrc.databind.AccountDto;
+import zav.jrc.databind.AwardDto;
+import zav.jrc.databind.CommentDto;
+import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.ThingDto;
+import zav.jrc.databind.UserDto;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the calls to the account-related endpoints return the expected response.
+ */
 public class AccountTest extends AbstractTest {
   
   Account account;
@@ -45,7 +52,7 @@ public class AccountTest extends AbstractTest {
   public void testPostReport() throws FailedRequestException {
     if (CLIENT instanceof ClientMock) {
       // DON'T TEST AGAINST THE REAL API
-      account.postReport(null);
+      assertThat(account.postReport("Very good reason...")).isNotEmpty();
     }
   }
   

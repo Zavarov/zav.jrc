@@ -14,22 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.observable;
+@NonNullByDefault
+package zav.jrc.listener.internal;
 
-import com.google.inject.Injector;
-import javax.inject.Inject;
-import zav.jrc.api.Subreddit;
-import zav.jrc.listener.internal.SubredditObserverFactory;
-import zav.jrc.listener.observer.SubredditObserver;
-
-/**
- * Base class for all subreddit observers.
- */
-public class SubredditObservable {
-  @Inject
-  private Injector injector;
-  
-  public SubredditObserver getObserver(Subreddit subreddit) {
-    return injector.getInstance(SubredditObserverFactory.class).create(subreddit);
-  }
-}
+import org.eclipse.jdt.annotation.NonNullByDefault;

@@ -17,13 +17,11 @@
 package zav.jrc.client.internal;
 
 import java.util.Locale;
-import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * The token type is used to inform Reddit about the kind of token that is transmitted. It is
  * required when refreshing the access token or invalidating already existing tokens.
  */
-@NonNull
 public enum TokenType {
   /**
    * The access token is required to authenticate the application when using the OAuth2 endpoints.
@@ -40,7 +38,6 @@ public enum TokenType {
    *
    * @return A string representation of the enum type.
    */
-  @NonNull
   @Override
   public String toString() {
     return name().toLowerCase(Locale.ENGLISH);

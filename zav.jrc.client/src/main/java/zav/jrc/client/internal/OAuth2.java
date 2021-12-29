@@ -16,15 +16,12 @@
 
 package zav.jrc.client.internal;
 
-import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.endpoint.Endpoint;
 
 /**
  * The endpoints used for retrieving and invalidating an access token.
  */
 public class OAuth2 {
-  @NonNull
   public static final Endpoint ACCESS_TOKEN = new Endpoint("api", "v1", "access_token");
-  @NonNull
   public static final Endpoint REVOKE_TOKEN = new Endpoint("api", "v1", "revoke_token");
 }

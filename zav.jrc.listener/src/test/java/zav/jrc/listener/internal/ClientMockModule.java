@@ -17,13 +17,16 @@
 package zav.jrc.listener.internal;
 
 import com.google.inject.name.Names;
+import java.util.UUID;
 import zav.jrc.client.Client;
+import zav.jrc.client.guice.ClientModule;
 import zav.jrc.databind.io.CredentialsDto;
 import zav.jrc.databind.io.UserAgentDto;
-import zav.jrc.client.guice.ClientModule;
 
-import java.util.UUID;
-
+/**
+ * Guice module to bind the mock client to the base client class.<br>
+ * This is required s.t. it can be used during testing.
+ */
 public class ClientMockModule extends ClientModule {
   @Override
   protected void configure() {

@@ -25,7 +25,6 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import okhttp3.Request;
-import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.TokenDto;
@@ -54,7 +53,7 @@ public class ScriptClient extends Client {
    * @throws FailedRequestException In case the request was rejected by the API.
    */
   @Override
-  public void login(@NonNull Duration duration) throws FailedRequestException {
+  public void login(Duration duration) throws FailedRequestException {
     Map<Object, Object> body = new HashMap<>();
     body.put("grant_type", GrantType.PASSWORD);
     body.put("username", username);

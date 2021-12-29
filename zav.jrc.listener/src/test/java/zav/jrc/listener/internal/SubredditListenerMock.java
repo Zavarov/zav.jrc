@@ -16,13 +16,14 @@
 
 package zav.jrc.listener.internal;
 
-import org.eclipse.jdt.annotation.NonNull;
+import java.util.function.Consumer;
+import javax.inject.Inject;
 import zav.jrc.databind.LinkDto;
 import zav.jrc.listener.SubredditListener;
 
-import javax.inject.Inject;
-import java.util.function.Consumer;
-
+/**
+ * A listener mock that records every time it has been notified.
+ */
 public class SubredditListenerMock implements SubredditListener {
   private final Consumer<SubredditListener> consumer;
 
@@ -31,7 +32,7 @@ public class SubredditListenerMock implements SubredditListener {
   }
 
   @Inject
-  public void handle(@NonNull LinkDto link) {
+  public void handle(LinkDto link) {
     consumer.accept(this);
   }
 }

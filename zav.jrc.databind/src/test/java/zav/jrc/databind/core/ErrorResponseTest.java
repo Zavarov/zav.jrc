@@ -16,19 +16,24 @@
 
 package zav.jrc.databind.core;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import zav.jrc.databind.AbstractTest;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the attributes of an error response have been properly deserialized.
+ */
 public class ErrorResponseTest extends AbstractTest {
   static ErrorResponseDto error;
   static ErrorResponseDataDto data;
   static List<List<String>> messages;
   
+  /**
+   * Instantiates the error response DTO and retrieves its error messages.
+   */
   @BeforeAll
   public static void setUpAll() {
     error = read("ErrorResponse.json", ErrorResponseDto.class);

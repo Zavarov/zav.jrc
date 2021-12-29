@@ -80,14 +80,14 @@ public class Users {
   public static final Endpoint POST_API_REPORT_USER =
         new Endpoint("api", "report_user");
   /**
-   * TODO What does it do?
+   * Invite or remove other moderators from subreddits I moderate.
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_setpermissions">here</a>
    */
   public static final Endpoint POST_R_SUBREDDIT_API_SETPERMISSION =
         new Endpoint("r", "{subreddit}", "api", "setpermission");
   /**
-   * TODO What does it do?
+   * Invite or remove other moderators from subreddits I moderate.
    *
    * @see <a href="https://www.reddit.com/dev/api#POST_api_setpermissions">here</a>
    */
@@ -231,7 +231,7 @@ public class Users {
   public static final Endpoint GET_USER_USERNAME_HIDDEN =
         new Endpoint(GET_USER_USERNAME_WHERE.getPath("{username}", "hidden"));
   /**
-   * TODO What does it do?
+   * Return all submitted links and comments by the user.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_user_%28username%29_overview">here</a>
    */

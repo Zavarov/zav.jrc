@@ -16,11 +16,14 @@
 
 package zav.jrc.databind;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the attributes of a self account DTO have been properly deserialized.
+ */
 public class SelfAccountTest extends AbstractTest {
   static SelfAccountDto selfAccount;
   
@@ -35,7 +38,7 @@ public class SelfAccountTest extends AbstractTest {
   }
   
   @Test
-  public void testGetCommentKarma(){
+  public void testGetCommentKarma() {
     assertThat(selfAccount.getCommentKarma()).isEqualTo(1707);
   }
   

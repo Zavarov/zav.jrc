@@ -19,7 +19,6 @@ package zav.jrc.listener.observer;
 import java.util.EventListener;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
-import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.client.FailedRequestException;
 
 /**
@@ -28,18 +27,16 @@ import zav.jrc.client.FailedRequestException;
  *
  * @param <T> The type of listener that are observed by this class.
  */
-@NonNull
 public abstract class AbstractObserver<T extends EventListener> implements Observer<T> {
-  @NonNull
   private final Set<T> listeners = new CopyOnWriteArraySet<>();
 
   @Override
-  public boolean addListener(@NonNull T listener) {
+  public boolean addListener(T listener) {
     return listeners.add(listener);
   }
 
   @Override
-  public boolean removeListener(@NonNull T listener) {
+  public boolean removeListener(T listener) {
     return listeners.remove(listener);
   }
 

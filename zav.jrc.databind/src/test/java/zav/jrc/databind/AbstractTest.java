@@ -17,19 +17,29 @@
 package zav.jrc.databind;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
+/**
+ * Base class for all DTO tests.
+ */
 public abstract class AbstractTest {
   private static final Path RESOURCES = Paths.get("src/test/resources");
   
+  /**
+   * Deserializes a class based on the content of a JSON file.
+   *
+   * @param fileName The name of the file to be read.
+   * @param clazz The class of the target type.
+   * @param <T> The target type.
+   * @return An instance of the target type initializes with the content of the provided file.
+   */
   public static <T> T read(String fileName, Class<T> clazz) {
     try {
       ObjectMapper om = new ObjectMapper();
       return om.readValue(RESOURCES.resolve(fileName).toFile(), clazz);
-    } catch(IOException e) {
+    } catch (IOException e) {
       throw new IllegalArgumentException(e.getMessage(), e);
     }
   }

@@ -16,28 +16,23 @@
 
 package zav.jrc.client.internal;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * Specifies the type of authentication that is used when requesting an access token.<br>
  * Depending on the type of authentication, different endpoints may become available. e.g. an
  * application without user context is unable to use any of the endpoints related to accounts.
  */
-@NonNull
 public enum GrantType {
   USERLESS("https://oauth.reddit.com/grants/installed_client"),
   PASSWORD("password"),
   CLIENT("client_credentials"),
   REFRESH("refresh_token");
   
-  @NonNull
   private final String value;
 
-  GrantType(@NonNull String value) {
+  GrantType(String value) {
     this.value = value;
   }
   
-  @NonNull
   @Override
   public String toString() {
     return value;

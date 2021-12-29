@@ -25,19 +25,29 @@ import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.listener.internal.ClientMockModule;
 
+/**
+ * Base class for all listener tests.
+ */
 public abstract class AbstractTest {
-    protected static Injector GUICE;
-    protected static Client CLIENT;
+  @SuppressWarnings("all") // Initialized by setUpAll()
+  protected static Injector GUICE;
+  @SuppressWarnings("all") // Initialized by setUpAll()
+  protected static Client CLIENT;
+  
+  /**
+   * Creates a mock client to initialize the API with.
+   *
+   * @throws FailedRequestException If one of the API requests was rejected.
+   */
+  @BeforeAll
+  public static void setUpAll() throws FailedRequestException {
+    GUICE = Guice.createInjector(new ClientMockModule());
+    CLIENT = GUICE.getInstance(Client.class);
+    CLIENT.login(Duration.TEMPORARY);
+  }
     
-    @BeforeAll
-    public static void setUpAll() throws FailedRequestException {
-        GUICE = Guice.createInjector(new ClientMockModule());
-        CLIENT = GUICE.getInstance(Client.class);
-        CLIENT.login(Duration.TEMPORARY);
-    }
-    
-    @AfterAll
-    public static void tearDown() throws FailedRequestException {
-        CLIENT.logout();
-    }
+  @AfterAll
+  public static void tearDown() throws FailedRequestException {
+    CLIENT.logout();
+  }
 }

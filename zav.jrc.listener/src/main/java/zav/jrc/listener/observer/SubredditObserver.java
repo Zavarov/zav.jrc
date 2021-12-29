@@ -19,12 +19,10 @@ package zav.jrc.listener.observer;
 import com.google.inject.Injector;
 import com.google.inject.Module;
 import com.google.inject.assistedinject.Assisted;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
@@ -38,11 +36,8 @@ import zav.jrc.listener.requester.LinkRequester;
  * {@link #notifyAllListeners()} will call the respective {@code handle} functions of the selected
  * listeners.
  */
-@NonNull
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
-  @NonNull
   private final Subreddit subreddit;
-  @NonNull
   private final LinkRequester requester;
   @Nullable
   private List<LinkDto> history;
@@ -50,7 +45,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   private Injector injector;
   
   @Inject
-  public SubredditObserver(@Assisted @NonNull Subreddit subreddit) {
+  public SubredditObserver(@Assisted Subreddit subreddit) {
     this.requester = new LinkRequester(subreddit);
     this.subreddit = subreddit;
   }
@@ -68,7 +63,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   }
 
   @Override
-  public void notifyListener(@NonNull SubredditListener listener) throws FailedRequestException {
+  public void notifyListener(SubredditListener listener) throws FailedRequestException {
     try {
       //History may be null when a listener is called explicitly instead of via notifyAllListener.
       history = history == null ? requester.next() : history;

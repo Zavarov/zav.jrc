@@ -16,6 +16,10 @@
 
 package zav.jrc.listener.observer;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.ArrayList;
+import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.client.FailedRequestException;
@@ -24,19 +28,21 @@ import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.internal.ObserverMock;
 import zav.jrc.listener.internal.SubredditListenerMock;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether listeners that have been added to an observer are properly notified.
+ */
 public class ObserverTest extends AbstractTest {
   private static Observer<SubredditListener> observer;
   private List<SubredditListener> responses;
   private SubredditListener foo;
   private SubredditListener bar;
-
+  
+  /**
+   * Creates mocks of the listeners {@link #foo} and {@link #bar}, as well as the observer
+   * {@link #observer}. Notifications will be stored in {@link #responses}.
+   */
   @BeforeEach
-  public void setUp(){
+  public void setUp() {
     observer = new ObserverMock();
     responses = new ArrayList<>();
     foo = new SubredditListenerMock(responses::add);

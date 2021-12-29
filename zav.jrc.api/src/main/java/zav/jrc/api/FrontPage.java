@@ -37,6 +37,9 @@ import zav.jrc.endpoint.Subreddits;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
 
+/**
+ * Representation of the Reddit front page (i.e. r/all).
+ */
 public class FrontPage {
   @Inject
   private Client client;
@@ -47,6 +50,13 @@ public class FrontPage {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
+  /**
+   * Returns a stream over all links, sorted by {@code best}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_BEST
+   */
   public Stream<LinkDto> getBest(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_BEST)
@@ -57,6 +67,13 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code controversial}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_CONTROVERSIAL
+   */
   public Stream<LinkDto> getControversial(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_CONTROVERSIAL)
@@ -67,6 +84,13 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code hot}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_HOT
+   */
   public Stream<LinkDto> getHot(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_HOT)
@@ -77,6 +101,13 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code new}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_NEW
+   */
   public Stream<LinkDto> getNew(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_NEW)
@@ -87,6 +118,13 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over randomly selected links.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_RANDOM
+   */
   public Stream<LinkDto> getRandom(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RANDOM)
@@ -99,6 +137,13 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(listing, LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code rising}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_RISING
+   */
   public Stream<LinkDto> getRising(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RISING)
@@ -109,6 +154,13 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code top}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_TOP
+   */
   public Stream<LinkDto> getTop(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_TOP)
@@ -125,6 +177,14 @@ public class FrontPage {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
+  /**
+   * Returns a stream over all links matching the search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Search#GET_SEARCH
+   */
   public Stream<LinkDto> getSearch(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_SEARCH)
@@ -141,6 +201,14 @@ public class FrontPage {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
+  /**
+   * Returns a stream over all subreddit names matching the search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream of subreddit names.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_API_SEARCH_REDDIT_NAMES
+   */
   public Stream<String> postSearchRedditNames(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
         .setEndpoint(Subreddits.POST_API_SEARCH_REDDIT_NAMES)
@@ -154,6 +222,14 @@ public class FrontPage {
     return values.stream().map(Objects::toString);
   }
   
+  /**
+   * Returns a stream over all subreddits matching the search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_API_SEARCH_SUBREDDITS
+   */
   public Stream<SubredditDto> postSearchSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS)
@@ -167,6 +243,14 @@ public class FrontPage {
     return values.stream().map(value -> JsonUtils.transform(value, SubredditDto.class));
   }
   
+  /**
+   * Returns a stream over all links matching the search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_API_SUBREDDIT_AUTOCOMPLETE_V2
+   */
   public Stream<SubredditDto> getSubredditAutocomplete(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2)
@@ -177,6 +261,14 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all default subreddits.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_DEFAULT
+   */
   public Stream<SubredditDto> getDefaultSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT)
@@ -187,6 +279,14 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all subreddits that are only accessible by gilded users.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_GOLD
+   */
   public Stream<SubredditDto> getGoldSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_GOLD)
@@ -197,6 +297,14 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all newly created subreddits.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_NEW
+   */
   public Stream<SubredditDto> getNewSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_NEW)
@@ -207,6 +315,14 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all popular subreddits.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_POPULAR
+   */
   public Stream<SubredditDto> getPopularSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_POPULAR)
@@ -217,6 +333,14 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all subreddits matching the search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_SEARCH
+   */
   public Stream<SubredditDto> getSearchSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
@@ -227,6 +351,14 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all newly created user subreddits.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_USERS_NEW
+   */
   public Stream<SubredditDto> getNewUserSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_NEW)
@@ -237,6 +369,14 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all popular user subreddits.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_USERS_POPULAR
+   */
   public Stream<SubredditDto> getPopularUserSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_POPULAR)
@@ -247,6 +387,15 @@ public class FrontPage {
     return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
+  /**
+   * Returns a stream over all accounts corresponding to the user subreddits, matching the search
+   * parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the accounts.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_USERS_SEARCH
+   */
   public Stream<AccountDto> getSearchUserSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_SEARCH)

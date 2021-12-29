@@ -16,16 +16,23 @@
 
 package zav.jrc.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import zav.jrc.client.FailedRequestException;
+import zav.jrc.databind.AwardDto;
+import zav.jrc.databind.KarmaDto;
+import zav.jrc.databind.PreferencesDto;
+import zav.jrc.databind.SelfAccountDto;
+import zav.jrc.databind.SubredditDto;
+import zav.jrc.databind.UserDto;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the calls to the self-account-related endpoints return the expected response.
+ */
 public class SelfAccountTest extends AbstractTest {
   
   SelfAccount selfAccount;

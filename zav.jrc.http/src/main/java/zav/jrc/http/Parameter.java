@@ -16,31 +16,24 @@
 
 package zav.jrc.http;
 
-import org.eclipse.jdt.annotation.NonNull;
-
 /**
  * Parameters are used to provide additional information to the endpoint. Examples for this are
  * the index when requesting stickied posts or the number of elements that should be returned.<br>
  * Each parameter consists of a keyword, as well as a value that is assigned to it.
  */
-@NonNull
 public class Parameter {
-  @NonNull
   private final Object key;
-  @NonNull
   private final Object value;
   
-  public Parameter(@NonNull Object key, @NonNull Object value) {
+  public Parameter(Object key, Object value) {
     this.key = key;
     this.value = value;
   }
   
-  @NonNull
   public Object getKey() {
     return key;
   }
   
-  @NonNull
   public Object getValue() {
     return value;
   }

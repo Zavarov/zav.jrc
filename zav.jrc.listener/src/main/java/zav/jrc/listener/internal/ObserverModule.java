@@ -20,6 +20,11 @@ import com.google.inject.AbstractModule;
 import zav.jrc.databind.LinkDto;
 import zav.jrc.databind.SubredditDto;
 
+/**
+ * Observer module used for dependency injection.<br>
+ * In over to avoid a hardcoded handle(...) method in the listener interface, the required arguments
+ * can instead be retrieved via the {@code Inject} annotation.
+ */
 public class ObserverModule extends AbstractModule {
   private final SubredditDto subreddit;
   private final LinkDto link;

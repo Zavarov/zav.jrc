@@ -28,12 +28,17 @@ import javax.inject.Inject;
 import okhttp3.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.*;
+import zav.jrc.databind.AccountDto;
+import zav.jrc.databind.AwardDto;
+import zav.jrc.databind.CommentDto;
+import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.ThingDto;
+import zav.jrc.databind.TrophyListDto;
+import zav.jrc.databind.UserDto;
 import zav.jrc.endpoint.Users;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
@@ -64,7 +69,6 @@ public class Account {
   }
   
   @Override
-  @NonNull
   public String toString() {
     return String.format("%s[%s]", getClass(), name);
   }
@@ -81,6 +85,7 @@ public class Account {
    *
    * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#POST_API_BLOCK_USER
    */
   public Map<?, ?> postBlock() throws FailedRequestException {
     Request query = client.newRequest()
@@ -99,6 +104,7 @@ public class Account {
    * @param reason A humanly readable justification why the user was reported.
    * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#POST_API_REPORT_USER
    */
   public String postReport(String reason) throws FailedRequestException {
     Map<String, String> body = new HashMap<>();
@@ -118,6 +124,7 @@ public class Account {
    * Unblocks this account.
    *
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#POST_API_UNFRIEND
    */
   public void postUnblock() throws FailedRequestException {
     AccountDto self = getAbout();
@@ -140,6 +147,7 @@ public class Account {
    *
    * @return The DTO object corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_API_USER_DATA_BY_ACCOUNT_IDS
    * @deprecated Use {@link #getAbout()} instead.
    */
   @Deprecated
@@ -160,6 +168,7 @@ public class Account {
    *
    * @return {@code true}, when account with this name doesn't exist yet.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_API_USERNAME_AVAILABLE
    */
   public boolean getAvailable() throws FailedRequestException {
     Request query = client.newRequest()
@@ -175,6 +184,7 @@ public class Account {
    * Unfriends this user.
    *
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#DELETE_API_V1_ME_FRIENDS_USERNAME
    */
   public void deleteFriends() throws FailedRequestException {
     Request query = client.newRequest()
@@ -193,6 +203,7 @@ public class Account {
    *
    * @return The user DTO corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_API_V1_ME_FRIENDS_USERNAME
    */
   public UserDto getFriends() throws FailedRequestException {
     Request query = client.newRequest()
@@ -211,6 +222,7 @@ public class Account {
    * @param note A custom note corresponding to this account. May be {@code null}.
    * @return The user DTO corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#PUT_API_V1_ME_FRIENDS_USERNAME
    */
   public UserDto putFriends(@Nullable String note) throws FailedRequestException {
     Map<String, String> body = new HashMap<>();
@@ -233,6 +245,7 @@ public class Account {
    *
    * @return A stream over the DTOs corresponding to the awards.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_API_V1_USER_USERNAME_TROPHIES
    */
   public Stream<AwardDto> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
@@ -252,9 +265,10 @@ public class Account {
    *
    * @return The DTO object corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_ABOUT
    */
   public AccountDto getAbout() throws FailedRequestException {
-    AccountDto result = accountCache.getIfPresent(name);
+    @Nullable AccountDto result = accountCache.getIfPresent(name);
     
     // Only perform a new request if the account hasn't been cached.
     if (result == null) {
@@ -280,6 +294,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the comments.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_COMMENTS
    */
   public Stream<CommentDto> getComments(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
@@ -298,6 +313,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_DOWNVOTED
    */
   public Stream<ThingDto> getDownvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
@@ -316,6 +332,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_GILDED
    */
   public Stream<ThingDto> getGilded(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
@@ -334,6 +351,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_HIDDEN
    */
   public Stream<ThingDto> getHidden(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
@@ -352,6 +370,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_OVERVIEW
    */
   public Stream<ThingDto> getOverview(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
@@ -370,6 +389,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_SAVED
    */
   public Stream<ThingDto> getSaved(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
@@ -388,6 +408,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_SUBMITTED
    */
   public Stream<LinkDto> getSubmitted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
@@ -406,6 +427,7 @@ public class Account {
    * @param params Additional parameters such as {@code sort} or {@code count}.
    * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_USER_USERNAME_UPVOTED
    */
   public Stream<ThingDto> getUpvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()

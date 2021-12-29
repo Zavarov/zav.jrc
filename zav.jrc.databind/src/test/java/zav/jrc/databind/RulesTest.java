@@ -16,18 +16,23 @@
 
 package zav.jrc.databind;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
+import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.List;
-
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the attributes of a rules DTO have been properly deserialized.
+ */
 public class RulesTest extends AbstractTest {
   static RulesDto rules;
   static List<RuleDto> ruleList;
   static List<NextStepReasonDto> siteRulesFlowList;
   
+  /**
+   * Instantiates the rules DTO and retrieves the individual rules.
+   */
   @BeforeAll
   public static void setUpAll() {
     rules = read("Rules.json", RulesDto.class);

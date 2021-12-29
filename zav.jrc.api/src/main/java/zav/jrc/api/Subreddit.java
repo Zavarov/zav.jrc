@@ -36,17 +36,17 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkDto;
 import zav.jrc.databind.RulesDto;
-import zav.jrc.databind.SubredditSettingsDto;
 import zav.jrc.databind.SubredditDto;
+import zav.jrc.databind.SubredditSettingsDto;
 import zav.jrc.databind.ThingDto;
-import zav.jrc.databind.UserListDto;
 import zav.jrc.databind.UserDto;
+import zav.jrc.databind.UserListDto;
 import zav.jrc.databind.core.ListingDto;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
@@ -54,6 +54,9 @@ import zav.jrc.endpoint.Subreddits;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
 
+/**
+ * Representation of a subreddits. Subreddits are usually of the form r/<i>name</i>.
+ */
 public class Subreddit {
   private static final Cache<String, SubredditDto> subredditCache = CacheBuilder.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
@@ -72,7 +75,6 @@ public class Subreddit {
   }
   
   @Override
-  @NonNull
   public String toString() {
     return String.format("%s[%s]", getClass(), name);
   }
@@ -83,6 +85,13 @@ public class Subreddit {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
+  /**
+   * Returns a stream over all links, sorted by {@code controversial}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_R_SUBREDDIT_CONTROVERSIAL
+   */
   public Stream<LinkDto> getControversial(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_CONTROVERSIAL)
@@ -94,6 +103,13 @@ public class Subreddit {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code hot}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_R_SUBREDDIT_HOT
+   */
   public Stream<LinkDto> getHot(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_HOT)
@@ -105,6 +121,13 @@ public class Subreddit {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code new}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_R_SUBREDDIT_NEW
+   */
   public Stream<LinkDto> getNew(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
@@ -116,6 +139,13 @@ public class Subreddit {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over randomly selected links.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_R_SUBREDDIT_RANDOM
+   */
   public Stream<LinkDto> getRandom(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_RANDOM)
@@ -129,6 +159,13 @@ public class Subreddit {
     return JsonUtils.transformListingOfThings(listing, LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code rising}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_R_SUBREDDIT_RISING
+   */
   public Stream<LinkDto> getRising(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_RISING)
@@ -140,6 +177,13 @@ public class Subreddit {
     return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
+  /**
+   * Returns a stream over all links, sorted by {@code top}.
+   *
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Listings#GET_R_SUBREDDIT_TOP
+   */
   public Stream<LinkDto> getTop(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_TOP)
@@ -157,6 +201,14 @@ public class Subreddit {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
+  /**
+   * Returns a stream over all links matching the search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the DTOs corresponding to the links.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Search#GET_R_SUBREDDIT_SEARCH
+   */
   public Stream<LinkDto> getSearch(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_R_SUBREDDIT_SEARCH)
@@ -174,7 +226,15 @@ public class Subreddit {
   //    Subreddits                                                                                //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-
+  
+  /**
+   * Creates a new subreddit.
+   *
+   * @param settings The settings of the created subreddit.
+   * @return The settings of the created subreddit.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_API_SITE_ADMIN
+   */
   public SubredditSettingsDto postCreate(SubredditSettingsDto settings) throws FailedRequestException {
     Map<?, ?> body = JsonUtils.transform(settings, Map.class);
     
@@ -189,6 +249,14 @@ public class Subreddit {
     return JsonUtils.transformThing(client.send(query), SubredditSettingsDto.class);
   }
   
+  /**
+   * Configures an already existing subreddit.
+   *
+   * @param settings The settings of the created subreddit.
+   * @return The settings of the created subreddit.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_API_SITE_ADMIN
+   */
   public SubredditSettingsDto postConfigure(SubredditSettingsDto settings) throws FailedRequestException {
     Map<?, ?> body = JsonUtils.transform(settings, Map.class);
   
@@ -204,6 +272,12 @@ public class Subreddit {
     return JsonUtils.transformThing(client.send(query), SubredditSettingsDto.class);
   }
   
+  /**
+   * Subscribe to this subreddit.
+   *
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_API_SUBSCRIBE
+   */
   public void postSubscribe() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
@@ -217,6 +291,12 @@ public class Subreddit {
     client.send(query);
   }
   
+  /**
+   * Unsubscribe from this subreddit.
+   *
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_API_SUBSCRIBE
+   */
   public void postUnsubscribe() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
@@ -230,6 +310,13 @@ public class Subreddit {
     client.send(query);
   }
   
+  /**
+   * Returns the requirements for creating posts in this subreddit..
+   *
+   * @return A key-value mapping of all potential restrictions.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_API_V1_SUBREDDIT_POST_REQUIREMENTS
+   */
   public Map<?, ?> getPostRequirements() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_API_V1_SUBREDDIT_POST_REQUIREMENTS)
@@ -240,6 +327,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Returns a stream over all users that have been banned from this subreddit.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_BANNED
+   */
   public Stream<UserDto> getBanned() throws FailedRequestException {
     Request query = client.newRequest()
         .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_BANNED)
@@ -252,6 +346,13 @@ public class Subreddit {
     return JsonUtils.transformListing(listing, UserDto.class);
   }
   
+  /**
+   * Returns a stream over all subreddit contributors.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS
+   */
   public Stream<UserDto> getContributors() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS)
@@ -264,6 +365,13 @@ public class Subreddit {
     return JsonUtils.transformListing(listing, UserDto.class);
   }
   
+  /**
+   * Returns a stream over all subreddit moderators.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_MODERATORS
+   */
   public Stream<UserDto> getModerators() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MODERATORS)
@@ -274,6 +382,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), UserListDto.class).getData().getChildren().stream();
   }
   
+  /**
+   * Returns a stream over all users that have been muted by the moderators of this subreddit.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_MUTED
+   */
   public Stream<UserDto> getMuted() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MUTED)
@@ -286,6 +401,13 @@ public class Subreddit {
     return JsonUtils.transformListing(listing, UserDto.class);
   }
   
+  /**
+   * Returns a stream over all users that have been banned from the wiki of this subreddit.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_WIKIBANNED
+   */
   public Stream<UserDto> getWikiBanned() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKIBANNED)
@@ -298,6 +420,13 @@ public class Subreddit {
     return JsonUtils.transformListing(listing, UserDto.class);
   }
   
+  /**
+   * Returns a stream over all wiki contributors of this subreddit.
+   *
+   * @return A stream over the DTOs corresponding to the users.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS
+   */
   public Stream<UserDto> getWikiContributors() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS)
@@ -310,6 +439,13 @@ public class Subreddit {
     return JsonUtils.transformListing(listing, UserDto.class);
   }
   
+  /**
+   * Deletes the subreddit banner.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_BANNER
+   */
   public Map<?, ?> postDeleteBanner() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_BANNER)
@@ -322,6 +458,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Deletes the subreddit header image.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_HEADER
+   */
   public Map<?, ?> postDeleteHeader() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_HEADER)
@@ -334,6 +477,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Deletes the subreddit icon.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_ICON
+   */
   public Map<?, ?> postDeleteIcon() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_ICON)
@@ -346,6 +496,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Deletes one of the custom subreddit images.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_DELETE_SR_IMAGE
+   */
   public Map<?, ?> postDeleteImage(String imageName) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_DELETE_SR_IMAGE)
@@ -359,6 +516,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Returns the label of the submit button.
+   *
+   * @return The label of the submit button.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_API_SUBMIT_TEXT
+   */
   public String getSubmitText() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_API_SUBMIT_TEXT)
@@ -371,6 +535,13 @@ public class Subreddit {
     return response.get("submit_text").toString();
   }
   
+  /**
+   * Updates the stylesheet of this subreddit.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET
+   */
   public Map<?, ?> postSubredditStylesheet(Parameter... params) throws FailedRequestException {
     Map<Object, Object> body = new HashMap<>();
     Arrays.stream(params).forEach(param -> body.put(param.getKey(), param.getValue()));
@@ -386,6 +557,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Uploads a custom image to this subreddit.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
+   */
   public Map<?, ?> postUploadImage(RenderedImage image, String imageName) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
     
@@ -414,6 +592,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Updates the header image of this subreddit.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
+   */
   public Map<?, ?> postUploadHeader(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
   
@@ -441,6 +626,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Updates the icon of this subreddit.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
+   */
   public Map<?, ?> postUploadIcon(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
   
@@ -468,6 +660,13 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Updates the banner of this subreddit.
+   *
+   * @return The raw JSON response.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
+   */
   public Map<?, ?> postUploadBanner(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
   
@@ -495,8 +694,15 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Returns the DTO object of this subreddit.
+   *
+   * @return The DTO object corresponding to this subreddit.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT
+   */
   public SubredditDto getAbout() throws FailedRequestException {
-    SubredditDto result = subredditCache.getIfPresent(name);
+    @Nullable SubredditDto result = subredditCache.getIfPresent(name);
   
     // Only perform a new request if the account hasn't been cached.
     if (result == null) {
@@ -516,6 +722,13 @@ public class Subreddit {
     return result;
   }
   
+  /**
+   * Returns the current subreddit settings.
+   *
+   * @return The DTO corresponding to the subreddit settings.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_EDIT
+   */
   public SubredditSettingsDto getEdit() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_EDIT)
@@ -526,6 +739,13 @@ public class Subreddit {
     return JsonUtils.transformThing(client.send(query), SubredditSettingsDto.class);
   }
   
+  /**
+   * Returns the rules of this subreddit.
+   *
+   * @return The DTO corresponding to the subreddit rules.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_RULES
+   */
   public RulesDto getRules() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_RULES)
@@ -536,6 +756,14 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), RulesDto.class);
   }
   
+  /**
+   * Returns the traffic in this subreddit.<br>
+   * The charts show the traffic of this hour, day and week.
+   *
+   * @return A mapping over the subreddit traffic.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_TRAFFIC
+   */
   public Map<?, ?> getTraffic() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_TRAFFIC)
@@ -546,6 +774,14 @@ public class Subreddit {
     return JsonUtils.transform(client.send(query), Map.class);
   }
   
+  /**
+   * Returns the stickied link.
+   *
+   * @param index The index of the stickied link. Has to be either {@code 1} or {@code 2}.
+   * @return The DTO corresponding to the link.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_R_SUBREDDIT_ABOUT_STICKY
+   */
   public LinkDto getSticky(int index) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_STICKY)

@@ -25,6 +25,7 @@ import com.google.inject.name.Names;
 import java.io.IOException;
 import java.net.URL;
 import java.util.UUID;
+import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.databind.io.CredentialsDto;
 import zav.jrc.databind.io.UserAgentDto;
 
@@ -33,8 +34,10 @@ import zav.jrc.databind.io.UserAgentDto;
  * authentication.
  */
 public abstract class ClientModule extends AbstractModule {
+  @Nullable
   private static final URL USER_AGENT =
         ClientModule.class.getClassLoader().getResource("UserAgent.json");
+  @Nullable
   private static final URL CREDENTIALS =
         ClientModule.class.getClassLoader().getResource("Credentials.json");
   

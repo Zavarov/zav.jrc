@@ -16,22 +16,29 @@
 
 package zav.jrc.api;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.*;
-import zav.jrc.http.Parameter;
+import static org.assertj.core.api.Assertions.assertThat;
 
-import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import javax.imageio.ImageIO;
+import org.eclipse.jdt.annotation.Nullable;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import zav.jrc.client.FailedRequestException;
+import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.RulesDto;
+import zav.jrc.databind.SubredditDto;
+import zav.jrc.databind.SubredditSettingsDto;
+import zav.jrc.databind.UserDto;
+import zav.jrc.http.Parameter;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the calls to the subreddit-related endpoints return the expected response.
+ */
 public class SubredditTest extends AbstractTest {
   Subreddit subreddit;
   
@@ -93,8 +100,8 @@ public class SubredditTest extends AbstractTest {
   @Test
   public void testGetSearch() throws FailedRequestException {
     Parameter[] params = new Parameter[]{
-          new Parameter("q", "api"),
-          new Parameter("restrict_sr", true)
+        new Parameter("q", "api"),
+        new Parameter("restrict_sr", true)
     };
     
     assertThat(subreddit.getSearch(params)).hasSize(25);
@@ -196,15 +203,15 @@ public class SubredditTest extends AbstractTest {
   
   @Test
   public void testPostSubredditStylesheet() throws FailedRequestException, IOException {
-    InputStream is = getClass().getClassLoader().getResourceAsStream("css/Simple.css");
+    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("css/Simple.css");
     Objects.requireNonNull(is);
     String css = new String(is.readAllBytes(), StandardCharsets.UTF_8);
     
     Parameter[] params = new Parameter[]{
-          new Parameter("api_type", "json"),
-          new Parameter("op", "save"),
-          new Parameter("reason", "test"),
-          new Parameter("stylesheet_contents", css)
+        new Parameter("api_type", "json"),
+        new Parameter("op", "save"),
+        new Parameter("reason", "test"),
+        new Parameter("stylesheet_contents", css)
     };
     
     assertThat(subreddit.postSubredditStylesheet(params)).isNotEmpty();
@@ -212,7 +219,7 @@ public class SubredditTest extends AbstractTest {
   
   @Test
   public void testPostUploadImage() throws FailedRequestException, IOException {
-    URL url = getClass().getResource("/images/Image.png");
+    @Nullable URL url = getClass().getResource("/images/Image.png");
     Objects.requireNonNull(url);
     BufferedImage image = ImageIO.read(url);
     
@@ -221,7 +228,7 @@ public class SubredditTest extends AbstractTest {
   
   @Test
   public void testPostUploadHeader() throws FailedRequestException, IOException {
-    URL url = getClass().getResource("/images/Header.png");
+    @Nullable URL url = getClass().getResource("/images/Header.png");
     Objects.requireNonNull(url);
     BufferedImage header = ImageIO.read(url);
   
@@ -230,7 +237,7 @@ public class SubredditTest extends AbstractTest {
   
   @Test
   public void testPostUploadIcon() throws FailedRequestException, IOException {
-    URL url = getClass().getResource("/images/Icon.png");
+    @Nullable URL url = getClass().getResource("/images/Icon.png");
     Objects.requireNonNull(url);
     BufferedImage icon = ImageIO.read(url);
   
@@ -239,7 +246,7 @@ public class SubredditTest extends AbstractTest {
   
   @Test
   public void testPostUploadBanner() throws FailedRequestException, IOException {
-    URL url = getClass().getResource("/images/Banner.png");
+    @Nullable URL url = getClass().getResource("/images/Banner.png");
     Objects.requireNonNull(url);
     BufferedImage banner = ImageIO.read(url);
   

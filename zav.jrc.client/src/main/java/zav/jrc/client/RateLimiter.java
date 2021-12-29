@@ -20,7 +20,7 @@ import static java.time.temporal.ChronoUnit.SECONDS;
 
 import java.time.LocalDateTime;
 import okhttp3.Response;
-import org.eclipse.jdt.annotation.NonNull;
+import org.eclipse.jdt.annotation.Nullable;
 
 /**
  * A rate limiter is used to limit the amount of requests that can be made to the Reddit API with
@@ -32,14 +32,10 @@ import org.eclipse.jdt.annotation.NonNull;
  * until further requests can be made.
  */
 public class RateLimiter {
-  @NonNull
   private static final String USED = "x-ratelimit-used";
-  @NonNull
   private static final String REMAINING = "x-ratelimit-remaining";
-  @NonNull
   private static final String RESET = "x-ratelimit-reset";
-
-  private LocalDateTime lastResponse;
+  private LocalDateTime lastResponse = LocalDateTime.MIN;
 
   private long used = 0;
   private long remaining = 60;
@@ -65,7 +61,7 @@ public class RateLimiter {
    */
   public synchronized void update(Response response) {
     lastResponse = LocalDateTime.now();
-    String value = response.header(USED);
+    @Nullable String value = response.header(USED);
 
     if (value != null) {
       used = (long) Double.parseDouble(value);
@@ -95,7 +91,7 @@ public class RateLimiter {
     if (remaining <= 0) {
       LocalDateTime now = LocalDateTime.now();
       //Wait until the start of the next period
-      if (SECONDS.between(lastResponse, now) < reset) {
+      if (SECONDS.between(lastResponse, now) < reset && SECONDS.between(lastResponse, now) > 0) {
         Thread.sleep(reset - SECONDS.between(lastResponse, now));
       }
     }

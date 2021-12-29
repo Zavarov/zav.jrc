@@ -17,7 +17,6 @@
 package zav.jrc.client;
 
 import java.util.Locale;
-import org.eclipse.jdt.annotation.NonNull;
 
 /**
  * If {@link #PERMANENT} is selected, a refresh token is provided together with the access token
@@ -25,13 +24,11 @@ import org.eclipse.jdt.annotation.NonNull;
  * then be used to request a new access token.<br>
  * If {@link #TEMPORARY} is selected, only the access token is provided.
  */
-@NonNull
 public enum Duration {
   PERMANENT,
   TEMPORARY;
   
   @Override
-  @NonNull
   public String toString() {
     return name().toLowerCase(Locale.ENGLISH);
   }

@@ -16,16 +16,22 @@
 
 package zav.jrc.databind;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the attributes of a trophy list DTO have been properly deserialized.
+ */
 public class TrophyListTest extends AbstractTest {
   static TrophyListDto trophyList;
   static AwardDto threeYearClub;
   static AwardDto verifiedEmail;
   
+  /**
+   * Instantiates the trophy list DTO and retrieves the individual awards.
+   */
   @BeforeAll
   public static void setUpAll() {
     trophyList = read("TrophyList.json", TrophyListDto.class);

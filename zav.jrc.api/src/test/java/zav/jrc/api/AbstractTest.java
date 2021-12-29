@@ -20,16 +20,27 @@ import com.google.inject.Guice;
 import com.google.inject.Injector;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import zav.jrc.api.internal.guice.ClientMockModule;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.api.internal.guice.ClientMockModule;
 
+/**
+ * Base class for all API tests.
+ */
 public abstract class AbstractTest {
+  @SuppressWarnings("all") // Initialized by setUpAll()
   protected static Injector GUICE;
+  @SuppressWarnings("all") // Initialized by setUpAll()
   protected static Client CLIENT;
+  @SuppressWarnings("all") // Initialized by setUpAll()
   protected static Reddit REDDIT;
   
+  /**
+   * Creates a mock client to initialize the API with.
+   *
+   * @throws FailedRequestException If one of the API requests was rejected.
+   */
   @BeforeAll
   public static void setUpAll() throws FailedRequestException {
     GUICE = Guice.createInjector(new ClientMockModule());

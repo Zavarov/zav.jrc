@@ -16,12 +16,15 @@
 
 package zav.jrc.databind.io;
 
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import zav.jrc.databind.AbstractTest;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
+/**
+ * Checks whether the attributes of a reddit token DTO have been properly deserialized.
+ */
 public class TokenTest extends AbstractTest {
   static TokenDto token;
   

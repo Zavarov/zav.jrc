@@ -5,9 +5,15 @@
     "https://checkstyle.org/dtds/suppressions_1_2.dtd">
 
 <suppressions>
+  <suppress checks="LineLength"
+    files="Client.java"/>
   <suppress checks="MethodName"
     files="Client.java"/>
   <suppress checks="AbbreviationAsWordInName"
     files="OAuth2.java"/>
+  <suppress checks="LineLength"
+    files=".*Test.java"/>
+  <suppress checks="LineLength"
+    files="zav[\\/]jrc[\\/]api[\\/].*.java"/>
 </suppressions>
  

@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
@@ -37,21 +36,17 @@ import zav.jrc.databind.LinkDto;
  * On future requests, the head is compared against all retrieved links and only those that have
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
-@NonNull
 public class LinkRequester extends AbstractIterator<List<LinkDto>> {
-  @NonNull
   private static final Logger LOGGER = LogManager.getLogger(LinkRequester.class);
-  @NonNull
   private final Subreddit subreddit;
   @Nullable
   private LinkDto head;
   
-  public LinkRequester(@NonNull Subreddit subreddit) {
+  public LinkRequester(Subreddit subreddit) {
     this.subreddit = subreddit;
   }
 
   @Override
-  @NonNull
   protected List<LinkDto> computeNext() throws IteratorException {
     try {
       LOGGER.info("Computing next links via {}.", subreddit);
@@ -61,7 +56,6 @@ public class LinkRequester extends AbstractIterator<List<LinkDto>> {
     }
   }
 
-  @NonNull
   private List<LinkDto> init() throws FailedRequestException {
     LOGGER.info("Possible first time this requester is used? Retrieve head.");
     List<LinkDto> submissions = subreddit.getNew().limit(1).collect(Collectors.toList());
@@ -74,7 +68,6 @@ public class LinkRequester extends AbstractIterator<List<LinkDto>> {
     return Collections.emptyList();
   }
 
-  @NonNull
   private List<LinkDto> request() throws FailedRequestException {
     assert head != null;
     LOGGER.info("Requesting links after {}.", head.getName());
@@ -108,9 +101,8 @@ public class LinkRequester extends AbstractIterator<List<LinkDto>> {
    * Reddit API. It wraps the {@link FailedRequestException} around an unchecked exception to
    * satisfy due to the signature of {@link #computeNext()}.
    */
-  @NonNull
   public static final class IteratorException extends RuntimeException {
-    public IteratorException(@NonNull FailedRequestException cause) {
+    public IteratorException(FailedRequestException cause) {
       super(cause);
     }
     

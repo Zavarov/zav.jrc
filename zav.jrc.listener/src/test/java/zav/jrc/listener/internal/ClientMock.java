@@ -16,17 +16,20 @@
 
 package zav.jrc.listener.internal;
 
-import okhttp3.Request;
-import zav.jrc.client.Client;
-import zav.jrc.client.Duration;
-import zav.jrc.databind.io.TokenDto;
-
-import javax.inject.Singleton;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
+import javax.inject.Singleton;
+import okhttp3.Request;
+import org.eclipse.jdt.annotation.Nullable;
+import zav.jrc.client.Client;
+import zav.jrc.client.Duration;
+import zav.jrc.databind.io.TokenDto;
 
+/**
+ * Mock client instance that uses pre-recorded responses instead of performing actual API calls.
+ */
 @Singleton // Client is shared among all views
 public class ClientMock extends Client {
   @Override
@@ -46,7 +49,7 @@ public class ClientMock extends Client {
   @Override
   public synchronized String send(Request request) {
     try {
-      InputStream is = getClass().getClassLoader().getResourceAsStream("Response.json");
+      @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("Response.json");
       Objects.requireNonNull(is);
       return new String(is.readAllBytes(), StandardCharsets.UTF_8);
     } catch (IOException e) {

@@ -16,11 +16,14 @@
 
 package zav.jrc.databind;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import static org.assertj.core.api.Assertions.assertThat;
-
+/**
+ * Checks whether the attributes of a user list DTO have been properly deserialized.
+ */
 public class UserListTest extends AbstractTest {
   static UserListDto userList;
   static UserDto user;

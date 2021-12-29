@@ -18,20 +18,22 @@ package zav.jrc.listener.internal;
 
 import com.google.inject.Injector;
 import com.google.inject.Module;
-import org.eclipse.jdt.annotation.NonNull;
+import javax.inject.Inject;
 import zav.jrc.databind.LinkDto;
 import zav.jrc.databind.SubredditDto;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.observer.AbstractObserver;
 
-import javax.inject.Inject;
-
+/**
+ * Observer mock that calls the custom {@code handle(...)} method of a listener with empty subreddit
+ * and link DTOs.
+ */
 public class ObserverMock extends AbstractObserver<SubredditListener> {
   @Inject
   private Injector injector;
   
   @Override
-  public void notifyListener(@NonNull SubredditListener listener) {
+  public void notifyListener(SubredditListener listener) {
     Module module = new ObserverModule(new SubredditDto(), new LinkDto());
     
     injector.createChildInjector(module).injectMembers(listener);
