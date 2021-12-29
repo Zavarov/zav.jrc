@@ -1,0 +1,94 @@
+{
+  "subreddits": [
+    {
+      "active_user_count": 6,
+      "icon_img": "",
+      "key_color": "",
+      "name": "banana",
+      "subscriber_count": 8732,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": false,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 93,
+      "icon_img": "",
+      "key_color": "#ffb000",
+      "name": "BananaFish",
+      "subscriber_count": 18801,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": false,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 8,
+      "icon_img": "https://b.thumbs.redditmedia.com/tIqffcqyCu4K2dDDk--hUy3xWo3OU-BHoSPKOFigU0U.png",
+      "key_color": "#ffb000",
+      "name": "BananasForScale",
+      "subscriber_count": 20456,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": false,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 3,
+      "icon_img": "",
+      "key_color": "",
+      "name": "bananarchist",
+      "subscriber_count": 6739,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": true,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 3,
+      "icon_img": "https://b.thumbs.redditmedia.com/kV84a60aw0nl0TWtT9z6cYo0p5-UNYCk6j2UfpwLfQY.png",
+      "key_color": "#ddbd37",
+      "name": "BananaWisdom",
+      "subscriber_count": 1939,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": false,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 4,
+      "icon_img": "",
+      "key_color": "#ffb000",
+      "name": "bananawetfloorsign",
+      "subscriber_count": 1776,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": false,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 1,
+      "icon_img": "https://b.thumbs.redditmedia.com/Qgbd2hg3IzjCDJFnwE43lk2WBrhJbn4SQjY52q_9Jcc.png",
+      "key_color": "#ddbd37",
+      "name": "bananaguy",
+      "subscriber_count": 1270,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": false,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 4,
+      "icon_img": "",
+      "key_color": "",
+      "name": "Banana_Scribe",
+      "subscriber_count": 840,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": true,
+      "allow_images": true
+    },
+    {
+      "active_user_count": 2,
+      "icon_img": "",
+      "key_color": "",
+      "name": "BananaFlavoredCandy",
+      "subscriber_count": 935,
+      "is_chat_post_feature_enabled": true,
+      "allow_chat_post_creation": true,
+      "allow_images": true
+    }
+  ]
+}

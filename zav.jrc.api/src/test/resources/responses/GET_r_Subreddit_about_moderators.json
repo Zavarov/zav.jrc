@@ -1,0 +1,18 @@
+{
+  "kind": "UserList",
+  "data": {
+    "children": [
+      {
+        "name": "User",
+        "author_flair_text": null,
+        "mod_permissions": [
+          "all"
+        ],
+        "date": 2000000000,
+        "rel_id": "rb_abcdef",
+        "id": "t2_ABCDEF",
+        "author_flair_css_class": null
+      }
+    ]
+  }
+}

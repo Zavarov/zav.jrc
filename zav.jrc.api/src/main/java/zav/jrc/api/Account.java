@@ -43,8 +43,16 @@ import zav.jrc.endpoint.Users;
 import zav.jrc.http.Parameter;
 import zav.jrc.http.RestRequest;
 
+/**
+ * Representation of a Reddit account. Accounts are usually of the form u/<i>username</i>.
+ */
 public class Account {
-  private static Cache<String, AccountValueObject> accountCache = CacheBuilder.newBuilder()
+  /**
+   * In order to save the number of API calls, the account data is stored in an internal cache, s.t.
+   * the cached value is reused, during consecutive calls within a short time frame.<br>
+   * Items are cached for a single day.
+   */
+  private static final Cache<String, AccountValueObject> accountCache = CacheBuilder.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
         .build();
   
@@ -66,6 +74,11 @@ public class Account {
     return String.format("%s[%s]", getClass(), name);
   }
   
+  /**
+   * Blocks this account.
+   * @return
+   * @throws FailedRequestException
+   */
   public Map<?, ?> postBlock() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.POST_API_BLOCK_USER)
