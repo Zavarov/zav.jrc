@@ -24,13 +24,13 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class RulesTest extends AbstractTest {
-  static RulesValueObject rules;
-  static List<RuleValueObject> ruleList;
-  static List<NextStepReasonValueObject> siteRulesFlowList;
+  static RulesDto rules;
+  static List<RuleDto> ruleList;
+  static List<NextStepReasonDto> siteRulesFlowList;
   
   @BeforeAll
   public static void setUpAll() {
-    rules = read("Rules.json", RulesValueObject.class);
+    rules = read("Rules.json", RulesDto.class);
     ruleList = rules.getRules();
     siteRulesFlowList = rules.getSiteRulesFlow();
   }
@@ -42,7 +42,7 @@ public class RulesTest extends AbstractTest {
   
   @Test
   public void testGetRules() {
-    RuleValueObject rule;
+    RuleDto rule;
     assertThat(ruleList).hasSize(4);
     
     rule = ruleList.get(0);
@@ -84,7 +84,7 @@ public class RulesTest extends AbstractTest {
   
   @Test
   public void testGetSiteRulesFlow() {
-    NextStepReasonValueObject nextStepReason;
+    NextStepReasonDto nextStepReason;
     assertThat(siteRulesFlowList).hasSize(4);
     
     nextStepReason = siteRulesFlowList.get(0);

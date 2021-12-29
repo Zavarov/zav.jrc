@@ -28,7 +28,7 @@ import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNull;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
-import zav.jrc.databind.io.TokenValueObject;
+import zav.jrc.databind.io.TokenDto;
 import zav.jrc.http.RestRequest;
 
 /**
@@ -73,7 +73,7 @@ public class ScriptClient extends Client {
     //_send(...) -> Skip token validation
     try {
       ObjectMapper om = new ObjectMapper();
-      token = om.readValue(_send(request), TokenValueObject.class);
+      token = om.readValue(_send(request), TokenDto.class);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }

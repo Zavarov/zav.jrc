@@ -52,7 +52,7 @@
                 <configuration>
                     <sourceDirectory>${basedir}/src/main/schemas</sourceDirectory>
                     <targetPackage>zav.jrc.databind</targetPackage>
-                    <classNameSuffix>ValueObject</classNameSuffix>
+                    <classNameSuffix>Dto</classNameSuffix>
                 </configuration>
                 <executions>
                     <execution>

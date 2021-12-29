@@ -22,15 +22,15 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class TrophyListTest extends AbstractTest {
-  static TrophyListValueObject trophyList;
-  static AwardValueObject threeYearClub;
-  static AwardValueObject verifiedEmail;
+  static TrophyListDto trophyList;
+  static AwardDto threeYearClub;
+  static AwardDto verifiedEmail;
   
   @BeforeAll
   public static void setUpAll() {
-    trophyList = read("TrophyList.json", TrophyListValueObject.class);
-    threeYearClub = read(trophyList.getTrophies().get(0).getData(), AwardValueObject.class);
-    verifiedEmail = read(trophyList.getTrophies().get(1).getData(), AwardValueObject.class);
+    trophyList = read("TrophyList.json", TrophyListDto.class);
+    threeYearClub = read(trophyList.getTrophies().get(0).getData(), AwardDto.class);
+    verifiedEmail = read(trophyList.getTrophies().get(1).getData(), AwardDto.class);
   }
   
   @Test

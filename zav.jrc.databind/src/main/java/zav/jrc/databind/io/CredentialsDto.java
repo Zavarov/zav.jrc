@@ -22,7 +22,7 @@ import java.util.Base64;
 /**
  * This class contains the credentials required to authenticate the application.
  */
-public class CredentialsValueObject extends CredentialsTOPValueObject {
+public class CredentialsDto extends CredentialsTOPDto {
   @Override
   public String toString() {
     String source = getId() + ":" + getSecret();

@@ -19,9 +19,9 @@ package zav.jrc.api;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.AccountValueObject;
-import zav.jrc.databind.LinkValueObject;
-import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.databind.AccountDto;
+import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.SubredditDto;
 import zav.jrc.http.Parameter;
 
 import java.util.List;
@@ -40,49 +40,49 @@ public class FrontPageViewTest extends AbstractTest {
   
   @Test
   public void testGetBest() throws FailedRequestException {
-    List<LinkValueObject> response = frontPage.getBest().collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getBest().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Omfgg!!!");
   }
   
   @Test
   public void testGetControversial() throws FailedRequestException {
-    List<LinkValueObject> response = frontPage.getControversial().collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getControversial().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Evil Texas legislators smiling as they sign law to take away rights");
   }
   
   @Test
   public void testGetHot() throws FailedRequestException {
-    List<LinkValueObject> response = frontPage.getHot().collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getHot().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Omfgg!!!");
   }
   
   @Test
   public void testGetNew() throws FailedRequestException {
-    List<LinkValueObject> response = frontPage.getNew().collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getNew().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Uk. i can print 600*600*800 on resin printer anyone interested?");
   }
   
   @Test
   public void testGetRandom() throws FailedRequestException {
-    List<LinkValueObject> response = frontPage.getRandom().collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getRandom().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getTitle()).isEqualTo("Philadelphia’s Vine Street Expressway after Hurricane Ida 02 September 2021");
   }
   
   @Test
   public void testGetRising() throws FailedRequestException {
-    List<LinkValueObject> response = frontPage.getRising().collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getRising().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Come again?");
   }
   
   @Test
   public void testGetTop() throws FailedRequestException {
-    List<LinkValueObject> response = frontPage.getTop().collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getTop().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("People of Reddit, it is our duty!");
   }
@@ -92,7 +92,7 @@ public class FrontPageViewTest extends AbstractTest {
   @Test
   public void testGetSearch() throws FailedRequestException {
     Parameter param = new Parameter("q", "bananapics");
-    List<LinkValueObject> response = frontPage.getSearch(param).collect(Collectors.toList());
+    List<LinkDto> response = frontPage.getSearch(param).collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Having only one power hotkey is crazytown bananapants");
   }
@@ -110,7 +110,7 @@ public class FrontPageViewTest extends AbstractTest {
   @Test
   public void testPostSearchSubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<SubredditValueObject> response = frontPage.postSearchSubreddits(param).collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.postSearchSubreddits(param).collect(Collectors.toList());
     assertThat(response).hasSize(9);
     assertThat(response.get(0).getName()).contains("banana");
   }
@@ -118,34 +118,34 @@ public class FrontPageViewTest extends AbstractTest {
   @Test
   public void testGetSubredditAutocomplete() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<SubredditValueObject> response = frontPage.getSubredditAutocomplete(param).collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getSubredditAutocomplete(param).collect(Collectors.toList());
     assertThat(response).hasSize(5);
     assertThat(response.get(0).getDisplayName()).contains("banana");
   }
   
   @Test
   public void testGetDefaultSubreddits() throws FailedRequestException {
-    List<SubredditValueObject> response = frontPage.getDefaultSubreddits().collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getDefaultSubreddits().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("gadgets");
   }
   
   @Test
   public void testGetGoldSubreddits() throws FailedRequestException {
-    List<SubredditValueObject> response = frontPage.getGoldSubreddits().collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getGoldSubreddits().collect(Collectors.toList());
     assertThat(response).isEmpty();
   }
   
   @Test
   public void testGetNewSubreddits() throws FailedRequestException {
-    List<SubredditValueObject> response = frontPage.getNewSubreddits().collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getNewSubreddits().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("pusaneko");
   }
   
   @Test
   public void testGetPopularSubreddits() throws FailedRequestException {
-    List<SubredditValueObject> response = frontPage.getPopularSubreddits().collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getPopularSubreddits().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Home");
   }
@@ -153,21 +153,21 @@ public class FrontPageViewTest extends AbstractTest {
   @Test
   public void testGetSearchSubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<SubredditValueObject> response = frontPage.getSearchSubreddits(param).collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getSearchSubreddits(param).collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("banana");
   }
   
   @Test
   public void testGetNewUserSubreddits() throws FailedRequestException {
-    List<SubredditValueObject> response = frontPage.getNewUserSubreddits().collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getNewUserSubreddits().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("");
   }
   
   @Test
   public void testGetPopularUserSubreddits() throws FailedRequestException {
-    List<SubredditValueObject> response = frontPage.getPopularUserSubreddits().collect(Collectors.toList());
+    List<SubredditDto> response = frontPage.getPopularUserSubreddits().collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Selben");
   }
@@ -175,7 +175,7 @@ public class FrontPageViewTest extends AbstractTest {
   @Test
   public void testGetSearchUserSubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<AccountValueObject> response = frontPage.getSearchUserSubreddits(param).collect(Collectors.toList());
+    List<AccountDto> response = frontPage.getSearchUserSubreddits(param).collect(Collectors.toList());
     assertThat(response).hasSize(11);
     assertThat(response.get(0).getName()).isEqualTo("Hates_escalators");
   }

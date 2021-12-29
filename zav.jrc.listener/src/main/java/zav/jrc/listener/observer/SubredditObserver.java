@@ -28,7 +28,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.LinkDto;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.internal.ObserverModule;
 import zav.jrc.listener.requester.LinkRequester;
@@ -45,7 +45,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @NonNull
   private final LinkRequester requester;
   @Nullable
-  private List<LinkValueObject> history;
+  private List<LinkDto> history;
   @Inject
   private Injector injector;
   
@@ -74,10 +74,10 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
       history = history == null ? requester.next() : history;
 
       //Notify the listener starting with the oldest link first
-      List<LinkValueObject> result = new ArrayList<>(history);
-      result.sort(Comparator.comparing(LinkValueObject::getId));
+      List<LinkDto> result = new ArrayList<>(history);
+      result.sort(Comparator.comparing(LinkDto::getId));
       
-      for (LinkValueObject link : result) {
+      for (LinkDto link : result) {
         Module module = new ObserverModule(subreddit.getAbout(), link);
         injector.createChildInjector(module).injectMembers(listener);
       }

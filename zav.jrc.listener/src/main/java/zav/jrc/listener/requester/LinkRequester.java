@@ -28,7 +28,7 @@ import org.eclipse.jdt.annotation.NonNull;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.LinkDto;
 
 /**
  * This class is used to retrieve the latest submissions from a given subreddit.<br>
@@ -38,13 +38,13 @@ import zav.jrc.databind.LinkValueObject;
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
 @NonNull
-public class LinkRequester extends AbstractIterator<List<LinkValueObject>> {
+public class LinkRequester extends AbstractIterator<List<LinkDto>> {
   @NonNull
   private static final Logger LOGGER = LogManager.getLogger(LinkRequester.class);
   @NonNull
   private final Subreddit subreddit;
   @Nullable
-  private LinkValueObject head;
+  private LinkDto head;
   
   public LinkRequester(@NonNull Subreddit subreddit) {
     this.subreddit = subreddit;
@@ -52,7 +52,7 @@ public class LinkRequester extends AbstractIterator<List<LinkValueObject>> {
 
   @Override
   @NonNull
-  protected List<LinkValueObject> computeNext() throws IteratorException {
+  protected List<LinkDto> computeNext() throws IteratorException {
     try {
       LOGGER.info("Computing next links via {}.", subreddit);
       return head == null ? init() : request();
@@ -62,9 +62,9 @@ public class LinkRequester extends AbstractIterator<List<LinkValueObject>> {
   }
 
   @NonNull
-  private List<LinkValueObject> init() throws FailedRequestException {
+  private List<LinkDto> init() throws FailedRequestException {
     LOGGER.info("Possible first time this requester is used? Retrieve head.");
-    List<LinkValueObject> submissions = subreddit.getNew().limit(1).collect(Collectors.toList());
+    List<LinkDto> submissions = subreddit.getNew().limit(1).collect(Collectors.toList());
 
     if (!submissions.isEmpty()) {
       head = submissions.get(0);
@@ -75,15 +75,15 @@ public class LinkRequester extends AbstractIterator<List<LinkValueObject>> {
   }
 
   @NonNull
-  private List<LinkValueObject> request() throws FailedRequestException {
+  private List<LinkDto> request() throws FailedRequestException {
     assert head != null;
     LOGGER.info("Requesting links after {}.", head.getName());
 
-    List<LinkValueObject> result = new ArrayList<>();
-    Iterator<LinkValueObject> iterator = subreddit.getNew().iterator();
+    List<LinkDto> result = new ArrayList<>();
+    Iterator<LinkDto> iterator = subreddit.getNew().iterator();
 
     while (iterator.hasNext()) {
-      LinkValueObject link = iterator.next();
+      LinkDto link = iterator.next();
 
       //If the current link is lexicographically larger then the head
       //Then that means it was created after the head, i.e at a later point in time

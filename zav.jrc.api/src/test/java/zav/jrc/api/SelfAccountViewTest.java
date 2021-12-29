@@ -37,32 +37,32 @@ public class SelfAccountViewTest extends AbstractTest {
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    SelfAccountValueObject response = selfAccount.getAbout();
+    SelfAccountDto response = selfAccount.getAbout();
     assertThat(response.getId()).isEqualTo("abcdef");
   }
   
   @Test
   public void testGetKarma() throws FailedRequestException {
-    List<KarmaValueObject> response = selfAccount.getKarma().collect(Collectors.toList());
+    List<KarmaDto> response = selfAccount.getKarma().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getSubreddit()).isEqualTo("Subreddit");
   }
   
   @Test
   public void testGetPreferences() throws FailedRequestException {
-    PreferencesValueObject response = selfAccount.getPreferences();
+    PreferencesDto response = selfAccount.getPreferences();
     assertThat(response.getCountryCode()).isEqualTo("XX");
   }
   
   @Test
   public void testPatchPreferences() throws FailedRequestException {
-    PreferencesValueObject response = selfAccount.patchPreferences(selfAccount.getPreferences());
+    PreferencesDto response = selfAccount.patchPreferences(selfAccount.getPreferences());
     assertThat(response.getCountryCode()).isEqualTo("XX");
   }
   
   @Test
   public void testGetTrophies() throws FailedRequestException {
-    List<AwardValueObject> response = selfAccount.getTrophies().collect(Collectors.toList());
+    List<AwardDto> response = selfAccount.getTrophies().collect(Collectors.toList());
     assertThat(response).hasSize(2);
     assertThat(response.get(0).getName()).isEqualTo("Four-Year Club");
     assertThat(response.get(1).getName()).isEqualTo("Verified Email");
@@ -70,21 +70,21 @@ public class SelfAccountViewTest extends AbstractTest {
   
   @Test
   public void testGetBlocked() throws FailedRequestException {
-    List<UserValueObject> response = selfAccount.getBlocked().collect(Collectors.toList());
+    List<UserDto> response = selfAccount.getBlocked().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetFriends() throws FailedRequestException {
-    List<UserValueObject> response = selfAccount.getFriends().collect(Collectors.toList());
+    List<UserDto> response = selfAccount.getFriends().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetTrusted() throws FailedRequestException {
-    List<UserValueObject> response = selfAccount.getTrusted().collect(Collectors.toList());
+    List<UserDto> response = selfAccount.getTrusted().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getName()).isEqualTo("Username");
   }
@@ -93,21 +93,21 @@ public class SelfAccountViewTest extends AbstractTest {
   
   @Test
   public void testGetMineContributor() throws FailedRequestException {
-    List<SubredditValueObject> response = selfAccount.getMineContributor().collect(Collectors.toList());
+    List<SubredditDto> response = selfAccount.getMineContributor().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
   }
   
   @Test
   public void testGetMineModerator() throws FailedRequestException {
-    List<SubredditValueObject> response = selfAccount.getMineModerator().collect(Collectors.toList());
+    List<SubredditDto> response = selfAccount.getMineModerator().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
   }
   
   @Test
   public void testGetMineSubscriber() throws FailedRequestException {
-    List<SubredditValueObject> response = selfAccount.getMineSubscriber().collect(Collectors.toList());
+    List<SubredditDto> response = selfAccount.getMineSubscriber().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
   }

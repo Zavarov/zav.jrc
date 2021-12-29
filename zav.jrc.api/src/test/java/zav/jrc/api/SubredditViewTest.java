@@ -44,7 +44,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetControversial() throws FailedRequestException {
     assertThat(subreddit.getControversial()).hasSize(3);
     
-    LinkValueObject response = subreddit.getControversial().findFirst().orElseThrow();
+    LinkDto response = subreddit.getControversial().findFirst().orElseThrow();
     assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
@@ -52,7 +52,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetHot() throws FailedRequestException {
     assertThat(subreddit.getHot()).hasSize(25);
   
-    LinkValueObject response = subreddit.getHot().findFirst().orElseThrow();
+    LinkDto response = subreddit.getHot().findFirst().orElseThrow();
     assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
@@ -60,7 +60,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetNew() throws FailedRequestException {
     assertThat(subreddit.getNew()).hasSize(25);
   
-    LinkValueObject response = subreddit.getNew().findFirst().orElseThrow();
+    LinkDto response = subreddit.getNew().findFirst().orElseThrow();
     assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
@@ -68,7 +68,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetRandom() throws FailedRequestException {
     assertThat(subreddit.getRandom()).hasSize(1);
   
-    LinkValueObject response = subreddit.getRandom().findFirst().orElseThrow();
+    LinkDto response = subreddit.getRandom().findFirst().orElseThrow();
     assertThat(response.getTitle()).isEqualTo("I'm making a reddit bot that deletes spam mesages based on a specific keyword, but for some reason the message doesn't delete.");
   }
   
@@ -76,7 +76,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetRising() throws FailedRequestException {
     assertThat(subreddit.getRising()).hasSize(25);
   
-    LinkValueObject response = subreddit.getRising().findFirst().orElseThrow();
+    LinkDto response = subreddit.getRising().findFirst().orElseThrow();
     assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
   }
   
@@ -84,7 +84,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetTop() throws FailedRequestException {
     assertThat(subreddit.getTop()).hasSize(3);
   
-    LinkValueObject response = subreddit.getTop().findFirst().orElseThrow();
+    LinkDto response = subreddit.getTop().findFirst().orElseThrow();
     assertThat(response.getTitle()).isEqualTo("Getting user description");
   }
   
@@ -104,16 +104,16 @@ public class SubredditViewTest extends AbstractTest {
   
   @Test
   public void testPostCreate() throws FailedRequestException {
-    SubredditSettingsValueObject settings = subreddit.getEdit();
-    SubredditSettingsValueObject response = subreddit.postCreate(settings);
+    SubredditSettingsDto settings = subreddit.getEdit();
+    SubredditSettingsDto response = subreddit.postCreate(settings);
   
     assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
   
   @Test
   public void testPostConfigure() throws FailedRequestException {
-    SubredditSettingsValueObject settings = subreddit.getEdit();
-    SubredditSettingsValueObject response = subreddit.postConfigure(settings);
+    SubredditSettingsDto settings = subreddit.getEdit();
+    SubredditSettingsDto response = subreddit.postConfigure(settings);
   
     assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
@@ -142,7 +142,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetContributors() throws FailedRequestException {
     assertThat(subreddit.getContributors()).isNotEmpty();
   
-    UserValueObject user = subreddit.getContributors().findFirst().orElseThrow();
+    UserDto user = subreddit.getContributors().findFirst().orElseThrow();
     assertThat(user.getName()).isEqualTo("Name");
   }
   
@@ -150,7 +150,7 @@ public class SubredditViewTest extends AbstractTest {
   public void testGetModerators() throws FailedRequestException {
     assertThat(subreddit.getModerators()).hasSize(1);
   
-    UserValueObject user = subreddit.getModerators().findFirst().orElseThrow();
+    UserDto user = subreddit.getModerators().findFirst().orElseThrow();
     assertThat(user.getName()).isEqualTo("User");
   }
   
@@ -248,19 +248,19 @@ public class SubredditViewTest extends AbstractTest {
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    SubredditValueObject response = subreddit.getAbout();
+    SubredditDto response = subreddit.getAbout();
     assertThat(response.getDisplayName()).isEqualToIgnoringCase("RedditDev");
   }
   
   @Test
   public void testGetEdit() throws FailedRequestException {
-    SubredditSettingsValueObject response = subreddit.getEdit();
+    SubredditSettingsDto response = subreddit.getEdit();
     assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
   
   @Test
   public void testGetRules() throws FailedRequestException {
-    RulesValueObject response = subreddit.getRules();
+    RulesDto response = subreddit.getRules();
     assertThat(response.getRules()).isEmpty();
     assertThat(response.getSiteRules()).hasSize(3);
     assertThat(response.getSiteRulesFlow()).hasSize(4);
@@ -273,7 +273,7 @@ public class SubredditViewTest extends AbstractTest {
   
   @Test
   public void testGetSticky() throws FailedRequestException {
-    LinkValueObject response = subreddit.getSticky(1);
+    LinkDto response = subreddit.getSticky(1);
     assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
 }

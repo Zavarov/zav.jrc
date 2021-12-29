@@ -18,11 +18,11 @@ package zav.jrc.listener;
 
 import java.util.EventListener;
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.databind.LinkValueObject;
-import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.SubredditDto;
 
 /**
- * This class handles all events associated with a given {@link SubredditValueObject}.
+ * This class handles all events associated with a given {@link SubredditDto}.
  */
 @NonNull
 public interface SubredditListener extends EventListener {

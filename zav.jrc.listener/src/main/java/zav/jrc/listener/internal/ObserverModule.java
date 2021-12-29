@@ -17,21 +17,21 @@
 package zav.jrc.listener.internal;
 
 import com.google.inject.AbstractModule;
-import zav.jrc.databind.LinkValueObject;
-import zav.jrc.databind.SubredditValueObject;
+import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.SubredditDto;
 
 public class ObserverModule extends AbstractModule {
-  private final SubredditValueObject subreddit;
-  private final LinkValueObject link;
+  private final SubredditDto subreddit;
+  private final LinkDto link;
 
-  public ObserverModule(SubredditValueObject subreddit, LinkValueObject link) {
+  public ObserverModule(SubredditDto subreddit, LinkDto link) {
     this.subreddit = subreddit;
     this.link = link;
   }
   
   @Override
   protected void configure() {
-    bind(SubredditValueObject.class).toInstance(subreddit);
-    bind(LinkValueObject.class).toInstance(link);
+    bind(SubredditDto.class).toInstance(subreddit);
+    bind(LinkDto.class).toInstance(link);
   }
 }

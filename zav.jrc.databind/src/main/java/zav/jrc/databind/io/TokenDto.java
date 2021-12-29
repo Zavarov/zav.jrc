@@ -27,8 +27,8 @@ import org.apache.logging.log4j.Logger;
  * necessary to acquire a new token, once the current one expires. The token is attached to every
  * API request, in order to verify the identify of the requester.
  */
-public class TokenValueObject extends TokenTOPValueObject {
-  private static final Logger LOGGER = LogManager.getLogger(TokenValueObject.class);
+public class TokenDto extends TokenTOPDto {
+  private static final Logger LOGGER = LogManager.getLogger(TokenDto.class);
   /**
    * The time when this token was created. It is used in combination with {@link #getExpiresIn()}
    * to determine when the token has expired.

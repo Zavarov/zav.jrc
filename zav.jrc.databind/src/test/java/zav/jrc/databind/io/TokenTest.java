@@ -23,11 +23,11 @@ import zav.jrc.databind.AbstractTest;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class TokenTest extends AbstractTest {
-  static TokenValueObject token;
+  static TokenDto token;
   
   @BeforeAll
   public static void setUpAll() {
-    token = read("Token.json", TokenValueObject.class);
+    token = read("Token.json", TokenDto.class);
   }
   
   @Test

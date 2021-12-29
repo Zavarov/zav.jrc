@@ -26,11 +26,11 @@ import okhttp3.Request;
 import zav.jrc.api.internal.JsonUtils;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.AccountValueObject;
-import zav.jrc.databind.LinkValueObject;
-import zav.jrc.databind.SubredditValueObject;
-import zav.jrc.databind.ThingValueObject;
-import zav.jrc.databind.core.ListingValueObject;
+import zav.jrc.databind.AccountDto;
+import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.SubredditDto;
+import zav.jrc.databind.ThingDto;
+import zav.jrc.databind.core.ListingDto;
 import zav.jrc.endpoint.Listings;
 import zav.jrc.endpoint.Search;
 import zav.jrc.endpoint.Subreddits;
@@ -47,76 +47,76 @@ public class FrontPage {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
-  public Stream<LinkValueObject> getBest(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getBest(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_BEST)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
-  public Stream<LinkValueObject> getControversial(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getControversial(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_CONTROVERSIAL)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
-  public Stream<LinkValueObject> getHot(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getHot(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_HOT)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
-  public Stream<LinkValueObject> getNew(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getNew(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_NEW)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
-  public Stream<LinkValueObject> getRandom(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getRandom(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RANDOM)
           .setParams(params)
           .build()
           .get();
   
-    ThingValueObject[] response = JsonUtils.transform(client.send(query), ThingValueObject[].class);
-    ListingValueObject listing = JsonUtils.transformThing(response[0], ListingValueObject.class);
-    return JsonUtils.transformListingOfThings(listing, LinkValueObject.class);
+    ThingDto[] response = JsonUtils.transform(client.send(query), ThingDto[].class);
+    ListingDto listing = JsonUtils.transformThing(response[0], ListingDto.class);
+    return JsonUtils.transformListingOfThings(listing, LinkDto.class);
   }
   
-  public Stream<LinkValueObject> getRising(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getRising(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RISING)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
-  public Stream<LinkValueObject> getTop(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getTop(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_TOP)
           .setParams(params)
           .build()
           .get();
     
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -125,14 +125,14 @@ public class FrontPage {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
-  public Stream<LinkValueObject> getSearch(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getSearch(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_SEARCH)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -154,7 +154,7 @@ public class FrontPage {
     return values.stream().map(Objects::toString);
   }
   
-  public Stream<SubredditValueObject> postSearchSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> postSearchSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS)
           .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
@@ -164,96 +164,96 @@ public class FrontPage {
   
     Map<?, ?> result = JsonUtils.transform(client.send(query), Map.class);
     List<?> values = JsonUtils.transform(result.get("subreddits"), List.class);
-    return values.stream().map(value -> JsonUtils.transform(value, SubredditValueObject.class));
+    return values.stream().map(value -> JsonUtils.transform(value, SubredditDto.class));
   }
   
-  public Stream<SubredditValueObject> getSubredditAutocomplete(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getSubredditAutocomplete(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getDefaultSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getDefaultSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getGoldSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getGoldSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_GOLD)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getNewSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getNewSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_NEW)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getPopularSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getPopularSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_POPULAR)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getSearchSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getSearchSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getNewUserSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getNewUserSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_NEW)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getPopularUserSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getPopularUserSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_POPULAR)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<AccountValueObject> getSearchUserSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<AccountDto> getSearchUserSubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_SEARCH)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), AccountValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), AccountDto.class);
   }
 }

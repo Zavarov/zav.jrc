@@ -17,7 +17,7 @@
 package zav.jrc.listener.internal;
 
 import org.eclipse.jdt.annotation.NonNull;
-import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.LinkDto;
 import zav.jrc.listener.SubredditListener;
 
 import javax.inject.Inject;
@@ -31,7 +31,7 @@ public class SubredditListenerMock implements SubredditListener {
   }
 
   @Inject
-  public void handle(@NonNull LinkValueObject link) {
+  public void handle(@NonNull LinkDto link) {
     consumer.accept(this);
   }
 }

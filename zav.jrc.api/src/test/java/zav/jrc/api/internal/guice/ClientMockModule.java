@@ -18,21 +18,21 @@ package zav.jrc.api.internal.guice;
 
 import com.google.inject.name.Names;
 import zav.jrc.client.Client;
-import zav.jrc.databind.io.CredentialsValueObject;
-import zav.jrc.databind.io.UserAgentValueObject;
+import zav.jrc.databind.io.CredentialsDto;
+import zav.jrc.databind.io.UserAgentDto;
 
 import java.util.UUID;
 
 public class ClientMockModule extends JrcModule {
   @Override
   protected void configure() {
-    UserAgentValueObject userAgent = new UserAgentValueObject();
-    CredentialsValueObject credentials = new CredentialsValueObject();
+    UserAgentDto userAgent = new UserAgentDto();
+    CredentialsDto credentials = new CredentialsDto();
     UUID uuid = UUID.randomUUID();
     
     bind(UUID.class).toInstance(uuid);
-    bind(UserAgentValueObject.class).toInstance(userAgent);
-    bind(CredentialsValueObject.class).toInstance(credentials);
+    bind(UserAgentDto.class).toInstance(userAgent);
+    bind(CredentialsDto.class).toInstance(credentials);
     bind(String.class).annotatedWith(Names.named("username")).toInstance("user");
     bind(String.class).annotatedWith(Names.named("password")).toInstance("pw");
     bind(Client.class).to(ClientMock.class);

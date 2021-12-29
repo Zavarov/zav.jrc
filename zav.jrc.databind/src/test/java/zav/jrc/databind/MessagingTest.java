@@ -24,21 +24,21 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MessagingTest extends AbstractTest{
-  static UserListValueObject[] messaging;
-  static UserListValueObject blocked;
-  static UserListValueObject trusted;
+  static UserListDto[] messaging;
+  static UserListDto blocked;
+  static UserListDto trusted;
   
   @BeforeAll
   public static void setUpAll() {
-    messaging = read("Messaging.json", UserListValueObject[].class);
+    messaging = read("Messaging.json", UserListDto[].class);
     trusted = messaging[0];
     blocked = messaging[1];
   }
   
   @Test
   public void testGetTrusted() {
-    List<UserValueObject> children = trusted.getData().getChildren();
-    UserValueObject child = children.get(0);
+    List<UserDto> children = trusted.getData().getChildren();
+    UserDto child = children.get(0);
     
     assertThat(trusted.getKind()).isEqualTo("UserList");
     assertThat(children).hasSize(1);
@@ -50,8 +50,8 @@ public class MessagingTest extends AbstractTest{
   
   @Test
   public void testGetBlocked() {
-    List<UserValueObject> children = blocked.getData().getChildren();
-    UserValueObject child = children.get(0);
+    List<UserDto> children = blocked.getData().getChildren();
+    UserDto child = children.get(0);
     
     assertThat(blocked.getKind()).isEqualTo("UserList");
     assertThat(children).hasSize(1);

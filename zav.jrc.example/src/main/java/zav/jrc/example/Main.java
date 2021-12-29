@@ -25,7 +25,7 @@ import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.guice.UserlessClientModule;
-import zav.jrc.databind.LinkValueObject;
+import zav.jrc.databind.LinkDto;
 
 /**
  * This example illustrates how to use Guice and the views to retrieve a stream of latest links from
@@ -52,7 +52,7 @@ public class Main {
     CLIENT.login(Duration.TEMPORARY);
     
     Subreddit subreddit = REDDIT.getSubreddit("RedditDev");
-    Stream<LinkValueObject> links = subreddit.getNew();
+    Stream<LinkDto> links = subreddit.getNew();
     
     links.forEach(link -> System.out.println(link.getTitle()));
     

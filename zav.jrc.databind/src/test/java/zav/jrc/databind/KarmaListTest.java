@@ -22,12 +22,12 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class KarmaListTest extends AbstractTest {
-  static KarmaListValueObject karmaList;
-  static KarmaValueObject karma;
+  static KarmaListDto karmaList;
+  static KarmaDto karma;
   
   @BeforeAll
   public static void setUpAll() {
-    karmaList = read("KarmaList.json", KarmaListValueObject.class);
+    karmaList = read("KarmaList.json", KarmaListDto.class);
     karma = karmaList.getData().get(0);
   }
   

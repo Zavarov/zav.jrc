@@ -20,7 +20,7 @@ import okhttp3.Request;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.io.TokenValueObject;
+import zav.jrc.databind.io.TokenDto;
 
 import javax.inject.Singleton;
 import java.io.FileNotFoundException;
@@ -32,7 +32,7 @@ import java.nio.charset.StandardCharsets;
 public class ClientMock extends Client {
   @Override
   public void login(Duration duration) {
-    token = new TokenValueObject();
+    token = new TokenDto();
   }
   
   @Override

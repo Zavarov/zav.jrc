@@ -25,8 +25,8 @@ import com.google.inject.name.Names;
 import java.io.IOException;
 import java.net.URL;
 import java.util.UUID;
-import zav.jrc.databind.io.CredentialsValueObject;
-import zav.jrc.databind.io.UserAgentValueObject;
+import zav.jrc.databind.io.CredentialsDto;
+import zav.jrc.databind.io.UserAgentDto;
 
 /**
  * The Guice module responsible for reading and binding the credentials required for
@@ -41,13 +41,13 @@ public abstract class ClientModule extends AbstractModule {
   @Override
   protected void configure() {
     ObjectMapper om = new ObjectMapper();
-    UserAgentValueObject userAgent;
-    CredentialsValueObject credentials;
+    UserAgentDto userAgent;
+    CredentialsDto credentials;
     UUID uuid;
     
     try {
-      userAgent = om.readValue(USER_AGENT, UserAgentValueObject.class);
-      credentials = om.readValue(CREDENTIALS, CredentialsValueObject.class);
+      userAgent = om.readValue(USER_AGENT, UserAgentDto.class);
+      credentials = om.readValue(CREDENTIALS, CredentialsDto.class);
       uuid = UUID.randomUUID();
     } catch (IOException e) {
       // Client can't log in without password, user agent, etc...
@@ -55,8 +55,8 @@ public abstract class ClientModule extends AbstractModule {
     }
     
     bind(UUID.class).toInstance(uuid);
-    bind(UserAgentValueObject.class).toInstance(userAgent);
-    bind(CredentialsValueObject.class).toInstance(credentials);
+    bind(UserAgentDto.class).toInstance(userAgent);
+    bind(CredentialsDto.class).toInstance(credentials);
     
     if (credentials.getUsername() != null) {
       bind(String.class).annotatedWith(Names.named(USERNAME)).toInstance(credentials.getUsername());

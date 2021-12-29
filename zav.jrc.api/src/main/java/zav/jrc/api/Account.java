@@ -47,7 +47,7 @@ public class Account {
    * the cached value is reused, during consecutive calls within a short time frame.<br>
    * Items are cached for a single day.
    */
-  private static final Cache<String, AccountValueObject> accountCache = CacheBuilder.newBuilder()
+  private static final Cache<String, AccountDto> accountCache = CacheBuilder.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
         .build();
   
@@ -120,7 +120,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    */
   public void postUnblock() throws FailedRequestException {
-    AccountValueObject self = getAbout();
+    AccountDto self = getAbout();
     
     Request query = client.newRequest()
           .setEndpoint(Users.POST_API_UNFRIEND)
@@ -136,15 +136,15 @@ public class Account {
   }
   
   /**
-   * Returns the DAO object of this account.
+   * Returns the DTO object of this account.
    *
-   * @return The DAO object corresponding to this account.
+   * @return The DTO object corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
    * @deprecated Use {@link #getAbout()} instead.
    */
   @Deprecated
-  public AccountValueObject getUserData() throws FailedRequestException {
-    AccountValueObject self = getAbout();
+  public AccountDto getUserData() throws FailedRequestException {
+    AccountDto self = getAbout();
     
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_USER_DATA_BY_ACCOUNT_IDS)
@@ -152,7 +152,7 @@ public class Account {
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), AccountValueObject.class);
+    return JsonUtils.transform(client.send(query), AccountDto.class);
   }
   
   /**
@@ -191,17 +191,17 @@ public class Account {
   /**
    * Get information about this specified 'friend', such as notes.
    *
-   * @return The user DAO corresponding to this account.
+   * @return The user DTO corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public UserValueObject getFriends() throws FailedRequestException {
+  public UserDto getFriends() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME)
           .setArgs(name)
           .build()
           .get();
     
-    return JsonUtils.transform(client.send(query), UserValueObject.class);
+    return JsonUtils.transform(client.send(query), UserDto.class);
   }
   
   /**
@@ -209,10 +209,10 @@ public class Account {
    * May be used to update the note of the account, in case it already is a 'friend'.
    *
    * @param note A custom note corresponding to this account. May be {@code null}.
-   * @return The user DAO corresponding to this account.
+   * @return The user DTO corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public UserValueObject putFriends(@Nullable String note) throws FailedRequestException {
+  public UserDto putFriends(@Nullable String note) throws FailedRequestException {
     Map<String, String> body = new HashMap<>();
     if (note != null) {
       body.put("note", note);
@@ -225,36 +225,36 @@ public class Account {
           .build()
           .put();
   
-    return JsonUtils.transform(client.send(query), UserValueObject.class);
+    return JsonUtils.transform(client.send(query), UserDto.class);
   }
   
   /**
    * Returns a stream over all awards this account possesses.
    *
-   * @return A stream over the DAOs corresponding to the awards.
+   * @return A stream over the DTOs corresponding to the awards.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<AwardValueObject> getTrophies() throws FailedRequestException {
+  public Stream<AwardDto> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES)
           .setArgs(name)
           .build()
           .get();
   
-    return JsonUtils.transformThing(client.send(query), TrophyListValueObject.class)
+    return JsonUtils.transformThing(client.send(query), TrophyListDto.class)
           .getTrophies()
           .stream()
-          .map(thing -> JsonUtils.transformThing(thing, AwardValueObject.class));
+          .map(thing -> JsonUtils.transformThing(thing, AwardDto.class));
   }
   
   /**
-   * Returns the DAO object of this account.
+   * Returns the DTO object of this account.
    *
-   * @return The DAO object corresponding to this account.
+   * @return The DTO object corresponding to this account.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public AccountValueObject getAbout() throws FailedRequestException {
-    AccountValueObject result = accountCache.getIfPresent(name);
+  public AccountDto getAbout() throws FailedRequestException {
+    AccountDto result = accountCache.getIfPresent(name);
     
     // Only perform a new request if the account hasn't been cached.
     if (result == null) {
@@ -264,7 +264,7 @@ public class Account {
             .build()
             .get();
   
-      result = JsonUtils.transformThing(client.send(query), AccountValueObject.class);
+      result = JsonUtils.transformThing(client.send(query), AccountDto.class);
   
       accountCache.put(name, result);
       
@@ -278,10 +278,10 @@ public class Account {
    * Returns a stream over all comments that this account has submitted.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the comments.
+   * @return A stream over the DTOs corresponding to the comments.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<CommentValueObject> getComments(Parameter... params) throws FailedRequestException {
+  public Stream<CommentDto> getComments(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_COMMENTS)
           .setParams(params)
@@ -289,17 +289,17 @@ public class Account {
           .build()
           .get();
 
-    return JsonUtils.transformListingOfThings(client.send(query), CommentValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), CommentDto.class);
   }
   
   /**
    * Returns a stream over all links and comments that this account has downvoted.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the links and comments.
+   * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<ThingValueObject> getDownvoted(Parameter... params) throws FailedRequestException {
+  public Stream<ThingDto> getDownvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED)
           .setParams(params)
@@ -307,17 +307,17 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
+    return JsonUtils.transformListing(client.send(query), ThingDto.class);
   }
   
   /**
    * Returns a stream over all links and comments that this account has gilded.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the links and comments.
+   * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<ThingValueObject> getGilded(Parameter... params) throws FailedRequestException {
+  public Stream<ThingDto> getGilded(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_GILDED)
           .setParams(params)
@@ -325,17 +325,17 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
+    return JsonUtils.transformListing(client.send(query), ThingDto.class);
   }
   
   /**
    * Returns a stream over all links and comments that this account has hidden.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the links and comments.
+   * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<ThingValueObject> getHidden(Parameter... params) throws FailedRequestException {
+  public Stream<ThingDto> getHidden(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_HIDDEN)
           .setParams(params)
@@ -343,17 +343,17 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
+    return JsonUtils.transformListing(client.send(query), ThingDto.class);
   }
   
   /**
    * Returns a stream over all links and comments that this account has submitted.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the links and comments.
+   * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<ThingValueObject> getOverview(Parameter... params) throws FailedRequestException {
+  public Stream<ThingDto> getOverview(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_OVERVIEW)
           .setParams(params)
@@ -361,17 +361,17 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
+    return JsonUtils.transformListing(client.send(query), ThingDto.class);
   }
   
   /**
    * Returns a stream over all links and comments that this account has saved.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the links and comments.
+   * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<ThingValueObject> getSaved(Parameter... params) throws FailedRequestException {
+  public Stream<ThingDto> getSaved(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_SAVED)
           .setParams(params)
@@ -379,17 +379,17 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
+    return JsonUtils.transformListing(client.send(query), ThingDto.class);
   }
   
   /**
    * Returns a stream over all links that this account has submitted.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the links.
+   * @return A stream over the DTOs corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<LinkValueObject> getSubmitted(Parameter... params) throws FailedRequestException {
+  public Stream<LinkDto> getSubmitted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_SUBMITTED)
           .setParams(params)
@@ -397,17 +397,17 @@ public class Account {
           .build()
           .get();
 
-    return JsonUtils.transformListingOfThings(client.send(query), LinkValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), LinkDto.class);
   }
   
   /**
    * Returns a stream over all links and comments that this account has upvoted.
    *
    * @param params Additional parameters such as {@code sort} or {@code count}.
-   * @return A stream over the DAOs corresponding to the links and comments.
+   * @return A stream over the DTOs corresponding to the links and comments.
    * @throws FailedRequestException If the API requests was rejected.
    */
-  public Stream<ThingValueObject> getUpvoted(Parameter... params) throws FailedRequestException {
+  public Stream<ThingDto> getUpvoted(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_USER_USERNAME_UPVOTED)
           .setParams(params)
@@ -415,6 +415,6 @@ public class Account {
           .build()
           .get();
     
-    return JsonUtils.transformListing(client.send(query), ThingValueObject.class);
+    return JsonUtils.transformListing(client.send(query), ThingDto.class);
   }
 }

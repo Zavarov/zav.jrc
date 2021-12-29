@@ -71,19 +71,19 @@ public class AccountViewTest extends AbstractTest {
   
   @Test
   public void testGetFriends() throws FailedRequestException {
-    UserValueObject response = account.getFriends();
+    UserDto response = account.getFriends();
     assertThat(response.getName()).isEqualTo("Username");
   }
   
   @Test
   public void testPutFriends() throws FailedRequestException {
-    UserValueObject response = account.putFriends("note");
+    UserDto response = account.putFriends("note");
     assertThat(response.getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetTrophies() throws FailedRequestException {
-    List<AwardValueObject> response = account.getTrophies().collect(Collectors.toList());
+    List<AwardDto> response = account.getTrophies().collect(Collectors.toList());
     assertThat(response).hasSize(2);
     assertThat(response.get(0).getName()).isEqualTo("Four-Year Club");
     assertThat(response.get(1).getName()).isEqualTo("Verified Email");
@@ -91,61 +91,61 @@ public class AccountViewTest extends AbstractTest {
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    AccountValueObject response = account.getAbout();
+    AccountDto response = account.getAbout();
     assertThat(response.getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetComments() throws FailedRequestException {
-    List<CommentValueObject> response = account.getComments().collect(Collectors.toList());
+    List<CommentDto> response = account.getComments().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getName()).isEqualTo("t1_Comment");
   }
   
   @Test
   public void testGetDownvoted() throws FailedRequestException {
-    List<ThingValueObject> response = account.getDownvoted().collect(Collectors.toList());
+    List<ThingDto> response = account.getDownvoted().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getKind()).isEqualTo("t3");
   }
   
   @Test
   public void testGetGilded() throws FailedRequestException {
-    List<ThingValueObject> response = account.getGilded().collect(Collectors.toList());
+    List<ThingDto> response = account.getGilded().collect(Collectors.toList());
     assertThat(response).isEmpty();
   }
   
   @Test
   public void testGetHidden() throws FailedRequestException {
-    List<ThingValueObject> response = account.getHidden().collect(Collectors.toList());
+    List<ThingDto> response = account.getHidden().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getKind()).isEqualTo("t3");
   }
   
   @Test
   public void testGetOverview() throws FailedRequestException {
-    List<ThingValueObject> response = account.getOverview().collect(Collectors.toList());
+    List<ThingDto> response = account.getOverview().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getKind()).isEqualTo("t1");
   }
   
   @Test
   public void testGetSaved() throws FailedRequestException {
-    List<ThingValueObject> response = account.getSaved().collect(Collectors.toList());
+    List<ThingDto> response = account.getSaved().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getKind()).isEqualTo("t1");
   }
   
   @Test
   public void testGetSubmitted() throws FailedRequestException {
-    List<LinkValueObject> response = account.getSubmitted().collect(Collectors.toList());
+    List<LinkDto> response = account.getSubmitted().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getSubreddit()).isEqualTo("Subreddit");
   }
   
   @Test
   public void testGetUpvoted() throws FailedRequestException {
-    List<ThingValueObject> response = account.getUpvoted().collect(Collectors.toList());
+    List<ThingDto> response = account.getUpvoted().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getKind()).isEqualTo("t3");
   }

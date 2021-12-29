@@ -36,70 +36,70 @@ public class SelfAccount {
   
   // Account
   
-  public SelfAccountValueObject getAbout() throws FailedRequestException {
+  public SelfAccountDto getAbout() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME)
           .build()
           .get();
     
-    return JsonUtils.transform(client.send(query), SelfAccountValueObject.class);
+    return JsonUtils.transform(client.send(query), SelfAccountDto.class);
   }
   
-  public Stream<KarmaValueObject> getKarma() throws FailedRequestException {
+  public Stream<KarmaDto> getKarma() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_KARMA)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), KarmaListValueObject.class)
+    return JsonUtils.transform(client.send(query), KarmaListDto.class)
           .getData()
           .stream();
   }
   
-  public PreferencesValueObject getPreferences() throws FailedRequestException {
+  public PreferencesDto getPreferences() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_PREFS)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), PreferencesValueObject.class);
+    return JsonUtils.transform(client.send(query), PreferencesDto.class);
   }
   
-  public PreferencesValueObject patchPreferences(PreferencesValueObject preferences) throws FailedRequestException {
+  public PreferencesDto patchPreferences(PreferencesDto preferences) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.PATCH_API_V1_ME_PREFS)
           .setBody(JsonUtils.transform(preferences, Map.class), RestRequest.BodyType.JSON)
           .build()
           .patch();
   
-    return JsonUtils.transform(client.send(query), PreferencesValueObject.class);
+    return JsonUtils.transform(client.send(query), PreferencesDto.class);
   }
   
-  public Stream<AwardValueObject> getTrophies() throws FailedRequestException {
+  public Stream<AwardDto> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_TROPHIES)
           .build()
           .get();
   
-    return JsonUtils.transformThing(client.send(query), TrophyListValueObject.class)
+    return JsonUtils.transformThing(client.send(query), TrophyListDto.class)
           .getTrophies()
           .stream()
-          .map(thing -> JsonUtils.transformThing(thing, AwardValueObject.class));
+          .map(thing -> JsonUtils.transformThing(thing, AwardDto.class));
   }
   
-  public Stream<UserValueObject> getBlocked() throws FailedRequestException {
+  public Stream<UserDto> getBlocked() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_BLOCKED)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), UserListValueObject.class)
+    return JsonUtils.transform(client.send(query), UserListDto.class)
           .getData()
           .getChildren()
           .stream();
   }
   
-  public Stream<UserValueObject> getFriends() throws FailedRequestException {
+  public Stream<UserDto> getFriends() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_FRIENDS)
           .build()
@@ -109,19 +109,19 @@ public class SelfAccount {
     // The first structure matches that of GET /api/v1/me/friends.
     // The second one is always empty.
     // Nobody knows what it’s for.
-    return JsonUtils.transform(client.send(query), UserListValueObject[].class)[0]
+    return JsonUtils.transform(client.send(query), UserListDto[].class)[0]
           .getData()
           .getChildren()
           .stream();
   }
   
-  public Stream<UserValueObject> getTrusted() throws FailedRequestException {
+  public Stream<UserDto> getTrusted() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_TRUSTED)
           .build()
           .get();
   
-    return JsonUtils.transform(client.send(query), UserListValueObject.class)
+    return JsonUtils.transform(client.send(query), UserListDto.class)
           .getData()
           .getChildren()
           .stream();
@@ -133,43 +133,43 @@ public class SelfAccount {
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
   
-  public Stream<SubredditValueObject> getMineContributor(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getMineContributor(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getMineModerator(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getMineModerator(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getMineStreams(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getMineStreams(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
   
-  public Stream<SubredditValueObject> getMineSubscriber(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditDto> getMineSubscriber(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER)
           .setParams(params)
           .build()
           .get();
   
-    return JsonUtils.transformListingOfThings(client.send(query), SubredditValueObject.class);
+    return JsonUtils.transformListingOfThings(client.send(query), SubredditDto.class);
   }
 }

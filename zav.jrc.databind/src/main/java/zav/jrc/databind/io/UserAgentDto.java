@@ -20,7 +20,7 @@ package zav.jrc.databind.io;
  * This class implements the user agent, attach to every API request in order to uniquely identify
  * the application.
  */
-public class UserAgentValueObject extends UserAgentTOPValueObject {
+public class UserAgentDto extends UserAgentTOPDto {
   /**
    * Calculates the user agent of the application.<p/>
    * The user agent string is of the form:<p/>

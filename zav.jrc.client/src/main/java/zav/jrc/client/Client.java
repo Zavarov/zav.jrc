@@ -34,9 +34,9 @@ import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.client.internal.TokenType;
-import zav.jrc.databind.io.CredentialsValueObject;
-import zav.jrc.databind.io.TokenValueObject;
-import zav.jrc.databind.io.UserAgentValueObject;
+import zav.jrc.databind.io.CredentialsDto;
+import zav.jrc.databind.io.TokenDto;
+import zav.jrc.databind.io.UserAgentDto;
 import zav.jrc.http.HttpException;
 import zav.jrc.http.RestRequest;
 
@@ -51,15 +51,15 @@ public abstract class Client {
   @NonNull
   private static final Logger LOGGER = LogManager.getLogger(Client.class);
   @Inject
-  protected UserAgentValueObject userAgent;
+  protected UserAgentDto userAgent;
   @Inject
-  protected CredentialsValueObject credentials;
+  protected CredentialsDto credentials;
   @Inject
   protected RateLimiter rateLimiter;
   @Inject
   protected OkHttpClient http;
   @Nullable
-  protected TokenValueObject token;
+  protected TokenDto token;
 
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
@@ -172,7 +172,7 @@ public abstract class Client {
     //_send(...) -> Skip token validation
     try {
       ObjectMapper om = new ObjectMapper();
-      token = om.readValue(_send(request), TokenValueObject.class);
+      token = om.readValue(_send(request), TokenDto.class);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
