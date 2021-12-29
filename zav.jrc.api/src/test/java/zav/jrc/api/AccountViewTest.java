@@ -138,9 +138,9 @@ public class AccountViewTest extends AbstractTest {
   
   @Test
   public void testGetSubmitted() throws FailedRequestException {
-    List<ThingValueObject> response = account.getSubmitted().collect(Collectors.toList());
+    List<LinkValueObject> response = account.getSubmitted().collect(Collectors.toList());
     assertThat(response).hasSize(1);
-    assertThat(response.get(0).getKind()).isEqualTo("t3");
+    assertThat(response.get(0).getSubreddit()).isEqualTo("Subreddit");
   }
   
   @Test
