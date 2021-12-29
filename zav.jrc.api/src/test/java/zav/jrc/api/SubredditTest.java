@@ -32,7 +32,7 @@ import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class SubredditViewTest extends AbstractTest {
+public class SubredditTest extends AbstractTest {
   Subreddit subreddit;
   
   @BeforeEach

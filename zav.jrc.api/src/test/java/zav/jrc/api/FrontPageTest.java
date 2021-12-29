@@ -29,7 +29,7 @@ import java.util.stream.Collectors;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FrontPageViewTest extends AbstractTest {
+public class FrontPageTest extends AbstractTest {
   
   FrontPage frontPage;
   
