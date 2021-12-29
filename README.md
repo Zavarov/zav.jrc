@@ -16,7 +16,7 @@ Furthermore, the type of client can be specified by either using the `ScriptModu
 information on a script and userless app, see [here](https://github.com/reddit-archive/reddit/wiki/OAuth2).
 
 Access to the API is made available using *views*, an abstract overview over the different Reddit entities. Each view
-then contains methods reflecting individual API calls. See the [example](example) project for reference.
+then contains methods reflecting individual API calls. See the [example](zav.jrc.example) project for reference.
 
 ### Installing
 
