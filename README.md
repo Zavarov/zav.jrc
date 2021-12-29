@@ -34,7 +34,7 @@ mvn clean install
   Apache License 2.0
 * [Jakarta Inject 1.0.5](https://github.com/eclipse-ee4j/injection-api/tree/1.0.5),
   Apache License 2.0
-* [Log4j2 2.17.0](https://github.com/apache/logging-log4j2/tree/rel/2.17.0),
+* [Log4j2 2.17.1](https://github.com/apache/logging-log4j2/tree/rel/2.17.1),
   Apache License 2.0
 * [OkHttp 4.9.3](https://github.com/square/okhttp/tree/parent-4.9.3),
   Apache License 2.0
