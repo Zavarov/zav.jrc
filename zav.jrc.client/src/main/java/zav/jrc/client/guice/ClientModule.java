@@ -22,8 +22,8 @@ import static zav.jrc.client.guice.Names.USERNAME;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
+import java.io.File;
 import java.io.IOException;
-import java.net.URL;
 import java.util.UUID;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.databind.io.CredentialsDto;
@@ -35,11 +35,9 @@ import zav.jrc.databind.io.UserAgentDto;
  */
 public abstract class ClientModule extends AbstractModule {
   @Nullable
-  private static final URL USER_AGENT =
-        ClientModule.class.getClassLoader().getResource("UserAgent.json");
+  private static final File USER_AGENT = new File("UserAgent.json");
   @Nullable
-  private static final URL CREDENTIALS =
-        ClientModule.class.getClassLoader().getResource("Credentials.json");
+  private static final File CREDENTIALS = new File("Credentials.json");
   
   @Override
   protected void configure() {
