@@ -343,7 +343,7 @@ public final class LinksComments {
    * Set a suggested sort for a link.<br>
    * Suggested sorts are useful to display comments in a certain preferred way for posts. For
    * example, casual conversation may be better sorted by new by default, or AMAs may be sorted by
-   * Q&A. A sort of an empty string clears the default sort.
+   * Q&amp;A. A sort of an empty string clears the default sort.
    * <pre>
    *   | Parameter             | Description                                  |
    *   | --------------------- | -------------------------------------------- |
