@@ -31,7 +31,7 @@ public final class Emoji {
    * response.<br>
    * This endpoint should also be used to update custom subreddit emojis with new images. If only
    * the permissions on an emoji require updating the POST_emoji_permissions endpoint should be
-   * requested, instead.<br>
+   * requested, instead.
    * <pre>
    * +---------------------+-----------------------------------------------------------------------+
    * | Parameter           | Description                                                           |
