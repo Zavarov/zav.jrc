@@ -1,2 +1,0 @@
-All the source code provided by AOP Alliance is Public Domain.
-@see http://aopalliance.sourceforge.net/
