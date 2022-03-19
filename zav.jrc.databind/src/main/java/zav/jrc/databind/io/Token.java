@@ -25,7 +25,7 @@ import org.apache.logging.log4j.Logger;
 /**
  * This class implements the token of the current session and optionally, the refresh token
  * necessary to acquire a new token, once the current one expires. The token is attached to every
- * API request, in order to verify the identify of the requester.
+ * API request, in order to verify the identity of the requester.
  */
 public class Token extends TokenTOP {
   private static final Logger LOGGER = LogManager.getLogger();
@@ -37,7 +37,7 @@ public class Token extends TokenTOP {
   private final LocalDateTime creationTime = LocalDateTime.now();
   
   /**
-   * Checks if the access token has expired. In order to allow a little bit of tolerance, the access
+   * Checks if the access token has expired. In order to allow a bit of tolerance, the access
    * token will be treated as expired, the moment it is less than one minute valid. This minimizes
    * the risk of the token expiring between calling this method and sending the request.
    *
