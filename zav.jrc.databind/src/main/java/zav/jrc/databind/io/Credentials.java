@@ -16,21 +16,16 @@
 
 package zav.jrc.databind.io;
 
+import java.nio.charset.StandardCharsets;
+import java.util.Base64;
+
 /**
- * This class implements the user agent, attach to every API request in order to uniquely identify
- * the application.
+ * This class contains the credentials required to authenticate the application.
  */
-public class UserAgentDto extends UserAgentTOPDto {
-  /**
-   * Calculates the user agent of the application.<p/>
-   * The user agent string is of the form:<p/>
-   * {@code <platform>:<app ID>:<version string> (by /u/<reddit username>)}
-   *
-   * @return The user agent string.
-   */
+public class Credentials extends CredentialsTOP {
   @Override
   public String toString() {
-    String pattern = "%s:%s:%s (by /u/%s)";
-    return String.format(pattern, getPlatform(), getName(), getVersion(), getAuthor());
+    String source = getId() + ":" + getSecret();
+    return Base64.getEncoder().encodeToString(source.getBytes(StandardCharsets.UTF_8));
   }
 }
