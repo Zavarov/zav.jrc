@@ -25,18 +25,18 @@ import org.junit.jupiter.api.Test;
  * Checks whether the attributes of a trophy list DTO have been properly deserialized.
  */
 public class TrophyListTest extends AbstractTest {
-  static TrophyListDto trophyList;
-  static AwardDto threeYearClub;
-  static AwardDto verifiedEmail;
+  static TrophyList trophyList;
+  static Award threeYearClub;
+  static Award verifiedEmail;
   
   /**
    * Instantiates the trophy list DTO and retrieves the individual awards.
    */
   @BeforeAll
   public static void setUpAll() {
-    trophyList = read("TrophyList.json", TrophyListDto.class);
-    threeYearClub = read(trophyList.getTrophies().get(0).getData(), AwardDto.class);
-    verifiedEmail = read(trophyList.getTrophies().get(1).getData(), AwardDto.class);
+    trophyList = read("TrophyList.json", TrophyList.class);
+    threeYearClub = read(trophyList.getTrophies().get(0).getData(), Award.class);
+    verifiedEmail = read(trophyList.getTrophies().get(1).getData(), Award.class);
   }
   
   @Test

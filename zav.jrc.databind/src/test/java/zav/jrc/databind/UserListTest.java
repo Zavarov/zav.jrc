@@ -25,12 +25,12 @@ import org.junit.jupiter.api.Test;
  * Checks whether the attributes of a user list DTO have been properly deserialized.
  */
 public class UserListTest extends AbstractTest {
-  static UserListDto userList;
-  static UserDto user;
+  static UserList userList;
+  static User user;
   
   @BeforeAll
   public static void setUpAll() {
-    userList = read("UserList.json", UserListDto.class);
+    userList = read("UserList.json", UserList.class);
     user = userList.getData().getChildren().get(0);
   }
   

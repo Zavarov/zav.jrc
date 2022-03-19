@@ -25,13 +25,13 @@ import org.junit.jupiter.api.Test;
  * Checks whether the attributes of an account DTO have been properly deserialized.
  */
 public class AccountTest extends AbstractTest {
-  static ThingDto thing;
-  static AccountDto account;
+  static Thing thing;
+  static Account account;
   
   @BeforeAll
   public static void setUpAll() {
-    thing = read("Account.json", ThingDto.class);
-    account = read(thing.getData(), AccountDto.class);
+    thing = read("Account.json", Thing.class);
+    account = read(thing.getData(), Account.class);
   }
   
   @Test

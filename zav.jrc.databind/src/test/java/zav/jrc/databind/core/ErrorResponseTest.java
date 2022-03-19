@@ -27,8 +27,8 @@ import zav.jrc.databind.AbstractTest;
  * Checks whether the attributes of an error response have been properly deserialized.
  */
 public class ErrorResponseTest extends AbstractTest {
-  static ErrorResponseDto error;
-  static ErrorResponseDataDto data;
+  static ErrorResponse error;
+  static ErrorResponseData data;
   static List<List<String>> messages;
   
   /**
@@ -36,7 +36,7 @@ public class ErrorResponseTest extends AbstractTest {
    */
   @BeforeAll
   public static void setUpAll() {
-    error = read("ErrorResponse.json", ErrorResponseDto.class);
+    error = read("ErrorResponse.json", ErrorResponse.class);
     data = error.getJson();
     messages = data.getErrors();
   }

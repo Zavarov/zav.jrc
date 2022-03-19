@@ -25,11 +25,11 @@ import org.junit.jupiter.api.Test;
  * Checks whether the attributes of a trending subreddits DTO have been properly deserialized.
  */
 public class TrendingSubredditsTest extends AbstractTest {
-  static TrendingSubredditsDto trendingSubreddits;
+  static TrendingSubreddits trendingSubreddits;
   
   @BeforeAll
   public static void setUpAll() {
-    trendingSubreddits = read("TrendingSubreddits.json", TrendingSubredditsDto.class);
+    trendingSubreddits = read("TrendingSubreddits.json", TrendingSubreddits.class);
   }
   
   @Test

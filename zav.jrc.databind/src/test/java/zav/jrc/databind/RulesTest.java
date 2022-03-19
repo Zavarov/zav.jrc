@@ -26,16 +26,16 @@ import org.junit.jupiter.api.Test;
  * Checks whether the attributes of a rules DTO have been properly deserialized.
  */
 public class RulesTest extends AbstractTest {
-  static RulesDto rules;
-  static List<RuleDto> ruleList;
-  static List<NextStepReasonDto> siteRulesFlowList;
+  static Rules rules;
+  static List<Rule> ruleList;
+  static List<NextStepReason> siteRulesFlowList;
   
   /**
    * Instantiates the rules DTO and retrieves the individual rules.
    */
   @BeforeAll
   public static void setUpAll() {
-    rules = read("Rules.json", RulesDto.class);
+    rules = read("Rules.json", Rules.class);
     ruleList = rules.getRules();
     siteRulesFlowList = rules.getSiteRulesFlow();
   }
@@ -47,7 +47,7 @@ public class RulesTest extends AbstractTest {
   
   @Test
   public void testGetRules() {
-    RuleDto rule;
+    Rule rule;
     assertThat(ruleList).hasSize(4);
     
     rule = ruleList.get(0);
@@ -89,7 +89,7 @@ public class RulesTest extends AbstractTest {
   
   @Test
   public void testGetSiteRulesFlow() {
-    NextStepReasonDto nextStepReason;
+    NextStepReason nextStepReason;
     assertThat(siteRulesFlowList).hasSize(4);
     
     nextStepReason = siteRulesFlowList.get(0);

@@ -25,11 +25,11 @@ import org.junit.jupiter.api.Test;
  * Checks whether the attributes of a self account DTO have been properly deserialized.
  */
 public class SelfAccountTest extends AbstractTest {
-  static SelfAccountDto selfAccount;
+  static SelfAccount selfAccount;
   
   @BeforeAll
   public static void setUpAll() {
-    selfAccount = read("SelfAccount.json", SelfAccountDto.class);
+    selfAccount = read("SelfAccount.json", SelfAccount.class);
   }
   
   @Test

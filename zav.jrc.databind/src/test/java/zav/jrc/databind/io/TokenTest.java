@@ -26,11 +26,11 @@ import zav.jrc.databind.AbstractTest;
  * Checks whether the attributes of a reddit token DTO have been properly deserialized.
  */
 public class TokenTest extends AbstractTest {
-  static TokenDto token;
+  static Token token;
   
   @BeforeAll
   public static void setUpAll() {
-    token = read("Token.json", TokenDto.class);
+    token = read("Token.json", Token.class);
   }
   
   @Test

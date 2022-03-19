@@ -25,12 +25,12 @@ import org.junit.jupiter.api.Test;
  * Checks whether the attributes of a karma list DTO have been properly deserialized.
  */
 public class KarmaListTest extends AbstractTest {
-  static KarmaListDto karmaList;
-  static KarmaDto karma;
+  static KarmaList karmaList;
+  static Karma karma;
   
   @BeforeAll
   public static void setUpAll() {
-    karmaList = read("KarmaList.json", KarmaListDto.class);
+    karmaList = read("KarmaList.json", KarmaList.class);
     karma = karmaList.getData().get(0);
   }
   
