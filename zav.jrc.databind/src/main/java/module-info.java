@@ -1,8 +1,8 @@
 module zav.jrc.databind {
-  requires com.fasterxml.jackson.annotation;
   requires org.apache.logging.log4j;
   
-  requires java.compiler;
+  requires transitive com.fasterxml.jackson.databind;
+  requires transitive java.compiler;
   
   exports zav.jrc.databind;
   exports zav.jrc.databind.io;
