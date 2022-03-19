@@ -38,6 +38,7 @@ import zav.jrc.databind.core.Listing;
 /**
  * Utility class for deserializing the API responses.
  */
+@SuppressWarnings("unused")
 public class Things {
   private static final Map<String, Class<?>> KINDS = new HashMap<>();
   
