@@ -22,7 +22,7 @@ package zav.jrc.api.endpoint;
  * @see <a href="https://www.reddit.com/dev/api/#section_emoji">here</a>
  */
 @SuppressWarnings("unused")
-public class Emoji {
+public final class Emoji {
   /**
    * Add an emoji to the DB by posting a message on emoji_upload_q. A job processor that listens on
    * a queue, uses the s3_key provided in the request to locate the image in S3 Temp Bucket and

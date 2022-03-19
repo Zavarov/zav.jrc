@@ -22,7 +22,7 @@ package zav.jrc.api.endpoint;
  * @see <a href="https://www.reddit.com/dev/api/#section_search">here</a>
  */
 @SuppressWarnings("unused")
-public class Search {
+public final class Search {
   /**
    * Search links page.
    *

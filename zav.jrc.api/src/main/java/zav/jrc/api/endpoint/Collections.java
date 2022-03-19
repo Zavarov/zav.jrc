@@ -22,7 +22,7 @@ package zav.jrc.api.endpoint;
  * @see <a href="https://www.reddit.com/dev/api/#section_collections">here</a>
  */
 @SuppressWarnings("unused")
-public class Collections {
+public final class Collections {
   /**
    * Add a post to a collection.
    * <pre>
