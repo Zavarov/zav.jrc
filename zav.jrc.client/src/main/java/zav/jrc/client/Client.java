@@ -67,7 +67,7 @@ public abstract class Client {
 
   /**
    * This function has two purposes. The primary purpose is to execute the provided {@link Request}.
-   * However it also checks if the current access token is still valid. In case it expired, a new
+   * However, it also checks if the current access token is still valid. In case it expired, a new
    * one will be fetched automatically.
    *
    * @param request The request transmitted to Reddit.

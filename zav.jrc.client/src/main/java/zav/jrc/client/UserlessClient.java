@@ -59,7 +59,7 @@ public class UserlessClient extends Client {
     body.put("duration", duration);
     
     // Using a permanent token for an userless client doesn't make much sense, as it has to send
-    // its credentials anyways. Therefore it would make more sense to request a new access token
+    // its credentials anyway. Therefore, it would make more sense to request a new access token
     // directly.
     if (duration == Duration.PERMANENT) {
       LOGGER.warn("You're requesting a permanent token for an userless client. Are you sure?");

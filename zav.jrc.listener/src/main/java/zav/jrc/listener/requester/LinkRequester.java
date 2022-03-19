@@ -89,8 +89,8 @@ public class LinkRequester extends AbstractIterator<List<Link>> {
     while (iterator.hasNext()) {
       Link link = iterator.next();
 
-      //If the current link is lexicographically larger then the head
-      //Then that means it was created after the head, i.e at a later point in time
+      //If the current link is lexicographically larger than the head
+      //Then that means it was created after the head, i.e. at a later point in time
       if (link.getId().compareTo(head.getId()) > 0) {
         result.add(link);
       } else {

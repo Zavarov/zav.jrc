@@ -3,7 +3,6 @@ module zav.jcr.listener {
 
   requires com.google.common;
   requires com.google.guice;
-  requires com.google.guice.extensions.assistedinject;
   requires java.inject;
   requires okhttp3;
   requires org.apache.logging.log4j;

@@ -18,7 +18,6 @@ package zav.jrc.listener.internal;
 
 import java.util.function.Consumer;
 import javax.inject.Inject;
-import zav.jrc.databind.Link;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.event.LinkEvent;
 

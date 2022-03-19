@@ -17,10 +17,8 @@
 package zav.jrc.listener.internal;
 
 import com.google.inject.Injector;
-import com.google.inject.Module;
 import javax.inject.Inject;
 import zav.jrc.databind.Link;
-import zav.jrc.databind.Subreddit;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.event.LinkEvent;
 import zav.jrc.listener.observer.AbstractObserver;

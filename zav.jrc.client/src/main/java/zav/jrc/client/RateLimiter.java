@@ -81,7 +81,7 @@ public class RateLimiter {
   
   /**
    * In case a request can be made within the current window, the method returns immediately.
-   * Otherwise the method will block until the start of the next request window.
+   * Otherwise, the method will block until the start of the next request window.
    *
    * @throws InterruptedException In case the current thread has been interrupted, while waiting
    *     for the start of the next request window.
