@@ -25,7 +25,6 @@ import java.util.List;
  * The base class for all Reddit endpoints.<br>
  * An endpoint is an URL to which REST request can be made.
  */
-@SuppressWarnings("unused")
 public final class Endpoint {
   private final List<String> path;
   
