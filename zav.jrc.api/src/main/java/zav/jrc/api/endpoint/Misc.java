@@ -22,7 +22,7 @@ package zav.jrc.api.endpoint;
  * @see <a href="https://www.reddit.com/dev/api/#section_misc">here</a>
  */
 @SuppressWarnings("unused")
-public class Misc {
+public final class Misc {
   /**
    * Retrieve the advisory text about saving media for relevant media links.<br>
    * This endpoint returns a notice for display during the post submission process that is pertinent
