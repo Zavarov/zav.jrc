@@ -30,14 +30,8 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.google.inject.extensions</groupId>
-            <artifactId>guice-assistedinject</artifactId>
-            <version>${guice.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>jrc-client</artifactId>
+            <artifactId>jrc-databind</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
