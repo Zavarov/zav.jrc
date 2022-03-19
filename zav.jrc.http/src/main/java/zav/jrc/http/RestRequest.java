@@ -32,7 +32,7 @@ import okhttp3.RequestBody;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.endpoint.Endpoint;
+import zav.jrc.api.endpoint.Endpoint;
 
 /**
  * The base class for every REST request.<br>

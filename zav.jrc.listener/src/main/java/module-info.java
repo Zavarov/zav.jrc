@@ -5,8 +5,9 @@ module zav.jcr.listener {
   requires com.google.guice;
   requires com.google.guice.extensions.assistedinject;
   requires java.inject;
+  requires okhttp3;
   requires org.apache.logging.log4j;
-
+  
   requires zav.jrc.api;
   requires zav.jrc.client;
   requires zav.jrc.databind;
@@ -18,4 +19,5 @@ module zav.jcr.listener {
   exports zav.jrc.listener.requester;
   
   opens zav.jrc.listener.internal to com.google.guice;
+  exports zav.jrc.listener.event;
 }

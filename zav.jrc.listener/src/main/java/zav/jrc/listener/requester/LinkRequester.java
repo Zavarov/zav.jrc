@@ -16,18 +16,26 @@
 
 package zav.jrc.listener.requester;
 
+import static zav.jrc.listener.internal.Constants.SUBREDDIT;
+
 import com.google.common.collect.AbstractIterator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import javax.inject.Inject;
+import javax.inject.Named;
+import okhttp3.Request;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.api.Subreddit;
+import zav.jrc.api.Things;
+import zav.jrc.api.endpoint.Listings;
+import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.Link;
 
 /**
  * This class is used to retrieve the latest submissions from a given subreddit.<br>
@@ -36,18 +44,21 @@ import zav.jrc.databind.LinkDto;
  * On future requests, the head is compared against all retrieved links and only those that have
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
-public class LinkRequester extends AbstractIterator<List<LinkDto>> {
-  private static final Logger LOGGER = LogManager.getLogger(LinkRequester.class);
-  private final Subreddit subreddit;
-  @Nullable
-  private LinkDto head;
+public class LinkRequester extends AbstractIterator<List<Link>> {
+  private static final Logger LOGGER = LogManager.getLogger();
+
+  @Inject
+  private Client client;
   
-  public LinkRequester(Subreddit subreddit) {
-    this.subreddit = subreddit;
-  }
+  @Inject
+  @Named(SUBREDDIT)
+  private String subreddit;
+
+  @Nullable
+  private Link head;
 
   @Override
-  protected List<LinkDto> computeNext() throws IteratorException {
+  protected List<Link> computeNext() throws IteratorException {
     try {
       LOGGER.info("Computing next links via {}.", subreddit);
       return head == null ? init() : request();
@@ -56,9 +67,9 @@ public class LinkRequester extends AbstractIterator<List<LinkDto>> {
     }
   }
 
-  private List<LinkDto> init() throws FailedRequestException {
+  private List<Link> init() throws FailedRequestException {
     LOGGER.info("Possible first time this requester is used? Retrieve head.");
-    List<LinkDto> submissions = subreddit.getNew().limit(1).collect(Collectors.toList());
+    List<Link> submissions = getNew().limit(1).collect(Collectors.toList());
 
     if (!submissions.isEmpty()) {
       head = submissions.get(0);
@@ -68,15 +79,15 @@ public class LinkRequester extends AbstractIterator<List<LinkDto>> {
     return Collections.emptyList();
   }
 
-  private List<LinkDto> request() throws FailedRequestException {
+  private List<Link> request() throws FailedRequestException {
     assert head != null;
     LOGGER.info("Requesting links after {}.", head.getName());
 
-    List<LinkDto> result = new ArrayList<>();
-    Iterator<LinkDto> iterator = subreddit.getNew().iterator();
+    List<Link> result = new ArrayList<>();
+    Iterator<Link> iterator = getNew().iterator();
 
     while (iterator.hasNext()) {
-      LinkDto link = iterator.next();
+      Link link = iterator.next();
 
       //If the current link is lexicographically larger then the head
       //Then that means it was created after the head, i.e at a later point in time
@@ -94,6 +105,16 @@ public class LinkRequester extends AbstractIterator<List<LinkDto>> {
     }
 
     return result;
+  }
+  
+  private Stream<Link> getNew() throws FailedRequestException {
+    Request query = client.newRequest()
+          .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
+          .setArgs(subreddit)
+          .build()
+          .get();
+  
+    return Things.transformListingOfThings(client.send(query), Link.class);
   }
   
   /**

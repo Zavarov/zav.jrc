@@ -17,9 +17,9 @@
 package zav.jrc.listener.observable;
 
 import com.google.inject.Injector;
+import com.google.inject.Module;
 import javax.inject.Inject;
-import zav.jrc.api.Subreddit;
-import zav.jrc.listener.internal.SubredditObserverFactory;
+import zav.jrc.listener.internal.SubredditModule;
 import zav.jrc.listener.observer.SubredditObserver;
 
 /**
@@ -29,7 +29,8 @@ public class SubredditObservable {
   @Inject
   private Injector injector;
   
-  public SubredditObserver getObserver(Subreddit subreddit) {
-    return injector.getInstance(SubredditObserverFactory.class).create(subreddit);
+  public SubredditObserver getObserver(String subreddit) {
+    Module module = new SubredditModule(subreddit);
+    return injector.createChildInjector(module).getInstance(SubredditObserver.class);
   }
 }

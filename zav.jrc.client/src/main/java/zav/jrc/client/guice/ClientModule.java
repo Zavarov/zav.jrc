@@ -26,8 +26,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.databind.io.CredentialsDto;
-import zav.jrc.databind.io.UserAgentDto;
+import zav.jrc.databind.io.Credentials;
+import zav.jrc.databind.io.UserAgent;
 
 /**
  * The Guice module responsible for reading and binding the credentials required for
@@ -42,13 +42,13 @@ public abstract class ClientModule extends AbstractModule {
   @Override
   protected void configure() {
     ObjectMapper om = new ObjectMapper();
-    UserAgentDto userAgent;
-    CredentialsDto credentials;
+    UserAgent userAgent;
+    Credentials credentials;
     UUID uuid;
     
     try {
-      userAgent = om.readValue(USER_AGENT, UserAgentDto.class);
-      credentials = om.readValue(CREDENTIALS, CredentialsDto.class);
+      userAgent = om.readValue(USER_AGENT, UserAgent.class);
+      credentials = om.readValue(CREDENTIALS, Credentials.class);
       uuid = UUID.randomUUID();
     } catch (IOException e) {
       // Client can't log in without password, user agent, etc...
@@ -56,8 +56,8 @@ public abstract class ClientModule extends AbstractModule {
     }
     
     bind(UUID.class).toInstance(uuid);
-    bind(UserAgentDto.class).toInstance(userAgent);
-    bind(CredentialsDto.class).toInstance(credentials);
+    bind(UserAgent.class).toInstance(userAgent);
+    bind(Credentials.class).toInstance(credentials);
     
     if (credentials.getUsername() != null) {
       bind(String.class).annotatedWith(Names.named(USERNAME)).toInstance(credentials.getUsername());

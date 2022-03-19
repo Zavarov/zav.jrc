@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Zavarov.
+ * Copyright (c) 2022 Zavarov.
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -16,27 +16,20 @@
 
 package zav.jrc.listener.internal;
 
+import static zav.jrc.listener.internal.Constants.SUBREDDIT;
+
 import com.google.inject.AbstractModule;
-import zav.jrc.databind.LinkDto;
-import zav.jrc.databind.SubredditDto;
+import com.google.inject.name.Names;
 
-/**
- * Observer module used for dependency injection.<br>
- * In over to avoid a hardcoded handle(...) method in the listener interface, the required arguments
- * can instead be retrieved via the {@code Inject} annotation.
- */
-public class ObserverModule extends AbstractModule {
-  private final SubredditDto subreddit;
-  private final LinkDto link;
-
-  public ObserverModule(SubredditDto subreddit, LinkDto link) {
+public class SubredditModule extends AbstractModule {
+  private final String subreddit;
+  
+  public SubredditModule(String subreddit) {
     this.subreddit = subreddit;
-    this.link = link;
   }
   
   @Override
   protected void configure() {
-    bind(SubredditDto.class).toInstance(subreddit);
-    bind(LinkDto.class).toInstance(link);
+    super.bind(String.class).annotatedWith(Names.named(SUBREDDIT)).toInstance(subreddit);
   }
 }

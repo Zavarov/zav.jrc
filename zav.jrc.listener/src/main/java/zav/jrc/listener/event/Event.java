@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Zavarov.
+ * Copyright (c) 2022 Zavarov.
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,15 +14,8 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.internal;
+package zav.jrc.listener.event;
 
-import zav.jrc.api.Subreddit;
-import zav.jrc.listener.observer.SubredditObserver;
-
-/**
- * Instances of {@link SubredditObserver} have to be created via this class rather than directly.
- * Otherwise Guice is unable obtain the arguments required by the constructor.
- */
-public interface SubredditObserverFactory {
-  SubredditObserver create(Subreddit subreddit);
+public interface Event<T> {
+  T getSource();
 }

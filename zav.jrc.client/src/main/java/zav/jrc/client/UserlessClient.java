@@ -29,7 +29,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
-import zav.jrc.databind.io.TokenDto;
+import zav.jrc.databind.io.Token;
 import zav.jrc.http.RestRequest;
 
 /**
@@ -77,7 +77,7 @@ public class UserlessClient extends Client {
     //_send(...) -> Skip token validation
     try {
       ObjectMapper om = new ObjectMapper();
-      token = om.readValue(_send(request), TokenDto.class);
+      token = om.readValue(_send(request), Token.class);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }

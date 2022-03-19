@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Zavarov.
+ * Copyright (c) 2022 Zavarov.
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -16,25 +16,6 @@
 
 package zav.jrc.listener.internal;
 
-import com.google.inject.Injector;
-import com.google.inject.Module;
-import javax.inject.Inject;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.listener.SubredditListener;
-import zav.jrc.listener.event.LinkEvent;
-import zav.jrc.listener.observer.AbstractObserver;
-
-/**
- * Observer mock that calls the custom {@code notify(...)} method of a listener with empty subreddit
- * and link s.
- */
-public class ObserverMock extends AbstractObserver<SubredditListener> {
-  @Inject
-  private Injector injector;
-  
-  @Override
-  public void notifyListener(SubredditListener listener) {
-    listener.notify(new LinkEvent(new Link()));
-  }
+public class Constants {
+  public static final String SUBREDDIT = "subreddit";
 }

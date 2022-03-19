@@ -18,8 +18,9 @@ package zav.jrc.listener.internal;
 
 import java.util.function.Consumer;
 import javax.inject.Inject;
-import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.Link;
 import zav.jrc.listener.SubredditListener;
+import zav.jrc.listener.event.LinkEvent;
 
 /**
  * A listener mock that records every time it has been notified.
@@ -32,7 +33,7 @@ public class SubredditListenerMock implements SubredditListener {
   }
 
   @Inject
-  public void handle(LinkDto link) {
+  public void notify(LinkEvent event) {
     consumer.accept(this);
   }
 }

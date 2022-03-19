@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Zavarov.
+ * Copyright (c) 2022 Zavarov.
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -14,23 +14,20 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.internal;
+package zav.jrc.listener.event;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.assistedinject.FactoryModuleBuilder;
-import zav.jrc.listener.observer.Observer;
-import zav.jrc.listener.observer.SubredditObserver;
+import zav.jrc.databind.Link;
 
-/**
- * The Guice module responsible for creating the {@link Observer} instances.
- */
-public class ObservableModule extends AbstractModule {
+public class LinkEvent implements Event<Link> {
+  private final Link source;
+  
+  public LinkEvent(Link source) {
+    this.source = source;
+  }
+  
+  
   @Override
-  protected void configure() {
-    com.google.inject.Module module = new FactoryModuleBuilder()
-          .implement(SubredditObserver.class, SubredditObserver.class)
-          .build(SubredditObserverFactory.class);
-    
-    install(module);
+  public Link getSource() {
+    return source;
   }
 }

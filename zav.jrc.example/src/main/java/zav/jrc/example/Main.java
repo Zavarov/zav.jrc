@@ -18,25 +18,18 @@ package zav.jrc.example;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
-import java.util.stream.Stream;
-import zav.jrc.api.Reddit;
-import zav.jrc.api.Subreddit;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.guice.UserlessClientModule;
-import zav.jrc.databind.LinkDto;
+import zav.jrc.listener.observable.SubredditObservable;
+import zav.jrc.listener.observer.SubredditObserver;
 
-/**
- * This example illustrates how to use Guice and the views to retrieve a stream of latest links from
- * the {@link Subreddit} {@code RedditDev}.<br>
- * Note that for this program to run, you need to specify your credentials in the
- * {@code Credentials.json} and {@code UserAgent.json} in the {@code resources} directory.
- */
 public class Main {
   protected static Injector GUICE;
   protected static Client CLIENT;
-  protected static Reddit REDDIT;
+  protected static SubredditObservable OBSERVABLE;
+  protected static SubredditObserver OBSERVER;
   
   /**
    * The entry point for the program.
@@ -47,14 +40,13 @@ public class Main {
   public static void main(String[] args) throws FailedRequestException {
     GUICE = Guice.createInjector(new UserlessClientModule());
     CLIENT = GUICE.getInstance(Client.class);
-    REDDIT = GUICE.getInstance(Reddit.class);
+    OBSERVABLE = GUICE.getInstance(SubredditObservable.class);
     
     CLIENT.login(Duration.TEMPORARY);
     
-    Subreddit subreddit = REDDIT.getSubreddit("RedditDev");
-    Stream<LinkDto> links = subreddit.getNew();
-    
-    links.forEach(link -> System.out.println(link.getTitle()));
+    OBSERVER = OBSERVABLE.getObserver("RedditDev");
+    OBSERVER.addListener((e) -> System.out.println(e.getSource()));
+    OBSERVER.notifyAllListeners();
     
     CLIENT.logout();
   }

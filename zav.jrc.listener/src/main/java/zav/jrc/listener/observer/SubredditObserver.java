@@ -16,39 +16,39 @@
 
 package zav.jrc.listener.observer;
 
+import static zav.jrc.listener.internal.Constants.SUBREDDIT;
+
 import com.google.inject.Injector;
-import com.google.inject.Module;
-import com.google.inject.assistedinject.Assisted;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
+import javax.inject.Named;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.api.Subreddit;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.LinkDto;
+import zav.jrc.databind.Link;
 import zav.jrc.listener.SubredditListener;
-import zav.jrc.listener.internal.ObserverModule;
+import zav.jrc.listener.event.LinkEvent;
 import zav.jrc.listener.requester.LinkRequester;
 
 /**
  * The observer implementation for subreddits. Calling {@link #notifyListener(SubredditListener)} or
- * {@link #notifyAllListeners()} will call the respective {@code handle} functions of the selected
- * listeners.
+ * {@link #notifyAllListeners()} will call the respective
+ * {@link SubredditListener#notify(LinkEvent)} methods of all registered listeners.
  */
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
-  private final Subreddit subreddit;
-  private final LinkRequester requester;
   @Nullable
-  private List<LinkDto> history;
+  private List<Link> history;
+  
+  @Inject
+  private LinkRequester requester;
+  
   @Inject
   private Injector injector;
   
   @Inject
-  public SubredditObserver(@Assisted Subreddit subreddit) {
-    this.requester = new LinkRequester(subreddit);
-    this.subreddit = subreddit;
-  }
+  @Named(SUBREDDIT)
+  private String subreddit;
 
   @Override
   public void notifyAllListeners() throws FailedRequestException {
@@ -69,13 +69,9 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
       history = history == null ? requester.next() : history;
 
       //Notify the listener starting with the oldest link first
-      List<LinkDto> result = new ArrayList<>(history);
-      result.sort(Comparator.comparing(LinkDto::getId));
-      
-      for (LinkDto link : result) {
-        Module module = new ObserverModule(subreddit.getAbout(), link);
-        injector.createChildInjector(module).injectMembers(listener);
-      }
+      List<Link> result = new ArrayList<>(history);
+      result.sort(Comparator.comparing(Link::getId));
+      result.stream().map(LinkEvent::new).forEach(listener::notify);
     } catch (LinkRequester.IteratorException e) {
       throw e.getCause();
     }

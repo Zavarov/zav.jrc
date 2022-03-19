@@ -16,7 +16,7 @@
 
 package zav.jrc.client.internal;
 
-import zav.jrc.endpoint.Endpoint;
+import zav.jrc.api.endpoint.Endpoint;
 
 /**
  * The endpoints used for retrieving and invalidating an access token.

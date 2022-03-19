@@ -30,18 +30,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${fasterxml.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.logging.log4j</groupId>
-            <artifactId>log4j-api</artifactId>
-            <version>${log4j.version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>${okhttp.version}</version>
@@ -49,7 +37,7 @@
 
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>jrc-endpoint</artifactId>
+            <artifactId>jrc-api</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>
