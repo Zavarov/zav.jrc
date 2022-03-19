@@ -17,7 +17,7 @@
 package zav.jrc.api.endpoint;
 
 /**
- * REST endpoint for {@code Links} and {@code Comments}.
+ * REST endpoint for {@code Links} and {@code Comments} section.
  *
  * @see <a href="https://www.reddit.com/dev/api#section_links_and_comments">here</a>
  */

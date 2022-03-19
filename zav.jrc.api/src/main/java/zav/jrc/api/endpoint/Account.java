@@ -17,7 +17,7 @@
 package zav.jrc.api.endpoint;
 
 /**
- * REST endpoint for the {@code Account}.
+ * REST endpoint for the {@code Account} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_account">here</a>
  */
