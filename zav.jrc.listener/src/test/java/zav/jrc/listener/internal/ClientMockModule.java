@@ -20,8 +20,8 @@ import com.google.inject.name.Names;
 import java.util.UUID;
 import zav.jrc.client.Client;
 import zav.jrc.client.guice.ClientModule;
-import zav.jrc.databind.io.Credentials;
-import zav.jrc.databind.io.UserAgent;
+import zav.jrc.databind.io.CredentialsEntity;
+import zav.jrc.databind.io.UserAgentEntity;
 
 /**
  * Guice module to bind the mock client to the base client class.<br>
@@ -30,13 +30,13 @@ import zav.jrc.databind.io.UserAgent;
 public class ClientMockModule extends ClientModule {
   @Override
   protected void configure() {
-    UserAgent userAgent = new UserAgent();
-    Credentials credentials = new Credentials();
+    UserAgentEntity userAgent = new UserAgentEntity();
+    CredentialsEntity credentials = new CredentialsEntity();
     UUID uuid = UUID.randomUUID();
     
     bind(UUID.class).toInstance(uuid);
-    bind(UserAgent.class).toInstance(userAgent);
-    bind(Credentials.class).toInstance(credentials);
+    bind(UserAgentEntity.class).toInstance(userAgent);
+    bind(CredentialsEntity.class).toInstance(credentials);
     bind(String.class).annotatedWith(Names.named("username")).toInstance("user");
     bind(String.class).annotatedWith(Names.named("password")).toInstance("pw");
     bind(Client.class).to(ClientMock.class);

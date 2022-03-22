@@ -22,45 +22,28 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of a user list DTO have been properly deserialized.
+ * Checks whether the attributes of a trending subreddits entity have been properly deserialized.
  */
-public class UserListTest extends AbstractTest {
-  static UserList userList;
-  static User user;
+public class TrendingSubredditsEntityTest extends AbstractTest {
+  static TrendingSubredditsEntity trendingSubreddits;
   
   @BeforeAll
   public static void setUpAll() {
-    userList = read("UserList.json", UserList.class);
-    user = userList.getData().getChildren().get(0);
+    trendingSubreddits = read("TrendingSubreddits.json", TrendingSubredditsEntity.class);
   }
   
   @Test
-  public void testGetData() {
-    assertThat(userList.getData().getChildren()).hasSize(1);
+  public void testGetCommentCount() {
+    assertThat(trendingSubreddits.getCommentCount()).isEqualTo(4);
   }
   
   @Test
-  public void testGetKind() {
-    assertThat(userList.getKind()).isEqualTo("UserList");
+  public void testGetCommentUrl() {
+    assertThat(trendingSubreddits.getCommentUrl()).isEqualTo("/r/trendingsubreddits/comments/l5xdvw/trending_subreddits_for_20210127_rsmallstreetbets/");
   }
   
   @Test
-  public void testGetDate() {
-    assertThat(user.getDate()).isEqualTo(1.234567890E9);
-  }
-  
-  @Test
-  public void testGetName() {
-    assertThat(user.getName()).isEqualTo("Bernkastel");
-  }
-  
-  @Test
-  public void testGetId() {
-    assertThat(user.getId()).isEqualTo("r9_abcdefg");
-  }
-  
-  @Test
-  public void testGetUserId() {
-    assertThat(user.getUserId()).isEqualTo("t2_124567");
+  public void testGetSubredditNames() {
+    assertThat(trendingSubreddits.getSubredditNames()).containsExactly("smallstreetbets", "bluejackets", "japan", "biggreenegg", "BigMouth");
   }
 }

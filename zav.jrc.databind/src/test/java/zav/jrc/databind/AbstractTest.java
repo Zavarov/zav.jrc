@@ -22,7 +22,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
- * Base class for all DTO tests.
+ * Base class for all entity tests.
  */
 public abstract class AbstractTest {
   private static final Path RESOURCES = Paths.get("src/test/resources");

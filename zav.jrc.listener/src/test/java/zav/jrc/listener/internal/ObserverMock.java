@@ -18,7 +18,7 @@ package zav.jrc.listener.internal;
 
 import com.google.inject.Injector;
 import javax.inject.Inject;
-import zav.jrc.databind.Link;
+import zav.jrc.databind.LinkEntity;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.event.LinkEvent;
 import zav.jrc.listener.observer.AbstractObserver;
@@ -33,6 +33,6 @@ public class ObserverMock extends AbstractObserver<SubredditListener> {
   
   @Override
   public void notifyListener(SubredditListener listener) {
-    listener.notify(new LinkEvent(new Link()));
+    listener.notify(new LinkEvent(new LinkEntity()));
   }
 }

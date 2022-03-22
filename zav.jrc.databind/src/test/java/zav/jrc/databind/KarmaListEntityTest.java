@@ -14,36 +14,48 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.databind.core;
+package zav.jrc.databind;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
-import zav.jrc.databind.AbstractTest;
 
 /**
- * Checks whether the attributes of an error response have been properly deserialized.
+ * Checks whether the attributes of a karma list entity have been properly deserialized.
  */
-public class ErrorResponseTest extends AbstractTest {
-  static ErrorResponse error;
-  static ErrorResponseData data;
-  static List<List<String>> messages;
+public class KarmaListEntityTest extends AbstractTest {
+  static KarmaListEntity karmaList;
+  static KarmaEntity karma;
   
-  /**
-   * Instantiates the error response DTO and retrieves its error messages.
-   */
   @BeforeAll
   public static void setUpAll() {
-    error = read("ErrorResponse.json", ErrorResponse.class);
-    data = error.getJson();
-    messages = data.getErrors();
+    karmaList = read("KarmaList.json", KarmaListEntity.class);
+    karma = karmaList.getData().get(0);
   }
   
   @Test
-  public void testMessages() {
-    assertThat(messages).hasSize(1);
-    assertThat(messages.get(0)).containsExactly("SUBREDDIT_EXISTS", "that subreddit already exists", "name");
+  public void testGetData() {
+    assertThat(karmaList.getData()).hasSize(1);
+  }
+  
+  @Test
+  public void testGetKind() {
+    assertThat(karmaList.getKind()).isEqualTo("KarmaList");
+  }
+  
+  @Test
+  public void testGetCommentKarma() {
+    assertThat(karma.getCommentKarma()).isEqualTo(69);
+  }
+  
+  @Test
+  public void testGetLinkKarma() {
+    assertThat(karma.getLinkKarma()).isEqualTo(42);
+  }
+  
+  @Test
+  public void testGetSubreddit() {
+    assertThat(karma.getSubreddit()).isEqualTo("bananapics");
   }
 }

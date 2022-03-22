@@ -14,48 +14,47 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.databind;
+package zav.jrc.databind.io;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import zav.jrc.databind.AbstractTest;
 
 /**
- * Checks whether the attributes of a karma list DTO have been properly deserialized.
+ * Checks whether the attributes of a reddit token entity have been properly deserialized.
  */
-public class KarmaListTest extends AbstractTest {
-  static KarmaList karmaList;
-  static Karma karma;
+public class TokenEntityTest extends AbstractTest {
+  static TokenEntity token;
   
   @BeforeAll
   public static void setUpAll() {
-    karmaList = read("KarmaList.json", KarmaList.class);
-    karma = karmaList.getData().get(0);
+    token = read("Token.json", TokenEntity.class);
   }
   
   @Test
-  public void testGetData() {
-    assertThat(karmaList.getData()).hasSize(1);
+  public void testGetAccessToken() {
+    assertThat(token.getAccessToken()).isEqualTo("ACCESS_TOKEN");
   }
   
   @Test
-  public void testGetKind() {
-    assertThat(karmaList.getKind()).isEqualTo("KarmaList");
+  public void testGetTokenType() {
+    assertThat(token.getTokenType()).isEqualTo("bearer");
   }
   
   @Test
-  public void testGetCommentKarma() {
-    assertThat(karma.getCommentKarma()).isEqualTo(69);
+  public void testGetExpiresIn() {
+    assertThat(token.getExpiresIn()).isEqualTo(12345);
   }
   
   @Test
-  public void testGetLinkKarma() {
-    assertThat(karma.getLinkKarma()).isEqualTo(42);
+  public void testGetScope() {
+    assertThat(token.getScope()).isEqualTo("all");
   }
   
   @Test
-  public void testGetSubreddit() {
-    assertThat(karma.getSubreddit()).isEqualTo("bananapics");
+  public void testGetRefreshToken() {
+    assertThat(token.getRefreshToken()).isEqualTo("REFRESH_TOKEN");
   }
 }

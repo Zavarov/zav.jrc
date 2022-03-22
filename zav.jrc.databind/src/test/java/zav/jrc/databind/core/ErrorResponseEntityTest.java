@@ -14,47 +14,36 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.databind.io;
+package zav.jrc.databind.core;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import zav.jrc.databind.AbstractTest;
 
 /**
- * Checks whether the attributes of a reddit token DTO have been properly deserialized.
+ * Checks whether the attributes of an error response entity have been properly deserialized.
  */
-public class TokenTest extends AbstractTest {
-  static Token token;
+public class ErrorResponseEntityTest extends AbstractTest {
+  static ErrorResponseEntity error;
+  static ErrorResponseDataEntity data;
+  static List<List<String>> messages;
   
+  /**
+   * Instantiates the error response DTO and retrieves its error messages.
+   */
   @BeforeAll
   public static void setUpAll() {
-    token = read("Token.json", Token.class);
+    error = read("ErrorResponse.json", ErrorResponseEntity.class);
+    data = error.getJson();
+    messages = data.getErrors();
   }
   
   @Test
-  public void testGetAccessToken() {
-    assertThat(token.getAccessToken()).isEqualTo("ACCESS_TOKEN");
-  }
-  
-  @Test
-  public void testGetTokenType() {
-    assertThat(token.getTokenType()).isEqualTo("bearer");
-  }
-  
-  @Test
-  public void testGetExpiresIn() {
-    assertThat(token.getExpiresIn()).isEqualTo(12345);
-  }
-  
-  @Test
-  public void testGetScope() {
-    assertThat(token.getScope()).isEqualTo("all");
-  }
-  
-  @Test
-  public void testGetRefreshToken() {
-    assertThat(token.getRefreshToken()).isEqualTo("REFRESH_TOKEN");
+  public void testMessages() {
+    assertThat(messages).hasSize(1);
+    assertThat(messages.get(0)).containsExactly("SUBREDDIT_EXISTS", "that subreddit already exists", "name");
   }
 }

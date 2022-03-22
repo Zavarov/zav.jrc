@@ -22,16 +22,16 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of an account DTO have been properly deserialized.
+ * Checks whether the attributes of an account entity have been properly deserialized.
  */
-public class AccountTest extends AbstractTest {
-  static Thing thing;
-  static Account account;
+public class AccountEntityTest extends AbstractTest {
+  static ThingEntity thing;
+  static AccountEntity account;
   
   @BeforeAll
   public static void setUpAll() {
-    thing = read("Account.json", Thing.class);
-    account = read(thing.getData(), Account.class);
+    thing = read("Account.json", ThingEntity.class);
+    account = read(thing.getData(), AccountEntity.class);
   }
   
   @Test

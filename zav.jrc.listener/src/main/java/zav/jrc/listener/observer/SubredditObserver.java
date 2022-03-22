@@ -26,7 +26,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.Link;
+import zav.jrc.databind.LinkEntity;
 import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.event.LinkEvent;
 import zav.jrc.listener.requester.LinkRequester;
@@ -38,7 +38,7 @@ import zav.jrc.listener.requester.LinkRequester;
  */
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @Nullable
-  private List<Link> history;
+  private List<LinkEntity> history;
   
   @Inject
   private LinkRequester requester;
@@ -69,8 +69,8 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
       history = history == null ? requester.next() : history;
 
       //Notify the listener starting with the oldest link first
-      List<Link> result = new ArrayList<>(history);
-      result.sort(Comparator.comparing(Link::getId));
+      List<LinkEntity> result = new ArrayList<>(history);
+      result.sort(Comparator.comparing(LinkEntity::getId));
       result.stream().map(LinkEvent::new).forEach(listener::notify);
     } catch (LinkRequester.IteratorException e) {
       throw e.getCause();

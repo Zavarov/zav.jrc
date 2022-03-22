@@ -23,27 +23,27 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of a messaging DTO have been properly deserialized.
+ * Checks whether the attributes of a messaging entity have been properly deserialized.
  */
-public class MessagingTest extends AbstractTest {
-  static UserList[] messaging;
-  static UserList blocked;
-  static UserList trusted;
+public class MessagingEntityTest extends AbstractTest {
+  static UserListEntity[] messaging;
+  static UserListEntity blocked;
+  static UserListEntity trusted;
   
   /**
    * Instantiates the messaging DTO and retrieves the trusted and blocked users.
    */
   @BeforeAll
   public static void setUpAll() {
-    messaging = read("Messaging.json", UserList[].class);
+    messaging = read("Messaging.json", UserListEntity[].class);
     trusted = messaging[0];
     blocked = messaging[1];
   }
   
   @Test
   public void testGetTrusted() {
-    List<User> children = trusted.getData().getChildren();
-    User child = children.get(0);
+    List<UserEntity> children = trusted.getData().getChildren();
+    UserEntity child = children.get(0);
     
     assertThat(trusted.getKind()).isEqualTo("UserList");
     assertThat(children).hasSize(1);
@@ -55,8 +55,8 @@ public class MessagingTest extends AbstractTest {
   
   @Test
   public void testGetBlocked() {
-    List<User> children = blocked.getData().getChildren();
-    User child = children.get(0);
+    List<UserEntity> children = blocked.getData().getChildren();
+    UserEntity child = children.get(0);
     
     assertThat(blocked.getKind()).isEqualTo("UserList");
     assertThat(children).hasSize(1);

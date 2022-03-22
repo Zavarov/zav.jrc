@@ -16,18 +16,18 @@
 
 package zav.jrc.listener.event;
 
-import zav.jrc.databind.Link;
+import zav.jrc.databind.LinkEntity;
 
-public class LinkEvent implements Event<Link> {
-  private final Link source;
+public class LinkEvent implements Event<LinkEntity> {
+  private final LinkEntity source;
   
-  public LinkEvent(Link source) {
+  public LinkEvent(LinkEntity source) {
     this.source = source;
   }
   
   
   @Override
-  public Link getSource() {
+  public LinkEntity getSource() {
     return source;
   }
 }

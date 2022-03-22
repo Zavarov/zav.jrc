@@ -35,7 +35,7 @@ import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.Link;
+import zav.jrc.databind.LinkEntity;
 
 /**
  * This class is used to retrieve the latest submissions from a given subreddit.<br>
@@ -44,7 +44,7 @@ import zav.jrc.databind.Link;
  * On future requests, the head is compared against all retrieved links and only those that have
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
-public class LinkRequester extends AbstractIterator<List<Link>> {
+public class LinkRequester extends AbstractIterator<List<LinkEntity>> {
   private static final Logger LOGGER = LogManager.getLogger();
 
   @Inject
@@ -55,10 +55,10 @@ public class LinkRequester extends AbstractIterator<List<Link>> {
   private String subreddit;
 
   @Nullable
-  private Link head;
+  private LinkEntity head;
 
   @Override
-  protected List<Link> computeNext() throws IteratorException {
+  protected List<LinkEntity> computeNext() throws IteratorException {
     try {
       LOGGER.info("Computing next links via {}.", subreddit);
       return head == null ? init() : request();
@@ -67,9 +67,9 @@ public class LinkRequester extends AbstractIterator<List<Link>> {
     }
   }
 
-  private List<Link> init() throws FailedRequestException {
+  private List<LinkEntity> init() throws FailedRequestException {
     LOGGER.info("Possible first time this requester is used? Retrieve head.");
-    List<Link> submissions = getNew().limit(1).collect(Collectors.toList());
+    List<LinkEntity> submissions = getNew().limit(1).collect(Collectors.toList());
 
     if (!submissions.isEmpty()) {
       head = submissions.get(0);
@@ -79,15 +79,15 @@ public class LinkRequester extends AbstractIterator<List<Link>> {
     return Collections.emptyList();
   }
 
-  private List<Link> request() throws FailedRequestException {
+  private List<LinkEntity> request() throws FailedRequestException {
     assert head != null;
     LOGGER.info("Requesting links after {}.", head.getName());
 
-    List<Link> result = new ArrayList<>();
-    Iterator<Link> iterator = getNew().iterator();
+    List<LinkEntity> result = new ArrayList<>();
+    Iterator<LinkEntity> iterator = getNew().iterator();
 
     while (iterator.hasNext()) {
-      Link link = iterator.next();
+      LinkEntity link = iterator.next();
 
       //If the current link is lexicographically larger than the head
       //Then that means it was created after the head, i.e. at a later point in time
@@ -107,14 +107,14 @@ public class LinkRequester extends AbstractIterator<List<Link>> {
     return result;
   }
   
-  private Stream<Link> getNew() throws FailedRequestException {
+  private Stream<LinkEntity> getNew() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
           .setArgs(subreddit)
           .build()
           .get();
   
-    return Things.transformListingOfThings(client.send(query), Link.class);
+    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
   }
   
   /**

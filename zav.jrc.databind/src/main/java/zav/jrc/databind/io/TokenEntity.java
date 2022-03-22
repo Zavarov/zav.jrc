@@ -27,7 +27,7 @@ import org.apache.logging.log4j.Logger;
  * necessary to acquire a new token, once the current one expires. The token is attached to every
  * API request, in order to verify the identity of the requester.
  */
-public class Token extends TokenTOP {
+public class TokenEntity extends TokenTOPEntity {
   private static final Logger LOGGER = LogManager.getLogger();
   /**
    * The time when this token was created. It is used in combination with {@link #getExpiresIn()}

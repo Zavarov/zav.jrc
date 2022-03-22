@@ -25,15 +25,15 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import zav.jrc.databind.Account;
-import zav.jrc.databind.Award;
-import zav.jrc.databind.Comment;
-import zav.jrc.databind.Link;
-import zav.jrc.databind.Subreddit;
-import zav.jrc.databind.SubredditSettings;
-import zav.jrc.databind.Thing;
-import zav.jrc.databind.TrophyList;
-import zav.jrc.databind.core.Listing;
+import zav.jrc.databind.AccountEntity;
+import zav.jrc.databind.AwardEntity;
+import zav.jrc.databind.CommentEntity;
+import zav.jrc.databind.LinkEntity;
+import zav.jrc.databind.SubredditEntity;
+import zav.jrc.databind.SubredditSettingsEntity;
+import zav.jrc.databind.ThingEntity;
+import zav.jrc.databind.TrophyListEntity;
+import zav.jrc.databind.core.ListingEntity;
 
 /**
  * Utility class for deserializing the API responses.
@@ -43,43 +43,43 @@ public class Things {
   private static final Map<String, Class<?>> KINDS = new HashMap<>();
   
   static {
-    KINDS.put("t1", Comment.class);
-    KINDS.put("t2", Account.class);
-    KINDS.put("t3", Link.class);
+    KINDS.put("t1", CommentEntity.class);
+    KINDS.put("t2", AccountEntity.class);
+    KINDS.put("t3", LinkEntity.class);
     // KINDS.put("t4", Message.class);
-    KINDS.put("t5", Subreddit.class);
-    KINDS.put("t6", Award.class);
-    KINDS.put("Listing", Listing.class);
-    KINDS.put("TrophyList", TrophyList.class);
-    KINDS.put("subreddit_settings", SubredditSettings.class);
+    KINDS.put("t5", SubredditEntity.class);
+    KINDS.put("t6", AwardEntity.class);
+    KINDS.put("Listing", ListingEntity.class);
+    KINDS.put("TrophyList", TrophyListEntity.class);
+    KINDS.put("subreddit_settings", SubredditSettingsEntity.class);
   }
   
   /**
-   * Deserialized all objects contained by the {@code Listing}.<br>
-   * The listing is contained within a {@link Thing}.
+   * Deserialized all objects contained by the {@link ListingEntity}.<br>
+   * The listing is contained within a {@link ThingEntity}.
    *
-   * @param source A serialized {@link Listing} of Things.
+   * @param source A serialized {@link ListingEntity} of Things.
    * @param target Desired class.
    * @param <T> Expected type.
-   * @return A list of {@code T} contained by the {@code Listing}.
+   * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
   public static <T> Stream<T> transformListingOfThings(String source, Class<T> target) {
-    return transformListingOfThings(transformThing(source, Listing.class), target);
+    return transformListingOfThings(transformThing(source, ListingEntity.class), target);
   }
   
   /**
-   * Deserialized all objects contained by the {@code Listing}.
+   * Deserialized all objects contained by the {@link ListingEntity}.
    *
-   * @param source A {@link Listing} of Things.
+   * @param source A {@link ListingEntity} of Things.
    * @param target Desired class.
    * @param <T> Expected type.
-   * @return A list of {@code T} contained by the {@code Listing}.
+   * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
-  public static <T> Stream<T> transformListingOfThings(Listing source, Class<T> target) {
-    List<Thing> things = transformListing(source, Thing.class).collect(Collectors.toList());
+  public static <T> Stream<T> transformListingOfThings(ListingEntity source, Class<T> target) {
+    List<ThingEntity> things = transformListing(source, ThingEntity.class).collect(Collectors.toList());
     List<T> result = new ArrayList<>();
     
-    for (Thing thing : things) {
+    for (ThingEntity thing : things) {
       result.add(transformThing(thing, target));
     }
     
@@ -87,27 +87,27 @@ public class Things {
   }
   
   /**
-   * Deserialized all objects contained by the {@code Listing}.<br>
-   *    * The listing is contained within a {@link Thing}.
+   * Deserialized all objects contained by the {@link ListingEntity}.<br>
+   *    * The listing is contained within a {@link ThingEntity}.
    *
-   * @param source A serialized {@link Listing}.
+   * @param source A serialized {@link ListingEntity}.
    * @param target Desired class.
    * @param <T> Expected type.
-   * @return A list of {@code T} contained by the {@code Listing}.
+   * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
   public static <T> Stream<T> transformListing(String source, Class<T> target) {
-    return transformListing(transformThing(source, Listing.class), target);
+    return transformListing(transformThing(source, ListingEntity.class), target);
   }
   
   /**
-   * Deserialized all objects contained by the {@code Listing}.
+   * Deserialized all objects contained by the {@link ListingEntity}.
    *
-   * @param source A {@link Listing}.
+   * @param source A {@link ListingEntity}.
    * @param target Desired class.
    * @param <T> Expected type.
-   * @return A list of {@code T} contained by the {@code Listing}.
+   * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
-  public static <T> Stream<T> transformListing(Listing source, Class<T> target) {
+  public static <T> Stream<T> transformListing(ListingEntity source, Class<T> target) {
     List<T> objects = new ArrayList<>();
     
     for (Object object : source.getChildren()) {
@@ -118,28 +118,28 @@ public class Things {
   }
   
   /**
-   * Deserializes the object contained by the {@link Thing}.<br>
-   * {@link Thing#getKind()} has to match the desired class.
+   * Deserializes the object contained by the {@link ThingEntity}.<br>
+   * {@link ThingEntity#getKind()} has to match the desired class.
    *
-   * @param source A serialized {@link Thing}.
+   * @param source A serialized {@link ThingEntity}.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return Instance of {@code T}.
    */
   public static <T> T transformThing(String source, Class<T> target)  {
-    return transformThing(transform(source, Thing.class), target);
+    return transformThing(transform(source, ThingEntity.class), target);
   }
   
   /**
-   * Deserializes the object contained by the {@link Thing}.<br>
-   * {@link Thing#getKind()} has to match the desired class.
+   * Deserializes the object contained by the {@link ThingEntity}.<br>
+   * {@link ThingEntity#getKind()} has to match the desired class.
    *
-   * @param source A {@link Thing}.
+   * @param source A {@link ThingEntity}.
    * @param target Desired class.
    * @param <T> Expected type.
    * @return Instance of {@code T}.
    */
-  public static <T> T transformThing(Thing source, Class<T> target) {
+  public static <T> T transformThing(ThingEntity source, Class<T> target) {
     // Validation
     Class<?> expectedClass = KINDS.get(source.getKind());
     Objects.requireNonNull(expectedClass, source.getKind());

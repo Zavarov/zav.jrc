@@ -25,7 +25,7 @@ import okhttp3.Request;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
-import zav.jrc.databind.io.Token;
+import zav.jrc.databind.io.TokenEntity;
 
 /**
  * Mock client instance that uses pre-recorded responses instead of performing actual API calls.
@@ -34,7 +34,7 @@ import zav.jrc.databind.io.Token;
 public class ClientMock extends Client {
   @Override
   public void login(Duration duration) {
-    token = new Token();
+    token = new TokenEntity();
   }
   
   @Override

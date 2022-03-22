@@ -22,21 +22,21 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of a trophy list DTO have been properly deserialized.
+ * Checks whether the attributes of a trophy list entity have been properly deserialized.
  */
-public class TrophyListTest extends AbstractTest {
-  static TrophyList trophyList;
-  static Award threeYearClub;
-  static Award verifiedEmail;
+public class TrophyListEntityTest extends AbstractTest {
+  static TrophyListEntity trophyList;
+  static AwardEntity threeYearClub;
+  static AwardEntity verifiedEmail;
   
   /**
    * Instantiates the trophy list DTO and retrieves the individual awards.
    */
   @BeforeAll
   public static void setUpAll() {
-    trophyList = read("TrophyList.json", TrophyList.class);
-    threeYearClub = read(trophyList.getTrophies().get(0).getData(), Award.class);
-    verifiedEmail = read(trophyList.getTrophies().get(1).getData(), Award.class);
+    trophyList = read("TrophyList.json", TrophyListEntity.class);
+    threeYearClub = read(trophyList.getTrophies().get(0).getData(), AwardEntity.class);
+    verifiedEmail = read(trophyList.getTrophies().get(1).getData(), AwardEntity.class);
   }
   
   @Test
