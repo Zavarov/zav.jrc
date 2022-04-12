@@ -1,0 +1,10 @@
+{
+  "kind": "KarmaList",
+  "data": [
+    {
+      "sr": "Subreddit",
+      "comment_karma": 1,
+      "link_karma": 1
+    }
+  ]
+}
