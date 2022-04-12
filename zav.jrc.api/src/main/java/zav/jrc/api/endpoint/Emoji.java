@@ -38,7 +38,8 @@ public final class Emoji {
    * +---------------------+-----------------------------------------------------------------------+
    * | mod_flair_only      | boolean value                                                         |
    * | name                | Name of the emoji to be created. It can be alphanumeric without any   |
-   * |                     | special characters except '-' & '_' and cannot exceed 24 characters.  |
+   * |                     | special characters except '-' &amp; '_' and cannot exceed 24          |
+   * |                     | characters.                                                           |
    * | post_flair_allowed  | boolean value                                                         |
    * | s3_key              | S3 key of the uploaded image which can be obtained from the S3 url.   |
    * |                     | This is of the form subreddit/hash_value.                             |
