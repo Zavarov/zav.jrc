@@ -161,7 +161,7 @@
                     <artifactId>maven-bundle-plugin</artifactId>
                     <configuration>
                         <instructions>
-                            <Include-Resource>${project.build.directory}/generated-resources</Include-Resource>
+                            <Include-Resource>${project.build.directory}/generated-metadata</Include-Resource>
                         </instructions>
                     </configuration>
                 </plugin>
@@ -183,8 +183,11 @@
                                             <include>LICENSE</include>
                                         </includes>
                                     </resource>
+                                    <resource>
+                                        <directory>${project.build.directory}/generated-resources</directory>
+                                    </resource>
                                 </resources>
-                                <outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
+                                <outputDirectory>${project.build.directory}/generated-metadata/META-INF</outputDirectory>
                             </configuration>
                         </execution>
                     </executions>
