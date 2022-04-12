@@ -15,5 +15,13 @@
     files=".*Test.java"/>
   <suppress checks="LineLength"
     files="zav[\\/]jrc[\\/]api[\\/].*.java"/>
+  <suppress checks="LineLength"
+            files="Subreddit.java"/>
+  <suppress checks="LineLength"
+            files="FrontPage.java"/>
+  <suppress checks="LineLength"
+            files="Account.java"/>
+  <suppress checks="LineLength"
+            files="SelfAccount.java"/>
 </suppressions>
  

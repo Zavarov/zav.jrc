@@ -17,6 +17,7 @@
 package zav.jrc.endpoint.account;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static zav.jrc.api.Constants.ACCOUNT;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
@@ -163,7 +164,7 @@ public class AccountTest extends AbstractEndpointTest {
   private static class TestModule extends AbstractModule {
     @Override
     protected void configure() {
-      bind(String.class).annotatedWith(Names.named("name")).toInstance("Account");
+      bind(String.class).annotatedWith(Names.named(ACCOUNT)).toInstance("Account");
     }
   }
 }

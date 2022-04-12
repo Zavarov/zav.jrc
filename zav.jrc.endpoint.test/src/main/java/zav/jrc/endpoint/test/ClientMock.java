@@ -55,7 +55,8 @@ public class ClientMock extends Client {
     String fileName = method + "_" + path + ".json";
     
     String dir = "responses";
-    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream(dir + "/" + fileName);
+    ClassLoader cl = getClass().getClassLoader();
+    @Nullable InputStream is = cl.getResourceAsStream(dir + "/" + fileName);
     if (is == null) {
       throw FailedRequestException.wrap(new FileNotFoundException(fileName));
     }

@@ -25,6 +25,11 @@ import zav.jrc.client.guice.UserlessClientModule;
 import zav.jrc.listener.observable.SubredditObservable;
 import zav.jrc.listener.observer.SubredditObserver;
 
+/**
+ * Standalone example of the JRC client.<br>
+ * This example registers a listener for the subreddit {@code RedditDev} which prints the name
+ * of all newly received links..
+ */
 public class Main {
   protected static Injector GUICE;
   protected static Client CLIENT;

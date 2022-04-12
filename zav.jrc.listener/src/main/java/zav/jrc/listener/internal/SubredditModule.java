@@ -16,11 +16,14 @@
 
 package zav.jrc.listener.internal;
 
-import static zav.jrc.listener.internal.Constants.SUBREDDIT;
+import static zav.jrc.api.Constants.SUBREDDIT;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 
+/**
+ * Guice module for creating subreddit-specific observers.
+ */
 public class SubredditModule extends AbstractModule {
   private final String subreddit;
   

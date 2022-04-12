@@ -16,6 +16,8 @@
 
 package zav.jrc.endpoint.account;
 
+import static zav.jrc.api.Constants.ACCOUNT;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import java.time.Duration;
@@ -62,7 +64,7 @@ public class Account {
   private Client client;
 
   @Inject
-  @Named("name")
+  @Named(ACCOUNT)
   private String name;
   
   @Override

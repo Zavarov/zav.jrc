@@ -16,6 +16,12 @@
 
 package zav.jrc.listener.event;
 
+/**
+ * Generic listener event. An event is fired whenever a listener notifies all registered classes
+ * of a property change.
+ *
+ * @param <T> The cause of the event.
+ */
 public interface Event<T> {
   T getSource();
 }

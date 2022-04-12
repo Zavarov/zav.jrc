@@ -17,6 +17,7 @@
 package zav.jrc.endpoint.subreddit;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static zav.jrc.api.Constants.SUBREDDIT;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
@@ -290,7 +291,7 @@ public class SubredditTest extends AbstractEndpointTest {
   private static class TestModule extends AbstractModule {
     @Override
     protected void configure() {
-      bind(String.class).annotatedWith(Names.named("sr")).toInstance("Subreddit");
+      bind(String.class).annotatedWith(Names.named(SUBREDDIT)).toInstance("Subreddit");
     }
   }
 }

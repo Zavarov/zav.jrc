@@ -18,6 +18,9 @@ package zav.jrc.listener.event;
 
 import zav.jrc.databind.LinkEntity;
 
+/**
+ * This event if fired whenever a new link has been submitted to a subreddit.
+ */
 public class LinkEvent implements Event<LinkEntity> {
   private final LinkEntity source;
   

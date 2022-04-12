@@ -16,6 +16,8 @@
 
 package zav.jrc.endpoint.subreddit;
 
+import static zav.jrc.api.Constants.SUBREDDIT;
+
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import java.awt.image.RenderedImage;
@@ -68,7 +70,7 @@ public class Subreddit {
   private Client client;
   
   @Inject
-  @Named(value = "sr")
+  @Named(value = SUBREDDIT)
   private String name;
   
   @Override

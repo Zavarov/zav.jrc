@@ -16,7 +16,7 @@
 
 package zav.jrc.listener.requester;
 
-import static zav.jrc.listener.internal.Constants.SUBREDDIT;
+import static zav.jrc.api.Constants.SUBREDDIT;
 
 import com.google.common.collect.AbstractIterator;
 import java.util.ArrayList;

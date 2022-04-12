@@ -16,7 +16,7 @@
 
 package zav.jrc.listener.observer;
 
-import static zav.jrc.listener.internal.Constants.SUBREDDIT;
+import static zav.jrc.api.Constants.SUBREDDIT;
 
 import com.google.inject.Injector;
 import java.util.ArrayList;

@@ -14,8 +14,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.internal;
+package zav.jrc.api;
 
+/**
+ * A collection of constant used for injecting named variables.
+ */
 public class Constants {
   public static final String SUBREDDIT = "subreddit";
+  public static final String ACCOUNT = "account";
 }
