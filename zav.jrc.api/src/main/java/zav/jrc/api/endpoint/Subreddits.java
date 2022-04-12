@@ -21,7 +21,6 @@ package zav.jrc.api.endpoint;
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_subreddits">here</a>
  */
-@SuppressWarnings("unused")
 public final class Subreddits {
   /**
    * The endpoint for retrieving information about a subreddit with respect to a user.<br>

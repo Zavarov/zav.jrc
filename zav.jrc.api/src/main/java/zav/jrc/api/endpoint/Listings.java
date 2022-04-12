@@ -21,7 +21,6 @@ package zav.jrc.api.endpoint;
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_listings">here</a>
  */
-@SuppressWarnings("unused")
 public final class Listings {
   private Listings() {}
   
