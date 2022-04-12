@@ -85,6 +85,7 @@ fabric.properties
 
 # End of https://www.gitignore.io/api/intellij
 **/target
+**/.flattened-pom.xml
 **/.idea
 **/*.iml
 **/resources/config.json

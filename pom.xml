@@ -23,7 +23,7 @@
     <parent>
         <groupId>zav.parent</groupId>
         <artifactId>project</artifactId>
-        <version>1.0.0</version>
+        <version>2.0.0</version>
     </parent>
 
     <groupId>zav.jrc</groupId>
@@ -40,29 +40,29 @@
         <module>zav.jrc.listener</module>
         <module>zav.jrc.endpoint.subreddit</module>
         <module>zav.jrc.endpoint.test</module>
+        <module>zav.jrc.endpoint.account</module>
     </modules>
 
     <properties>
-        <!-- .. Libraries .......................................................................................... -->
         <jakarta.inject.version>1.0.5</jakarta.inject.version>
         <fasterxml.version>2.13.2</fasterxml.version>
+        <guava.version>31.1-jre</guava.version>
         <guice.version>5.1.0</guice.version>
         <okhttp.version>4.9.3</okhttp.version>
         <log4j.version>2.17.2</log4j.version>
         <lang3.version>3.12.0</lang3.version>
     </properties>
 
-    <!-- == Dependencies =========================================== -->
+    <!-- == Dependencies ================================================= -->
 
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.google.inject</groupId>
-                <artifactId>guice</artifactId>
-                <version>${guice.version}</version>
+                <groupId>com.google.guava</groupId>
+                <artifactId>guava</artifactId>
+                <version>${guava.version}</version>
                 <!-- Purge "optional" dependencies -->
                 <!-- See https://github.com/google/guava/issues/2824 -->
-                <!-- See https://github.com/google/guice/issues/1383 -->
                 <exclusions>
                     <exclusion>
                         <groupId>org.checkerframework</groupId>
@@ -80,6 +80,15 @@
                         <groupId>com.google.j2objc</groupId>
                         <artifactId>j2objc-annotations</artifactId>
                     </exclusion>
+                </exclusions>
+            </dependency>
+            <dependency>
+                <groupId>com.google.inject</groupId>
+                <artifactId>guice</artifactId>
+                <version>${guice.version}</version>
+                <!-- Purge "optional" dependencies -->
+                <!-- See https://github.com/google/guice/issues/1383 -->
+                <exclusions>
                     <exclusion>
                         <groupId>javax.inject</groupId>
                         <artifactId>javax.inject</artifactId>
@@ -132,4 +141,73 @@
             <url>https://maven.pkg.github.com/zavarov/zav.jrc</url>
         </repository>
     </distributionManagement>
+
+    <!-- == DEFAULT BUILD SETTINGS ======================================== -->
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+            </plugin>
+        </plugins>
+
+        <pluginManagement>
+            <plugins>
+                <!-- Licenses -->
+                <plugin>
+                    <groupId>org.apache.felix</groupId>
+                    <artifactId>maven-bundle-plugin</artifactId>
+                    <configuration>
+                        <instructions>
+                            <Include-Resource>${project.build.directory}/generated-resources</Include-Resource>
+                        </instructions>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-resources-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>copy-licenses</id>
+                            <phase>prepare-package</phase>
+                            <goals>
+                                <goal>copy-resources</goal>
+                            </goals>
+                            <configuration>
+                                <resources>
+                                    <resource>
+                                        <directory>${project.basedir}/..</directory>
+                                        <includes>
+                                            <include>LICENSE</include>
+                                        </includes>
+                                    </resource>
+                                </resources>
+                                <outputDirectory>${project.build.directory}/generated-resources</outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
+                </plugin>
+                <plugin>
+                    <groupId>org.codehaus.mojo</groupId>
+                    <artifactId>license-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <id>download-licenses</id>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>download-licenses</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <cleanLicensesOutputDirectory>true</cleanLicensesOutputDirectory>
+                        <licensesConfigFile>${project.basedir}/../license.xml</licensesConfigFile>
+                        <includedScopes>compile</includedScopes>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    </build>
 </project>

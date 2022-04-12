@@ -1,18 +1,15 @@
-open module zav.jrc.client {
+open module jrc.endpoint.subreddit {
   requires static org.eclipse.jdt.annotation;
   
-  requires org.apache.logging.log4j;
-  requires com.fasterxml.jackson.databind;
   requires com.google.common;
-  requires com.google.guice;
   requires okhttp3;
-  
+  requires org.apache.logging.log4j;
+
   requires zav.jrc.api;
+  requires zav.jrc.client;
   requires zav.jrc.databind;
   requires zav.jrc.http;
 
+  requires transitive java.desktop;
   requires transitive java.inject;
-  
-  exports zav.jrc.client;
-  exports zav.jrc.client.guice;
 }
