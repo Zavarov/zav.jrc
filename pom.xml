@@ -45,7 +45,7 @@
 
     <properties>
         <jakarta.inject.version>1.0.5</jakarta.inject.version>
-        <fasterxml.version>2.13.2.2</fasterxml.version>
+        <fasterxml.version>2.13.2</fasterxml.version>
         <guava.version>31.1-jre</guava.version>
         <guice.version>5.1.0</guice.version>
         <okhttp.version>4.9.3</okhttp.version>
