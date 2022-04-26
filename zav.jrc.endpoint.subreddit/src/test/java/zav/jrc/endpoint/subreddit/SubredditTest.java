@@ -24,7 +24,6 @@ import com.google.inject.name.Names;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.util.Objects;
 import javax.imageio.ImageIO;
@@ -102,41 +101,41 @@ public class SubredditTest extends AbstractEndpointTest {
   // Search
   
   @Test
-  public void testGetSearch() throws FailedRequestException {
+  public void testSearch() throws FailedRequestException {
     Parameter[] params = new Parameter[]{
         new Parameter("q", "api"),
         new Parameter("restrict_sr", true)
     };
     
-    assertThat(subreddit.getSearch(params)).hasSize(25);
+    assertThat(subreddit.search(params)).hasSize(25);
   }
   
   // Subreddits
   
   @Test
-  public void testPostCreate() throws FailedRequestException {
+  public void testCreate() throws FailedRequestException {
     SubredditSettingsEntity settings = subreddit.getEdit();
-    SubredditSettingsEntity response = subreddit.postCreate(settings);
+    SubredditSettingsEntity response = subreddit.create(settings);
   
     assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
   
   @Test
-  public void testPostConfigure() throws FailedRequestException {
+  public void testConfigure() throws FailedRequestException {
     SubredditSettingsEntity settings = subreddit.getEdit();
-    SubredditSettingsEntity response = subreddit.postConfigure(settings);
+    SubredditSettingsEntity response = subreddit.configure(settings);
   
     assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
   }
   
   @Test
-  public void testPostSubscribe() throws FailedRequestException {
-    subreddit.postSubscribe();
+  public void testSubscribe() throws FailedRequestException {
+    subreddit.subscribe();
   }
   
   @Test
-  public void testPostUnsubscribe() throws FailedRequestException {
-    subreddit.postUnsubscribe();
+  public void testUnsubscribe() throws FailedRequestException {
+    subreddit.unsubscribe();
   }
   
   @Test
@@ -181,23 +180,23 @@ public class SubredditTest extends AbstractEndpointTest {
   }
   
   @Test
-  public void testPostDeleteBanner() throws FailedRequestException {
-    assertThat(subreddit.postDeleteBanner()).isNotEmpty();
+  public void testDeleteBanner() throws FailedRequestException {
+    subreddit.deleteBanner();
   }
   
   @Test
-  public void testPostDeleteHeader() throws FailedRequestException {
-    assertThat(subreddit.postDeleteHeader()).isNotEmpty();
+  public void testDeleteHeader() throws FailedRequestException {
+    subreddit.deleteHeader();
   }
   
   @Test
-  public void testPostDeleteIcon() throws FailedRequestException {
-    assertThat(subreddit.postDeleteIcon()).isNotEmpty();
+  public void testDeleteIcon() throws FailedRequestException {
+    subreddit.deleteIcon();
   }
   
   @Test
-  public void testPostDeleteImage() throws FailedRequestException {
-    assertThat(subreddit.postDeleteImage("image")).isNotEmpty();
+  public void testDeleteImage() throws FailedRequestException {
+    subreddit.deleteImage("image");
   }
   
   @Test
@@ -206,7 +205,7 @@ public class SubredditTest extends AbstractEndpointTest {
   }
   
   @Test
-  public void testPostSubredditStylesheet() throws FailedRequestException, IOException {
+  public void testUpdateSubredditStylesheet() throws FailedRequestException, IOException {
     @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("css/Simple.css");
     Objects.requireNonNull(is);
     String css = new String(is.readAllBytes(), StandardCharsets.UTF_8);
@@ -218,43 +217,43 @@ public class SubredditTest extends AbstractEndpointTest {
         new Parameter("stylesheet_contents", css)
     };
     
-    assertThat(subreddit.postSubredditStylesheet(params)).isNotEmpty();
+    subreddit.updateSubredditStylesheet(params);
   }
   
   @Test
-  public void testPostUploadImage() throws FailedRequestException, IOException {
+  public void testUploadImage() throws FailedRequestException, IOException {
     @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Image.png");
     Objects.requireNonNull(is);
     BufferedImage image = ImageIO.read(is);
     
-    assertThat(subreddit.postUploadImage(image, "image")).isNotEmpty();
+    subreddit.uploadImage(image, "image");
   }
   
   @Test
-  public void testPostUploadHeader() throws FailedRequestException, IOException {
+  public void testUploadHeader() throws FailedRequestException, IOException {
     @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Header.png");
     Objects.requireNonNull(is);
     BufferedImage header = ImageIO.read(is);
   
-    assertThat(subreddit.postUploadHeader(header)).isNotEmpty();
+    subreddit.uploadHeader(header);
   }
   
   @Test
-  public void testPostUploadIcon() throws FailedRequestException, IOException {
+  public void testUploadIcon() throws FailedRequestException, IOException {
     @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Icon.png");
     Objects.requireNonNull(is);
     BufferedImage icon = ImageIO.read(is);
   
-    assertThat(subreddit.postUploadIcon(icon)).isNotEmpty();
+    subreddit.uploadIcon(icon);
   }
   
   @Test
-  public void testPostUploadBanner() throws FailedRequestException, IOException {
+  public void testUploadBanner() throws FailedRequestException, IOException {
     @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Banner.png");
     Objects.requireNonNull(is);
     BufferedImage banner = ImageIO.read(is);
   
-    assertThat(subreddit.postUploadBanner(banner)).isNotEmpty();
+    subreddit.uploadBanner(banner);
   }
   
   @Test

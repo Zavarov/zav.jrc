@@ -59,7 +59,7 @@ public class FrontPage {
   /**
    * Returns a stream over all links, sorted by {@code best}.
    *
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_BEST
    */
@@ -76,7 +76,7 @@ public class FrontPage {
   /**
    * Returns a stream over all links, sorted by {@code controversial}.
    *
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_CONTROVERSIAL
    */
@@ -93,7 +93,7 @@ public class FrontPage {
   /**
    * Returns a stream over all links, sorted by {@code hot}.
    *
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_HOT
    */
@@ -110,7 +110,7 @@ public class FrontPage {
   /**
    * Returns a stream over all links, sorted by {@code new}.
    *
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_NEW
    */
@@ -127,7 +127,7 @@ public class FrontPage {
   /**
    * Returns a stream over randomly selected links.
    *
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_RANDOM
    */
@@ -146,7 +146,7 @@ public class FrontPage {
   /**
    * Returns a stream over all links, sorted by {@code rising}.
    *
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_RISING
    */
@@ -163,7 +163,7 @@ public class FrontPage {
   /**
    * Returns a stream over all links, sorted by {@code top}.
    *
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_TOP
    */
@@ -187,11 +187,11 @@ public class FrontPage {
    * Returns a stream over all links matching the search parameters.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the links.
+   * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Search#GET_SEARCH
    */
-  public Stream<LinkEntity> getSearch(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> search(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_SEARCH)
           .setParams(params)
@@ -208,6 +208,25 @@ public class FrontPage {
   //----------------------------------------------------------------------------------------------//
   
   /**
+   * Returns a stream over all subreddits matching the title and description provided by the
+   * search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the entities corresponding to the subreddits.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_SUBREDDITS_SEARCH
+   */
+  public Stream<SubredditEntity> searchSubreddits(Parameter... params) throws FailedRequestException {
+    Request query = client.newRequest()
+          .setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
+          .setParams(params)
+          .build()
+          .get();
+    
+    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+  }
+  
+  /**
    * Returns a stream over all subreddit names matching the search parameters.
    *
    * @param params The search parameters.
@@ -215,7 +234,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SEARCH_REDDIT_NAMES
    */
-  public Stream<String> postSearchRedditNames(Parameter... params) throws FailedRequestException {
+  public Stream<String> searchRedditNames(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
         .setEndpoint(Subreddits.POST_API_SEARCH_REDDIT_NAMES)
         .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
@@ -229,14 +248,14 @@ public class FrontPage {
   }
   
   /**
-   * Returns a stream over all subreddits matching the search parameters.
+   * Returns a stream over all subreddits that begin with the provided query string.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SEARCH_SUBREDDITS
    */
-  public Stream<SubredditEntity> postSearchSubreddits(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditEntity> querySubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS)
           .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
@@ -253,7 +272,7 @@ public class FrontPage {
    * Returns a stream over all links matching the search parameters.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_API_SUBREDDIT_AUTOCOMPLETE_V2
    */
@@ -271,7 +290,7 @@ public class FrontPage {
    * Returns a stream over all default subreddits.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_DEFAULT
    */
@@ -289,7 +308,7 @@ public class FrontPage {
    * Returns a stream over all subreddits that are only accessible by gilded users.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_GOLD
    */
@@ -307,7 +326,7 @@ public class FrontPage {
    * Returns a stream over all newly created subreddits.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_NEW
    */
@@ -325,7 +344,7 @@ public class FrontPage {
    * Returns a stream over all popular subreddits.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_POPULAR
    */
@@ -340,28 +359,10 @@ public class FrontPage {
   }
   
   /**
-   * Returns a stream over all subreddits matching the search parameters.
-   *
-   * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
-   * @throws FailedRequestException If the API requests was rejected.
-   * @see Subreddits#GET_SUBREDDITS_SEARCH
-   */
-  public Stream<SubredditEntity> getSearchSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
-          .setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
-          .setParams(params)
-          .build()
-          .get();
-  
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
-  }
-  
-  /**
    * Returns a stream over all newly created user subreddits.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_USERS_NEW
    */
@@ -379,7 +380,7 @@ public class FrontPage {
    * Returns a stream over all popular user subreddits.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the subreddits.
+   * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_USERS_POPULAR
    */
@@ -398,7 +399,7 @@ public class FrontPage {
    * parameters.
    *
    * @param params The search parameters.
-   * @return A stream over the Entitys corresponding to the accounts.
+   * @return A stream over the entities corresponding to the accounts.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_USERS_SEARCH
    */

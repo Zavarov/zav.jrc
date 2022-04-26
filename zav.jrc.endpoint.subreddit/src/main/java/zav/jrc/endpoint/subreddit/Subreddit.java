@@ -217,7 +217,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Search#GET_R_SUBREDDIT_SEARCH
    */
-  public Stream<LinkEntity> getSearch(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> search(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_R_SUBREDDIT_SEARCH)
           .setParams(params)
@@ -243,7 +243,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SITE_ADMIN
    */
-  public SubredditSettingsEntity postCreate(SubredditSettingsEntity settings) throws FailedRequestException {
+  public SubredditSettingsEntity create(SubredditSettingsEntity settings) throws FailedRequestException {
     Map<?, ?> body = Things.transform(settings, Map.class);
     
     Request query = client.newRequest()
@@ -265,7 +265,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SITE_ADMIN
    */
-  public SubredditSettingsEntity postConfigure(SubredditSettingsEntity settings) throws FailedRequestException {
+  public SubredditSettingsEntity configure(SubredditSettingsEntity settings) throws FailedRequestException {
     Map<?, ?> body = Things.transform(settings, Map.class);
   
     SubredditEntity subreddit = getAbout();
@@ -286,7 +286,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SUBSCRIBE
    */
-  public void postSubscribe() throws FailedRequestException {
+  public void subscribe() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
           .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
@@ -305,7 +305,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SUBSCRIBE
    */
-  public void postUnsubscribe() throws FailedRequestException {
+  public void unsubscribe() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
           .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
@@ -319,7 +319,7 @@ public class Subreddit {
   }
   
   /**
-   * Returns the requirements for creating posts in this subreddit..
+   * Returns the requirements for creating posts in this subreddit.
    *
    * @return A key-value mapping of all potential restrictions.
    * @throws FailedRequestException If the API requests was rejected.
@@ -450,11 +450,10 @@ public class Subreddit {
   /**
    * Deletes the subreddit banner.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_BANNER
    */
-  public Map<?, ?> postDeleteBanner() throws FailedRequestException {
+  public void deleteBanner() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_BANNER)
           .setArgs(name)
@@ -463,17 +462,16 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
    * Deletes the subreddit header image.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_HEADER
    */
-  public Map<?, ?> postDeleteHeader() throws FailedRequestException {
+  public void deleteHeader() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_HEADER)
           .setArgs(name)
@@ -482,17 +480,16 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
    * Deletes the subreddit icon.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_ICON
    */
-  public Map<?, ?> postDeleteIcon() throws FailedRequestException {
+  public void deleteIcon() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_ICON)
           .setArgs(name)
@@ -501,17 +498,16 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
    * Deletes one of the custom subreddit images.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_DELETE_SR_IMAGE
    */
-  public Map<?, ?> postDeleteImage(String imageName) throws FailedRequestException {
+  public void deleteImage(String imageName) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_DELETE_SR_IMAGE)
           .setArgs(name)
@@ -521,7 +517,7 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
@@ -546,11 +542,10 @@ public class Subreddit {
   /**
    * Updates the stylesheet of this subreddit.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET
    */
-  public Map<?, ?> postSubredditStylesheet(Parameter... params) throws FailedRequestException {
+  public void updateSubredditStylesheet(Parameter... params) throws FailedRequestException {
     Map<Object, Object> body = new HashMap<>();
     Arrays.stream(params).forEach(param -> body.put(param.getKey(), param.getValue()));
     
@@ -562,17 +557,16 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
    * Uploads a custom image to this subreddit.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
    */
-  public Map<?, ?> postUploadImage(RenderedImage image, String imageName) throws FailedRequestException {
+  public void uploadImage(RenderedImage image, String imageName) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
     
     try {
@@ -597,17 +591,16 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
    * Updates the header image of this subreddit.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
    */
-  public Map<?, ?> postUploadHeader(RenderedImage image) throws FailedRequestException {
+  public void uploadHeader(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
   
     try {
@@ -631,17 +624,16 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
    * Updates the icon of this subreddit.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
    */
-  public Map<?, ?> postUploadIcon(RenderedImage image) throws FailedRequestException {
+  public void uploadIcon(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
   
     try {
@@ -665,17 +657,16 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**
    * Updates the banner of this subreddit.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE
    */
-  public Map<?, ?> postUploadBanner(RenderedImage image) throws FailedRequestException {
+  public void uploadBanner(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
   
     try {
@@ -699,7 +690,7 @@ public class Subreddit {
           .build()
           .post();
   
-    return Things.transform(client.send(query), Map.class);
+    client.send(query);
   }
   
   /**

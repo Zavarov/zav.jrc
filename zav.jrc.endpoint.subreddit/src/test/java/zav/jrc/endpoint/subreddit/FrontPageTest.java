@@ -93,9 +93,9 @@ public class FrontPageTest extends AbstractEndpointTest {
   // Search
   
   @Test
-  public void testGetSearch() throws FailedRequestException {
+  public void testSearch() throws FailedRequestException {
     Parameter param = new Parameter("q", "bananapics");
-    List<LinkEntity> response = frontPage.getSearch(param).collect(Collectors.toList());
+    List<LinkEntity> response = frontPage.search(param).collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("Having only one power hotkey is crazytown bananapants");
   }
@@ -103,17 +103,17 @@ public class FrontPageTest extends AbstractEndpointTest {
   // Subreddits
   
   @Test
-  public void testPostSearchRedditNames() throws FailedRequestException {
+  public void testSearchRedditNames() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<String> response = frontPage.postSearchRedditNames(param).collect(Collectors.toList());
+    List<String> response = frontPage.searchRedditNames(param).collect(Collectors.toList());
     assertThat(response).hasSize(5);
     assertThat(response).containsExactly("banana", "BananasForScale", "BananaFish", "bananarchist", "Bananafight");
   }
   
   @Test
-  public void testPostSearchSubreddits() throws FailedRequestException {
+  public void testQuerySubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<SubredditEntity> response = frontPage.postSearchSubreddits(param).collect(Collectors.toList());
+    List<SubredditEntity> response = frontPage.querySubreddits(param).collect(Collectors.toList());
     assertThat(response).hasSize(9);
     assertThat(response.get(0).getName()).contains("banana");
   }
@@ -154,9 +154,9 @@ public class FrontPageTest extends AbstractEndpointTest {
   }
   
   @Test
-  public void testGetSearchSubreddits() throws FailedRequestException {
+  public void testSearchSubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<SubredditEntity> response = frontPage.getSearchSubreddits(param).collect(Collectors.toList());
+    List<SubredditEntity> response = frontPage.searchSubreddits(param).collect(Collectors.toList());
     assertThat(response).hasSize(25);
     assertThat(response.get(0).getTitle()).isEqualTo("banana");
   }
