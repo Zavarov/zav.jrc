@@ -24,4 +24,4 @@ jobs:
       env:
         GITHUB_ACCOUNT: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      run: mvn clean verify -B -s settings.xml
+      run: mvn clean verify -ntp -B -s settings.xml
