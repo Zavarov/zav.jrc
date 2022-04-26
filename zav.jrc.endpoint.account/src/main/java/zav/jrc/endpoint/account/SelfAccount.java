@@ -105,7 +105,7 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Account#PATCH_API_V1_ME_PREFS
    */
-  public PreferencesEntity patchPreferences(PreferencesEntity preferences) throws FailedRequestException {
+  public PreferencesEntity updatePreferences(PreferencesEntity preferences) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.PATCH_API_V1_ME_PREFS)
           .setBody(Things.transform(preferences, Map.class), RestRequest.BodyType.JSON)

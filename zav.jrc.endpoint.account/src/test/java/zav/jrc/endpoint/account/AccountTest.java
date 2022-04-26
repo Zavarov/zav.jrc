@@ -48,21 +48,23 @@ public class AccountTest extends AbstractEndpointTest {
   }
   
   @Test
-  public void testPostBlock() throws FailedRequestException {
-    assertThat(account.postBlock()).isNotEmpty();
+  public void testBlock() throws FailedRequestException {
+    account.block();
   }
   
   @Test
-  public void testPostReport() throws FailedRequestException {
+  public void testReport() throws FailedRequestException {
     if (CLIENT instanceof ClientMock) {
       // DON'T TEST AGAINST THE REAL API
-      assertThat(account.postReport("Very good reason...")).isNotEmpty();
+      account.report("Very good reason...");
+    } else {
+      throw new IllegalArgumentException("DON'T TEST AGAINST THE REAL API");
     }
   }
   
   @Test
-  public void testPostUnblock() throws FailedRequestException {
-    account.postUnblock();
+  public void testUnblock() throws FailedRequestException {
+    account.unblock();
   }
   
   @Test
@@ -72,23 +74,23 @@ public class AccountTest extends AbstractEndpointTest {
   
   @Test
   public void testIsAvailable() throws FailedRequestException {
-    assertThat(account.getAvailable()).isFalse();
+    assertThat(account.isAvailable()).isFalse();
   }
   
   @Test
-  public void testDeleteFriends() throws FailedRequestException {
-    account.deleteFriends();
+  public void testUnfriend() throws FailedRequestException {
+    account.unfriend();
+  }
+  
+  @Test
+  public void testFriend() throws FailedRequestException {
+    UserEntity response = account.friend("note");
+    assertThat(response.getName()).isEqualTo("Username");
   }
   
   @Test
   public void testGetFriends() throws FailedRequestException {
     UserEntity response = account.getFriends();
-    assertThat(response.getName()).isEqualTo("Username");
-  }
-  
-  @Test
-  public void testPutFriends() throws FailedRequestException {
-    UserEntity response = account.putFriends("note");
     assertThat(response.getName()).isEqualTo("Username");
   }
   

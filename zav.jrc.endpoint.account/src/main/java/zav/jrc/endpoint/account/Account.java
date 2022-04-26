@@ -73,20 +73,12 @@ public class Account {
   }
   
   /**
-   * Blocks this account.<br>
-   * The returned map contains the following entries:
-   * <pre>
-   *       date - The date when the user was blocked.
-   *   icon_img - The avatar of the blocked user.
-   *         id - The id of the blocked user.
-   *       name - The name of the blocked user.
-   * </pre>
+   * Blocks this account.
    *
-   * @return The raw JSON response.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#POST_API_BLOCK_USER
    */
-  public Map<?, ?> postBlock() throws FailedRequestException {
+  public void block() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.POST_API_BLOCK_USER)
           .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
@@ -94,29 +86,7 @@ public class Account {
           .build()
           .post();
     
-    return Things.transform(client.send(query), Map.class);
-  }
-  
-  /**
-   * Reports this user.
-   *
-   * @param reason A humanly readable justification why the user was reported.
-   * @return The raw JSON response.
-   * @throws FailedRequestException If the API requests was rejected.
-   * @see Users#POST_API_REPORT_USER
-   */
-  public String postReport(String reason) throws FailedRequestException {
-    Map<String, String> body = new HashMap<>();
-    body.put("user", name);
-    body.put("reason", reason);
-    
-    Request query = client.newRequest()
-          .setEndpoint(Users.POST_API_REPORT_USER)
-          .setBody(body, RestRequest.BodyType.JSON)
-          .build()
-          .post();
-    
-    return client.send(query);
+    client.send(query);
   }
   
   /**
@@ -125,7 +95,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#POST_API_UNFRIEND
    */
-  public void postUnblock() throws FailedRequestException {
+  public void unblock() throws FailedRequestException {
     AccountEntity self = getAbout();
     
     Request query = client.newRequest()
@@ -139,6 +109,87 @@ public class Account {
     
     // Returns {}
     client.send(query);
+  }
+  
+  /**
+   * Reports this user.
+   *
+   * @param reason A humanly readable justification why the user was reported.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#POST_API_REPORT_USER
+   */
+  public void report(String reason) throws FailedRequestException {
+    Map<String, String> body = new HashMap<>();
+    body.put("user", name);
+    body.put("reason", reason);
+    
+    Request query = client.newRequest()
+          .setEndpoint(Users.POST_API_REPORT_USER)
+          .setBody(body, RestRequest.BodyType.JSON)
+          .build()
+          .post();
+    
+    client.send(query);
+  }
+  
+  /**
+   * Befriends this account.<br>
+   * May be used to update the note of the account, in case it already is a 'friend'.
+   *
+   * @param note A custom note corresponding to this account. May be {@code null}.
+   * @return The user Entity corresponding to this account.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#PUT_API_V1_ME_FRIENDS_USERNAME
+   */
+  public UserEntity friend(@Nullable String note) throws FailedRequestException {
+    Map<String, String> body = new HashMap<>();
+    if (note != null) {
+      body.put("note", note);
+    }
+    
+    Request query = client.newRequest()
+          .setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME)
+          .setBody(body, RestRequest.BodyType.JSON)
+          .setArgs(name)
+          .build()
+          .put();
+    
+    return Things.transform(client.send(query), UserEntity.class);
+  }
+  
+  /**
+   * Unfriends this user.
+   *
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#DELETE_API_V1_ME_FRIENDS_USERNAME
+   */
+  public void unfriend() throws FailedRequestException {
+    Request query = client.newRequest()
+          .setEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME)
+          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setArgs(name)
+          .build()
+          .delete();
+    
+    //Returns an empty String
+    client.send(query);
+  }
+  
+  /**
+   * Checks whether the username of this account has already been taken.
+   *
+   * @return {@code true}, when account with this name doesn't exist yet.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Users#GET_API_USERNAME_AVAILABLE
+   */
+  public boolean isAvailable() throws FailedRequestException {
+    Request query = client.newRequest()
+          .setEndpoint(Users.GET_API_USERNAME_AVAILABLE)
+          .addParam("user", name)
+          .build()
+          .get();
+    
+    return Things.transform(client.send(query), Boolean.class);
   }
   
   /**
@@ -163,41 +214,6 @@ public class Account {
   }
   
   /**
-   * Checks whether the username of this account has already been taken.
-   *
-   * @return {@code true}, when account with this name doesn't exist yet.
-   * @throws FailedRequestException If the API requests was rejected.
-   * @see Users#GET_API_USERNAME_AVAILABLE
-   */
-  public boolean getAvailable() throws FailedRequestException {
-    Request query = client.newRequest()
-          .setEndpoint(Users.GET_API_USERNAME_AVAILABLE)
-          .addParam("user", name)
-          .build()
-          .get();
-  
-    return Things.transform(client.send(query), Boolean.class);
-  }
-  
-  /**
-   * Unfriends this user.
-   *
-   * @throws FailedRequestException If the API requests was rejected.
-   * @see Users#DELETE_API_V1_ME_FRIENDS_USERNAME
-   */
-  public void deleteFriends() throws FailedRequestException {
-    Request query = client.newRequest()
-          .setEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
-          .setArgs(name)
-          .build()
-          .delete();
-    
-    //Returns an empty String
-    client.send(query);
-  }
-  
-  /**
    * Get information about this specified 'friend', such as notes.
    *
    * @return The user Entity corresponding to this account.
@@ -211,31 +227,6 @@ public class Account {
           .build()
           .get();
     
-    return Things.transform(client.send(query), UserEntity.class);
-  }
-  
-  /**
-   * Befriends this account.<br>
-   * May be used to update the note of the account, in case it already is a 'friend'.
-   *
-   * @param note A custom note corresponding to this account. May be {@code null}.
-   * @return The user Entity corresponding to this account.
-   * @throws FailedRequestException If the API requests was rejected.
-   * @see Users#PUT_API_V1_ME_FRIENDS_USERNAME
-   */
-  public UserEntity putFriends(@Nullable String note) throws FailedRequestException {
-    Map<String, String> body = new HashMap<>();
-    if (note != null) {
-      body.put("note", note);
-    }
-    
-    Request query = client.newRequest()
-          .setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME)
-          .setBody(body, RestRequest.BodyType.JSON)
-          .setArgs(name)
-          .build()
-          .put();
-  
     return Things.transform(client.send(query), UserEntity.class);
   }
   

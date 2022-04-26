@@ -63,8 +63,8 @@ public class SelfAccountTest extends AbstractEndpointTest {
   }
   
   @Test
-  public void testPatchPreferences() throws FailedRequestException {
-    PreferencesEntity response = selfAccount.patchPreferences(selfAccount.getPreferences());
+  public void testUpdatePreferences() throws FailedRequestException {
+    PreferencesEntity response = selfAccount.updatePreferences(selfAccount.getPreferences());
     assertThat(response.getCountryCode()).isEqualTo("XX");
   }
   
