@@ -5,7 +5,7 @@ module zav.jcr.listener {
   requires com.google.guice;
   requires java.inject;
   requires okhttp3;
-  requires org.apache.logging.log4j;
+  requires org.slf4j;
   
   requires zav.jrc.api;
   requires zav.jrc.client;

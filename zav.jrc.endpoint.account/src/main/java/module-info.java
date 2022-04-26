@@ -3,7 +3,7 @@ open module jrc.endpoint.account {
   
   requires com.google.common;
   requires okhttp3;
-  requires org.apache.logging.log4j;
+  requires org.slf4j;
 
   requires zav.jrc.api;
   requires zav.jrc.client;

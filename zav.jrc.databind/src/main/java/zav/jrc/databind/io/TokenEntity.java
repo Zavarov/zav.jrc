@@ -19,8 +19,8 @@ package zav.jrc.databind.io;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * This class implements the token of the current session and optionally, the refresh token
@@ -28,7 +28,7 @@ import org.apache.logging.log4j.Logger;
  * API request, in order to verify the identity of the requester.
  */
 public class TokenEntity extends TokenTOPEntity {
-  private static final Logger LOGGER = LogManager.getLogger();
+  private static final Logger LOGGER = LoggerFactory.getLogger(TokenEntity.class);
   /**
    * The time when this token was created. It is used in combination with {@link #getExpiresIn()}
    * to determine when the token has expired.

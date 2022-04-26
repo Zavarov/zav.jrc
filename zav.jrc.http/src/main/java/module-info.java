@@ -3,7 +3,7 @@ module zav.jrc.http {
   
   requires com.fasterxml.jackson.databind;
   requires okhttp3;
-  requires org.apache.logging.log4j;
+  requires org.slf4j;
   
   requires zav.jrc.api;
   

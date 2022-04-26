@@ -27,9 +27,9 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.client.internal.TokenType;
@@ -47,7 +47,7 @@ import zav.jrc.http.RestRequest;
  * API requests.
  */
 public abstract class Client {
-  private static final Logger LOGGER = LogManager.getLogger(Client.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
   @Inject
   protected UserAgentEntity userAgent;
   @Inject

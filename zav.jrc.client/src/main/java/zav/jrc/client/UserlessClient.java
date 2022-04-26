@@ -25,8 +25,8 @@ import java.util.UUID;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.TokenEntity;
@@ -38,7 +38,7 @@ import zav.jrc.http.RestRequest;
  */
 @Singleton // All requests have to go through a single client
 public class UserlessClient extends Client {
-  private static final Logger LOGGER = LogManager.getLogger(UserlessClient.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(UserlessClient.class);
   
   @Inject
   private UUID uuid;

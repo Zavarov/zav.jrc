@@ -36,9 +36,9 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
@@ -64,7 +64,7 @@ public class Subreddit {
         .expireAfterWrite(Duration.ofDays(1))
         .build();
   
-  private static final Logger LOGGER = LogManager.getLogger(Subreddit.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(Subreddit.class);
   
   @SuppressWarnings("all")
   private Client client;

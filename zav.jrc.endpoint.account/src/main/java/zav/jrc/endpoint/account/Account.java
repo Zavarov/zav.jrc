@@ -28,9 +28,9 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Named;
 import okhttp3.Request;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
@@ -58,7 +58,7 @@ public class Account {
         .expireAfterWrite(Duration.ofDays(1))
         .build();
   
-  private static final Logger LOGGER = LogManager.getLogger(Account.class);
+  private static final Logger LOGGER = LoggerFactory.getLogger(Account.class);
   
   @SuppressWarnings("all")
   private Client client;

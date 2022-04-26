@@ -28,9 +28,9 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Named;
 import okhttp3.Request;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.eclipse.jdt.annotation.Nullable;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.client.Client;
@@ -45,7 +45,7 @@ import zav.jrc.databind.LinkEntity;
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
 public class LinkRequester extends AbstractIterator<List<LinkEntity>> {
-  private static final Logger LOGGER = LogManager.getLogger();
+  private static final Logger LOGGER = LoggerFactory.getLogger(LinkRequester.class);
 
   @Inject
   private Client client;

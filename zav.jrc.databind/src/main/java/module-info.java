@@ -1,5 +1,5 @@
 module zav.jrc.databind {
-  requires org.apache.logging.log4j;
+  requires org.slf4j;
   
   requires com.fasterxml.jackson.annotation;
   requires transitive java.compiler;

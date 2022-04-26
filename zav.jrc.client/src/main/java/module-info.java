@@ -1,7 +1,7 @@
 open module zav.jrc.client {
   requires static org.eclipse.jdt.annotation;
   
-  requires org.apache.logging.log4j;
+  requires org.slf4j;
   requires com.fasterxml.jackson.databind;
   requires com.google.common;
   requires com.google.guice;
