@@ -66,12 +66,21 @@ public class Subreddit {
   
   private static final Logger LOGGER = LogManager.getLogger(Subreddit.class);
   
-  @Inject
+  @SuppressWarnings("all")
   private Client client;
   
-  @Inject
-  @Named(value = SUBREDDIT)
+  @SuppressWarnings("all")
   private String name;
+  
+  @Inject
+  public void setClient(Client client) {
+    this.client = client;
+  }
+  
+  @Inject
+  public void setName(@Named(value = SUBREDDIT) String name) {
+    this.name = name;
+  }
   
   @Override
   public String toString() {

@@ -41,8 +41,14 @@ import zav.jrc.http.RestRequest;
  * Representation of the Reddit front page (i.e. r/all).
  */
 public class FrontPage {
-  @Inject
+
+  @SuppressWarnings("all")
   private Client client;
+  
+  @Inject
+  public void setClient(Client client) {
+    this.client = client;
+  }
   
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //

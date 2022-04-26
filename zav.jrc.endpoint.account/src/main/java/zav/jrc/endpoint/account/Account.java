@@ -60,12 +60,21 @@ public class Account {
   
   private static final Logger LOGGER = LogManager.getLogger(Account.class);
   
-  @Inject
+  @SuppressWarnings("all")
   private Client client;
-
-  @Inject
-  @Named(ACCOUNT)
+  
+  @SuppressWarnings("all")
   private String name;
+  
+  @Inject
+  public void setClient(Client client) {
+    this.client = client;
+  }
+  
+  @Inject
+  public void setName(@Named(ACCOUNT) String name) {
+    this.name = name;
+  }
   
   @Override
   public String toString() {
