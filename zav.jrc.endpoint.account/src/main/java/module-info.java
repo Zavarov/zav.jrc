@@ -1,4 +1,4 @@
-open module jrc.endpoint.account {
+open module zav.jrc.endpoint.account {
   requires static org.eclipse.jdt.annotation;
   
   requires com.google.common;

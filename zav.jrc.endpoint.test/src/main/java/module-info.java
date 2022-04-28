@@ -1,4 +1,4 @@
-module jrc.endpoint.test {
+module zav.jrc.endpoint.test {
   requires static org.eclipse.jdt.annotation;
 
   requires com.google.guice;

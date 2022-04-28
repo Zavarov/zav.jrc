@@ -1,4 +1,4 @@
-open module jrc.endpoint.subreddit {
+open module zav.jrc.endpoint.subreddit {
   requires static org.eclipse.jdt.annotation;
   
   requires com.google.common;
