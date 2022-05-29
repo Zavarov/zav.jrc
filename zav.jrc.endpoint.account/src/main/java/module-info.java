@@ -9,4 +9,6 @@ open module zav.jrc.endpoint.account {
   requires zav.jrc.client;
   requires zav.jrc.databind;
   requires zav.jrc.http;
+  
+  exports zav.jrc.endpoint.account;
 }

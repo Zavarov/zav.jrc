@@ -7,4 +7,6 @@ module zav.jrc.endpoint.test {
 
   requires zav.jrc.databind;
   requires zav.jrc.client;
+  
+  exports zav.jrc.endpoint.test;
 }

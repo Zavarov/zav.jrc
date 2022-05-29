@@ -12,4 +12,6 @@ open module zav.jrc.endpoint.subreddit {
 
   requires transitive java.desktop;
   requires transitive java.inject;
+  
+  exports zav.jrc.endpoint.subreddit;
 }
