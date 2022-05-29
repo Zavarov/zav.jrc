@@ -18,7 +18,6 @@ package zav.jrc.listener.requester;
 
 import static zav.jrc.api.Constants.SUBREDDIT;
 
-import com.google.common.collect.AbstractIterator;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -44,7 +43,7 @@ import zav.jrc.databind.LinkEntity;
  * On future requests, the head is compared against all retrieved links and only those that have
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
-public class LinkRequester extends AbstractIterator<List<LinkEntity>> {
+public class LinkRequester implements Iterator<List<LinkEntity>> {
   private static final Logger LOGGER = LoggerFactory.getLogger(LinkRequester.class);
 
   @Inject
@@ -56,9 +55,14 @@ public class LinkRequester extends AbstractIterator<List<LinkEntity>> {
 
   @Nullable
   private LinkEntity head;
-
+  
   @Override
-  protected List<LinkEntity> computeNext() throws IteratorException {
+  public boolean hasNext() {
+    return true;
+  }
+  
+  @Override
+  public List<LinkEntity> next() throws IteratorException {
     try {
       LOGGER.info("Computing next links via {}.", subreddit);
       return head == null ? init() : request();
@@ -120,7 +124,7 @@ public class LinkRequester extends AbstractIterator<List<LinkEntity>> {
   /**
    * This exception is thrown whenever the next sequence of links couldn't be requested from the
    * Reddit API. It wraps the {@link FailedRequestException} around an unchecked exception to
-   * satisfy due to the signature of {@link #computeNext()}.
+   * satisfy due to the signature of {@link #next()}}.
    */
   public static final class IteratorException extends RuntimeException {
     public IteratorException(FailedRequestException cause) {
