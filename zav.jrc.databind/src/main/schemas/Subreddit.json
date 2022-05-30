@@ -123,6 +123,9 @@
     },
     "name" : {
       "type" : "string"
+    },
+    "community_icon" : {
+      "type" : "string"
     }
   }
 }
