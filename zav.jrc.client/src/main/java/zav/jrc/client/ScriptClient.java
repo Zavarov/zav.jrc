@@ -25,6 +25,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.inject.Singleton;
 import okhttp3.Request;
+import zav.jrc.client.guice.Names;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.TokenEntity;
@@ -38,10 +39,10 @@ import zav.jrc.http.RestRequest;
 @Singleton // All requests have to go through a single client
 public class ScriptClient extends Client {
   @Inject
-  @Named("username")
+  @Named(Names.USERNAME)
   private String username;
   @Inject
-  @Named("password")
+  @Named(Names.PASSWORD)
   private String password;
   
   /**
