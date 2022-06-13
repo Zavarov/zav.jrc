@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
 import org.slf4j.Logger;
@@ -40,8 +39,7 @@ import zav.jrc.http.RestRequest;
 public class UserlessClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserlessClient.class);
   
-  @Inject
-  private UUID uuid;
+  private final UUID uuid = UUID.randomUUID();
   
   /**
    * Requests a new access token.<br>

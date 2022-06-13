@@ -24,7 +24,6 @@ import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import java.io.File;
 import java.io.IOException;
-import java.util.UUID;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.UserAgentEntity;
 
@@ -42,18 +41,15 @@ public abstract class ClientModule extends AbstractModule {
     ObjectMapper om = new ObjectMapper();
     UserAgentEntity userAgent;
     CredentialsEntity credentials;
-    UUID uuid;
     
     try {
       userAgent = om.readValue(USER_AGENT, UserAgentEntity.class);
       credentials = om.readValue(CREDENTIALS, CredentialsEntity.class);
-      uuid = UUID.randomUUID();
     } catch (IOException e) {
       // Client can't log in without password, user agent, etc...
       throw new RuntimeException(e.getMessage(), e);
     }
     
-    bind(UUID.class).toInstance(uuid);
     bind(UserAgentEntity.class).toInstance(userAgent);
     bind(CredentialsEntity.class).toInstance(credentials);
     
