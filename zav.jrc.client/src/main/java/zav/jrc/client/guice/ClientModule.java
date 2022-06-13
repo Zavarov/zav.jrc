@@ -25,7 +25,6 @@ import com.google.inject.name.Names;
 import java.io.File;
 import java.io.IOException;
 import java.util.UUID;
-import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.UserAgentEntity;
 
@@ -34,10 +33,9 @@ import zav.jrc.databind.io.UserAgentEntity;
  * authentication.
  */
 public abstract class ClientModule extends AbstractModule {
-  @Nullable
-  private static final File USER_AGENT = new File("UserAgent.json");
-  @Nullable
-  private static final File CREDENTIALS = new File("Credentials.json");
+  private static final File CONFIG = new File("zav-jrc-config");
+  private static final File USER_AGENT = new File(CONFIG, "UserAgent.json");
+  private static final File CREDENTIALS = new File(CONFIG, "Credentials.json");
   
   @Override
   protected void configure() {
