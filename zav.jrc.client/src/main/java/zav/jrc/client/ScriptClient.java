@@ -29,7 +29,7 @@ import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
 import zav.jrc.databind.io.UserAgentEntity;
-import zav.jrc.http.RestRequest;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Runs on hardware you control, such as your own laptop or server. Can keep a secret. Only has
@@ -64,13 +64,12 @@ public class ScriptClient extends Client {
     body.put("password", password);
     body.put("duration", duration);
   
-    Request request = new RestRequest.Builder()
-          .setHost(RestRequest.WWW)
+    Request request = new RequestBuilder()
+          .setHost(RequestBuilder.WWW)
           .setEndpoint(OAuth2.ACCESS_TOKEN)
-          .setBody(body, RestRequest.BodyType.FORM)
+          .setBody(body, RequestBuilder.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
           .addHeader(HttpHeaders.USER_AGENT, userAgent)
-          .build()
           .post();
   
     //_send(...) -> Skip token validation

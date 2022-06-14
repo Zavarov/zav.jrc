@@ -32,7 +32,7 @@ import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
 import zav.jrc.databind.io.UserAgentEntity;
-import zav.jrc.http.RestRequest;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Runs on hardware you control, such as your own laptop or server. Doesn't have a user context
@@ -71,13 +71,12 @@ public class UserlessClient extends Client {
       LOGGER.warn("You're requesting a permanent token for an userless client. Are you sure?");
     }
     
-    Request request = new RestRequest.Builder()
-          .setHost(RestRequest.WWW)
+    Request request = new RequestBuilder()
+          .setHost(RequestBuilder.WWW)
           .setEndpoint(OAuth2.ACCESS_TOKEN)
-          .setBody(body, RestRequest.BodyType.FORM)
+          .setBody(body, RequestBuilder.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
           .addHeader(HttpHeaders.USER_AGENT, userAgent)
-          .build()
           .post();
   
     //_send(...) -> Skip token validation

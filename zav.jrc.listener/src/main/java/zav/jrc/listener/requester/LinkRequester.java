@@ -115,7 +115,6 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
           .setArgs(subreddit)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);

@@ -35,7 +35,7 @@ import zav.jrc.databind.SubredditEntity;
 import zav.jrc.databind.ThingEntity;
 import zav.jrc.databind.core.ListingEntity;
 import zav.jrc.http.Parameter;
-import zav.jrc.http.RestRequest;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Representation of the Reddit front page (i.e. r/all).
@@ -66,7 +66,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_BEST)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -83,7 +82,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_CONTROVERSIAL)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -100,7 +98,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_HOT)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -117,7 +114,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_NEW)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -134,7 +130,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RANDOM)
           .setParams(params)
-          .build()
           .get();
   
     ThingEntity[] response = Things.transform(client.send(query), ThingEntity[].class);
@@ -153,7 +148,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_RISING)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -170,7 +164,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Listings.GET_TOP)
           .setParams(params)
-          .build()
           .get();
     
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -194,7 +187,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Search.GET_SEARCH)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -219,7 +211,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
           .setParams(params)
-          .build()
           .get();
     
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -236,9 +227,8 @@ public class FrontPage {
   public Stream<String> searchRedditNames(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
         .setEndpoint(Subreddits.POST_API_SEARCH_REDDIT_NAMES)
-        .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
         .setParams(params)
-        .build()
         .post();
   
     Map<?, ?> result = Things.transform(client.send(query), Map.class);
@@ -257,9 +247,8 @@ public class FrontPage {
   public Stream<SubredditEntity> querySubreddits(Parameter... params) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .setParams(params)
-          .build()
           .post();
   
     Map<?, ?> result = Things.transform(client.send(query), Map.class);
@@ -279,7 +268,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -297,7 +285,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -315,7 +302,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_GOLD)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -333,7 +319,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_NEW)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -351,7 +336,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_POPULAR)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -369,7 +353,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_NEW)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -387,7 +370,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_POPULAR)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -406,7 +388,6 @@ public class FrontPage {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_SEARCH)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), AccountEntity.class);

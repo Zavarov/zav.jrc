@@ -53,7 +53,7 @@ import zav.jrc.databind.UserEntity;
 import zav.jrc.databind.UserListEntity;
 import zav.jrc.databind.core.ListingEntity;
 import zav.jrc.http.Parameter;
-import zav.jrc.http.RestRequest;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Representation of a subreddits. Subreddits are usually of the form r/<i>name</i>.
@@ -97,7 +97,6 @@ public class Subreddit {
           .setEndpoint(Listings.GET_R_SUBREDDIT_CONTROVERSIAL)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -115,7 +114,6 @@ public class Subreddit {
           .setEndpoint(Listings.GET_R_SUBREDDIT_HOT)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -133,7 +131,6 @@ public class Subreddit {
           .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -151,7 +148,6 @@ public class Subreddit {
           .setEndpoint(Listings.GET_R_SUBREDDIT_RANDOM)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
   
     ThingEntity[] response = Things.transform(client.send(query), ThingEntity[].class);
@@ -171,7 +167,6 @@ public class Subreddit {
           .setEndpoint(Listings.GET_R_SUBREDDIT_RISING)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -189,7 +184,6 @@ public class Subreddit {
           .setEndpoint(Listings.GET_R_SUBREDDIT_TOP)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -214,7 +208,6 @@ public class Subreddit {
           .setEndpoint(Search.GET_R_SUBREDDIT_SEARCH)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
   
     ListingEntity response = Things.transformThing(client.send(query), ListingEntity.class);
@@ -240,10 +233,9 @@ public class Subreddit {
     
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SITE_ADMIN)
-          .setBody(body, RestRequest.BodyType.JSON)
+          .setBody(body, RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
           .addParam("name", name)
-          .build()
           .post();
   
     return Things.transformThing(client.send(query), SubredditSettingsEntity.class);
@@ -263,10 +255,9 @@ public class Subreddit {
     SubredditEntity subreddit = getAbout();
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SITE_ADMIN)
-          .setBody(body, RestRequest.BodyType.JSON)
+          .setBody(body, RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
           .addParam("sr", "t5_" + subreddit.getId())
-          .build()
           .post();
   
     return Things.transformThing(client.send(query), SubredditSettingsEntity.class);
@@ -281,10 +272,9 @@ public class Subreddit {
   public void subscribe() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("action", "sub")
           .addParam("sr_name", name)
-          .build()
           .post();
   
     //returns {}
@@ -300,10 +290,9 @@ public class Subreddit {
   public void unsubscribe() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("action", "unsub")
           .addParam("sr_name", name)
-          .build()
           .post();
   
     //returns {}
@@ -321,7 +310,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_API_V1_SUBREDDIT_POST_REQUIREMENTS)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transform(client.send(query), Map.class);
@@ -338,7 +326,6 @@ public class Subreddit {
     Request query = client.newRequest()
         .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_BANNED)
         .setArgs(name)
-        .build()
         .get();
   
     ThingEntity response = Things.transform(client.send(query), ThingEntity.class);
@@ -357,7 +344,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS)
           .setArgs(name)
-          .build()
           .get();
   
     ThingEntity response = Things.transform(client.send(query), ThingEntity.class);
@@ -376,7 +362,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MODERATORS)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transform(client.send(query), UserListEntity.class).getData().getChildren().stream();
@@ -393,7 +378,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MUTED)
           .setArgs(name)
-          .build()
           .get();
   
     ThingEntity response = Things.transform(client.send(query), ThingEntity.class);
@@ -412,7 +396,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKIBANNED)
           .setArgs(name)
-          .build()
           .get();
   
     ThingEntity response = Things.transform(client.send(query), ThingEntity.class);
@@ -431,7 +414,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS)
           .setArgs(name)
-          .build()
           .get();
   
     ThingEntity response = Things.transform(client.send(query), ThingEntity.class);
@@ -449,9 +431,8 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_BANNER)
           .setArgs(name)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
-          .build()
           .post();
   
     client.send(query);
@@ -467,9 +448,8 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_HEADER)
           .setArgs(name)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
-          .build()
           .post();
   
     client.send(query);
@@ -485,9 +465,8 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_ICON)
           .setArgs(name)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
-          .build()
           .post();
   
     client.send(query);
@@ -503,10 +482,9 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_DELETE_SR_IMAGE)
           .setArgs(name)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
           .addParam("img_name", imageName)
-          .build()
           .post();
   
     client.send(query);
@@ -523,7 +501,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_API_SUBMIT_TEXT)
           .setArgs(name)
-          .build()
           .get();
   
     Map<?, ?> response = Things.transform(client.send(query), Map.class);
@@ -543,10 +520,9 @@ public class Subreddit {
     
     Request query = client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET)
-          .setBody(body, RestRequest.BodyType.JSON)
+          .setBody(body, RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
           .setArgs(name)
-          .build()
           .post();
   
     client.send(query);
@@ -580,7 +556,6 @@ public class Subreddit {
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
-          .build()
           .post();
   
     client.send(query);
@@ -613,7 +588,6 @@ public class Subreddit {
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
-          .build()
           .post();
   
     client.send(query);
@@ -646,7 +620,6 @@ public class Subreddit {
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
-          .build()
           .post();
   
     client.send(query);
@@ -679,7 +652,6 @@ public class Subreddit {
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
-          .build()
           .post();
   
     client.send(query);
@@ -700,7 +672,6 @@ public class Subreddit {
       Request query = client.newRequest()
             .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT)
             .setArgs(name)
-            .build()
             .get();
     
       result = Things.transformThing(client.send(query), SubredditEntity.class);
@@ -724,7 +695,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_EDIT)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transformThing(client.send(query), SubredditSettingsEntity.class);
@@ -741,7 +711,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_RULES)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transform(client.send(query), RulesEntity.class);
@@ -759,7 +728,6 @@ public class Subreddit {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_TRAFFIC)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transform(client.send(query), Map.class);
@@ -778,7 +746,6 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_STICKY)
           .setArgs(name)
           .addParam("num", index)
-          .build()
           .get();
   
     ThingEntity[] response = Things.transform(client.send(query), ThingEntity[].class);

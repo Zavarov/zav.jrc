@@ -42,7 +42,7 @@ import zav.jrc.databind.ThingEntity;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
 import zav.jrc.http.Parameter;
-import zav.jrc.http.RestRequest;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Representation of a Reddit account. Accounts are usually of the form u/<i>username</i>.
@@ -82,9 +82,8 @@ public class Account {
   public void block() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.POST_API_BLOCK_USER)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("name", name)
-          .build()
           .post();
     
     client.send(query);
@@ -101,11 +100,10 @@ public class Account {
     
     Request query = client.newRequest()
           .setEndpoint(Users.POST_API_UNFRIEND)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("container", "t2_" + self.getId())
           .addParam("name", name)
           .addParam("type", "enemy")
-          .build()
           .post();
     
     // Returns {}
@@ -126,8 +124,7 @@ public class Account {
     
     Request query = client.newRequest()
           .setEndpoint(Users.POST_API_REPORT_USER)
-          .setBody(body, RestRequest.BodyType.JSON)
-          .build()
+          .setBody(body, RequestBuilder.BodyType.JSON)
           .post();
     
     client.send(query);
@@ -150,9 +147,8 @@ public class Account {
     
     Request query = client.newRequest()
           .setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME)
-          .setBody(body, RestRequest.BodyType.JSON)
+          .setBody(body, RequestBuilder.BodyType.JSON)
           .setArgs(name)
-          .build()
           .put();
     
     return Things.transform(client.send(query), UserEntity.class);
@@ -167,9 +163,8 @@ public class Account {
   public void unfriend() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME)
-          .setBody(Collections.emptyMap(), RestRequest.BodyType.JSON)
+          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .setArgs(name)
-          .build()
           .delete();
     
     //Returns an empty String
@@ -187,7 +182,6 @@ public class Account {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_USERNAME_AVAILABLE)
           .addParam("user", name)
-          .build()
           .get();
     
     return Things.transform(client.send(query), Boolean.class);
@@ -208,7 +202,6 @@ public class Account {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_USER_DATA_BY_ACCOUNT_IDS)
           .addParam("ids", "t2_" + self.getId())
-          .build()
           .get();
   
     return Things.transform(client.send(query), AccountEntity.class);
@@ -225,7 +218,6 @@ public class Account {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME)
           .setArgs(name)
-          .build()
           .get();
     
     return Things.transform(client.send(query), UserEntity.class);
@@ -242,7 +234,6 @@ public class Account {
     Request query = client.newRequest()
           .setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES)
           .setArgs(name)
-          .build()
           .get();
   
     return Things.transformThing(client.send(query), TrophyListEntity.class)
@@ -266,7 +257,6 @@ public class Account {
       Request query = client.newRequest()
             .setEndpoint(Users.GET_USER_USERNAME_ABOUT)
             .setArgs(name)
-            .build()
             .get();
   
       result = Things.transformThing(client.send(query), AccountEntity.class);
@@ -292,7 +282,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_COMMENTS)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
 
     return Things.transformListingOfThings(client.send(query), CommentEntity.class);
@@ -311,7 +300,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
     
     return Things.transformListing(client.send(query), ThingEntity.class);
@@ -330,7 +318,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_GILDED)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
     
     return Things.transformListing(client.send(query), ThingEntity.class);
@@ -349,7 +336,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_HIDDEN)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
     
     return Things.transformListing(client.send(query), ThingEntity.class);
@@ -368,7 +354,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_OVERVIEW)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
     
     return Things.transformListing(client.send(query), ThingEntity.class);
@@ -387,7 +372,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_SAVED)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
     
     return Things.transformListing(client.send(query), ThingEntity.class);
@@ -406,7 +390,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_SUBMITTED)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
 
     return Things.transformListingOfThings(client.send(query), LinkEntity.class);
@@ -425,7 +408,6 @@ public class Account {
           .setEndpoint(Users.GET_USER_USERNAME_UPVOTED)
           .setParams(params)
           .setArgs(name)
-          .build()
           .get();
     
     return Things.transformListing(client.send(query), ThingEntity.class);

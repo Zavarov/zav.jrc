@@ -35,7 +35,7 @@ import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
 import zav.jrc.databind.UserListEntity;
 import zav.jrc.http.Parameter;
-import zav.jrc.http.RestRequest;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Representation of the account through which the client is logged in.
@@ -61,7 +61,6 @@ public class SelfAccount {
   public SelfAccountEntity getAbout() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME)
-          .build()
           .get();
     
     return Things.transform(client.send(query), SelfAccountEntity.class);
@@ -78,7 +77,6 @@ public class SelfAccount {
   public Stream<KarmaEntity> getKarma() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_KARMA)
-          .build()
           .get();
   
     return Things.transform(client.send(query), KarmaListEntity.class)
@@ -96,7 +94,6 @@ public class SelfAccount {
   public PreferencesEntity getPreferences() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_PREFS)
-          .build()
           .get();
   
     return Things.transform(client.send(query), PreferencesEntity.class);
@@ -112,8 +109,7 @@ public class SelfAccount {
   public PreferencesEntity updatePreferences(PreferencesEntity preferences) throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.PATCH_API_V1_ME_PREFS)
-          .setBody(Things.transform(preferences, Map.class), RestRequest.BodyType.JSON)
-          .build()
+          .setBody(Things.transform(preferences, Map.class), RequestBuilder.BodyType.JSON)
           .patch();
   
     return Things.transform(client.send(query), PreferencesEntity.class);
@@ -129,7 +125,6 @@ public class SelfAccount {
   public Stream<AwardEntity> getTrophies() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_TROPHIES)
-          .build()
           .get();
   
     return Things.transformThing(client.send(query), TrophyListEntity.class)
@@ -148,7 +143,6 @@ public class SelfAccount {
   public Stream<UserEntity> getBlocked() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_BLOCKED)
-          .build()
           .get();
   
     return Things.transform(client.send(query), UserListEntity.class)
@@ -167,7 +161,6 @@ public class SelfAccount {
   public Stream<UserEntity> getFriends() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_FRIENDS)
-          .build()
           .get();
   
     // @See https://redd.it/p19tsh
@@ -190,7 +183,6 @@ public class SelfAccount {
   public Stream<UserEntity> getTrusted() throws FailedRequestException {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_TRUSTED)
-          .build()
           .get();
   
     return Things.transform(client.send(query), UserListEntity.class)
@@ -216,7 +208,6 @@ public class SelfAccount {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -233,7 +224,6 @@ public class SelfAccount {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -251,7 +241,6 @@ public class SelfAccount {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
@@ -268,7 +257,6 @@ public class SelfAccount {
     Request query = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER)
           .setParams(params)
-          .build()
           .get();
   
     return Things.transformListingOfThings(client.send(query), SubredditEntity.class);

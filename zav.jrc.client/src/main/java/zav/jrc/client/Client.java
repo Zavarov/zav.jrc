@@ -34,7 +34,7 @@ import zav.jrc.client.internal.OAuth2;
 import zav.jrc.client.internal.TokenType;
 import zav.jrc.databind.io.TokenEntity;
 import zav.jrc.http.HttpException;
-import zav.jrc.http.RestRequest;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * The base class for authenticating the application.<br>
@@ -152,13 +152,12 @@ public abstract class Client {
     body.put("grant_type", GrantType.REFRESH);
     body.put("refresh_token", token.getRefreshToken());
     
-    Request request = new RestRequest.Builder()
-          .setHost(RestRequest.WWW)
+    Request request = new RequestBuilder()
+          .setHost(RequestBuilder.WWW)
           .setEndpoint(OAuth2.ACCESS_TOKEN)
-          .setBody(body, RestRequest.BodyType.FORM)
+          .setBody(body, RequestBuilder.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
           .addHeader(HttpHeaders.USER_AGENT, userAgent)
-          .build()
           .post();
 
     //_send(...) -> Skip token validation
@@ -208,13 +207,12 @@ public abstract class Client {
     body.put("token", token.getRefreshToken());
     body.put("token_type_hint", TokenType.REFRESH_TOKEN);
 
-    Request request = new RestRequest.Builder()
-          .setHost(RestRequest.WWW)
+    Request request = new RequestBuilder()
+          .setHost(RequestBuilder.WWW)
           .setEndpoint(OAuth2.REVOKE_TOKEN)
-          .setBody(body, RestRequest.BodyType.FORM)
+          .setBody(body, RequestBuilder.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
           .addHeader(HttpHeaders.USER_AGENT, userAgent)
-          .build()
           .post();
 
     //Skip token validation
@@ -237,13 +235,12 @@ public abstract class Client {
     body.put("token", token.getAccessToken());
     body.put("token_type_hint", TokenType.ACCESS_TOKEN);
 
-    Request request = new RestRequest.Builder()
-          .setHost(RestRequest.WWW)
+    Request request = new RequestBuilder()
+          .setHost(RequestBuilder.WWW)
           .setEndpoint(OAuth2.REVOKE_TOKEN)
-          .setBody(body, RestRequest.BodyType.FORM)
+          .setBody(body, RequestBuilder.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
           .addHeader(HttpHeaders.USER_AGENT, userAgent)
-          .build()
           .post();
 
     //Skip token validation
@@ -262,12 +259,12 @@ public abstract class Client {
    *
    * @return A new builder instance for a REST request.
    */
-  public RestRequest.Builder newRequest() {
+  public RequestBuilder newRequest() {
     assert token != null;
     
     Objects.requireNonNull(token);
     
-    return new RestRequest.Builder()
+    return new RequestBuilder()
           .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
           .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
