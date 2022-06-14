@@ -17,38 +17,47 @@
 package zav.jrc.listener.observer;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.mockConstruction;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.util.ArrayList;
 import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.MockedConstruction;
+import org.mockito.junit.jupiter.MockitoExtension;
+import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.listener.AbstractTest;
+import zav.jrc.databind.LinkEntity;
 import zav.jrc.listener.SubredditListener;
-import zav.jrc.listener.internal.ObserverMock;
-import zav.jrc.listener.internal.SubredditListenerMock;
+import zav.jrc.listener.requester.LinkRequester;
 
 /**
  * Checks whether listeners that have been added to an observer are properly notified.
  */
-public class ObserverTest extends AbstractTest {
-  private static Observer<SubredditListener> observer;
-  private List<SubredditListener> responses;
-  private SubredditListener foo;
-  private SubredditListener bar;
+@ExtendWith(MockitoExtension.class)
+public class ObserverTest {
+  @Mock Client client;
+  @Mock SubredditListener foo;
+  @Mock SubredditListener bar;
+  Observer<SubredditListener> observer;
+  LinkRequester requester;
   
   /**
    * Creates mocks of the listeners {@link #foo} and {@link #bar}, as well as the observer
-   * {@link #observer}. Notifications will be stored in {@link #responses}.
+   * {@link #observer}.
    */
   @BeforeEach
   public void setUp() {
-    observer = new ObserverMock();
-    responses = new ArrayList<>();
-    foo = new SubredditListenerMock(responses::add);
-    bar = new SubredditListenerMock(responses::add);
-
-    GUICE.injectMembers(observer);
+    try (MockedConstruction<LinkRequester> mocked = mockConstruction(LinkRequester.class)) {
+      observer = new SubredditObserver(client, "subreddit");
+      requester = mocked.constructed().get(0);
+    }
   }
   
   @Test
@@ -78,20 +87,24 @@ public class ObserverTest extends AbstractTest {
   
   @Test
   public void testNotifyListener() throws FailedRequestException {
-    assertThat(responses).hasSize(0);
+    when(requester.next()).thenReturn(List.of(mock(LinkEntity.class)));
+    
     observer.addListener(foo);
     observer.addListener(bar);
-    observer.notifyListener(bar);
-    assertThat(responses).containsExactly(bar);
+    observer.notifyListener(foo);
+    verify(foo).notify(any());
+    verify(bar, times(0)).notify(any());
   }
   
   @Test
-  public void testNotifyAllListeners() throws FailedRequestException {
-    assertThat(responses).hasSize(0);
+  public void testNotifyAllListeners() throws Exception {
+    when(requester.next()).thenReturn(List.of(mock(LinkEntity.class)));
+    
     observer.addListener(foo);
     observer.addListener(bar);
     observer.notifyAllListeners();
-    assertThat(responses).containsExactlyInAnyOrder(foo, bar);
+    verify(foo).notify(any());
+    verify(bar).notify(any());
   }
   
   @Test

@@ -16,21 +16,22 @@
 
 package zav.jrc.listener.observable;
 
-import com.google.inject.Injector;
-import com.google.inject.Module;
 import javax.inject.Inject;
-import zav.jrc.listener.internal.SubredditModule;
+import zav.jrc.client.Client;
 import zav.jrc.listener.observer.SubredditObserver;
 
 /**
  * Base class for all subreddit observers.
  */
 public class SubredditObservable {
+  private final Client client;
+  
   @Inject
-  private Injector injector;
+  public SubredditObservable(Client client) {
+    this.client = client;
+  }
   
   public SubredditObserver getObserver(String subreddit) {
-    Module module = new SubredditModule(subreddit);
-    return injector.createChildInjector(module).getInstance(SubredditObserver.class);
+    return new SubredditObserver(client, subreddit);
   }
 }

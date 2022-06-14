@@ -22,13 +22,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
+import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
+import zav.jrc.databind.io.UserAgentEntity;
 import zav.jrc.http.RestRequest;
 
 /**
@@ -40,6 +43,11 @@ public class UserlessClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserlessClient.class);
   
   private final UUID uuid = UUID.randomUUID();
+  
+  @Inject
+  public UserlessClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
+    super(userAgent.toString(), credentials.toString());
+  }
   
   /**
    * Requests a new access token.<br>
@@ -68,7 +76,7 @@ public class UserlessClient extends Client {
           .setEndpoint(OAuth2.ACCESS_TOKEN)
           .setBody(body, RestRequest.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent.toString())
+          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .build()
           .post();
   

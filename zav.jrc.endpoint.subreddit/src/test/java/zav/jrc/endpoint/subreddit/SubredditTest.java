@@ -17,10 +17,7 @@
 package zav.jrc.endpoint.subreddit;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static zav.jrc.api.Constants.SUBREDDIT;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.name.Names;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
@@ -30,24 +27,30 @@ import javax.imageio.ImageIO;
 import org.eclipse.jdt.annotation.Nullable;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import zav.jrc.client.Client;
+import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.RulesEntity;
 import zav.jrc.databind.SubredditEntity;
 import zav.jrc.databind.SubredditSettingsEntity;
 import zav.jrc.databind.UserEntity;
-import zav.jrc.endpoint.test.AbstractEndpointTest;
+import zav.jrc.endpoint.test.ClientMock;
 import zav.jrc.http.Parameter;
 
 /**
  * Checks whether the calls to the subreddit-related endpoints return the expected response.
  */
-public class SubredditTest extends AbstractEndpointTest {
+public class SubredditTest {
+  
+  Client client;
   Subreddit subreddit;
   
   @BeforeEach
-  public void setUp() {
-    subreddit = GUICE.createChildInjector(new TestModule()).getInstance(Subreddit.class);
+  public void setUp() throws FailedRequestException {
+    client = new ClientMock();
+    client.login(Duration.TEMPORARY);
+    subreddit = new Subreddit(client, "Subreddit");
   }
   
   @Test
@@ -285,12 +288,5 @@ public class SubredditTest extends AbstractEndpointTest {
   public void testGetSticky() throws FailedRequestException {
     LinkEntity response = subreddit.getSticky(1);
     assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
-  }
-  
-  private static class TestModule extends AbstractModule {
-    @Override
-    protected void configure() {
-      bind(String.class).annotatedWith(Names.named(SUBREDDIT)).toInstance("Subreddit");
-    }
   }
 }

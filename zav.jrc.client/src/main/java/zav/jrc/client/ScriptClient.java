@@ -22,13 +22,13 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
-import javax.inject.Named;
 import javax.inject.Singleton;
 import okhttp3.Request;
-import zav.jrc.client.guice.Names;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
+import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
+import zav.jrc.databind.io.UserAgentEntity;
 import zav.jrc.http.RestRequest;
 
 /**
@@ -38,12 +38,15 @@ import zav.jrc.http.RestRequest;
  */
 @Singleton // All requests have to go through a single client
 public class ScriptClient extends Client {
+  private final String username;
+  private final String password;
+  
   @Inject
-  @Named(Names.USERNAME)
-  private String username;
-  @Inject
-  @Named(Names.PASSWORD)
-  private String password;
+  public ScriptClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
+    super(userAgent.toString(), credentials.toString());
+    this.username = credentials.getUsername();
+    this.password = credentials.getPassword();
+  }
   
   /**
    * Requests a new access token.<br>
@@ -66,7 +69,7 @@ public class ScriptClient extends Client {
           .setEndpoint(OAuth2.ACCESS_TOKEN)
           .setBody(body, RestRequest.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent.toString())
+          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .build()
           .post();
   

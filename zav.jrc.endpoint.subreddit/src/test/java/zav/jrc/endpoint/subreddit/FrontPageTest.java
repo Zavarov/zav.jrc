@@ -22,23 +22,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import zav.jrc.client.Client;
+import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.SubredditEntity;
-import zav.jrc.endpoint.test.AbstractEndpointTest;
+import zav.jrc.endpoint.test.ClientMock;
 import zav.jrc.http.Parameter;
 
 /**
  * Checks whether the calls to the frontpage-related endpoints return the expected response.
  */
-public class FrontPageTest extends AbstractEndpointTest {
+public class FrontPageTest {
   
+  Client client;
   FrontPage frontPage;
   
   @BeforeEach
-  public void setUp() {
-    frontPage = GUICE.getInstance(FrontPage.class);
+  public void setUp() throws FailedRequestException {
+    client = new ClientMock();
+    client.login(Duration.TEMPORARY);
+    frontPage = new FrontPage(client);
   }
   
   @Test

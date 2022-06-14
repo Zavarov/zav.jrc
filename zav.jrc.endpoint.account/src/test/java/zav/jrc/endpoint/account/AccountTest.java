@@ -17,14 +17,13 @@
 package zav.jrc.endpoint.account;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static zav.jrc.api.Constants.ACCOUNT;
 
-import com.google.inject.AbstractModule;
-import com.google.inject.name.Names;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import zav.jrc.client.Client;
+import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.AwardEntity;
@@ -32,19 +31,22 @@ import zav.jrc.databind.CommentEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.ThingEntity;
 import zav.jrc.databind.UserEntity;
-import zav.jrc.endpoint.test.AbstractEndpointTest;
 import zav.jrc.endpoint.test.ClientMock;
 
 /**
  * Checks whether the calls to the account-related endpoints return the expected response.
  */
-public class AccountTest extends AbstractEndpointTest {
+public class AccountTest {
   
+  String name = "Account";
+  Client client;
   Account account;
   
   @BeforeEach
-  public void setUp() {
-    account = GUICE.createChildInjector(new TestModule()).getInstance(Account.class);
+  public void setUp() throws FailedRequestException {
+    client = new ClientMock();
+    client.login(Duration.TEMPORARY);
+    account = new Account(client, name);
   }
   
   @Test
@@ -54,12 +56,8 @@ public class AccountTest extends AbstractEndpointTest {
   
   @Test
   public void testReport() throws FailedRequestException {
-    if (CLIENT instanceof ClientMock) {
-      // DON'T TEST AGAINST THE REAL API
-      account.report("Very good reason...");
-    } else {
-      throw new IllegalArgumentException("DON'T TEST AGAINST THE REAL API");
-    }
+    // DON'T TEST AGAINST THE REAL API
+    account.report("Very good reason...");
   }
   
   @Test
@@ -161,12 +159,5 @@ public class AccountTest extends AbstractEndpointTest {
     List<ThingEntity> response = account.getUpvoted().collect(Collectors.toList());
     assertThat(response).hasSize(1);
     assertThat(response.get(0).getKind()).isEqualTo("t3");
-  }
-  
-  private static class TestModule extends AbstractModule {
-    @Override
-    protected void configure() {
-      bind(String.class).annotatedWith(Names.named(ACCOUNT)).toInstance("Account");
-    }
   }
 }

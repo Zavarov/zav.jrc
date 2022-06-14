@@ -42,8 +42,12 @@ import zav.jrc.http.RestRequest;
  */
 public class SelfAccount {
   
+  private final Client client;
+  
   @Inject
-  private Client client;
+  public SelfAccount(Client client) {
+    this.client = client;
+  }
   
   // Account
   

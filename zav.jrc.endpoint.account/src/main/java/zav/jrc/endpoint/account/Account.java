@@ -16,8 +16,6 @@
 
 package zav.jrc.endpoint.account;
 
-import static zav.jrc.api.Constants.ACCOUNT;
-
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import java.time.Duration;
@@ -31,6 +29,7 @@ import okhttp3.Request;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zav.jrc.api.Constants;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
@@ -60,19 +59,12 @@ public class Account {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(Account.class);
   
-  @SuppressWarnings("all")
-  private Client client;
-  
-  @SuppressWarnings("all")
-  private String name;
+  private final Client client;
+  private final String name;
   
   @Inject
-  public void setClient(Client client) {
+  public Account(Client client, @Named(Constants.ACCOUNT) String name) {
     this.client = client;
-  }
-  
-  @Inject
-  public void setName(@Named(ACCOUNT) String name) {
     this.name = name;
   }
   

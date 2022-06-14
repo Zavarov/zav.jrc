@@ -19,6 +19,7 @@ package zav.jrc.client;
 import static java.time.temporal.ChronoUnit.SECONDS;
 
 import java.time.LocalDateTime;
+import javax.inject.Singleton;
 import okhttp3.Response;
 import org.eclipse.jdt.annotation.Nullable;
 

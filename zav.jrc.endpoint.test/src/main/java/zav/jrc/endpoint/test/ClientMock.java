@@ -20,7 +20,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
-import javax.inject.Singleton;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.Client;
@@ -31,8 +30,11 @@ import zav.jrc.databind.io.TokenEntity;
 /**
  * Mock client instance that uses pre-recorded responses instead of performing actual API calls.
  */
-@Singleton // Client is shared among all views
 public class ClientMock extends Client {
+  
+  public ClientMock() {
+    super("userAgent", "credentials");
+  }
   
   @Override
   public void login(Duration duration) {

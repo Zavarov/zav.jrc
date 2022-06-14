@@ -22,6 +22,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import zav.jrc.client.Client;
+import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.AwardEntity;
 import zav.jrc.databind.KarmaEntity;
@@ -29,18 +31,21 @@ import zav.jrc.databind.PreferencesEntity;
 import zav.jrc.databind.SelfAccountEntity;
 import zav.jrc.databind.SubredditEntity;
 import zav.jrc.databind.UserEntity;
-import zav.jrc.endpoint.test.AbstractEndpointTest;
+import zav.jrc.endpoint.test.ClientMock;
 
 /**
  * Checks whether the calls to the self-account-related endpoints return the expected response.
  */
-public class SelfAccountTest extends AbstractEndpointTest {
+public class SelfAccountTest {
   
+  Client client;
   SelfAccount selfAccount;
   
   @BeforeEach
-  public void setUp() {
-    selfAccount = GUICE.getInstance(SelfAccount.class);
+  public void setUp() throws FailedRequestException {
+    client = new ClientMock();
+    client.login(Duration.TEMPORARY);
+    selfAccount = new SelfAccount(client);
   }
   
   @Test

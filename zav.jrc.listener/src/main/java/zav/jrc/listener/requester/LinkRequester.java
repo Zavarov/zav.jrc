@@ -16,8 +16,6 @@
 
 package zav.jrc.listener.requester;
 
-import static zav.jrc.api.Constants.SUBREDDIT;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Iterator;
@@ -30,6 +28,7 @@ import okhttp3.Request;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zav.jrc.api.Constants;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.client.Client;
@@ -45,16 +44,17 @@ import zav.jrc.databind.LinkEntity;
  */
 public class LinkRequester implements Iterator<List<LinkEntity>> {
   private static final Logger LOGGER = LoggerFactory.getLogger(LinkRequester.class);
-
-  @Inject
-  private Client client;
   
-  @Inject
-  @Named(SUBREDDIT)
-  private String subreddit;
-
   @Nullable
   private LinkEntity head;
+  private final Client client;
+  private final String subreddit;
+
+  @Inject
+  public LinkRequester(Client client, @Named(Constants.SUBREDDIT) String subreddit) {
+    this.client = client;
+    this.subreddit = subreddit;
+  }
   
   @Override
   public boolean hasNext() {

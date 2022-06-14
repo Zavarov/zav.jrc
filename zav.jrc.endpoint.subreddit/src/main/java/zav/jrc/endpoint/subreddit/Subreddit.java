@@ -16,8 +16,6 @@
 
 package zav.jrc.endpoint.subreddit;
 
-import static zav.jrc.api.Constants.SUBREDDIT;
-
 import com.google.common.cache.Cache;
 import com.google.common.cache.CacheBuilder;
 import java.awt.image.RenderedImage;
@@ -39,6 +37,7 @@ import okhttp3.RequestBody;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zav.jrc.api.Constants;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
@@ -66,19 +65,12 @@ public class Subreddit {
   
   private static final Logger LOGGER = LoggerFactory.getLogger(Subreddit.class);
   
-  @SuppressWarnings("all")
-  private Client client;
-  
-  @SuppressWarnings("all")
-  private String name;
+  private final Client client;
+  private final String name;
   
   @Inject
-  public void setClient(Client client) {
+  public Subreddit(Client client, @Named(Constants.SUBREDDIT) String name) {
     this.client = client;
-  }
-  
-  @Inject
-  public void setName(@Named(value = SUBREDDIT) String name) {
     this.name = name;
   }
   

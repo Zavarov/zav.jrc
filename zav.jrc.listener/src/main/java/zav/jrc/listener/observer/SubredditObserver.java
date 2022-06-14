@@ -16,15 +16,14 @@
 
 package zav.jrc.listener.observer;
 
-import static zav.jrc.api.Constants.SUBREDDIT;
-
-import com.google.inject.Injector;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 import org.eclipse.jdt.annotation.Nullable;
+import zav.jrc.api.Constants;
+import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.listener.SubredditListener;
@@ -39,16 +38,12 @@ import zav.jrc.listener.requester.LinkRequester;
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @Nullable
   private List<LinkEntity> history;
+  private final LinkRequester requester;
   
   @Inject
-  private LinkRequester requester;
-  
-  @Inject
-  private Injector injector;
-  
-  @Inject
-  @Named(SUBREDDIT)
-  private String subreddit;
+  public SubredditObserver(Client client, @Named(Constants.SUBREDDIT) String subreddit) {
+    this.requester = new LinkRequester(client, subreddit);
+  }
 
   @Override
   public void notifyAllListeners() throws FailedRequestException {

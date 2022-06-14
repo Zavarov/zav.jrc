@@ -42,11 +42,10 @@ import zav.jrc.http.RestRequest;
  */
 public class FrontPage {
 
-  @SuppressWarnings("all")
-  private Client client;
+  private final Client client;
   
   @Inject
-  public void setClient(Client client) {
+  public FrontPage(Client client) {
     this.client = client;
   }
   

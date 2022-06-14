@@ -22,7 +22,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import javax.inject.Inject;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -33,9 +32,7 @@ import org.slf4j.LoggerFactory;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.client.internal.TokenType;
-import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
-import zav.jrc.databind.io.UserAgentEntity;
 import zav.jrc.http.HttpException;
 import zav.jrc.http.RestRequest;
 
@@ -48,16 +45,19 @@ import zav.jrc.http.RestRequest;
  */
 public abstract class Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
-  @Inject
-  protected UserAgentEntity userAgent;
-  @Inject
-  protected CredentialsEntity credentials;
-  @Inject
-  protected RateLimiter rateLimiter;
-  @Inject
-  protected OkHttpClient http;
   @Nullable
   protected TokenEntity token;
+  protected final String userAgent;
+  protected final String credentials;
+  private final RateLimiter rateLimiter;
+  private final OkHttpClient http;
+  
+  public Client(String userAgent, String credentials) {
+    this.userAgent = userAgent;
+    this.credentials = credentials;
+    this.rateLimiter = new RateLimiter();
+    this.http = new OkHttpClient();
+  }
 
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
@@ -157,7 +157,7 @@ public abstract class Client {
           .setEndpoint(OAuth2.ACCESS_TOKEN)
           .setBody(body, RestRequest.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent.toString())
+          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .build()
           .post();
 
@@ -213,7 +213,7 @@ public abstract class Client {
           .setEndpoint(OAuth2.REVOKE_TOKEN)
           .setBody(body, RestRequest.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent.toString())
+          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .build()
           .post();
 
@@ -242,7 +242,7 @@ public abstract class Client {
           .setEndpoint(OAuth2.REVOKE_TOKEN)
           .setBody(body, RestRequest.BodyType.FORM)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent.toString())
+          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .build()
           .post();
 
@@ -269,6 +269,6 @@ public abstract class Client {
     
     return new RestRequest.Builder()
           .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
-          .addHeader(HttpHeaders.USER_AGENT, userAgent.toString());
+          .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 }
