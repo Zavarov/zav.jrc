@@ -142,7 +142,6 @@ public class Things {
   public static <T> T transformThing(ThingEntity source, Class<T> target) {
     // Validation
     Class<?> expectedClass = KINDS.get(source.getKind());
-    Objects.requireNonNull(expectedClass, source.getKind());
     if (!Objects.equals(expectedClass, target)) {
       throw new IllegalArgumentException("The provided Thing is not of type " + target + ".");
     }
