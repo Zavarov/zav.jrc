@@ -184,6 +184,8 @@ public class SelfAccount {
     Request query = client.newRequest()
           .setEndpoint(Account.GET_PREFS_TRUSTED)
           .get();
+    
+    System.out.println(Things.transform(client.send(query), UserListEntity.class).getData());
   
     return Things.transform(client.send(query), UserListEntity.class)
           .getData()

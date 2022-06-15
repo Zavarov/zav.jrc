@@ -16,112 +16,167 @@
 
 package zav.jrc.endpoint.account;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Collections;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+import zav.jrc.api.Things;
+import zav.jrc.api.endpoint.Account;
+import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
-import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.databind.AwardEntity;
-import zav.jrc.databind.KarmaEntity;
+import zav.jrc.databind.KarmaListEntity;
 import zav.jrc.databind.PreferencesEntity;
 import zav.jrc.databind.SelfAccountEntity;
-import zav.jrc.databind.SubredditEntity;
-import zav.jrc.databind.UserEntity;
-import zav.jrc.endpoint.test.ClientMock;
+import zav.jrc.databind.TrophyListEntity;
+import zav.jrc.databind.UserListDataEntity;
+import zav.jrc.databind.UserListEntity;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Checks whether the calls to the self-account-related endpoints return the expected response.
  */
+@ExtendWith(MockitoExtension.class)
 public class SelfAccountTest {
   
-  Client client;
+  MockedStatic<Things> mocked;
   SelfAccount selfAccount;
+  UserListEntity users;
+  TrophyListEntity trophies;
+  @Mock Client client;
+  @Spy RequestBuilder request;
   
+  /**
+   * Initializes all fields and binds the {@link #request} to {@link Client#newRequest()}.<br>
+   * {@link #users} is initialized with an empty list of users.<br>
+   * {@link #trophies} is initialized with an empty list of trophies.<br>
+   *
+   * @throws FailedRequestException Never
+   */
   @BeforeEach
   public void setUp() throws FailedRequestException {
-    client = new ClientMock();
-    client.login(Duration.TEMPORARY);
+    when(client.newRequest()).thenReturn(request);
+    when(client.send(any())).thenReturn("{}");
     selfAccount = new SelfAccount(client);
+    trophies = new TrophyListEntity();
+    trophies.setTrophies(Collections.emptyList());
+    users = new UserListEntity();
+    users.setData(new UserListDataEntity());
+    mocked = mockStatic(Things.class);
+  }
+  
+  @AfterEach
+  public void tearDown() {
+    mocked.close();
   }
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    SelfAccountEntity response = selfAccount.getAbout();
-    assertThat(response.getId()).isEqualTo("abcdef");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new SelfAccountEntity());
+    assertNotNull(selfAccount.getAbout());
+  
+    verify(request).setEndpoint(Account.GET_API_V1_ME);
+    verify(request).get();
   }
   
   @Test
   public void testGetKarma() throws FailedRequestException {
-    List<KarmaEntity> response = selfAccount.getKarma().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getSubreddit()).isEqualTo("Subreddit");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new KarmaListEntity());
+    assertNotNull(selfAccount.getKarma());
+  
+    verify(request).setEndpoint(Account.GET_API_V1_ME_KARMA);
+    verify(request).get();
   }
   
   @Test
   public void testGetPreferences() throws FailedRequestException {
-    PreferencesEntity response = selfAccount.getPreferences();
-    assertThat(response.getCountryCode()).isEqualTo("XX");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new PreferencesEntity());
+    assertNotNull(selfAccount.getPreferences());
+  
+    verify(request).setEndpoint(Account.GET_API_V1_ME_PREFS);
+    verify(request).get();
   }
   
   @Test
   public void testUpdatePreferences() throws FailedRequestException {
-    PreferencesEntity response = selfAccount.updatePreferences(selfAccount.getPreferences());
-    assertThat(response.getCountryCode()).isEqualTo("XX");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new PreferencesEntity());
+    assertNotNull(selfAccount.updatePreferences(new PreferencesEntity()));
+  
+    verify(request).setEndpoint(Account.PATCH_API_V1_ME_PREFS);
+    verify(request).patch();
   }
   
   @Test
   public void testGetTrophies() throws FailedRequestException {
-    List<AwardEntity> response = selfAccount.getTrophies().collect(Collectors.toList());
-    assertThat(response).hasSize(2);
-    assertThat(response.get(0).getName()).isEqualTo("Four-Year Club");
-    assertThat(response.get(1).getName()).isEqualTo("Verified Email");
+    mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(trophies);
+    assertNotNull(selfAccount.getTrophies());
+  
+    verify(request).setEndpoint(Account.GET_API_V1_ME_TROPHIES);
+    verify(request).get();
   }
   
   @Test
   public void testGetBlocked() throws FailedRequestException {
-    List<UserEntity> response = selfAccount.getBlocked().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getName()).isEqualTo("Username");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(users);
+    assertNotNull(selfAccount.getBlocked());
+  
+    verify(request).setEndpoint(Account.GET_PREFS_BLOCKED);
+    verify(request).get();
   }
   
   @Test
   public void testGetFriends() throws FailedRequestException {
-    List<UserEntity> response = selfAccount.getFriends().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getName()).isEqualTo("Username");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new UserListEntity[]{users});
+    assertNotNull(selfAccount.getFriends());
+  
+    verify(request).setEndpoint(Account.GET_PREFS_FRIENDS);
+    verify(request).get();
   }
   
   @Test
   public void testGetTrusted() throws FailedRequestException {
-    List<UserEntity> response = selfAccount.getTrusted().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getName()).isEqualTo("Username");
-  }
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(users);
+    assertNotNull(selfAccount.getTrusted());
+    
   
-  // Subreddit
+    verify(request).setEndpoint(Account.GET_PREFS_TRUSTED);
+    verify(request).get();
+  }
   
   @Test
   public void testGetMineContributor() throws FailedRequestException {
-    List<SubredditEntity> response = selfAccount.getMineContributor().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
+    assertNotNull(selfAccount.getMineContributor());
+  
+    verify(request).setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR);
+    verify(request).get();
   }
   
   @Test
   public void testGetMineModerator() throws FailedRequestException {
-    List<SubredditEntity> response = selfAccount.getMineModerator().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
+    assertNotNull(selfAccount.getMineModerator());
+  
+    verify(request).setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR);
+    verify(request).get();
   }
   
   @Test
   public void testGetMineSubscriber() throws FailedRequestException {
-    List<SubredditEntity> response = selfAccount.getMineSubscriber().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getDisplayName()).isEqualTo("Subreddit");
+    assertNotNull(selfAccount.getMineSubscriber());
+  
+    verify(request).setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER);
+    verify(request).get();
+    
   }
 }

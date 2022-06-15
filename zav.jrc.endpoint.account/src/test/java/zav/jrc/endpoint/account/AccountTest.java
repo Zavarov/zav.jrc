@@ -16,148 +16,227 @@
 
 package zav.jrc.endpoint.account;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-import java.util.List;
-import java.util.stream.Collectors;
+import java.util.Map;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.MockedStatic;
+import org.mockito.Spy;
+import org.mockito.junit.jupiter.MockitoExtension;
+import zav.jrc.api.Things;
+import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
-import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.AccountEntity;
-import zav.jrc.databind.AwardEntity;
-import zav.jrc.databind.CommentEntity;
-import zav.jrc.databind.LinkEntity;
-import zav.jrc.databind.ThingEntity;
+import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
-import zav.jrc.endpoint.test.ClientMock;
+import zav.jrc.http.RequestBuilder;
 
 /**
  * Checks whether the calls to the account-related endpoints return the expected response.
  */
+@ExtendWith(MockitoExtension.class)
 public class AccountTest {
   
+  MockedStatic<Things> mocked;
   String name = "Account";
-  Client client;
+  String reason = "Very good reason...";
   Account account;
+  @Mock Client client;
+  @Spy RequestBuilder request;
   
+  /**
+   * Initializes all fields and binds the {@link #request} to {@link Client#newRequest()}.
+   *
+   * @throws FailedRequestException Never
+   */
   @BeforeEach
   public void setUp() throws FailedRequestException {
-    client = new ClientMock();
-    client.login(Duration.TEMPORARY);
+    when(client.newRequest()).thenReturn(request);
+    when(client.send(any())).thenReturn("{}");
     account = new Account(client, name);
+    mocked = mockStatic(Things.class);
+  }
+  
+  @AfterEach
+  public void tearDown() {
+    mocked.close();
   }
   
   @Test
   public void testBlock() throws FailedRequestException {
     account.block();
+    
+    verify(request).setEndpoint(Users.POST_API_BLOCK_USER);
+    verify(request).addParam("name", name);
+    verify(request).post();
   }
   
   @Test
   public void testReport() throws FailedRequestException {
-    // DON'T TEST AGAINST THE REAL API
-    account.report("Very good reason...");
+    account.report(reason);
+    
+    verify(request).setEndpoint(Users.POST_API_REPORT_USER);
+    verify(request).setBody(Map.of("user", name, "reason", reason), RequestBuilder.BodyType.JSON);
+    verify(request).post();
   }
   
   @Test
   public void testUnblock() throws FailedRequestException {
+    mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(new AccountEntity());
+    // Load the account into memory and clear request
+    account.getAbout();
+    request.setArgs();
+    
     account.unblock();
-  }
   
-  @Test
-  public void testGetUserData() throws FailedRequestException {
-    account.getUserData();
+    verify(request).setEndpoint(Users.POST_API_UNFRIEND);
+    verify(request).addParam("container", "t2_null");
+    verify(request).addParam("name", name);
+    verify(request).addParam("type", "enemy");
+    verify(request).post();
   }
   
   @Test
   public void testIsAvailable() throws FailedRequestException {
-    assertThat(account.isAvailable()).isFalse();
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(true);
+    
+    assertTrue(account.isAvailable());
+  
+    verify(request).setEndpoint(Users.GET_API_USERNAME_AVAILABLE);
+    verify(request).addParam("user", name);
+    verify(request).get();
   }
   
   @Test
   public void testUnfriend() throws FailedRequestException {
     account.unfriend();
+  
+    verify(request).setEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME);
+    verify(request).setArgs(name);
+    verify(request).delete();
   }
   
   @Test
   public void testFriend() throws FailedRequestException {
-    UserEntity response = account.friend("note");
-    assertThat(response.getName()).isEqualTo("Username");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new UserEntity());
+    assertNotNull(account.friend("note"));
+  
+    verify(request).setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME);
+    verify(request).setBody(Map.of("note", "note"), RequestBuilder.BodyType.JSON);
+    verify(request).setArgs(name);
+    verify(request).put();
   }
   
   @Test
   public void testGetFriends() throws FailedRequestException {
-    UserEntity response = account.getFriends();
-    assertThat(response.getName()).isEqualTo("Username");
+    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new UserEntity());
+    assertNotNull(account.getFriends());
+  
+    verify(request).setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetTrophies() throws FailedRequestException {
-    List<AwardEntity> response = account.getTrophies().collect(Collectors.toList());
-    assertThat(response).hasSize(2);
-    assertThat(response.get(0).getName()).isEqualTo("Four-Year Club");
-    assertThat(response.get(1).getName()).isEqualTo("Verified Email");
+    mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(new TrophyListEntity());
+    assertNotNull(account.getTrophies());
+  
+    verify(request).setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetAbout() throws FailedRequestException {
-    AccountEntity response = account.getAbout();
-    assertThat(response.getName()).isEqualTo("Username");
+    mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(new AccountEntity());
+    assertNotNull(account.getAbout());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_ABOUT);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetComments() throws FailedRequestException {
-    List<CommentEntity> response = account.getComments().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getName()).isEqualTo("t1_Comment");
+    assertNotNull(account.getComments());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_COMMENTS);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetDownvoted() throws FailedRequestException {
-    List<ThingEntity> response = account.getDownvoted().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getKind()).isEqualTo("t3");
+    assertNotNull(account.getDownvoted());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetGilded() throws FailedRequestException {
-    List<ThingEntity> response = account.getGilded().collect(Collectors.toList());
-    assertThat(response).isEmpty();
+    assertNotNull(account.getGilded());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_GILDED);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetHidden() throws FailedRequestException {
-    List<ThingEntity> response = account.getHidden().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getKind()).isEqualTo("t3");
+    assertNotNull(account.getHidden());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_HIDDEN);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetOverview() throws FailedRequestException {
-    List<ThingEntity> response = account.getOverview().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getKind()).isEqualTo("t1");
+    assertNotNull(account.getOverview());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_OVERVIEW);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetSaved() throws FailedRequestException {
-    List<ThingEntity> response = account.getSaved().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getKind()).isEqualTo("t1");
+    assertNotNull(account.getSaved());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_SAVED);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetSubmitted() throws FailedRequestException {
-    List<LinkEntity> response = account.getSubmitted().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getSubreddit()).isEqualTo("Subreddit");
+    assertNotNull(account.getSubmitted());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_SUBMITTED);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
   
   @Test
   public void testGetUpvoted() throws FailedRequestException {
-    List<ThingEntity> response = account.getUpvoted().collect(Collectors.toList());
-    assertThat(response).hasSize(1);
-    assertThat(response.get(0).getKind()).isEqualTo("t3");
+    assertNotNull(account.getUpvoted());
+  
+    verify(request).setEndpoint(Users.GET_USER_USERNAME_UPVOTED);
+    verify(request).setArgs(name);
+    verify(request).get();
   }
 }

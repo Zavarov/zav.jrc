@@ -188,26 +188,6 @@ public class Account {
   }
   
   /**
-   * Returns the Entity object of this account.
-   *
-   * @return The Entity object corresponding to this account.
-   * @throws FailedRequestException If the API requests was rejected.
-   * @see Users#GET_API_USER_DATA_BY_ACCOUNT_IDS
-   * @deprecated Use {@link #getAbout()} instead.
-   */
-  @Deprecated
-  public AccountEntity getUserData() throws FailedRequestException {
-    AccountEntity self = getAbout();
-    
-    Request query = client.newRequest()
-          .setEndpoint(Users.GET_API_USER_DATA_BY_ACCOUNT_IDS)
-          .addParam("ids", "t2_" + self.getId())
-          .get();
-  
-    return Things.transform(client.send(query), AccountEntity.class);
-  }
-  
-  /**
    * Get information about this specified 'friend', such as notes.
    *
    * @return The user Entity corresponding to this account.
