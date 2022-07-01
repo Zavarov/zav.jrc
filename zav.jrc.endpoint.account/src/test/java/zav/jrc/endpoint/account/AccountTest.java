@@ -110,7 +110,6 @@ public class AccountTest {
   @Test
   public void testIsAvailable() throws FailedRequestException {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(true);
-    
     assertTrue(account.isAvailable());
   
     verify(request).setEndpoint(Users.GET_API_USERNAME_AVAILABLE);
