@@ -24,6 +24,8 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.CredentialsEntity;
@@ -38,6 +40,7 @@ import zav.jrc.http.RequestBuilder;
  */
 @Singleton // All requests have to go through a single client
 public class ScriptClient extends Client {
+  private static final Logger LOGGER = LoggerFactory.getLogger(ScriptClient.class);
   private final String username;
   private final String password;
   
@@ -71,6 +74,19 @@ public class ScriptClient extends Client {
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
           .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .post();
+  
+  
+    if (duration == Duration.TEMPORARY) {
+      // Revoke the (temporary) access token before shutting down
+      Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+        try {
+          logout();
+          LOGGER.info("Revoking access token.");
+        } catch (Exception e) {
+          LOGGER.error(e.getMessage(), e);
+        }
+      }));
+    }
   
     //_send(...) -> Skip token validation
     try {
