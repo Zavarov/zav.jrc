@@ -21,13 +21,13 @@ import zav.jrc.client.Client;
 import zav.jrc.listener.observer.SubredditObserver;
 
 /**
- * Base class for all subreddit observers.
+ * Abstract base class for all subreddit observers.
  */
-public class SubredditObservable {
+public abstract class AbstractSubredditObservable {
   private final Client client;
   
   @Inject
-  public SubredditObservable(Client client) {
+  public AbstractSubredditObservable(Client client) {
     this.client = client;
   }
   

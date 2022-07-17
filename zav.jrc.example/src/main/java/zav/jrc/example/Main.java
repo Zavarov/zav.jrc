@@ -22,7 +22,7 @@ import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.guice.UserlessClientModule;
-import zav.jrc.listener.observable.SubredditObservable;
+import zav.jrc.listener.observable.SimpleSubredditObservable;
 import zav.jrc.listener.observer.SubredditObserver;
 
 /**
@@ -33,7 +33,7 @@ import zav.jrc.listener.observer.SubredditObserver;
 public class Main {
   protected static Injector GUICE;
   protected static Client CLIENT;
-  protected static SubredditObservable OBSERVABLE;
+  protected static SimpleSubredditObservable OBSERVABLE;
   protected static SubredditObserver OBSERVER;
   
   /**
@@ -45,7 +45,7 @@ public class Main {
   public static void main(String[] args) throws FailedRequestException {
     GUICE = Guice.createInjector(new UserlessClientModule());
     CLIENT = GUICE.getInstance(Client.class);
-    OBSERVABLE = GUICE.getInstance(SubredditObservable.class);
+    OBSERVABLE = GUICE.getInstance(SimpleSubredditObservable.class);
     
     CLIENT.login(Duration.TEMPORARY);
     
