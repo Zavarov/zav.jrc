@@ -48,7 +48,7 @@
         <fasterxml.version>2.13.3</fasterxml.version>
         <guava.version>31.1-jre</guava.version>
         <guice.version>5.1.0</guice.version>
-        <okhttp.version>4.10.0</okhttp.version>
+        <okhttp.version>4.9.3</okhttp.version>
         <kotlin.version>1.6.20</kotlin.version>
         <logback.version>1.2.11</logback.version>
         <slf4j.version>1.7.36</slf4j.version>
