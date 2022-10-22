@@ -46,6 +46,12 @@
         </dependency>
         
         <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
+            <optional>true</optional>
+        </dependency>
+        
+        <dependency>
             <groupId>zav.jrc</groupId>
             <artifactId>jrc-client</artifactId>
             <version>${project.version}</version>

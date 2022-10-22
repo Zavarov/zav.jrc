@@ -32,6 +32,7 @@
         <dependency>
             <groupId>jakarta.inject</groupId>
             <artifactId>jakarta.inject-api</artifactId>
+            <optional>true</optional>
         </dependency>
         
         <dependency>
