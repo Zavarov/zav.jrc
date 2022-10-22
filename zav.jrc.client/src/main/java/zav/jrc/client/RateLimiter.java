@@ -94,7 +94,7 @@ public class RateLimiter {
       LocalDateTime now = LocalDateTime.now();
       //Wait until the start of the next period
       if (SECONDS.between(lastResponse, now) < reset && SECONDS.between(lastResponse, now) > 0) {
-        Thread.sleep(reset - SECONDS.between(lastResponse, now));
+        Thread.sleep((reset - SECONDS.between(lastResponse, now)) * 1000);
       }
     }
   }
