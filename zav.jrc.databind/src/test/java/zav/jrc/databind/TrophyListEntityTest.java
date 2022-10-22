@@ -16,7 +16,8 @@
 
 package zav.jrc.databind;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -41,30 +42,30 @@ public class TrophyListEntityTest extends AbstractTest {
   
   @Test
   public void testGetTrophies() {
-    assertThat(trophyList.getTrophies()).hasSize(2);
+    assertEquals(trophyList.getTrophies().size(), 2);
   }
   
   @Test
   public void testGetThreeYearClubTrophy() {
-    assertThat(threeYearClub.getIcon70()).isEqualTo("https://www.redditstatic.com/awards2/3_year_club-70.png");
-    assertThat(threeYearClub.getGrantedAt()).isEqualTo(1592849930);
-    assertThat(threeYearClub.getUrl()).isNull();
-    assertThat(threeYearClub.getIcon40()).isEqualTo("https://www.redditstatic.com/awards2/3_year_club-40.png");
-    assertThat(threeYearClub.getName()).isEqualTo("Three-Year Club");
-    assertThat(threeYearClub.getAwardId()).isNull();
-    assertThat(threeYearClub.getId()).isNull();
-    assertThat(threeYearClub.getDescription()).isNull();
+    assertEquals(threeYearClub.getIcon70(), "https://www.redditstatic.com/awards2/3_year_club-70.png");
+    assertEquals(threeYearClub.getGrantedAt(), 1592849930);
+    assertNull(threeYearClub.getUrl());
+    assertEquals(threeYearClub.getIcon40(), "https://www.redditstatic.com/awards2/3_year_club-40.png");
+    assertEquals(threeYearClub.getName(), "Three-Year Club");
+    assertNull(threeYearClub.getAwardId());
+    assertNull(threeYearClub.getId());
+    assertNull(threeYearClub.getDescription());
   }
   
   @Test
   public void testGetVerifiedEmailTrophy() {
-    assertThat(verifiedEmail.getIcon70()).isEqualTo("https://www.redditstatic.com/awards2/verified_email-70.png");
-    assertThat(verifiedEmail.getGrantedAt()).isNull();
-    assertThat(verifiedEmail.getUrl()).isNull();
-    assertThat(verifiedEmail.getIcon40()).isEqualTo("https://www.redditstatic.com/awards2/verified_email-40.png");
-    assertThat(verifiedEmail.getName()).isEqualTo("Verified Email");
-    assertThat(verifiedEmail.getAwardId()).isEqualTo("o");
-    assertThat(verifiedEmail.getId()).isEqualTo("1ridbv");
-    assertThat(verifiedEmail.getDescription()).isNull();
+    assertEquals(verifiedEmail.getIcon70(), "https://www.redditstatic.com/awards2/verified_email-70.png");
+    assertNull(verifiedEmail.getGrantedAt());
+    assertNull(verifiedEmail.getUrl());
+    assertEquals(verifiedEmail.getIcon40(), "https://www.redditstatic.com/awards2/verified_email-40.png");
+    assertEquals(verifiedEmail.getName(), "Verified Email");
+    assertEquals(verifiedEmail.getAwardId(), "o");
+    assertEquals(verifiedEmail.getId(), "1ridbv");
+    assertNull(verifiedEmail.getDescription());
   }
 }

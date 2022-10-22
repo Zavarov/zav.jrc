@@ -16,7 +16,7 @@
 
 package zav.jrc.databind;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -34,16 +34,21 @@ public class TrendingSubredditsEntityTest extends AbstractTest {
   
   @Test
   public void testGetCommentCount() {
-    assertThat(trendingSubreddits.getCommentCount()).isEqualTo(4);
+    assertEquals(trendingSubreddits.getCommentCount(), 4);
   }
   
   @Test
   public void testGetCommentUrl() {
-    assertThat(trendingSubreddits.getCommentUrl()).isEqualTo("/r/trendingsubreddits/comments/l5xdvw/trending_subreddits_for_20210127_rsmallstreetbets/");
+    assertEquals(trendingSubreddits.getCommentUrl(), "/r/trendingsubreddits/comments/l5xdvw/trending_subreddits_for_20210127_rsmallstreetbets/");
   }
   
   @Test
   public void testGetSubredditNames() {
-    assertThat(trendingSubreddits.getSubredditNames()).containsExactly("smallstreetbets", "bluejackets", "japan", "biggreenegg", "BigMouth");
+    assertEquals(trendingSubreddits.getSubredditNames().size(), 5);
+    assertEquals(trendingSubreddits.getSubredditNames().get(0), "smallstreetbets");
+    assertEquals(trendingSubreddits.getSubredditNames().get(1), "bluejackets");
+    assertEquals(trendingSubreddits.getSubredditNames().get(2), "japan");
+    assertEquals(trendingSubreddits.getSubredditNames().get(3), "biggreenegg");
+    assertEquals(trendingSubreddits.getSubredditNames().get(4), "BigMouth");
   }
 }

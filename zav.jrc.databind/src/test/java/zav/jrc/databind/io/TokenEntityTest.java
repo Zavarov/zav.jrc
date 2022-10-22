@@ -16,7 +16,7 @@
 
 package zav.jrc.databind.io;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -35,26 +35,26 @@ public class TokenEntityTest extends AbstractTest {
   
   @Test
   public void testGetAccessToken() {
-    assertThat(token.getAccessToken()).isEqualTo("ACCESS_TOKEN");
+    assertEquals(token.getAccessToken(), "ACCESS_TOKEN");
   }
   
   @Test
   public void testGetTokenType() {
-    assertThat(token.getTokenType()).isEqualTo("bearer");
+    assertEquals(token.getTokenType(), "bearer");
   }
   
   @Test
   public void testGetExpiresIn() {
-    assertThat(token.getExpiresIn()).isEqualTo(12345);
+    assertEquals(token.getExpiresIn(), 12345);
   }
   
   @Test
   public void testGetScope() {
-    assertThat(token.getScope()).isEqualTo("all");
+    assertEquals(token.getScope(), "all");
   }
   
   @Test
   public void testGetRefreshToken() {
-    assertThat(token.getRefreshToken()).isEqualTo("REFRESH_TOKEN");
+    assertEquals(token.getRefreshToken(), "REFRESH_TOKEN");
   }
 }

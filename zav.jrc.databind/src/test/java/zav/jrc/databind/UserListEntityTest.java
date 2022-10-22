@@ -16,7 +16,7 @@
 
 package zav.jrc.databind;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -36,31 +36,31 @@ public class UserListEntityTest extends AbstractTest {
   
   @Test
   public void testGetData() {
-    assertThat(userList.getData().getChildren()).hasSize(1);
+    assertEquals(userList.getData().getChildren().size(), 1);
   }
   
   @Test
   public void testGetKind() {
-    assertThat(userList.getKind()).isEqualTo("UserList");
+    assertEquals(userList.getKind(), "UserList");
   }
   
   @Test
   public void testGetDate() {
-    assertThat(user.getDate()).isEqualTo(1.234567890E9);
+    assertEquals(user.getDate(), 1.234567890E9);
   }
   
   @Test
   public void testGetName() {
-    assertThat(user.getName()).isEqualTo("Bernkastel");
+    assertEquals(user.getName(), "Bernkastel");
   }
   
   @Test
   public void testGetId() {
-    assertThat(user.getId()).isEqualTo("r9_abcdefg");
+    assertEquals(user.getId(), "r9_abcdefg");
   }
   
   @Test
   public void testGetUserId() {
-    assertThat(user.getUserId()).isEqualTo("t2_124567");
+    assertEquals(user.getUserId(), "t2_124567");
   }
 }

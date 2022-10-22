@@ -16,7 +16,7 @@
 
 package zav.jrc.databind.core;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
@@ -43,7 +43,9 @@ public class ErrorResponseEntityTest extends AbstractTest {
   
   @Test
   public void testMessages() {
-    assertThat(messages).hasSize(1);
-    assertThat(messages.get(0)).containsExactly("SUBREDDIT_EXISTS", "that subreddit already exists", "name");
+    assertEquals(messages.get(0).size(), 3);
+    assertEquals(messages.get(0).get(0), "SUBREDDIT_EXISTS");
+    assertEquals(messages.get(0).get(1), "that subreddit already exists");
+    assertEquals(messages.get(0).get(2), "name");
   }
 }

@@ -16,7 +16,10 @@
 
 package zav.jrc.databind;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -36,118 +39,118 @@ public class AccountEntityTest extends AbstractTest {
   
   @Test
   public void testGetKind() {
-    assertThat(thing.getKind()).isEqualTo("t2");
+    assertEquals(thing.getKind(), "t2");
   }
   
   @Test
   public void testGetCommentKarma() {
-    assertThat(account.getCommentKarma()).isEqualTo(3141592);
+    assertEquals(account.getCommentKarma(), 3141592);
   }
   
   @Test
   public void testGetHasMail() {
-    assertThat(account.getHasMail()).isNull();
+    assertNull(account.getHasMail());
   }
   
   @Test
   public void testGetHasModMail() {
-    assertThat(account.getHasModMail()).isNull();
+    assertNull(account.getHasModMail());
   }
   
   @Test
   public void testGetHasVerifiedMail() {
-    assertThat(account.getHasVerifiedEmail()).isTrue();
+    assertTrue(account.getHasVerifiedEmail());
   }
   
   @Test
   public void testGetInboxCount() {
-    assertThat(account.getInboxCount()).isNull();
+    assertNull(account.getInboxCount());
   }
   
   @Test
   public void getIsFriend() {
-    assertThat(account.getIsFriend()).isFalse();
+    assertFalse(account.getIsFriend());
   }
   
   @Test
   public void testGetIsGoldMember() {
-    assertThat(account.getIsGoldMember()).isTrue();
+    assertTrue(account.getIsGoldMember());
   }
   
   @Test
   public void testGetIsMod() {
-    assertThat(account.getIsMod()).isTrue();
+    assertTrue(account.getIsMod());
   }
   
   @Test
   public void testGetLinkKarma() {
-    assertThat(account.getLinkKarma()).isEqualTo(3141592);
+    assertEquals(account.getLinkKarma(), 3141592);
   }
   
   @Test
   public void testGetModHash() {
-    assertThat(account.getModHash()).isNull();
+    assertNull(account.getModHash());
   }
   
   @Test
   public void testGetOver18() {
-    assertThat(account.getOver18()).isNull();
+    assertNull(account.getOver18());
   }
   
   @Test
   public void testGetHasSubscribed() {
-    assertThat(account.getHasSubscribed()).isTrue();
+    assertTrue(account.getHasSubscribed());
   }
   
   @Test
   public void testGetAwarderKarma() {
-    assertThat(account.getAwarderKarma()).isEqualTo(0);
+    assertEquals(account.getAwarderKarma(), 0);
   }
   
   @Test
   public void testGetAwardeeKarma() {
-    assertThat(account.getAwardeeKarma()).isEqualTo(17699);
+    assertEquals(account.getAwardeeKarma(), 17699);
   }
   
   @Test
   public void testGetIconImage() {
-    assertThat(account.getIconImage()).isEqualTo("https://styles.redditmedia.com/t5_hv5dz/styles/profileIcon_snoo8658e16c-55fa-486f-b7c7-00726de2e742-headshot.png?width=256&amp;height=256&amp;crop=256:256,smart&amp;s=f61c0e3ac1a1d9357c21086feb78943c31d19d37");
+    assertEquals(account.getIconImage(), "https://styles.redditmedia.com/t5_hv5dz/styles/profileIcon_snoo8658e16c-55fa-486f-b7c7-00726de2e742-headshot.png?width=256&amp;height=256&amp;crop=256:256,smart&amp;s=f61c0e3ac1a1d9357c21086feb78943c31d19d37");
   }
   
   @Test
   public void testGetTotalKarma() {
-    assertThat(account.getTotalKarma()).isEqualTo(6300883);
+    assertEquals(account.getTotalKarma(), 6300883);
   }
   
   @Test
   public void testGetVerified() {
-    assertThat(account.getVerified()).isTrue();
+    assertTrue(account.getVerified());
   }
   
   @Test
   public void testGetIsEmployee() {
-    assertThat(account.getIsEmployee()).isTrue();
+    assertTrue(account.getIsEmployee());
   }
   
   @Test
   public void testGetAcceptChats() {
-    assertThat(account.getAcceptChats()).isFalse();
+    assertFalse(account.getAcceptChats());
   }
   
   @Test
   public void testGetAcceptPrivateMessages() {
-    assertThat(account.getAcceptPrivateMessages()).isTrue();
+    assertTrue(account.getAcceptPrivateMessages());
   }
   
   // Created
   
   @Test
   public void testGetCreated() {
-    assertThat(account.getCreated()).isEqualTo(1.1341332E9);
+    assertEquals(account.getCreated(), 1.1341332E9);
   }
   
   @Test
   public void testGetCreatedUtc() {
-    assertThat(account.getCreatedUtc()).isEqualTo(1.1341044E9);
+    assertEquals(account.getCreatedUtc(), 1.1341044E9);
   }
 }

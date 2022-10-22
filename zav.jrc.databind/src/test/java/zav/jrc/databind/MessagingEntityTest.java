@@ -16,7 +16,7 @@
 
 package zav.jrc.databind;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 import org.junit.jupiter.api.BeforeAll;
@@ -45,12 +45,12 @@ public class MessagingEntityTest extends AbstractTest {
     List<UserEntity> children = trusted.getData().getChildren();
     UserEntity child = children.get(0);
     
-    assertThat(trusted.getKind()).isEqualTo("UserList");
-    assertThat(children).hasSize(1);
-    assertThat(child.getDate()).isEqualTo(1.612556744E9);
-    assertThat(child.getName()).isEqualTo("Jimbo");
-    assertThat(child.getId()).isEqualTo("r9_aabbcc");
-    assertThat(child.getUserId()).isEqualTo("t2_ccddee");
+    assertEquals(trusted.getKind(), "UserList");
+    assertEquals(children.size(), 1);
+    assertEquals(child.getDate(), 1.612556744E9);
+    assertEquals(child.getName(), "Jimbo");
+    assertEquals(child.getId(), "r9_aabbcc");
+    assertEquals(child.getUserId(), "t2_ccddee");
   }
   
   @Test
@@ -58,11 +58,11 @@ public class MessagingEntityTest extends AbstractTest {
     List<UserEntity> children = blocked.getData().getChildren();
     UserEntity child = children.get(0);
     
-    assertThat(blocked.getKind()).isEqualTo("UserList");
-    assertThat(children).hasSize(1);
-    assertThat(child.getDate()).isEqualTo(1.522543721E9);
-    assertThat(child.getName()).isEqualTo("Citrine");
-    assertThat(child.getId()).isEqualTo("r9_ddeeff");
-    assertThat(child.getUserId()).isEqualTo("t2_ffgghh");
+    assertEquals(blocked.getKind(), "UserList");
+    assertEquals(children.size(), 1);
+    assertEquals(child.getDate(), 1.522543721E9);
+    assertEquals(child.getName(), "Citrine");
+    assertEquals(child.getId(), "r9_ddeeff");
+    assertEquals(child.getUserId(), "t2_ffgghh");
   }
 }

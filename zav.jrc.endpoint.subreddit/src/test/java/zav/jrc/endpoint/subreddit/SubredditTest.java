@@ -16,7 +16,10 @@
 
 package zav.jrc.endpoint.subreddit;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;
@@ -60,50 +63,50 @@ public class SubredditTest {
   
   @Test
   public void testGetControversial() throws FailedRequestException {
-    assertThat(subreddit.getControversial()).hasSize(3);
+    assertEquals(subreddit.getControversial().count(), 3);
     
     LinkEntity response = subreddit.getControversial().findFirst().orElseThrow();
-    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetHot() throws FailedRequestException {
-    assertThat(subreddit.getHot()).hasSize(25);
+    assertEquals(subreddit.getHot().count(), 25);
   
     LinkEntity response = subreddit.getHot().findFirst().orElseThrow();
-    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetNew() throws FailedRequestException {
-    assertThat(subreddit.getNew()).hasSize(25);
+    assertEquals(subreddit.getNew().count(), 25);
   
     LinkEntity response = subreddit.getNew().findFirst().orElseThrow();
-    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetRandom() throws FailedRequestException {
-    assertThat(subreddit.getRandom()).hasSize(1);
+    assertEquals(subreddit.getRandom().count(), 1);
   
     LinkEntity response = subreddit.getRandom().findFirst().orElseThrow();
-    assertThat(response.getTitle()).isEqualTo("I'm making a reddit bot that deletes spam mesages based on a specific keyword, but for some reason the message doesn't delete.");
+    assertEquals(response.getTitle(), "I'm making a reddit bot that deletes spam mesages based on a specific keyword, but for some reason the message doesn't delete.");
   }
   
   @Test
   public void testGetRising() throws FailedRequestException {
-    assertThat(subreddit.getRising()).hasSize(25);
+    assertEquals(subreddit.getRising().count(), 25);
   
     LinkEntity response = subreddit.getRising().findFirst().orElseThrow();
-    assertThat(response.getTitle()).isEqualTo("Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
   }
   
   @Test
   public void testGetTop() throws FailedRequestException {
-    assertThat(subreddit.getTop()).hasSize(3);
+    assertEquals(subreddit.getTop().count(), 3);
   
     LinkEntity response = subreddit.getTop().findFirst().orElseThrow();
-    assertThat(response.getTitle()).isEqualTo("Getting user description");
+    assertEquals(response.getTitle(), "Getting user description");
   }
   
   // Search
@@ -115,7 +118,7 @@ public class SubredditTest {
         new Parameter("restrict_sr", true)
     };
     
-    assertThat(subreddit.search(params)).hasSize(25);
+    assertEquals(subreddit.search(params).count(), 25);
   }
   
   // Subreddits
@@ -125,7 +128,7 @@ public class SubredditTest {
     SubredditSettingsEntity settings = subreddit.getEdit();
     SubredditSettingsEntity response = subreddit.create(settings);
   
-    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
+    assertEquals(response.getTitle(), "Title");
   }
   
   @Test
@@ -133,7 +136,7 @@ public class SubredditTest {
     SubredditSettingsEntity settings = subreddit.getEdit();
     SubredditSettingsEntity response = subreddit.configure(settings);
   
-    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
+    assertEquals(response.getTitle(), "Title");
   }
   
   @Test
@@ -148,43 +151,43 @@ public class SubredditTest {
   
   @Test
   public void testGetPostRequirements() throws FailedRequestException {
-    assertThat(subreddit.getPostRequirements()).isNotEmpty();
+    assertFalse(subreddit.getPostRequirements().isEmpty());
   }
   
   @Test
   public void testGetBanned() throws FailedRequestException {
-    assertThat(subreddit.getBanned()).isEmpty();
+    assertEquals(subreddit.getBanned().count(), 0);
   }
   
   @Test
   public void testGetContributors() throws FailedRequestException {
-    assertThat(subreddit.getContributors()).isNotEmpty();
+    assertNotEquals(subreddit.getContributors().count(), 0);
   
     UserEntity user = subreddit.getContributors().findFirst().orElseThrow();
-    assertThat(user.getName()).isEqualTo("Name");
+    assertEquals(user.getName(), "Name");
   }
   
   @Test
   public void testGetModerators() throws FailedRequestException {
-    assertThat(subreddit.getModerators()).hasSize(1);
+    assertEquals(subreddit.getModerators().count(), 1);
   
     UserEntity user = subreddit.getModerators().findFirst().orElseThrow();
-    assertThat(user.getName()).isEqualTo("User");
+    assertEquals(user.getName(), "User");
   }
   
   @Test
   public void testGetMuted() throws FailedRequestException {
-    assertThat(subreddit.getMuted()).isEmpty();
+    assertEquals(subreddit.getMuted().count(), 0);
   }
   
   @Test
   public void testGetWikiBanned() throws FailedRequestException {
-    assertThat(subreddit.getWikiBanned()).isEmpty();
+    assertEquals(subreddit.getWikiBanned().count(), 0);
   }
   
   @Test
   public void testGetWikiContributors() throws FailedRequestException {
-    assertThat(subreddit.getWikiContributors()).isEmpty();
+    assertEquals(subreddit.getWikiContributors().count(), 0);
   }
   
   @Test
@@ -209,7 +212,7 @@ public class SubredditTest {
   
   @Test
   public void testGetSubmitText() throws FailedRequestException {
-    assertThat(subreddit.getSubmitText()).contains("Get faster, better responses by including more information");
+    assertTrue(subreddit.getSubmitText().startsWith("Get faster, better responses by including more information"));
   }
   
   @Test
@@ -267,31 +270,31 @@ public class SubredditTest {
   @Test
   public void testGetAbout() throws FailedRequestException {
     SubredditEntity response = subreddit.getAbout();
-    assertThat(response.getDisplayName()).isEqualToIgnoringCase("RedditDev");
+    assertEquals(response.getDisplayName(), "redditdev");
   }
   
   @Test
   public void testGetEdit() throws FailedRequestException {
     SubredditSettingsEntity response = subreddit.getEdit();
-    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
+    assertEquals(response.getTitle(), "Title");
   }
   
   @Test
   public void testGetRules() throws FailedRequestException {
     RulesEntity response = subreddit.getRules();
-    assertThat(response.getRules()).isEmpty();
-    assertThat(response.getSiteRules()).hasSize(3);
-    assertThat(response.getSiteRulesFlow()).hasSize(4);
+    assertTrue(response.getRules().isEmpty());
+    assertEquals(response.getSiteRules().size(), 3);
+    assertEquals(response.getSiteRulesFlow().size(), 4);
   }
   
   @Test
   public void testGetTraffic() throws FailedRequestException {
-    assertThat(subreddit.getTraffic()).isNotEmpty();
+    assertFalse(subreddit.getTraffic().isEmpty());
   }
   
   @Test
   public void testGetSticky() throws FailedRequestException {
     LinkEntity response = subreddit.getSticky(1);
-    assertThat(response.getTitle()).isEqualToIgnoringCase("Title");
+    assertEquals(response.getTitle(), "Title");
   }
 }

@@ -16,7 +16,9 @@
 
 package zav.jrc.listener.observer;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.mockConstruction;
@@ -62,27 +64,27 @@ public class ObserverTest {
   
   @Test
   public void testAddListener() {
-    assertThat(observer.size()).isEqualTo(0);
+    assertEquals(observer.size(), 0);
     // Add twice, count as one
-    assertThat(observer.addListener(foo)).isTrue();
-    assertThat(observer.addListener(foo)).isFalse();
-    assertThat(observer.size()).isEqualTo(1);
+    assertTrue(observer.addListener(foo));
+    assertFalse(observer.addListener(foo));
+    assertEquals(observer.size(), 1);
   }
   
   @Test
   public void testRemoveListener() {
-    assertThat(observer.size()).isEqualTo(0);
-    assertThat(observer.addListener(foo)).isTrue();
-    assertThat(observer.size()).isEqualTo(1);
-    assertThat(observer.addListener(bar)).isTrue();
-    assertThat(observer.size()).isEqualTo(2);
+    assertEquals(observer.size(), 0);
+    assertTrue(observer.addListener(foo));
+    assertEquals(observer.size(), 1);
+    assertTrue(observer.addListener(bar));
+    assertEquals(observer.size(), 2);
   
-    assertThat(observer.removeListener(bar)).isTrue();
-    assertThat(observer.size()).isEqualTo(1);
-    assertThat(observer.removeListener(foo)).isTrue();
-    assertThat(observer.size()).isEqualTo(0);
-    assertThat(observer.removeListener(bar)).isFalse();
-    assertThat(observer.removeListener(foo)).isFalse();
+    assertTrue(observer.removeListener(bar));
+    assertEquals(observer.size(), 1);
+    assertTrue(observer.removeListener(foo));
+    assertEquals(observer.size(), 0);
+    assertFalse(observer.removeListener(bar));
+    assertFalse(observer.removeListener(foo));
   }
   
   @Test
@@ -109,10 +111,10 @@ public class ObserverTest {
   
   @Test
   public void testSize() {
-    assertThat(observer.size()).isEqualTo(0);
+    assertEquals(observer.size(), 0);
     observer.addListener(foo);
-    assertThat(observer.size()).isEqualTo(1);
+    assertEquals(observer.size(), 1);
     observer.addListener(bar);
-    assertThat(observer.size()).isEqualTo(2);
+    assertEquals(observer.size(), 2);
   }
 }

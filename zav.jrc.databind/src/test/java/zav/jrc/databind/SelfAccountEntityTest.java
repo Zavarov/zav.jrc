@@ -16,7 +16,8 @@
 
 package zav.jrc.databind;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -34,41 +35,41 @@ public class SelfAccountEntityTest extends AbstractTest {
   
   @Test
   public void testGetOver18() {
-    assertThat(selfAccount.getOver18()).isTrue();
+    assertTrue(selfAccount.getOver18());
   }
   
   @Test
   public void testGetCommentKarma() {
-    assertThat(selfAccount.getCommentKarma()).isEqualTo(1707);
+    assertEquals(selfAccount.getCommentKarma(), 1707);
   }
   
   @Test
   public void testGetCreatedUtc() {
-    assertThat(selfAccount.getCreatedUtc()).isEqualTo(1471206215.0);
+    assertEquals(selfAccount.getCreatedUtc(), 1471206215.0);
   }
   
   @Test
   public void testGetNumberOfFriends() {
-    assertThat(selfAccount.getNumberOfFriends()).isEqualTo(1);
+    assertEquals(selfAccount.getNumberOfFriends(), 1);
   }
   
   @Test
   public void testGetCreated() {
-    assertThat(selfAccount.getCreated()).isEqualTo(1471235015.0);
+    assertEquals(selfAccount.getCreated(), 1471235015.0);
   }
   
   @Test
   public void testGetTotalKarma() {
-    assertThat(selfAccount.getTotalKarma()).isEqualTo(1732);
+    assertEquals(selfAccount.getTotalKarma(), 1732);
   }
   
   @Test
   public void testGetLinkKarma() {
-    assertThat(selfAccount.getLinkKarma()).isEqualTo(25);
+    assertEquals(selfAccount.getLinkKarma(), 25);
   }
   
   @Test
   public void testGetIconImage() {
-    assertThat(selfAccount.getIconImage()).isEqualTo("https://styles.redditmedia.com/t5_abcdef/styles/profileIcon_foo.png");
+    assertEquals(selfAccount.getIconImage(), "https://styles.redditmedia.com/t5_abcdef/styles/profileIcon_foo.png");
   }
 }

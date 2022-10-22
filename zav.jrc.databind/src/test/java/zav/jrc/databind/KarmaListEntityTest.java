@@ -16,7 +16,7 @@
 
 package zav.jrc.databind;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -36,26 +36,26 @@ public class KarmaListEntityTest extends AbstractTest {
   
   @Test
   public void testGetData() {
-    assertThat(karmaList.getData()).hasSize(1);
+    assertEquals(karmaList.getData().size(), 1);
   }
   
   @Test
   public void testGetKind() {
-    assertThat(karmaList.getKind()).isEqualTo("KarmaList");
+    assertEquals(karmaList.getKind(), "KarmaList");
   }
   
   @Test
   public void testGetCommentKarma() {
-    assertThat(karma.getCommentKarma()).isEqualTo(69);
+    assertEquals(karma.getCommentKarma(), 69);
   }
   
   @Test
   public void testGetLinkKarma() {
-    assertThat(karma.getLinkKarma()).isEqualTo(42);
+    assertEquals(karma.getLinkKarma(), 42);
   }
   
   @Test
   public void testGetSubreddit() {
-    assertThat(karma.getSubreddit()).isEqualTo("bananapics");
+    assertEquals(karma.getSubreddit(), "bananapics");
   }
 }
