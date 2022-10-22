@@ -25,6 +25,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
  */
 @NonNullByDefault
 public class HttpException extends IOException {
+  private static final long serialVersionUID = 1L;
   private final int errorCode;
   
   public HttpException(int errorCode, String message) {

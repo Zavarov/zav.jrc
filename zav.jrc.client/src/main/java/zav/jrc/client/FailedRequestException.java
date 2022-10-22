@@ -24,6 +24,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
  */
 @NonNullByDefault
 public class FailedRequestException extends Exception {
+  private static final long serialVersionUID = 1L;
+
   private FailedRequestException(Exception cause) {
     super(cause);
   }

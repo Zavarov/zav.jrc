@@ -25,6 +25,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
  */
 @NonNullByDefault
 public class ResponseException extends Exception {
+  private static final long serialVersionUID = 1L;
+
   public ResponseException(List<String> errors) {
     super(errors.stream().collect(Collectors.joining(System.lineSeparator())));
   }

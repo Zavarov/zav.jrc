@@ -128,6 +128,8 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
    * satisfy due to the signature of {@link #next()}}.
    */
   public static final class IteratorException extends RuntimeException {
+    private static final long serialVersionUID = 1L;
+
     public IteratorException(FailedRequestException cause) {
       super(cause);
     }
