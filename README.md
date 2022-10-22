@@ -6,18 +6,17 @@ An implementation of the Reddit API in Java.
 
 ### Getting started
 
-This project heavily utilizes dependency injection via [Guice](https://github.com/google/guice) in order to instantiate
-the client and auxiliary classes.
+The client requires configuration files containing the user agent and credentials.
 
-When creating a new instance of the `Client`, Guice will try to load the configuration files
-`UserAgent.json` and `Crendentials.json` from the root directory.
-
-The form of access can be configured by using either the `ScriptModule` or the `UserlessModule`. For more 
-information on a script and userless app, see [here](https://github.com/reddit-archive/reddit/wiki/OAuth2).
+The client supports both `Script` and `Userless` authentication, via the ScriptClient and
+UserlessClient, respectively. For more information on the different types of
+authentication, see [here](https://github.com/reddit-archive/reddit/wiki/OAuth2).
 
 Access to the API is granted via the appropriate endpoint implementations (e.g. Subreddit.getHot()). Instances of
 those classes are created via Guice. Furthermore, the user can register listeners to subreddits, to be notified by
 changes, new submissions for example.
+
+Check the [Example](zav.jrc.example) project for a quick demonstration.
 
 ### Installing
 

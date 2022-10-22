@@ -16,8 +16,8 @@
 
 package zav.jrc.endpoint.account;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import java.time.Duration;
 import java.util.Collections;
 import java.util.HashMap;
@@ -55,7 +55,7 @@ public class Account {
    * the cached value is reused, during consecutive calls within a short time frame.<br>
    * Items are cached for a single day.
    */
-  private static final Cache<String, AccountEntity> accountCache = CacheBuilder.newBuilder()
+  private static final Cache<String, AccountEntity> accountCache = Caffeine.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
         .build();
   

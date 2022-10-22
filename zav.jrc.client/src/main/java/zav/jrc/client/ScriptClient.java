@@ -17,12 +17,12 @@
 package zav.jrc.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.net.HttpHeaders;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
+import javax.ws.rs.core.HttpHeaders;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.slf4j.Logger;

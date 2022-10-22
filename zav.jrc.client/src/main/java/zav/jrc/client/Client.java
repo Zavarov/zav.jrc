@@ -17,11 +17,11 @@
 package zav.jrc.client;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.net.HttpHeaders;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import javax.ws.rs.core.HttpHeaders;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;

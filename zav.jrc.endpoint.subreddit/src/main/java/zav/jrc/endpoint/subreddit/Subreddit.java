@@ -16,8 +16,8 @@
 
 package zav.jrc.endpoint.subreddit;
 
-import com.google.common.cache.Cache;
-import com.google.common.cache.CacheBuilder;
+import com.github.benmanes.caffeine.cache.Cache;
+import com.github.benmanes.caffeine.cache.Caffeine;
 import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -61,7 +61,7 @@ import zav.jrc.http.RequestBuilder;
  */
 @NonNullByDefault
 public class Subreddit {
-  private static final Cache<String, SubredditEntity> subredditCache = CacheBuilder.newBuilder()
+  private static final Cache<String, SubredditEntity> subredditCache = Caffeine.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
         .build();
   

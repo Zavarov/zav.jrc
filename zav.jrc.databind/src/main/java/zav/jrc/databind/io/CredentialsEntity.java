@@ -16,6 +16,9 @@
 
 package zav.jrc.databind.io;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -29,5 +32,9 @@ public class CredentialsEntity extends CredentialsTOPEntity {
   public String toString() {
     String source = getId() + ":" + getSecret();
     return Base64.getEncoder().encodeToString(source.getBytes(StandardCharsets.UTF_8));
+  }
+  
+  public static CredentialsEntity read(File file) throws IOException {
+    return new ObjectMapper().readValue(file, CredentialsEntity.class);
   }
 }

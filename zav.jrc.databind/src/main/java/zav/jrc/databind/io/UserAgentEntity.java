@@ -16,6 +16,9 @@
 
 package zav.jrc.databind.io;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.File;
+import java.io.IOException;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
@@ -35,5 +38,9 @@ public class UserAgentEntity extends UserAgentTOPEntity {
   public String toString() {
     String pattern = "%s:%s:%s (by /u/%s)";
     return String.format(pattern, getPlatform(), getName(), getVersion(), getAuthor());
+  }
+  
+  public static UserAgentEntity read(File file) throws IOException {
+    return new ObjectMapper().readValue(file, UserAgentEntity.class);
   }
 }

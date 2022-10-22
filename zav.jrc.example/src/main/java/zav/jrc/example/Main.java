@@ -16,12 +16,14 @@
 
 package zav.jrc.example;
 
-import com.google.inject.Guice;
-import com.google.inject.Injector;
+import java.io.File;
+import java.io.IOException;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.client.guice.UserlessClientModule;
+import zav.jrc.client.UserlessClient;
+import zav.jrc.databind.io.CredentialsEntity;
+import zav.jrc.databind.io.UserAgentEntity;
 import zav.jrc.listener.observable.SimpleSubredditObservable;
 import zav.jrc.listener.observer.SubredditObserver;
 
@@ -31,21 +33,24 @@ import zav.jrc.listener.observer.SubredditObserver;
  * of all newly received links..
  */
 public class Main {
-  protected static Injector GUICE;
-  protected static Client CLIENT;
-  protected static SimpleSubredditObservable OBSERVABLE;
-  protected static SubredditObserver OBSERVER;
+  private static UserAgentEntity USER_AGENT;
+  private static CredentialsEntity CREDENTIALS;
+  private static Client CLIENT;
+  private static SimpleSubredditObservable OBSERVABLE;
+  private static SubredditObserver OBSERVER;
   
   /**
    * The entry point for the program.
    *
    * @param args An array of command-line arguments.
    * @throws FailedRequestException If one of the API requests was rejected.
+   * @throws IOException If one of the JSON files couldn't be read.
    */
-  public static void main(String[] args) throws FailedRequestException {
-    GUICE = Guice.createInjector(new UserlessClientModule());
-    CLIENT = GUICE.getInstance(Client.class);
-    OBSERVABLE = GUICE.getInstance(SimpleSubredditObservable.class);
+  public static void main(String[] args) throws FailedRequestException, IOException {
+    USER_AGENT = UserAgentEntity.read(new File("UserAgent.json"));
+    CREDENTIALS = CredentialsEntity.read(new File("Credentials.json"));
+    CLIENT = new UserlessClient(USER_AGENT, CREDENTIALS);
+    OBSERVABLE = new SimpleSubredditObservable(CLIENT);
     
     CLIENT.login(Duration.TEMPORARY);
     
