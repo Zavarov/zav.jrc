@@ -36,6 +36,16 @@
         <!-- Project Dependencies -->
         <dependency>
             <groupId>zav.jrc</groupId>
+            <artifactId>jrc-client</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>zav.jrc</groupId>
+            <artifactId>jrc-databind</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>zav.jrc</groupId>
             <artifactId>jrc-listener</artifactId>
             <version>${project.version}</version>
         </dependency>
