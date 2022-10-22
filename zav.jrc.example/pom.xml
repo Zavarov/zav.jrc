@@ -33,6 +33,7 @@
     <packaging>bundle</packaging>
 
     <dependencies>
+        <!-- Project Dependencies -->
         <dependency>
             <groupId>zav.jrc</groupId>
             <artifactId>jrc-listener</artifactId>

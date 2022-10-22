@@ -29,11 +29,12 @@
     <packaging>bundle</packaging>
 
     <dependencies>
+        <!-- 3rd Party Libraries-->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
         </dependency>
-
+        <!-- Project Dependencies -->
         <dependency>
             <groupId>zav.jrc</groupId>
             <artifactId>jrc-api</artifactId>
