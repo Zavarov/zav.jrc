@@ -29,7 +29,7 @@
     <groupId>zav.jrc</groupId>
     <artifactId>project</artifactId>
     <packaging>pom</packaging>
-    <version>0.6.0-SNAPSHOT</version>
+    <version>0.6.0</version>
 
     <modules>
         <module>zav.jrc.api</module>
