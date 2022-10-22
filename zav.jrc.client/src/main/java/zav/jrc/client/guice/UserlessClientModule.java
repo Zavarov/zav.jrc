@@ -16,12 +16,14 @@
 
 package zav.jrc.client.guice;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.Client;
 import zav.jrc.client.UserlessClient;
 
 /**
  * The Guice module for authenticating a {@link UserlessClient}.
  */
+@NonNullByDefault
 public class UserlessClientModule extends ClientModule {
   @Override
   protected void configure() {

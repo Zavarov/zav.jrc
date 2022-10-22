@@ -18,10 +18,12 @@ package zav.jrc.http;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
  * This exception is thrown whenever the API rejected a request.
  */
+@NonNullByDefault
 public class ResponseException extends Exception {
   public ResponseException(List<String> errors) {
     super(errors.stream().collect(Collectors.joining(System.lineSeparator())));

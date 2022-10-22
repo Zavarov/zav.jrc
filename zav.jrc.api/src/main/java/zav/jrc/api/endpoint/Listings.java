@@ -16,11 +16,14 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Listings} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_listings">here</a>
  */
+@NonNullByDefault
 public final class Listings {
   private Listings() {}
   

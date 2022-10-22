@@ -24,6 +24,7 @@ import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
 import java.io.File;
 import java.io.IOException;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.UserAgentEntity;
 
@@ -31,6 +32,7 @@ import zav.jrc.databind.io.UserAgentEntity;
  * The Guice module responsible for reading and binding the credentials required for
  * authentication.
  */
+@NonNullByDefault
 public abstract class ClientModule extends AbstractModule {
   private static final File CONFIG = new File("zav-jrc-config");
   private static final File USER_AGENT = new File(CONFIG, "UserAgent.json");

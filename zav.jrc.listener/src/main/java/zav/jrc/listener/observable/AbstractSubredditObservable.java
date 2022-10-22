@@ -17,12 +17,14 @@
 package zav.jrc.listener.observable;
 
 import javax.inject.Inject;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.Client;
 import zav.jrc.listener.observer.SubredditObserver;
 
 /**
  * Abstract base class for all subreddit observers.
  */
+@NonNullByDefault
 public abstract class AbstractSubredditObservable {
   private final Client client;
   

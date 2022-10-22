@@ -16,10 +16,13 @@
 
 package zav.jrc.client;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * This exception is thrown whenever a request was rejected by the API.
  * Use {@link Exception#getCause()} to get the reason why this exception was thrown.
  */
+@NonNullByDefault
 public class FailedRequestException extends Exception {
   private FailedRequestException(Exception cause) {
     super(cause);

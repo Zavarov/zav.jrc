@@ -16,6 +16,8 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Captcha} section.
  *
@@ -24,6 +26,7 @@ package zav.jrc.api.endpoint;
  */
 @Deprecated
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class Captcha {
   private Captcha() {}
   

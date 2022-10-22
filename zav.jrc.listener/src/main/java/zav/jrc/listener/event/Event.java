@@ -16,12 +16,15 @@
 
 package zav.jrc.listener.event;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * Generic listener event. An event is fired whenever a listener notifies all registered classes
  * of a property change.
  *
  * @param <T> The cause of the event.
  */
+@NonNullByDefault
 public interface Event<T> {
   T getSource();
 }

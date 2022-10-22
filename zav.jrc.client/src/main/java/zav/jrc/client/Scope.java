@@ -16,10 +16,13 @@
 
 package zav.jrc.client;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * A list containing all supported Reddit scopes.
  * See https://www.reddit.com/api/v1/scopes for more.
  */
+@NonNullByDefault
 public enum Scope {
   /**
    * Spend my reddit gold creddits on giving gold to other users.

@@ -16,11 +16,14 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Subreddits} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_subreddits">here</a>
  */
+@NonNullByDefault
 public final class Subreddits {
   /**
    * The endpoint for retrieving information about a subreddit with respect to a user.<br>

@@ -16,11 +16,14 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Search} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_search">here</a>
  */
+@NonNullByDefault
 public final class Search {
   /**
    * Search links page.

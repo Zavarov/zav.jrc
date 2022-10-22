@@ -16,12 +16,14 @@
 
 package zav.jrc.client.guice;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.Client;
 import zav.jrc.client.ScriptClient;
 
 /**
  * The Guice module for authenticating a {@link ScriptClient}.
  */
+@NonNullByDefault
 public class ScriptClientModule extends ClientModule {
   @Override
   protected void configure() {

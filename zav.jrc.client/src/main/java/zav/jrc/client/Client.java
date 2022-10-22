@@ -26,6 +26,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,6 +44,7 @@ import zav.jrc.http.RequestBuilder;
  * It is responsible for requesting and invalidating the access token, as well as performing all
  * API requests.
  */
+@NonNullByDefault
 public abstract class Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
   @Nullable

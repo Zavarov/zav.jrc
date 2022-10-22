@@ -16,12 +16,15 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Users} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_users">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class Users {
   /**
    * For blocking a user.

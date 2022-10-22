@@ -16,11 +16,13 @@
 
 package zav.jrc.listener.event;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.databind.LinkEntity;
 
 /**
  * This event if fired whenever a new link has been submitted to a subreddit.
  */
+@NonNullByDefault
 public class LinkEvent implements Event<LinkEntity> {
   private final LinkEntity source;
   

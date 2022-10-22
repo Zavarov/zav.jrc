@@ -25,6 +25,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.AwardEntity;
 import zav.jrc.databind.CommentEntity;
@@ -39,6 +40,7 @@ import zav.jrc.databind.core.ListingEntity;
  * Utility class for deserializing the API responses.
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public class Things {
   private static final Map<String, Class<?>> KINDS = new HashMap<>();
   

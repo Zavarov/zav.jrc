@@ -20,11 +20,13 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
  * The base class for all Reddit endpoints.<br>
  * An endpoint is an URL to which REST request can be made.
  */
+@NonNullByDefault
 public final class Endpoint {
   private final List<String> path;
   

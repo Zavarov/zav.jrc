@@ -17,12 +17,14 @@
 package zav.jrc.listener;
 
 import java.util.EventListener;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.databind.SubredditEntity;
 import zav.jrc.listener.event.LinkEvent;
 
 /**
  * This class handles all events associated with a given {@link SubredditEntity}.
  */
+@NonNullByDefault
 public interface SubredditListener extends EventListener {
   void notify(LinkEvent event);
 }

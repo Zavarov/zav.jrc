@@ -16,12 +16,15 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for {@code Links} and {@code Comments} section.
  *
  * @see <a href="https://www.reddit.com/dev/api#section_links_and_comments">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class LinksComments {
   /**
    * Submit a new comment or reply to a message.<br>

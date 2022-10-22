@@ -18,10 +18,12 @@ package zav.jrc.databind.io;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Base64;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
  * This class contains the credentials required to authenticate the application.
  */
+@NonNullByDefault
 public class CredentialsEntity extends CredentialsTOPEntity {
   @Override
   public String toString() {

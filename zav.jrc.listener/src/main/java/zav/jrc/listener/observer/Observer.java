@@ -17,6 +17,7 @@
 package zav.jrc.listener.observer;
 
 import java.util.EventListener;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.FailedRequestException;
 
 /**
@@ -25,6 +26,7 @@ import zav.jrc.client.FailedRequestException;
  *
  * @param <T> The type of listener that are observed by this class.
  */
+@NonNullByDefault
 public interface Observer<T extends EventListener> {
   boolean addListener(T listener);
   

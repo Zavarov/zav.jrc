@@ -24,6 +24,7 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zav.jrc.client.internal.GrantType;
@@ -39,6 +40,7 @@ import zav.jrc.http.RequestBuilder;
  * The script therefore requires both your username and password.
  */
 @Singleton // All requests have to go through a single client
+@NonNullByDefault
 public class ScriptClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(ScriptClient.class);
   private final String username;

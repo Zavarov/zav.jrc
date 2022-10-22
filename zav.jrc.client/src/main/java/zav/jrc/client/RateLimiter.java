@@ -19,8 +19,8 @@ package zav.jrc.client;
 import static java.time.temporal.ChronoUnit.SECONDS;
 
 import java.time.LocalDateTime;
-import javax.inject.Singleton;
 import okhttp3.Response;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
@@ -32,6 +32,7 @@ import org.eclipse.jdt.annotation.Nullable;
  * Once those have been used up, the application has to wait until the start of the next windows,
  * until further requests can be made.
  */
+@NonNullByDefault
 public class RateLimiter {
   private static final String USED = "x-ratelimit-used";
   private static final String REMAINING = "x-ratelimit-remaining";

@@ -26,6 +26,7 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Named;
 import okhttp3.Request;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -47,6 +48,7 @@ import zav.jrc.http.RequestBuilder;
 /**
  * Representation of a Reddit account. Accounts are usually of the form u/<i>username</i>.
  */
+@NonNullByDefault
 public class Account {
   /**
    * In order to save the number of API calls, the account data is stored in an internal cache, s.t.

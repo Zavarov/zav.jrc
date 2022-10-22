@@ -16,9 +16,12 @@
 
 package zav.jrc.api;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * A collection of constant used for injecting named variables.
  */
+@NonNullByDefault
 public class Constants {
   public static final String SUBREDDIT = "subreddit";
   public static final String ACCOUNT = "account";

@@ -17,11 +17,13 @@
 package zav.jrc.http;
 
 import java.io.IOException;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
  * The base class for every exception.<br>
  * This exception is thrown when there is no more specific exception for the error code.
  */
+@NonNullByDefault
 public class HttpException extends IOException {
   private final int errorCode;
   

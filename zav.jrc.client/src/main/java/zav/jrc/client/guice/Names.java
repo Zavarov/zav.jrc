@@ -16,10 +16,13 @@
 
 package zav.jrc.client.guice;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * Utility class that contains the keywords for all named bindings which can be injected via the
  * {@code @Named} annotation.
  */
+@NonNullByDefault
 public final class Names {
   public static final String USERNAME = "username";
   public static final String PASSWORD = "password";

@@ -16,12 +16,15 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Flair} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_flair">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class Flair {
   /**
    * Removes all user/link flairs.

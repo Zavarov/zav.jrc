@@ -25,6 +25,7 @@ import java.util.stream.Stream;
 import javax.inject.Inject;
 import javax.inject.Named;
 import okhttp3.Request;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,6 +43,7 @@ import zav.jrc.databind.LinkEntity;
  * On future requests, the head is compared against all retrieved links and only those that have
  * been submitted after the head are returned. The head is then updated with the most recent link.
  */
+@NonNullByDefault
 public class LinkRequester implements Iterator<List<LinkEntity>> {
   private static final Logger LOGGER = LoggerFactory.getLogger(LinkRequester.class);
   

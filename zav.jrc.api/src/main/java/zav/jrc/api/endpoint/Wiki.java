@@ -16,6 +16,7 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.databind.core.ListingEntity;
 
 /**
@@ -24,6 +25,7 @@ import zav.jrc.databind.core.ListingEntity;
  * @see <a href="https://www.reddit.com/dev/api/#section_wiki">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public class Wiki {
   /**
    * Allow/deny username to edit this wiki {@code page}.

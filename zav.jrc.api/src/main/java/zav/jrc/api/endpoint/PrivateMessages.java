@@ -16,12 +16,15 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Private Messages} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_messages">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class PrivateMessages {
   /**
    * For blocking the author of a thing via inbox.

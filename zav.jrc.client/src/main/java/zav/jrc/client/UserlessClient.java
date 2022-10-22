@@ -25,6 +25,7 @@ import java.util.UUID;
 import javax.inject.Inject;
 import javax.inject.Singleton;
 import okhttp3.Request;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zav.jrc.client.internal.GrantType;
@@ -39,6 +40,7 @@ import zav.jrc.http.RequestBuilder;
  * and therefore can't keep a secret.<br>
  */
 @Singleton // All requests have to go through a single client
+@NonNullByDefault
 public class UserlessClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserlessClient.class);
   

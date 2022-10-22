@@ -19,6 +19,7 @@ package zav.jrc.databind.io;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,6 +28,7 @@ import org.slf4j.LoggerFactory;
  * necessary to acquire a new token, once the current one expires. The token is attached to every
  * API request, in order to verify the identity of the requester.
  */
+@NonNullByDefault
 public class TokenEntity extends TokenTOPEntity {
   private static final Logger LOGGER = LoggerFactory.getLogger(TokenEntity.class);
   /**

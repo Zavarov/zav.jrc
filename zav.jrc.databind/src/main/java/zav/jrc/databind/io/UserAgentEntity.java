@@ -16,10 +16,13 @@
 
 package zav.jrc.databind.io;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * This class implements the user agent, attach to every API request in order to uniquely identify
  * the application.
  */
+@NonNullByDefault
 public class UserAgentEntity extends UserAgentTOPEntity {
   /**
    * Calculates the user agent of the application.<p/>

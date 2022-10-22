@@ -23,6 +23,7 @@ import java.util.Objects;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
@@ -40,6 +41,7 @@ import zav.jrc.http.RequestBuilder;
 /**
  * Representation of the Reddit front page (i.e. r/all).
  */
+@NonNullByDefault
 public class FrontPage {
 
   private final Client client;

@@ -20,6 +20,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 import javax.inject.Inject;
 import okhttp3.Request;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Account;
 import zav.jrc.api.endpoint.Subreddits;
@@ -40,6 +41,7 @@ import zav.jrc.http.RequestBuilder;
 /**
  * Representation of the account through which the client is logged in.
  */
+@NonNullByDefault
 public class SelfAccount {
   
   private final Client client;

@@ -16,12 +16,15 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Emoji} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_emoji">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class Emoji {
   /**
    * Add an emoji to the DB by posting a message on emoji_upload_q. A job processor that listens on

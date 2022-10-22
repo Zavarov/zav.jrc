@@ -29,6 +29,7 @@ import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -48,6 +49,7 @@ import zav.jrc.api.endpoint.Endpoint;
  *   | DELETE    | Delete         |
  * </pre>
  */
+@NonNullByDefault
 public class RequestBuilder {
   private static final Logger LOGGER = LoggerFactory.getLogger(RequestBuilder.class);
   /**

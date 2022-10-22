@@ -21,6 +21,7 @@ import java.util.Comparator;
 import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.Constants;
 import zav.jrc.client.Client;
@@ -35,6 +36,7 @@ import zav.jrc.listener.requester.LinkRequester;
  * {@link #notifyAllListeners()} will call the respective
  * {@link SubredditListener#notify(LinkEvent)} methods of all registered listeners.
  */
+@NonNullByDefault
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @Nullable
   private List<LinkEntity> history;

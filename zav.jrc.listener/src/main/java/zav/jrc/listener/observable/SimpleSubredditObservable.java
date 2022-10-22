@@ -16,11 +16,13 @@
 
 package zav.jrc.listener.observable;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.Client;
 
 /**
  * Simple implementation of a subreddit observable.
  */
+@NonNullByDefault
 public class SimpleSubredditObservable extends AbstractSubredditObservable {
   public SimpleSubredditObservable(Client client) {
     super(client);

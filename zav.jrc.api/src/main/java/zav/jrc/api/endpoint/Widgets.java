@@ -16,12 +16,15 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Widgets} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_widgets">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class Widgets {
   /**
    * Add and return a widget to the specified subreddit.<br>

@@ -16,12 +16,15 @@
 
 package zav.jrc.api.endpoint;
 
+import org.eclipse.jdt.annotation.NonNullByDefault;
+
 /**
  * REST endpoint for the {@code Collections} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_collections">here</a>
  */
 @SuppressWarnings("unused")
+@NonNullByDefault
 public final class Collections {
   /**
    * Add a post to a collection.

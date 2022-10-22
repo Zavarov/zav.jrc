@@ -34,6 +34,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,6 +59,7 @@ import zav.jrc.http.RequestBuilder;
 /**
  * Representation of a subreddits. Subreddits are usually of the form r/<i>name</i>.
  */
+@NonNullByDefault
 public class Subreddit {
   private static final Cache<String, SubredditEntity> subredditCache = CacheBuilder.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
