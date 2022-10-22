@@ -38,7 +38,12 @@ public class FrontPageTest {
   
   Client client;
   FrontPage frontPage;
-  
+
+  /**
+   * Initializes a front page view with a mocked Reddit client.
+   *
+   * @throws FailedRequestException Should never happen.
+   */
   @BeforeEach
   public void setUp() throws FailedRequestException {
     client = new ClientMock();

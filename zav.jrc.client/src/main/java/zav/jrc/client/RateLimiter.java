@@ -88,7 +88,7 @@ public class RateLimiter {
    * @throws InterruptedException In case the current thread has been interrupted, while waiting
    *     for the start of the next request window.
    */
-  public synchronized void acquire() throws InterruptedException {
+  public void acquire() throws InterruptedException {
     //Out of available requests?
     if (remaining <= 0) {
       LocalDateTime now = LocalDateTime.now();

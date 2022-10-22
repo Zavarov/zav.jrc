@@ -45,7 +45,13 @@ public class UserlessClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserlessClient.class);
   
   private final UUID uuid = UUID.randomUUID();
-  
+
+  /**
+   * Userless clients require an access token.
+   *
+   * @param userAgent The user agent used for communicating with the REST api.
+   * @param credentials The Reddit credentials used for authentication.
+   */
   @Inject
   public UserlessClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
     super(userAgent.toString(), credentials.toString());

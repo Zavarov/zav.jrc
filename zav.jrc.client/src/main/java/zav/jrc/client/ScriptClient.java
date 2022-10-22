@@ -45,7 +45,13 @@ public class ScriptClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(ScriptClient.class);
   private final String username;
   private final String password;
-  
+
+  /**
+   * Script clients require a username and password.
+   *
+   * @param userAgent The user agent used for communicating with the REST api.
+   * @param credentials The Reddit credentials used for authentication.
+   */
   @Inject
   public ScriptClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
     super(userAgent.toString(), credentials.toString());

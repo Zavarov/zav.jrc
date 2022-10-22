@@ -48,12 +48,19 @@ import zav.jrc.http.RequestBuilder;
 public abstract class Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
   @Nullable
+  @edu.umd.cs.findbugs.annotations.Nullable
   protected TokenEntity token;
   protected final String userAgent;
   protected final String credentials;
   private final RateLimiter rateLimiter;
   private final OkHttpClient http;
-  
+
+  /**
+   * Initializes a new Reddit client.
+   *
+   * @param userAgent The user agent used for communicating with the REST api.
+   * @param credentials The Reddit credentials used for authentication.
+   */
   public Client(String userAgent, String credentials) {
     this.userAgent = userAgent;
     this.credentials = credentials;

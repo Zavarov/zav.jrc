@@ -165,7 +165,7 @@ public class Things {
       return transform(om.writeValueAsString(source), target);
     } catch (IOException e) {
       // Serialization ought to always work
-      throw new RuntimeException(e);
+      throw new IllegalArgumentException(e);
     }
   }
   
@@ -183,7 +183,7 @@ public class Things {
       return om.readValue(source, target);
     } catch (IOException e) {
       // The input string ought to always be well-behaved
-      throw new RuntimeException(e);
+      throw new IllegalArgumentException(e);
     }
   }
 }
