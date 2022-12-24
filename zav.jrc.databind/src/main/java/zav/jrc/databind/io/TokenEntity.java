@@ -17,6 +17,9 @@
 package zav.jrc.databind.io;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -53,5 +56,9 @@ public class TokenEntity extends TokenTOPEntity {
     //In order to prevent using an expired token, a fresh one
     //has to be requested a minute before the current one expires
     return expirationTime.minusMinutes(1).isBefore(LocalDateTime.now());
+  }
+  
+  public static TokenEntity read(String source) throws IOException {
+    return new ObjectMapper().readValue(source, TokenEntity.class);
   }
 }

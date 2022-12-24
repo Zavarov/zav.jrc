@@ -16,7 +16,6 @@
 
 package zav.jrc.client;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
@@ -97,9 +96,10 @@ public class ScriptClient extends Client {
     }
   
     //_send(...) -> Skip token validation
+    String response = _send(request);
+    
     try {
-      ObjectMapper om = new ObjectMapper();
-      token = om.readValue(_send(request), TokenEntity.class);
+      token = TokenEntity.read(response);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
