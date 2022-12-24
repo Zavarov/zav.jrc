@@ -28,7 +28,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zav.jrc.api.Things;
+
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
@@ -39,6 +39,7 @@ import zav.jrc.databind.AwardEntity;
 import zav.jrc.databind.CommentEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.ThingEntity;
+import zav.jrc.databind.Things;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
 

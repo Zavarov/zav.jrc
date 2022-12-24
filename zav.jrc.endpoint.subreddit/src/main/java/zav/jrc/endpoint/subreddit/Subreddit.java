@@ -36,7 +36,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zav.jrc.api.Things;
+
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
@@ -49,6 +49,7 @@ import zav.jrc.databind.RulesEntity;
 import zav.jrc.databind.SubredditEntity;
 import zav.jrc.databind.SubredditSettingsEntity;
 import zav.jrc.databind.ThingEntity;
+import zav.jrc.databind.Things;
 import zav.jrc.databind.UserEntity;
 import zav.jrc.databind.UserListEntity;
 import zav.jrc.databind.core.ListingEntity;

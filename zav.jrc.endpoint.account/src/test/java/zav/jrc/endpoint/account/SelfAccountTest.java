@@ -32,7 +32,7 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import zav.jrc.api.Things;
+
 import zav.jrc.api.endpoint.Account;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
@@ -41,6 +41,7 @@ import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.KarmaListEntity;
 import zav.jrc.databind.PreferencesEntity;
 import zav.jrc.databind.SelfAccountEntity;
+import zav.jrc.databind.Things;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserListDataEntity;
 import zav.jrc.databind.UserListEntity;

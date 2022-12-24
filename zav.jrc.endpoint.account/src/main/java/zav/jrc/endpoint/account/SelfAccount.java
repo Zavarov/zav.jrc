@@ -20,7 +20,7 @@ import java.util.Map;
 import java.util.stream.Stream;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-import zav.jrc.api.Things;
+
 import zav.jrc.api.endpoint.Account;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
@@ -33,6 +33,7 @@ import zav.jrc.databind.KarmaListEntity;
 import zav.jrc.databind.PreferencesEntity;
 import zav.jrc.databind.SelfAccountEntity;
 import zav.jrc.databind.SubredditEntity;
+import zav.jrc.databind.Things;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
 import zav.jrc.databind.UserListEntity;

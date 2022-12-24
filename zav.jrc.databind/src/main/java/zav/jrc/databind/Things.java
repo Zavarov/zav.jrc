@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.api;
+package zav.jrc.databind;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -26,14 +26,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-import zav.jrc.databind.AccountEntity;
-import zav.jrc.databind.AwardEntity;
-import zav.jrc.databind.CommentEntity;
-import zav.jrc.databind.LinkEntity;
-import zav.jrc.databind.SubredditEntity;
-import zav.jrc.databind.SubredditSettingsEntity;
-import zav.jrc.databind.ThingEntity;
-import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.core.ListingEntity;
 
 /**

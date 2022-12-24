@@ -33,12 +33,13 @@ import org.mockito.Mock;
 import org.mockito.MockedStatic;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
-import zav.jrc.api.Things;
+
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.AccountEntity;
+import zav.jrc.databind.Things;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
 

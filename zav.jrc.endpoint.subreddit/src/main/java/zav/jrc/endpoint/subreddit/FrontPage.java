@@ -23,7 +23,7 @@ import java.util.Objects;
 import java.util.stream.Stream;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-import zav.jrc.api.Things;
+
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
@@ -35,6 +35,7 @@ import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.SubredditEntity;
 import zav.jrc.databind.ThingEntity;
+import zav.jrc.databind.Things;
 import zav.jrc.databind.core.ListingEntity;
 
 /**
