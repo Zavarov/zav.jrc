@@ -74,13 +74,10 @@ public class UserlessClient extends Client {
       addShutdownHook();
     }
 
-    Request request = newTokenRequest()
+    String response = newTokenRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
           .post();
   
-    //_send(...) -> Skip token validation
-    String response = _send(request);
-    
     try {
       token = TokenEntity.read(response);
     } catch (IOException e) {

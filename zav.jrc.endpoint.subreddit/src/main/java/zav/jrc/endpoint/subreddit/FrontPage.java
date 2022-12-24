@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
-import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
 import zav.jrc.api.endpoint.Listings;
@@ -64,12 +63,12 @@ public class FrontPage {
    * @see Listings#GET_BEST
    */
   public Stream<LinkEntity> getBest(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Listings.GET_BEST)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
+    return Things.transformListingOfThings(response, LinkEntity.class);
   }
   
   /**
@@ -80,12 +79,12 @@ public class FrontPage {
    * @see Listings#GET_CONTROVERSIAL
    */
   public Stream<LinkEntity> getControversial(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Listings.GET_CONTROVERSIAL)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
+    return Things.transformListingOfThings(response, LinkEntity.class);
   }
   
   /**
@@ -96,12 +95,12 @@ public class FrontPage {
    * @see Listings#GET_HOT
    */
   public Stream<LinkEntity> getHot(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Listings.GET_HOT)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
+    return Things.transformListingOfThings(response, LinkEntity.class);
   }
   
   /**
@@ -112,12 +111,12 @@ public class FrontPage {
    * @see Listings#GET_NEW
    */
   public Stream<LinkEntity> getNew(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Listings.GET_NEW)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
+    return Things.transformListingOfThings(response, LinkEntity.class);
   }
   
   /**
@@ -128,13 +127,13 @@ public class FrontPage {
    * @see Listings#GET_RANDOM
    */
   public Stream<LinkEntity> getRandom(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Listings.GET_RANDOM)
           .setParams(params)
           .get();
   
-    ThingEntity[] response = Things.transform(client.send(query), ThingEntity[].class);
-    ListingEntity listing = Things.transformThing(response[0], ListingEntity.class);
+    ThingEntity[] things = Things.transform(response, ThingEntity[].class);
+    ListingEntity listing = Things.transformThing(things[0], ListingEntity.class);
     return Things.transformListingOfThings(listing, LinkEntity.class);
   }
   
@@ -146,12 +145,12 @@ public class FrontPage {
    * @see Listings#GET_RISING
    */
   public Stream<LinkEntity> getRising(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Listings.GET_RISING)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
+    return Things.transformListingOfThings(response, LinkEntity.class);
   }
   
   /**
@@ -162,12 +161,12 @@ public class FrontPage {
    * @see Listings#GET_TOP
    */
   public Stream<LinkEntity> getTop(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Listings.GET_TOP)
           .setParams(params)
           .get();
     
-    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
+    return Things.transformListingOfThings(response, LinkEntity.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -185,12 +184,12 @@ public class FrontPage {
    * @see Search#GET_SEARCH
    */
   public Stream<LinkEntity> search(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Search.GET_SEARCH)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), LinkEntity.class);
+    return Things.transformListingOfThings(response, LinkEntity.class);
   }
   
   //----------------------------------------------------------------------------------------------//
@@ -209,12 +208,12 @@ public class FrontPage {
    * @see Subreddits#GET_SUBREDDITS_SEARCH
    */
   public Stream<SubredditEntity> searchSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
           .setParams(params)
           .get();
     
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -226,13 +225,13 @@ public class FrontPage {
    * @see Subreddits#POST_API_SEARCH_REDDIT_NAMES
    */
   public Stream<String> searchRedditNames(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
         .setEndpoint(Subreddits.POST_API_SEARCH_REDDIT_NAMES)
         .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
         .setParams(params)
         .post();
   
-    Map<?, ?> result = Things.transform(client.send(query), Map.class);
+    Map<?, ?> result = Things.transform(response, Map.class);
     List<?> values = Things.transform(result.get("names"), List.class);
     return values.stream().map(Objects::toString);
   }
@@ -246,13 +245,13 @@ public class FrontPage {
    * @see Subreddits#POST_API_SEARCH_SUBREDDITS
    */
   public Stream<SubredditEntity> querySubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .setParams(params)
           .post();
   
-    Map<?, ?> result = Things.transform(client.send(query), Map.class);
+    Map<?, ?> result = Things.transform(response, Map.class);
     List<?> values = Things.transform(result.get("subreddits"), List.class);
     return values.stream().map(value -> Things.transform(value, SubredditEntity.class));
   }
@@ -266,12 +265,12 @@ public class FrontPage {
    * @see Subreddits#GET_API_SUBREDDIT_AUTOCOMPLETE_V2
    */
   public Stream<SubredditEntity> getSubredditAutocomplete(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -283,12 +282,12 @@ public class FrontPage {
    * @see Subreddits#GET_SUBREDDITS_DEFAULT
    */
   public Stream<SubredditEntity> getDefaultSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -300,12 +299,12 @@ public class FrontPage {
    * @see Subreddits#GET_SUBREDDITS_GOLD
    */
   public Stream<SubredditEntity> getGoldSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_GOLD)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -317,12 +316,12 @@ public class FrontPage {
    * @see Subreddits#GET_SUBREDDITS_NEW
    */
   public Stream<SubredditEntity> getNewSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_NEW)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -334,12 +333,12 @@ public class FrontPage {
    * @see Subreddits#GET_SUBREDDITS_POPULAR
    */
   public Stream<SubredditEntity> getPopularSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_SUBREDDITS_POPULAR)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -351,12 +350,12 @@ public class FrontPage {
    * @see Subreddits#GET_USERS_NEW
    */
   public Stream<SubredditEntity> getNewUserSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_NEW)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -368,12 +367,12 @@ public class FrontPage {
    * @see Subreddits#GET_USERS_POPULAR
    */
   public Stream<SubredditEntity> getPopularUserSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_POPULAR)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), SubredditEntity.class);
+    return Things.transformListingOfThings(response, SubredditEntity.class);
   }
   
   /**
@@ -386,11 +385,11 @@ public class FrontPage {
    * @see Subreddits#GET_USERS_SEARCH
    */
   public Stream<AccountEntity> getSearchUserSubreddits(Parameter... params) throws FailedRequestException {
-    Request query = client.newRequest()
+    String response = client.newRequest()
           .setEndpoint(Subreddits.GET_USERS_SEARCH)
           .setParams(params)
           .get();
   
-    return Things.transformListingOfThings(client.send(query), AccountEntity.class);
+    return Things.transformListingOfThings(response, AccountEntity.class);
   }
 }

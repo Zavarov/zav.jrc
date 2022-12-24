@@ -95,7 +95,10 @@ public abstract class Client {
    * @throws FailedRequestException In case the request was rejected by the API.
    */
   public synchronized String send(Request request) throws FailedRequestException {
-    assert token != null;
+    // Token is only request for OAuth2 requests
+    if (RequestBuilder.WWW.equals(request.header("Host"))) {
+      return _send(request);
+    }
     
     Objects.requireNonNull(token);
     
@@ -172,12 +175,10 @@ public abstract class Client {
     body.put("grant_type", GrantType.REFRESH);
     body.put("refresh_token", token.getRefreshToken());
     
-    Request request = newTokenRequest()
+    String response = newTokenRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
           .post();
 
-    //_send(...) -> Skip token validation
-    String response = _send(request);
     try {
       token = TokenEntity.read(response);
     } catch (IOException e) {
@@ -223,12 +224,9 @@ public abstract class Client {
     body.put("token", token.getRefreshToken());
     body.put("token_type_hint", TokenType.REFRESH_TOKEN);
 
-    Request request = newTokenRevokeRequest()
+    newTokenRevokeRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
           .post();
-
-    //Skip token validation
-    _send(request);
   }
 
   /**
@@ -247,12 +245,10 @@ public abstract class Client {
     body.put("token", token.getAccessToken());
     body.put("token_type_hint", TokenType.ACCESS_TOKEN);
 
-    Request request = newTokenRevokeRequest()
+    newTokenRevokeRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
           .post();
 
-    //Skip token validation
-    _send(request);
   }
 
   //----------------------------------------------------------------------------------------------//
@@ -272,13 +268,13 @@ public abstract class Client {
     
     Objects.requireNonNull(token);
     
-    return new RequestBuilder()
+    return new RequestBuilder(this)
           .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
           .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
   
   protected RequestBuilder newTokenRequest() {
-    return new RequestBuilder()
+    return new RequestBuilder(this)
       .setHost(RequestBuilder.WWW)
       .setEndpoint(OAuth2.ACCESS_TOKEN)
       .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
@@ -286,7 +282,7 @@ public abstract class Client {
   }
   
   protected RequestBuilder newTokenRevokeRequest() {
-    return new RequestBuilder()
+    return new RequestBuilder(this)
           .setHost(RequestBuilder.WWW)
           .setEndpoint(OAuth2.REVOKE_TOKEN)
           .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)

@@ -35,6 +35,8 @@ import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zav.jrc.api.endpoint.Endpoint;
+import zav.jrc.client.Client;
+import zav.jrc.client.FailedRequestException;
 
 /**
  * The base class for creating all REST request.<br>
@@ -95,7 +97,13 @@ public class RequestBuilder {
    * Additional headers such as access token appended to each request.
    */
   private Map<String, String> headers = new HashMap<>();
-
+  
+  private final Client client;
+  
+  public RequestBuilder(Client client) {
+    this.client = client;
+  }
+  
   private String url() {
     assert endpoint != null;
     
@@ -120,12 +128,16 @@ public class RequestBuilder {
     return builder;
   }
   
-  public Request get() {
-    return builder().get().build();
+  public String get() throws FailedRequestException {
+    Request request = builder().get().build();
+    
+    return client.send(request);
   }
   
-  public Request delete() {
-    return body == null ? builder().delete().build() : builder().delete(body).build();
+  public String delete() throws FailedRequestException {
+    Request request = body == null ? builder().delete().build() : builder().delete(body).build();
+    
+    return client.send(request);
   }
   
   /**
@@ -133,11 +145,12 @@ public class RequestBuilder {
    *
    * @return A PUT request with the current arguments.
    */
-  public Request put() {
-    assert body != null;
-    
+  public String put() throws FailedRequestException {
     Objects.requireNonNull(body);
-    return builder().put(body).build();
+    
+    Request request = builder().put(body).build();
+    
+    return client.send(request);
   }
   
   /**
@@ -145,11 +158,12 @@ public class RequestBuilder {
    *
    * @return A POST request with the current arguments.
    */
-  public Request post() {
-    assert body != null;
-    
+  public String post() throws FailedRequestException {
     Objects.requireNonNull(body);
-    return builder().post(body).build();
+    
+    Request request = builder().post(body).build();
+    
+    return client.send(request);
   }
   
   /**
@@ -157,11 +171,12 @@ public class RequestBuilder {
    *
    * @return A PATCH request with the current arguments.
    */
-  public Request patch() {
-    assert body != null;
-    
+  public String patch() throws FailedRequestException {
     Objects.requireNonNull(body);
-    return builder().patch(body).build();
+    
+    Request request = builder().patch(body).build();
+    
+    return client.send(request);
   }
   
   /**
