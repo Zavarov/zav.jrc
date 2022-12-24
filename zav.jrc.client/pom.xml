@@ -62,11 +62,6 @@
             <artifactId>jrc-databind</artifactId>
             <version>${project.version}</version>
         </dependency>
-        <dependency>
-            <groupId>zav.jrc</groupId>
-            <artifactId>jrc-http</artifactId>
-            <version>${project.version}</version>
-        </dependency>
     </dependencies>
 
 </project>

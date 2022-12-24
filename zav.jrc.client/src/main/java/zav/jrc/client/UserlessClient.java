@@ -28,12 +28,12 @@ import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
 import zav.jrc.databind.io.UserAgentEntity;
-import zav.jrc.http.RequestBuilder;
 
 /**
  * Runs on hardware you control, such as your own laptop or server. Doesn't have a user context

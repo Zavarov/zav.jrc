@@ -30,12 +30,12 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import zav.jrc.client.http.HttpException;
+import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.client.internal.TokenType;
 import zav.jrc.databind.io.TokenEntity;
-import zav.jrc.http.HttpException;
-import zav.jrc.http.RequestBuilder;
 
 /**
  * The base class for authenticating the application.<br>

@@ -45,6 +45,8 @@ import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.client.http.Parameter;
+import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.RulesEntity;
 import zav.jrc.databind.SubredditEntity;
@@ -53,8 +55,6 @@ import zav.jrc.databind.ThingEntity;
 import zav.jrc.databind.UserEntity;
 import zav.jrc.databind.UserListEntity;
 import zav.jrc.databind.core.ListingEntity;
-import zav.jrc.http.Parameter;
-import zav.jrc.http.RequestBuilder;
 
 /**
  * Representation of a subreddits. Subreddits are usually of the form r/<i>name</i>.

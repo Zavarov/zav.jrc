@@ -37,13 +37,13 @@ import zav.jrc.api.endpoint.Account;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.KarmaListEntity;
 import zav.jrc.databind.PreferencesEntity;
 import zav.jrc.databind.SelfAccountEntity;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserListDataEntity;
 import zav.jrc.databind.UserListEntity;
-import zav.jrc.http.RequestBuilder;
 
 /**
  * Checks whether the calls to the self-account-related endpoints return the expected response.

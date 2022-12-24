@@ -30,13 +30,13 @@ import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.client.http.Parameter;
+import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.SubredditEntity;
 import zav.jrc.databind.ThingEntity;
 import zav.jrc.databind.core.ListingEntity;
-import zav.jrc.http.Parameter;
-import zav.jrc.http.RequestBuilder;
 
 /**
  * Representation of the Reddit front page (i.e. r/all).

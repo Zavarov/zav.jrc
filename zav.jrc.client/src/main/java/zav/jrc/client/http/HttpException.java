@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.http;
+package zav.jrc.client.http;
 
 import java.io.IOException;
 import org.eclipse.jdt.annotation.NonNullByDefault;

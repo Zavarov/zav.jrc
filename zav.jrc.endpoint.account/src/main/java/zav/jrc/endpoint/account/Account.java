@@ -35,6 +35,8 @@ import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.client.http.Parameter;
+import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.AwardEntity;
 import zav.jrc.databind.CommentEntity;
@@ -42,8 +44,6 @@ import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.ThingEntity;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
-import zav.jrc.http.Parameter;
-import zav.jrc.http.RequestBuilder;
 
 /**
  * Representation of a Reddit account. Accounts are usually of the form u/<i>username</i>.

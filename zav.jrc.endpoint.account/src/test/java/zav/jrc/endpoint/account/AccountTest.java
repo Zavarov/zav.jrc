@@ -37,10 +37,10 @@ import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
-import zav.jrc.http.RequestBuilder;
 
 /**
  * Checks whether the calls to the account-related endpoints return the expected response.
