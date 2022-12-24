@@ -49,11 +49,11 @@ public abstract class Client {
   @Nullable
   @edu.umd.cs.findbugs.annotations.Nullable
   protected TokenEntity token;
-  protected final String userAgent;
-  protected final String credentials;
   private final RateLimiter rateLimiter;
   private final OkHttpClient http;
-
+  private final String userAgent;
+  private final String credentials;
+  
   /**
    * Initializes a new Reddit client.
    *
@@ -172,12 +172,8 @@ public abstract class Client {
     body.put("grant_type", GrantType.REFRESH);
     body.put("refresh_token", token.getRefreshToken());
     
-    Request request = new RequestBuilder()
-          .setHost(RequestBuilder.WWW)
-          .setEndpoint(OAuth2.ACCESS_TOKEN)
+    Request request = newTokenRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
-          .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .post();
 
     //_send(...) -> Skip token validation
@@ -287,5 +283,13 @@ public abstract class Client {
     return new RequestBuilder()
           .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
           .addHeader(HttpHeaders.USER_AGENT, userAgent);
+  }
+  
+  protected RequestBuilder newTokenRequest() {
+    return new RequestBuilder()
+      .setHost(RequestBuilder.WWW)
+      .setEndpoint(OAuth2.ACCESS_TOKEN)
+      .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
+      .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 }

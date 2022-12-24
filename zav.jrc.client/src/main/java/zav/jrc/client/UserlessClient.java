@@ -20,14 +20,12 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.ws.rs.core.HttpHeaders;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.client.internal.GrantType;
-import zav.jrc.client.internal.OAuth2;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
 import zav.jrc.databind.io.UserAgentEntity;
@@ -75,13 +73,9 @@ public class UserlessClient extends Client {
     } else {
       addShutdownHook();
     }
-    
-    Request request = new RequestBuilder()
-          .setHost(RequestBuilder.WWW)
-          .setEndpoint(OAuth2.ACCESS_TOKEN)
+
+    Request request = newTokenRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
-          .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .post();
   
     //_send(...) -> Skip token validation
