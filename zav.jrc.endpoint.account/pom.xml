@@ -55,7 +55,7 @@
         <!-- Project Dependencies -->
         <dependency>
             <groupId>zav.jrc</groupId>
-            <artifactId>jrc-api</artifactId>
+            <artifactId>jrc-endpoint</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>

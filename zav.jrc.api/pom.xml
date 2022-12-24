@@ -25,7 +25,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>jrc-api</artifactId>
+    <artifactId>jrc-endpoint</artifactId>
     <packaging>bundle</packaging>
 
     <dependencies>
