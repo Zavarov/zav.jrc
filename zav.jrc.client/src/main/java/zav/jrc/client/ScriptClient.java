@@ -22,8 +22,6 @@ import java.util.Map;
 import javax.ws.rs.core.HttpHeaders;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
@@ -38,7 +36,6 @@ import zav.jrc.databind.io.UserAgentEntity;
  */
 @NonNullByDefault
 public class ScriptClient extends Client {
-  private static final Logger LOGGER = LoggerFactory.getLogger(ScriptClient.class);
   private final String username;
   private final String password;
 
@@ -80,15 +77,7 @@ public class ScriptClient extends Client {
   
   
     if (duration == Duration.TEMPORARY) {
-      // Revoke the (temporary) access token before shutting down
-      Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-        try {
-          logout();
-          LOGGER.info("Revoking access token.");
-        } catch (Exception e) {
-          LOGGER.error(e.getMessage(), e);
-        }
-      }));
+      addShutdownHook();
     }
   
     //_send(...) -> Skip token validation

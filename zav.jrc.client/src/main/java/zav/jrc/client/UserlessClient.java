@@ -73,15 +73,7 @@ public class UserlessClient extends Client {
     if (duration == Duration.PERMANENT) {
       LOGGER.warn("You're requesting a permanent token for an userless client. Are you sure?");
     } else {
-      // Revoke the (temporary) access token before shutting down
-      Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-        try {
-          logout();
-          LOGGER.info("Revoking access token.");
-        } catch (Exception e) {
-          LOGGER.error(e.getMessage(), e);
-        }
-      }));
+      addShutdownHook();
     }
     
     Request request = new RequestBuilder()

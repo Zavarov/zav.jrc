@@ -66,6 +66,18 @@ public abstract class Client {
     this.rateLimiter = new RateLimiter();
     this.http = new OkHttpClient();
   }
+  
+  protected void addShutdownHook() {
+    // Revoke the (temporary) access token before shutting down
+    Runtime.getRuntime().addShutdownHook(new Thread(() -> {
+      try {
+        logout();
+        LOGGER.info("Revoking access token.");
+      } catch (Exception e) {
+        LOGGER.error(e.getMessage(), e);
+      }
+    }));
+  }
 
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
