@@ -223,12 +223,8 @@ public abstract class Client {
     body.put("token", token.getRefreshToken());
     body.put("token_type_hint", TokenType.REFRESH_TOKEN);
 
-    Request request = new RequestBuilder()
-          .setHost(RequestBuilder.WWW)
-          .setEndpoint(OAuth2.REVOKE_TOKEN)
+    Request request = newTokenRevokeRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
-          .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .post();
 
     //Skip token validation
@@ -251,12 +247,8 @@ public abstract class Client {
     body.put("token", token.getAccessToken());
     body.put("token_type_hint", TokenType.ACCESS_TOKEN);
 
-    Request request = new RequestBuilder()
-          .setHost(RequestBuilder.WWW)
-          .setEndpoint(OAuth2.REVOKE_TOKEN)
+    Request request = newTokenRevokeRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
-          .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent)
           .post();
 
     //Skip token validation
@@ -291,5 +283,13 @@ public abstract class Client {
       .setEndpoint(OAuth2.ACCESS_TOKEN)
       .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
       .addHeader(HttpHeaders.USER_AGENT, userAgent);
+  }
+  
+  protected RequestBuilder newTokenRevokeRequest() {
+    return new RequestBuilder()
+          .setHost(RequestBuilder.WWW)
+          .setEndpoint(OAuth2.REVOKE_TOKEN)
+          .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
+          .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 }
