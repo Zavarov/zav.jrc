@@ -16,7 +16,6 @@
 
 package zav.jrc.listener.observable;
 
-import javax.inject.Inject;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.Client;
 import zav.jrc.listener.observer.SubredditObserver;
@@ -28,7 +27,6 @@ import zav.jrc.listener.observer.SubredditObserver;
 public abstract class AbstractSubredditObservable {
   private final Client client;
   
-  @Inject
   public AbstractSubredditObservable(Client client) {
     this.client = client;
   }

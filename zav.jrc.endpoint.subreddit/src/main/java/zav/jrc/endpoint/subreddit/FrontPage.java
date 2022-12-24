@@ -21,7 +21,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
-import javax.inject.Inject;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.api.Things;
@@ -46,7 +45,6 @@ public class FrontPage {
 
   private final Client client;
   
-  @Inject
   public FrontPage(Client client) {
     this.client = client;
   }

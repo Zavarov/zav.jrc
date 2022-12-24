@@ -18,7 +18,6 @@ package zav.jrc.endpoint.account;
 
 import java.util.Map;
 import java.util.stream.Stream;
-import javax.inject.Inject;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.api.Things;
@@ -46,7 +45,6 @@ public class SelfAccount {
   
   private final Client client;
   
-  @Inject
   public SelfAccount(Client client) {
     this.client = client;
   }

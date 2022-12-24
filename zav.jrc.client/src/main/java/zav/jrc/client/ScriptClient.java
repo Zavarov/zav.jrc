@@ -19,8 +19,6 @@ package zav.jrc.client;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.ws.rs.core.HttpHeaders;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -38,7 +36,6 @@ import zav.jrc.databind.io.UserAgentEntity;
  * access to your account.<br>
  * The script therefore requires both your username and password.
  */
-@Singleton // All requests have to go through a single client
 @NonNullByDefault
 public class ScriptClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(ScriptClient.class);
@@ -51,7 +48,6 @@ public class ScriptClient extends Client {
    * @param userAgent The user agent used for communicating with the REST api.
    * @param credentials The Reddit credentials used for authentication.
    */
-  @Inject
   public ScriptClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
     super(userAgent.toString(), credentials.toString());
     this.username = credentials.getUsername();

@@ -28,8 +28,6 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 import javax.imageio.ImageIO;
-import javax.inject.Inject;
-import javax.inject.Named;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.Request;
@@ -38,7 +36,6 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zav.jrc.api.Constants;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
@@ -70,8 +67,7 @@ public class Subreddit {
   private final Client client;
   private final String name;
   
-  @Inject
-  public Subreddit(Client client, @Named(Constants.SUBREDDIT) String name) {
+  public Subreddit(Client client, String name) {
     this.client = client;
     this.name = name;
   }

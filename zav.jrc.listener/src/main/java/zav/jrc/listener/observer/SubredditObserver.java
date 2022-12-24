@@ -19,11 +19,8 @@ package zav.jrc.listener.observer;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import javax.inject.Inject;
-import javax.inject.Named;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
-import zav.jrc.api.Constants;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkEntity;
@@ -42,8 +39,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   private List<LinkEntity> history;
   private final LinkRequester requester;
   
-  @Inject
-  public SubredditObserver(Client client, @Named(Constants.SUBREDDIT) String subreddit) {
+  public SubredditObserver(Client client, String subreddit) {
     this.requester = new LinkRequester(client, subreddit);
   }
 

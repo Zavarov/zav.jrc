@@ -22,14 +22,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
-import javax.inject.Inject;
-import javax.inject.Named;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zav.jrc.api.Constants;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.client.Client;
@@ -52,8 +49,7 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
   private final Client client;
   private final String subreddit;
 
-  @Inject
-  public LinkRequester(Client client, @Named(Constants.SUBREDDIT) String subreddit) {
+  public LinkRequester(Client client, String subreddit) {
     this.client = client;
     this.subreddit = subreddit;
   }

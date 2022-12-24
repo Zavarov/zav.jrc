@@ -29,12 +29,6 @@
     <packaging>bundle</packaging>
 
     <dependencies>
-        <!-- 3rd Party Libraries-->
-        <dependency>
-            <groupId>jakarta.inject</groupId>
-            <artifactId>jakarta.inject-api</artifactId>
-            <optional>true</optional>
-        </dependency>
         <!-- Project Dependencies -->
         <dependency>
             <groupId>org.slf4j</groupId>

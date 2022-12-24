@@ -20,8 +20,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
-import javax.inject.Inject;
-import javax.inject.Singleton;
 import javax.ws.rs.core.HttpHeaders;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
@@ -38,7 +36,6 @@ import zav.jrc.databind.io.UserAgentEntity;
  * Runs on hardware you control, such as your own laptop or server. Doesn't have a user context
  * and therefore can't keep a secret.<br>
  */
-@Singleton // All requests have to go through a single client
 @NonNullByDefault
 public class UserlessClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserlessClient.class);
@@ -51,7 +48,6 @@ public class UserlessClient extends Client {
    * @param userAgent The user agent used for communicating with the REST api.
    * @param credentials The Reddit credentials used for authentication.
    */
-  @Inject
   public UserlessClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
     super(userAgent.toString(), credentials.toString());
   }

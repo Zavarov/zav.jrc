@@ -23,14 +23,11 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
-import javax.inject.Inject;
-import javax.inject.Named;
 import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zav.jrc.api.Constants;
 import zav.jrc.api.Things;
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
@@ -64,8 +61,7 @@ public class Account {
   private final Client client;
   private final String name;
   
-  @Inject
-  public Account(Client client, @Named(Constants.ACCOUNT) String name) {
+  public Account(Client client, String name) {
     this.client = client;
     this.name = name;
   }
