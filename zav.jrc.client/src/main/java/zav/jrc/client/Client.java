@@ -47,7 +47,6 @@ import zav.jrc.databind.io.TokenEntity;
 public abstract class Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(Client.class);
   @Nullable
-  @edu.umd.cs.findbugs.annotations.Nullable
   protected TokenEntity token;
   private final RateLimiter rateLimiter;
   private final OkHttpClient http;

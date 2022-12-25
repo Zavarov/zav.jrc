@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRC Endpoint Subreddit
+Bundle-SymbolicName: jrc-endpoint-subreddit
+Bundle-Version: 0.6.1.qualifier
+Export-Package: zav.jrc.endpoint.subreddit
+Import-Package: okhttp3,
+ okio
+Require-Bundle: com.github.ben-manes.caffeine,
+ jrc-client,
+ jrc-databind,
+ jrc-endpoint,
+ org.slf4j.api
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: jrc-endpoint-subreddit
+Bundle-ActivationPolicy: lazy

@@ -1,0 +1,12 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRC Endpoint Test
+Bundle-SymbolicName: jrc-endpoint-test
+Bundle-Version: 0.6.1.qualifier
+Export-Package: zav.jrc.endpoint.test
+Require-Bundle: jrc-client,
+ jrc-databind
+Import-Package: okhttp3
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: jrc-endpoint-test
+Bundle-ActivationPolicy: lazy

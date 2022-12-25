@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRC Endpoint Example
+Bundle-SymbolicName: jrc-example
+Bundle-Version: 0.6.1.qualifier
+Require-Bundle: jrc-client,
+ jrc-databind,
+ jrc-listener
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: jrc-example
+Bundle-ActivationPolicy: lazy

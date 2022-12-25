@@ -17,7 +17,6 @@
 package zav.jrc.api.endpoint;
 
 import org.eclipse.jdt.annotation.NonNullByDefault;
-import zav.jrc.databind.core.ListingEntity;
 
 /**
  * REST endpoint for the {@code Wiki} section.
@@ -119,7 +118,7 @@ public class Wiki {
         new Endpoint("r", "{subreddit}", "api", "wiki", "revert");
   /**
    * Retrieve a list of discussions about this wiki {@code page}.<br>
-   * This endpoint is a {@link ListingEntity Listing}.
+   * This endpoint is a listing.
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |

@@ -26,7 +26,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>jrc-databind</artifactId>
-    <packaging>bundle</packaging>
+    <packaging>eclipse-plugin</packaging>
+    <name>[bundle] JRC Databind</name>
     
     <properties>
         <checkstyle.skip>true</checkstyle.skip>
@@ -35,28 +36,6 @@
         <jacoco.skip>true</jacoco.skip>
         <cpd.skip>true</cpd.skip>
     </properties>
-
-    <dependencies>
-        <!-- 3rd Party Libraries-->
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-annotations</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-        </dependency>
-        <!-- Test Dependencies -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 
     <build>
         <plugins>
@@ -80,8 +59,9 @@
             </plugin>
             <!-- Create docs jar -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-javadoc-plugin</artifactId>
+                <version>${tycho-version}</version>
                 <configuration>
                     <doclint>none</doclint>
                 </configuration>

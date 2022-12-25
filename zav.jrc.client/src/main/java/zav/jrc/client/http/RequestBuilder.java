@@ -18,7 +18,6 @@ package zav.jrc.client.http;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -72,7 +71,6 @@ public class RequestBuilder {
    * submissions.
    */
   @Nullable
-  @edu.umd.cs.findbugs.annotations.Nullable
   private RequestBody body;
   /**
    * The host address of the URL. Initialized with {@link #OAUTH2}.
@@ -87,7 +85,6 @@ public class RequestBuilder {
    * The endpoint the request is aimed at.
    */
   @Nullable
-  @edu.umd.cs.findbugs.annotations.Nullable
   private Endpoint endpoint;
   /**
    * Additional arguments for the {@link Endpoint}. E.g. a  subreddit name.
@@ -214,19 +211,16 @@ public class RequestBuilder {
     }
   }
 
-  @SuppressFBWarnings(value = "EI_EXPOSE_REP2")
   public RequestBuilder setBody(RequestBody body) {
     this.body = body;
     return this;
   }
 
-  @SuppressFBWarnings(value = "EI_EXPOSE_REP2")
   public RequestBuilder setHost(String host) {
     this.host = host;
     return this;
   }
 
-  @SuppressFBWarnings(value = "EI_EXPOSE_REP2")
   public RequestBuilder setEndpoint(Endpoint endpoint) {
     this.endpoint = endpoint;
     return this;

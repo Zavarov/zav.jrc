@@ -32,257 +32,109 @@
     <version>0.6.1-SNAPSHOT</version>
 
     <modules>
-        <module>zav.jrc.api</module>
         <module>zav.jrc.client</module>
         <module>zav.jrc.databind</module>
-        <module>zav.jrc.example</module>
-        <module>zav.jrc.http</module>
-        <module>zav.jrc.listener</module>
+        <module>zav.jrc.endpoint</module>
+        <module>zav.jrc.endpoint.account</module>
         <module>zav.jrc.endpoint.subreddit</module>
         <module>zav.jrc.endpoint.test</module>
-        <module>zav.jrc.endpoint.account</module>
+        <module>zav.jrc.example</module>
+        <module>zav.jrc.listener</module>
+        <module>target-platform</module>
     </modules>
-
-    <!-- == Dependencies ================================================= -->
-
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.github.ben-manes.caffeine</groupId>
-                <artifactId>caffeine</artifactId>
-                <version>3.1.1</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>com.google.errorprone</groupId>
-                        <artifactId>error_prone_annotations</artifactId>
-                    </exclusion>
-                    <exclusion>
-                        <groupId>org.checkerframework</groupId>
-                        <artifactId>checker-qual</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.slf4j</groupId>
-                <artifactId>slf4j-api</artifactId>
-                <version>2.0.3</version>
-            </dependency>
-            <dependency>
-                <groupId>org.jetbrains.kotlin</groupId>
-                <artifactId>kotlin-stdlib-common</artifactId>
-                <version>1.7.20</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-annotations</artifactId>
-                <version>2.13.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-core</artifactId>
-                <version>2.13.4</version>
-            </dependency>
-            <dependency>
-                <groupId>com.fasterxml.jackson.core</groupId>
-                <artifactId>jackson-databind</artifactId>
-                <version>2.13.4.2</version>
-            </dependency>
-            <dependency>
-                <groupId>jakarta.ws.rs</groupId>
-                <artifactId>jakarta.ws.rs-api</artifactId>
-                <version>2.1.6</version>
-            </dependency>
-            <dependency>
-                <groupId>com.squareup.okhttp3</groupId>
-                <artifactId>okhttp</artifactId>
-                <version>4.10.0</version>
-                <exclusions>
-                    <exclusion>
-                        <groupId>org.jetbrains</groupId>
-                        <artifactId>annotations</artifactId>
-                    </exclusion>
-                </exclusions>
-            </dependency>
-            <dependency>
-                <groupId>org.junit.jupiter</groupId>
-                <artifactId>junit-jupiter-api</artifactId>
-                <version>5.9.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-core</artifactId>
-                <version>4.8.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-inline</artifactId>
-                <version>4.8.1</version>
-            </dependency>
-            <dependency>
-                <groupId>org.mockito</groupId>
-                <artifactId>mockito-junit-jupiter</artifactId>
-                <version>4.8.1</version>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
-
-    <dependencies>
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-simple</artifactId>
-            <version>2.0.3</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.eclipse.jdt</groupId>
-            <artifactId>org.eclipse.jdt.annotation</artifactId>
-            <version>2.2.700</version>
-            <scope>provided</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.github.spotbugs</groupId>
-            <artifactId>spotbugs-annotations</artifactId>
-            <version>4.7.3</version>
-            <scope>provided</scope>
-        </dependency>
-    </dependencies>
-
-    <!-- == GitHub Repositories =========================================== -->
-
+    
+    <properties>
+        <flatten-version>1.3.0</flatten-version>
+        <tycho-version>2.7.5</tycho-version>
+        <maven.deploy.skip>true</maven.deploy.skip>
+    </properties>
+      
     <distributionManagement>
         <repository>
             <id>github</id>
-            <name>GitHub Zavarov Apache Maven Packages</name>
             <url>https://maven.pkg.github.com/zavarov/zav.jrc</url>
         </repository>
     </distributionManagement>
-
-    <!-- == DEFAULT BUILD SETTINGS ======================================== -->
-
+    
     <build>
         <plugins>
-            <!-- Create docs jar -->
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-            </plugin>
-            <!-- Create sources jar -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-source-plugin</artifactId>
-            </plugin>
-            <!-- Create OSGi bundle -->
-            <plugin>
-                <groupId>org.apache.felix</groupId>
-                <artifactId>maven-bundle-plugin</artifactId>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-maven-plugin</artifactId>
+                <version>${tycho-version}</version>
                 <extensions>true</extensions>
             </plugin>
-            <!-- Clean Dependencies -->
+            
             <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>target-platform-configuration</artifactId>
+                <version>${tycho-version}</version>
+                <configuration>
+                    <target>
+                        <artifact> 
+                            <groupId>zav.jrc</groupId> 
+                            <artifactId>target-platform</artifactId> 
+                            <version>0.6.1-SNAPSHOT</version>
+                        </artifact> 
+                    </target>
+                </configuration>
             </plugin>
-            <!-- Clean Code -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-            </plugin>
-            <!-- Flat POM -->
+            
             <plugin>
                 <groupId>org.codehaus.mojo</groupId>
                 <artifactId>flatten-maven-plugin</artifactId>
             </plugin>
-            <!-- License -->
-            <plugin>
-                <groupId>org.codehaus.mojo</groupId>
-                <artifactId>license-maven-plugin</artifactId>
-            </plugin>
-            <!-- Static Code Analysis -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-site-plugin</artifactId>
-                <version>3.12.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-project-info-reports-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-checkstyle-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-pmd-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-            </plugin>
         </plugins>
-
-        <pluginManagement>
-            <plugins>
-                <!-- Licenses -->
-                <plugin>
-                    <groupId>org.apache.felix</groupId>
-                    <artifactId>maven-bundle-plugin</artifactId>
-                    <configuration>
-                        <instructions>
-                            <Include-Resource>${project.build.directory}/generated-metadata</Include-Resource>
-                        </instructions>
-                    </configuration>
-                </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-resources-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>copy-licenses</id>
-                            <phase>prepare-package</phase>
-                            <goals>
-                                <goal>copy-resources</goal>
-                            </goals>
-                            <configuration>
-                                <resources>
-                                    <resource>
-                                        <directory>${project.basedir}/..</directory>
-                                        <includes>
-                                            <include>LICENSE</include>
-                                        </includes>
-                                    </resource>
-                                    <resource>
-                                        <directory>${project.build.directory}/generated-resources</directory>
-                                    </resource>
-                                </resources>
-                                <outputDirectory>${project.build.directory}/generated-metadata/META-INF</outputDirectory>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>license-maven-plugin</artifactId>
-                    <executions>
-                        <execution>
-                            <id>download-licenses</id>
-                            <phase>generate-resources</phase>
-                            <goals>
-                                <goal>download-licenses</goal>
-                            </goals>
-                        </execution>
-                    </executions>
-                    <configuration>
-                        <cleanLicensesOutputDirectory>true</cleanLicensesOutputDirectory>
-                        <licensesConfigFile>${project.basedir}/../license.xml</licensesConfigFile>
-                        <includedScopes>compile</includedScopes>
-                    </configuration>
-                </plugin>
-            </plugins>
-        </pluginManagement>
     </build>
+    
+    <profiles>
+        <profile>
+            <id>deploy-bundles</id>
+            <activation>
+                <file>
+                    <exists>META-INF/MANIFEST.MF</exists>
+                </file>
+            </activation>
+            <properties>
+                <maven.deploy.skip>false</maven.deploy.skip>
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>deploy-features</id>
+            <activation>
+                <file>
+                    <exists>feature.xml</exists>
+                </file>
+            </activation>
+            <properties>
+                <maven.deploy.skip>false</maven.deploy.skip>
+            </properties>
+        </profile>
+        
+        <profile>
+            <id>generate-model</id>
+                <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.jsonschema2pojo</groupId>
+                        <artifactId>jsonschema2pojo-maven-plugin</artifactId>
+                        <version>1.1.1</version>
+                        <configuration>
+                            <classNameSuffix>Entity</classNameSuffix>
+                            <sourceDirectory>${basedir}/src/main/schemas</sourceDirectory>
+                            <targetPackage>zav.jrc.databind</targetPackage>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <goals>
+                                    <goal>generate</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+    </profiles>
 </project>

@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRC Client
+Bundle-SymbolicName: jrc-client
+Bundle-Version: 0.6.1.qualifier
+Export-Package: zav.jrc.client,
+ zav.jrc.client.http,
+ zav.jrc.client.internal;x-internal:=true
+Import-Package: okhttp3
+Require-Bundle: com.fasterxml.jackson.core.jackson-core,
+ com.fasterxml.jackson.core.jackson-databind,
+ jakarta.ws.rs-api,
+ jrc-databind,
+ jrc-endpoint,
+ org.slf4j.api
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: jrc-client
+Bundle-ActivationPolicy: lazy
