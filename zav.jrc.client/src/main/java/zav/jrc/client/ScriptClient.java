@@ -19,7 +19,6 @@ package zav.jrc.client;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-import okhttp3.Request;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.client.internal.GrantType;
