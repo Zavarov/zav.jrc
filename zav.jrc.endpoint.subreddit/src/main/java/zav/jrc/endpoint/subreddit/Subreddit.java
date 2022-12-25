@@ -268,7 +268,7 @@ public class Subreddit {
    * @see Subreddits#POST_API_SUBSCRIBE
    */
   public void subscribe() throws FailedRequestException {
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("action", "sub")
@@ -283,7 +283,7 @@ public class Subreddit {
    * @see Subreddits#POST_API_SUBSCRIBE
    */
   public void unsubscribe() throws FailedRequestException {
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .addParam("action", "unsub")
@@ -420,7 +420,7 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_BANNER
    */
   public void deleteBanner() throws FailedRequestException {
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_BANNER)
           .setArgs(name)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
@@ -435,7 +435,7 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_HEADER
    */
   public void deleteHeader() throws FailedRequestException {
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_HEADER)
           .setArgs(name)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
@@ -450,7 +450,7 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_ICON
    */
   public void deleteIcon() throws FailedRequestException {
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_ICON)
           .setArgs(name)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
@@ -465,7 +465,7 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_DELETE_SR_IMAGE
    */
   public void deleteImage(String imageName) throws FailedRequestException {
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_DELETE_SR_IMAGE)
           .setArgs(name)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
@@ -502,7 +502,7 @@ public class Subreddit {
     Map<Object, Object> body = new HashMap<>();
     Arrays.stream(params).forEach(param -> body.put(param.getKey(), param.getValue()));
     
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET)
           .setBody(body, RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
@@ -534,7 +534,7 @@ public class Subreddit {
           .addFormDataPart("upload_type", "img")
           .build();
     
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
@@ -564,7 +564,7 @@ public class Subreddit {
           .addFormDataPart("upload_type", "header")
           .build();
   
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
@@ -594,7 +594,7 @@ public class Subreddit {
           .addFormDataPart("upload_type", "icon")
           .build();
   
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
@@ -624,7 +624,7 @@ public class Subreddit {
           .addFormDataPart("upload_type", "banner")
           .build();
   
-    String response = client.newRequest()
+    client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
