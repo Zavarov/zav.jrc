@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -57,7 +58,7 @@ public class SelfAccountTest {
   UserListEntity users;
   TrophyListEntity trophies;
   @Mock Client client;
-  @Spy RequestBuilder request;
+  RequestBuilder request;
   
   /**
    * Initializes all fields and binds the {@link #request} to {@link Client#newRequest()}.<br>
@@ -68,6 +69,7 @@ public class SelfAccountTest {
    */
   @BeforeEach
   public void setUp() throws FailedRequestException {
+    request = spy(new RequestBuilder(client));
     when(client.newRequest()).thenReturn(request);
     when(client.send(any())).thenReturn("{}");
     selfAccount = new SelfAccount(client);

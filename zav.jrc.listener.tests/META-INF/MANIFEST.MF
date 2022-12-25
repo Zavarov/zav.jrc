@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRC Listener Tests
+Bundle-SymbolicName: jrc-listener-tests
+Bundle-Version: 0.6.1.qualifier
+Fragment-Host: jrc-listener
+Import-Package: mockito-extensions
+Require-Bundle: junit-jupiter-api,
+ net.bytebuddy.byte-buddy,
+ net.bytebuddy.byte-buddy-agent,
+ org.mockito.mockito-core,
+ org.mockito.junit-jupiter,
+ org.objenesis
+Automatic-Module-Name: jrc-listener-tests
+Bundle-RequiredExecutionEnvironment: JavaSE-11

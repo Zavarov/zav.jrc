@@ -34,12 +34,16 @@
     <modules>
         <module>zav.jrc.client</module>
         <module>zav.jrc.databind</module>
+        <module>zav.jrc.databind.tests</module>
         <module>zav.jrc.endpoint</module>
         <module>zav.jrc.endpoint.account</module>
+        <module>zav.jrc.endpoint.account.tests</module>
         <module>zav.jrc.endpoint.subreddit</module>
+        <module>zav.jrc.endpoint.subreddit.tests</module>
         <module>zav.jrc.endpoint.test</module>
         <module>zav.jrc.example</module>
         <module>zav.jrc.listener</module>
+        <module>zav.jrc.listener.tests</module>
         <module>target-platform</module>
     </modules>
     

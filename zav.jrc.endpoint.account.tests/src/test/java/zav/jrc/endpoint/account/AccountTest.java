@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mockStatic;
+import static org.mockito.Mockito.spy;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -54,7 +55,7 @@ public class AccountTest {
   String reason = "Very good reason...";
   Account account;
   @Mock Client client;
-  @Spy RequestBuilder request;
+  RequestBuilder request;
   
   /**
    * Initializes all fields and binds the {@link #request} to {@link Client#newRequest()}.
@@ -63,6 +64,8 @@ public class AccountTest {
    */
   @BeforeEach
   public void setUp() throws FailedRequestException {
+    request = spy(new RequestBuilder(client));
+    
     when(client.newRequest()).thenReturn(request);
     when(client.send(any())).thenReturn("{}");
     account = new Account(client, name);
