@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRC Client Mock for Testing
+Bundle-SymbolicName: jrc-client-mock
+Bundle-Version: 0.6.1.qualifier
+Fragment-Host: jrc-client
+Export-Package: zav.jrc.client.mock
+Import-Package: okhttp3
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: jrc-client-mock
+Bundle-ActivationPolicy: lazy

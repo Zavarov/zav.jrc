@@ -16,3 +16,4 @@ Require-Bundle: com.fasterxml.jackson.core.jackson-core,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: jrc-client
 Bundle-ActivationPolicy: lazy
+Eclipse-ExtensibleAPI: true

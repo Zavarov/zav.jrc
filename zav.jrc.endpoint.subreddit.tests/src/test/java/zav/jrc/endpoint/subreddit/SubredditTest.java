@@ -34,12 +34,12 @@ import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.http.Parameter;
+import zav.jrc.client.mock.ClientMock;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.RulesEntity;
 import zav.jrc.databind.SubredditEntity;
 import zav.jrc.databind.SubredditSettingsEntity;
 import zav.jrc.databind.UserEntity;
-import zav.jrc.endpoint.test.ClientMock;
 
 /**
  * Checks whether the calls to the subreddit-related endpoints return the expected response.

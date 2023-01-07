@@ -27,10 +27,10 @@ import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.http.Parameter;
+import zav.jrc.client.mock.ClientMock;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.SubredditEntity;
-import zav.jrc.endpoint.test.ClientMock;
 
 /**
  * Checks whether the calls to the frontpage-related endpoints return the expected response.

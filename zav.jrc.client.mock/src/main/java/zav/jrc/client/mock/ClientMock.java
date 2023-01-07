@@ -14,7 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.endpoint.test;
+package zav.jrc.client.mock;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

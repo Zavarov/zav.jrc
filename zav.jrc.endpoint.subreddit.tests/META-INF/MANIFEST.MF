@@ -4,7 +4,7 @@ Bundle-Name: JRC Endpoint Subreddit Tests
 Bundle-SymbolicName: jrc-endpoint-subreddit-tests
 Bundle-Version: 0.6.1.qualifier
 Fragment-Host: jrc-endpoint-subreddit
-Require-Bundle: junit-jupiter-api,
- jrc-endpoint-test
+Import-Package: zav.jrc.client.mock
+Require-Bundle: junit-jupiter-api
 Automatic-Module-Name: jrc-endpoint-subreddit-tests
 Bundle-RequiredExecutionEnvironment: JavaSE-11
