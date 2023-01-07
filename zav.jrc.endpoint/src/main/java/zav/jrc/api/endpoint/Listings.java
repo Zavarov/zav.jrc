@@ -26,7 +26,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @NonNullByDefault
 public final class Listings {
   private Listings() {}
-  
+
   /**
    * Returns a set of links from the front page, sorted by {@code best}.<br>
    * The order depends on number of upvotes, downvotes, age of the post and time the user spent on

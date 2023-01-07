@@ -33,7 +33,7 @@ public class CredentialsEntity extends CredentialsTOPEntity {
     String source = getId() + ":" + getSecret();
     return Base64.getEncoder().encodeToString(source.getBytes(StandardCharsets.UTF_8));
   }
-  
+
   public static CredentialsEntity read(File file) throws IOException {
     return new ObjectMapper().readValue(file, CredentialsEntity.class);
   }

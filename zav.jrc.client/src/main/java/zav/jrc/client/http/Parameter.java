@@ -27,16 +27,16 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public class Parameter {
   private final Object key;
   private final Object value;
-  
+
   public Parameter(Object key, Object value) {
     this.key = key;
     this.value = value;
   }
-  
+
   public Object getKey() {
     return key;
   }
-  
+
   public Object getValue() {
     return value;
   }

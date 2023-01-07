@@ -27,32 +27,32 @@ import zav.jrc.databind.AbstractTest;
  */
 public class TokenEntityTest extends AbstractTest {
   static TokenEntity token;
-  
+
   @BeforeAll
   public static void setUpAll() {
     token = read("Token.json", TokenEntity.class);
   }
-  
+
   @Test
   public void testGetAccessToken() {
     assertEquals(token.getAccessToken(), "ACCESS_TOKEN");
   }
-  
+
   @Test
   public void testGetTokenType() {
     assertEquals(token.getTokenType(), "bearer");
   }
-  
+
   @Test
   public void testGetExpiresIn() {
     assertEquals(token.getExpiresIn(), 12345);
   }
-  
+
   @Test
   public void testGetScope() {
     assertEquals(token.getScope(), "all");
   }
-  
+
   @Test
   public void testGetRefreshToken() {
     assertEquals(token.getRefreshToken(), "REFRESH_TOKEN");

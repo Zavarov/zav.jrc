@@ -26,7 +26,7 @@ import java.nio.file.Paths;
  */
 public abstract class AbstractTest {
   private static final Path RESOURCES = Paths.get("src/test/resources");
-  
+
   /**
    * Deserializes a class based on the content of a JSON file.
    *
@@ -43,7 +43,7 @@ public abstract class AbstractTest {
       throw new IllegalArgumentException(e.getMessage(), e);
     }
   }
-  
+
   public static <T> T read(Object source, Class<T> clazz) {
     ObjectMapper om = new ObjectMapper();
     return om.convertValue(source, clazz);

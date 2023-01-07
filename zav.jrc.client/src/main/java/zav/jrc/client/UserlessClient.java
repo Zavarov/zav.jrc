@@ -36,7 +36,7 @@ import zav.jrc.databind.io.UserAgentEntity;
 @NonNullByDefault
 public class UserlessClient extends Client {
   private static final Logger LOGGER = LoggerFactory.getLogger(UserlessClient.class);
-  
+
   private final UUID uuid = UUID.randomUUID();
 
   /**
@@ -48,7 +48,7 @@ public class UserlessClient extends Client {
   public UserlessClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
     super(userAgent.toString(), credentials.toString());
   }
-  
+
   /**
    * Requests a new access token.<br>
    * Depending on the value of {@code duration}, Reddit will also return a refresh token with which
@@ -63,7 +63,7 @@ public class UserlessClient extends Client {
     body.put("grant_type", GrantType.USERLESS);
     body.put("device_id", uuid);
     body.put("duration", duration);
-    
+
     // Using a permanent token for an userless client doesn't make much sense, as it has to send
     // its credentials anyway. Therefore, it would make more sense to request a new access token
     // directly.
@@ -76,14 +76,14 @@ public class UserlessClient extends Client {
     String response = newTokenRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
           .post();
-  
+
     try {
       token = TokenEntity.read(response);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
   }
-  
+
   @Override
   public synchronized void refresh() throws FailedRequestException {
     login(Duration.TEMPORARY);

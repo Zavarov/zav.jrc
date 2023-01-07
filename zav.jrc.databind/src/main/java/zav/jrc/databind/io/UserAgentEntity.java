@@ -39,7 +39,7 @@ public class UserAgentEntity extends UserAgentTOPEntity {
     String pattern = "%s:%s:%s (by /u/%s)";
     return String.format(pattern, getPlatform(), getName(), getVersion(), getAuthor());
   }
-  
+
   public static UserAgentEntity read(File file) throws IOException {
     return new ObjectMapper().readValue(file, UserAgentEntity.class);
   }

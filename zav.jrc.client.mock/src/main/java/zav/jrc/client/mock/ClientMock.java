@@ -33,38 +33,38 @@ import zav.jrc.databind.io.TokenEntity;
  */
 @NonNullByDefault
 public class ClientMock extends Client {
-  
+
   public ClientMock() {
     super("userAgent", "credentials");
   }
-  
+
   @Override
   public void login(Duration duration) {
     token = new TokenEntity();
   }
-  
+
   @Override
   public void logout() {
     token = null;
   }
-  
+
   @Override
   public void refresh() {
   }
-  
+
   @Override
   public synchronized String send(Request request) throws FailedRequestException {
     String method = request.method();
     String path = String.join("_", request.url().pathSegments());
     String fileName = method + "_" + path + ".json";
-    
+
     String dir = "responses";
     ClassLoader cl = getClass().getClassLoader();
     @Nullable InputStream is = cl.getResourceAsStream(dir + "/" + fileName);
     if (is == null) {
       throw FailedRequestException.wrap(new FileNotFoundException(fileName));
     }
-    
+
     try {
       return new String(is.readAllBytes(), StandardCharsets.UTF_8);
     } catch (IOException e) {

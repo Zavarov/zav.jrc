@@ -27,38 +27,38 @@ import org.junit.jupiter.api.Test;
 public class UserListEntityTest extends AbstractTest {
   static UserListEntity userList;
   static UserEntity user;
-  
+
   @BeforeAll
   public static void setUpAll() {
     userList = read("UserList.json", UserListEntity.class);
     user = userList.getData().getChildren().get(0);
   }
-  
+
   @Test
   public void testGetData() {
     assertEquals(userList.getData().getChildren().size(), 1);
   }
-  
+
   @Test
   public void testGetKind() {
     assertEquals(userList.getKind(), "UserList");
   }
-  
+
   @Test
   public void testGetDate() {
     assertEquals(user.getDate(), 1.234567890E9);
   }
-  
+
   @Test
   public void testGetName() {
     assertEquals(user.getName(), "Bernkastel");
   }
-  
+
   @Test
   public void testGetId() {
     assertEquals(user.getId(), "r9_abcdefg");
   }
-  
+
   @Test
   public void testGetUserId() {
     assertEquals(user.getUserId(), "t2_124567");

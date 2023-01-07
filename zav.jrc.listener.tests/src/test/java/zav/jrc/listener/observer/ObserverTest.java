@@ -49,7 +49,7 @@ public class ObserverTest {
   @Mock SubredditListener bar;
   Observer<SubredditListener> observer;
   LinkRequester requester;
-  
+
   /**
    * Creates mocks of the listeners {@link #foo} and {@link #bar}, as well as the observer
    * {@link #observer}.
@@ -61,7 +61,7 @@ public class ObserverTest {
       requester = mocked.constructed().get(0);
     }
   }
-  
+
   @Test
   public void testAddListener() {
     assertEquals(observer.size(), 0);
@@ -70,7 +70,7 @@ public class ObserverTest {
     assertFalse(observer.addListener(foo));
     assertEquals(observer.size(), 1);
   }
-  
+
   @Test
   public void testRemoveListener() {
     assertEquals(observer.size(), 0);
@@ -78,7 +78,7 @@ public class ObserverTest {
     assertEquals(observer.size(), 1);
     assertTrue(observer.addListener(bar));
     assertEquals(observer.size(), 2);
-  
+
     assertTrue(observer.removeListener(bar));
     assertEquals(observer.size(), 1);
     assertTrue(observer.removeListener(foo));
@@ -86,29 +86,29 @@ public class ObserverTest {
     assertFalse(observer.removeListener(bar));
     assertFalse(observer.removeListener(foo));
   }
-  
+
   @Test
   public void testNotifyListener() throws FailedRequestException {
     when(requester.next()).thenReturn(List.of(mock(LinkEntity.class)));
-    
+
     observer.addListener(foo);
     observer.addListener(bar);
     observer.notifyListener(foo);
     verify(foo).notify(any());
     verify(bar, times(0)).notify(any());
   }
-  
+
   @Test
   public void testNotifyAllListeners() throws Exception {
     when(requester.next()).thenReturn(List.of(mock(LinkEntity.class)));
-    
+
     observer.addListener(foo);
     observer.addListener(bar);
     observer.notifyAllListeners();
     verify(foo).notify(any());
     verify(bar).notify(any());
   }
-  
+
   @Test
   public void testSize() {
     assertEquals(observer.size(), 0);

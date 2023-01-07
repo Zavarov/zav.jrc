@@ -29,7 +29,7 @@ public class MessagingEntityTest extends AbstractTest {
   static UserListEntity[] messaging;
   static UserListEntity blocked;
   static UserListEntity trusted;
-  
+
   /**
    * Instantiates the messaging DTO and retrieves the trusted and blocked users.
    */
@@ -39,12 +39,12 @@ public class MessagingEntityTest extends AbstractTest {
     trusted = messaging[0];
     blocked = messaging[1];
   }
-  
+
   @Test
   public void testGetTrusted() {
     List<UserEntity> children = trusted.getData().getChildren();
     UserEntity child = children.get(0);
-    
+
     assertEquals(trusted.getKind(), "UserList");
     assertEquals(children.size(), 1);
     assertEquals(child.getDate(), 1.612556744E9);
@@ -52,12 +52,12 @@ public class MessagingEntityTest extends AbstractTest {
     assertEquals(child.getId(), "r9_aabbcc");
     assertEquals(child.getUserId(), "t2_ccddee");
   }
-  
+
   @Test
   public void testGetBlocked() {
     List<UserEntity> children = blocked.getData().getChildren();
     UserEntity child = children.get(0);
-    
+
     assertEquals(blocked.getKind(), "UserList");
     assertEquals(children.size(), 1);
     assertEquals(child.getDate(), 1.522543721E9);

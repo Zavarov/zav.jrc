@@ -25,12 +25,12 @@ import zav.jrc.databind.LinkEntity;
 @NonNullByDefault
 public class LinkEvent implements Event<LinkEntity> {
   private final LinkEntity source;
-  
+
   public LinkEvent(LinkEntity source) {
     this.source = source;
   }
-  
-  
+
+
   @Override
   public LinkEntity getSource() {
     return source;

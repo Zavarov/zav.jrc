@@ -35,7 +35,6 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
@@ -61,28 +60,28 @@ public class Subreddit {
   private static final Cache<String, SubredditEntity> subredditCache = Caffeine.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
         .build();
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(Subreddit.class);
-  
+
   private final Client client;
   private final String name;
-  
+
   public Subreddit(Client client, String name) {
     this.client = client;
     this.name = name;
   }
-  
+
   @Override
   public String toString() {
     return String.format("%s[%s]", getClass(), name);
   }
-  
+
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Listings                                                                                  //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Returns a stream over all links, sorted by {@code controversial}.
    *
@@ -96,10 +95,10 @@ public class Subreddit {
           .setParams(params)
           .setArgs(name)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code hot}.
    *
@@ -113,10 +112,10 @@ public class Subreddit {
           .setParams(params)
           .setArgs(name)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code new}.
    *
@@ -130,10 +129,10 @@ public class Subreddit {
           .setParams(params)
           .setArgs(name)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over randomly selected links.
    *
@@ -147,12 +146,12 @@ public class Subreddit {
           .setParams(params)
           .setArgs(name)
           .get();
-  
+
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
     ListingEntity listing = Things.transformThing(things[0], ListingEntity.class);
     return Things.transformListingOfThings(listing, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code rising}.
    *
@@ -166,10 +165,10 @@ public class Subreddit {
           .setParams(params)
           .setArgs(name)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code top}.
    *
@@ -183,16 +182,16 @@ public class Subreddit {
           .setParams(params)
           .setArgs(name)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Search                                                                                    //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Returns a stream over all links matching the search parameters.
    *
@@ -207,17 +206,17 @@ public class Subreddit {
           .setParams(params)
           .setArgs(name)
           .get();
-  
+
     ListingEntity listing = Things.transformThing(response, ListingEntity.class);
     return Things.transformListing(listing, LinkEntity.class);
   }
-  
+
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Subreddits                                                                                //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Creates a new subreddit.
    *
@@ -228,17 +227,17 @@ public class Subreddit {
    */
   public SubredditSettingsEntity create(SubredditSettingsEntity settings) throws FailedRequestException {
     Map<?, ?> body = Things.transform(settings, Map.class);
-    
+
     String response = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SITE_ADMIN)
           .setBody(body, RequestBuilder.BodyType.JSON)
           .addParam("api_type", "json")
           .addParam("name", name)
           .post();
-  
+
     return Things.transformThing(response, SubredditSettingsEntity.class);
   }
-  
+
   /**
    * Configures an already existing subreddit.
    *
@@ -249,7 +248,7 @@ public class Subreddit {
    */
   public SubredditSettingsEntity configure(SubredditSettingsEntity settings) throws FailedRequestException {
     Map<?, ?> body = Things.transform(settings, Map.class);
-  
+
     SubredditEntity subreddit = getAbout();
     String response = client.newRequest()
           .setEndpoint(Subreddits.POST_API_SITE_ADMIN)
@@ -257,10 +256,10 @@ public class Subreddit {
           .addParam("api_type", "json")
           .addParam("sr", "t5_" + subreddit.getId())
           .post();
-  
+
     return Things.transformThing(response, SubredditSettingsEntity.class);
   }
-  
+
   /**
    * Subscribe to this subreddit.
    *
@@ -275,7 +274,7 @@ public class Subreddit {
           .addParam("sr_name", name)
           .post();
   }
-  
+
   /**
    * Unsubscribe from this subreddit.
    *
@@ -290,7 +289,7 @@ public class Subreddit {
           .addParam("sr_name", name)
           .post();
   }
-  
+
   /**
    * Returns the requirements for creating posts in this subreddit.
    *
@@ -303,10 +302,10 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_API_V1_SUBREDDIT_POST_REQUIREMENTS)
           .setArgs(name)
           .get();
-  
+
     return Things.transform(response, Map.class);
   }
-  
+
   /**
    * Returns a stream over all users that have been banned from this subreddit.
    *
@@ -319,12 +318,12 @@ public class Subreddit {
         .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_BANNED)
         .setArgs(name)
         .get();
-  
+
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
     return Things.transformListing(listing, UserEntity.class);
   }
-  
+
   /**
    * Returns a stream over all subreddit contributors.
    *
@@ -337,12 +336,12 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS)
           .setArgs(name)
           .get();
-  
+
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
     return Things.transformListing(listing, UserEntity.class);
   }
-  
+
   /**
    * Returns a stream over all subreddit moderators.
    *
@@ -355,10 +354,10 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MODERATORS)
           .setArgs(name)
           .get();
-  
+
     return Things.transform(response, UserListEntity.class).getData().getChildren().stream();
   }
-  
+
   /**
    * Returns a stream over all users that have been muted by the moderators of this subreddit.
    *
@@ -371,12 +370,12 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MUTED)
           .setArgs(name)
           .get();
-  
+
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
     return Things.transformListing(listing, UserEntity.class);
   }
-  
+
   /**
    * Returns a stream over all users that have been banned from the wiki of this subreddit.
    *
@@ -389,12 +388,12 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKIBANNED)
           .setArgs(name)
           .get();
-  
+
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
     return Things.transformListing(listing, UserEntity.class);
   }
-  
+
   /**
    * Returns a stream over all wiki contributors of this subreddit.
    *
@@ -407,12 +406,12 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS)
           .setArgs(name)
           .get();
-  
+
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
     return Things.transformListing(listing, UserEntity.class);
   }
-  
+
   /**
    * Deletes the subreddit banner.
    *
@@ -427,7 +426,7 @@ public class Subreddit {
           .addParam("api_type", "json")
           .post();
   }
-  
+
   /**
    * Deletes the subreddit header image.
    *
@@ -442,7 +441,7 @@ public class Subreddit {
           .addParam("api_type", "json")
           .post();
   }
-  
+
   /**
    * Deletes the subreddit icon.
    *
@@ -457,7 +456,7 @@ public class Subreddit {
           .addParam("api_type", "json")
           .post();
   }
-  
+
   /**
    * Deletes one of the custom subreddit images.
    *
@@ -473,7 +472,7 @@ public class Subreddit {
           .addParam("img_name", imageName)
           .post();
   }
-  
+
   /**
    * Returns the label of the submit button.
    *
@@ -486,12 +485,12 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_API_SUBMIT_TEXT)
           .setArgs(name)
           .get();
-  
+
     Map<?, ?> data = Things.transform(response, Map.class);
-    
+
     return data.get("submit_text").toString();
   }
-  
+
   /**
    * Updates the stylesheet of this subreddit.
    *
@@ -501,7 +500,7 @@ public class Subreddit {
   public void updateSubredditStylesheet(Parameter... params) throws FailedRequestException {
     Map<Object, Object> body = new HashMap<>();
     Arrays.stream(params).forEach(param -> body.put(param.getKey(), param.getValue()));
-    
+
     client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET)
           .setBody(body, RequestBuilder.BodyType.JSON)
@@ -509,7 +508,7 @@ public class Subreddit {
           .setArgs(name)
           .post();
   }
-  
+
   /**
    * Uploads a custom image to this subreddit.
    *
@@ -518,13 +517,13 @@ public class Subreddit {
    */
   public void uploadImage(RenderedImage image, String imageName) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
-    
+
     try {
       ImageIO.write(image, "png", data);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
-    
+
     MultipartBody body = new MultipartBody.Builder()
           .setType(MultipartBody.FORM)
           .addFormDataPart("file", imageName, RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
@@ -533,14 +532,14 @@ public class Subreddit {
           .addFormDataPart("name", imageName)
           .addFormDataPart("upload_type", "img")
           .build();
-    
+
     client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
           .post();
   }
-  
+
   /**
    * Updates the header image of this subreddit.
    *
@@ -549,13 +548,13 @@ public class Subreddit {
    */
   public void uploadHeader(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
-  
+
     try {
       ImageIO.write(image, "png", data);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
-  
+
     MultipartBody body = new MultipartBody.Builder()
           .setType(MultipartBody.FORM)
           .addFormDataPart("file", "header", RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
@@ -563,14 +562,14 @@ public class Subreddit {
           .addFormDataPart("img_type", "png")
           .addFormDataPart("upload_type", "header")
           .build();
-  
+
     client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
           .post();
   }
-  
+
   /**
    * Updates the icon of this subreddit.
    *
@@ -579,13 +578,13 @@ public class Subreddit {
    */
   public void uploadIcon(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
-  
+
     try {
       ImageIO.write(image, "png", data);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
-  
+
     MultipartBody body = new MultipartBody.Builder()
           .setType(MultipartBody.FORM)
           .addFormDataPart("file", "icon", RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
@@ -593,14 +592,14 @@ public class Subreddit {
           .addFormDataPart("img_type", "png")
           .addFormDataPart("upload_type", "icon")
           .build();
-  
+
     client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
           .post();
   }
-  
+
   /**
    * Updates the banner of this subreddit.
    *
@@ -609,13 +608,13 @@ public class Subreddit {
    */
   public void uploadBanner(RenderedImage image) throws FailedRequestException {
     ByteArrayOutputStream data = new ByteArrayOutputStream();
-  
+
     try {
       ImageIO.write(image, "png", data);
     } catch (IOException e) {
       throw FailedRequestException.wrap(e);
     }
-  
+
     MultipartBody body = new MultipartBody.Builder()
           .setType(MultipartBody.FORM)
           .addFormDataPart("file", "icon", RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
@@ -623,14 +622,14 @@ public class Subreddit {
           .addFormDataPart("img_type", "png")
           .addFormDataPart("upload_type", "banner")
           .build();
-  
+
     client.newRequest()
           .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
           .setBody(body)
           .setArgs(name)
           .post();
   }
-  
+
   /**
    * Returns the Entity object of this subreddit.
    *
@@ -640,24 +639,24 @@ public class Subreddit {
    */
   public SubredditEntity getAbout() throws FailedRequestException {
     @Nullable SubredditEntity result = subredditCache.getIfPresent(name);
-  
+
     // Only perform a new request if the account hasn't been cached.
     if (result == null) {
       String response = client.newRequest()
             .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT)
             .setArgs(name)
             .get();
-    
+
       result = Things.transformThing(response, SubredditEntity.class);
-  
+
       subredditCache.put(name, result);
-    
+
       LOGGER.debug("Cached new subreddit with name {}.", name);
     }
-  
+
     return result;
   }
-  
+
   /**
    * Returns the current subreddit settings.
    *
@@ -670,10 +669,10 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_EDIT)
           .setArgs(name)
           .get();
-  
+
     return Things.transformThing(response, SubredditSettingsEntity.class);
   }
-  
+
   /**
    * Returns the rules of this subreddit.
    *
@@ -686,10 +685,10 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_RULES)
           .setArgs(name)
           .get();
-  
+
     return Things.transform(response, RulesEntity.class);
   }
-  
+
   /**
    * Returns the traffic in this subreddit.<br>
    * The charts show the traffic of this hour, day and week.
@@ -703,10 +702,10 @@ public class Subreddit {
           .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_TRAFFIC)
           .setArgs(name)
           .get();
-  
+
     return Things.transform(response, Map.class);
   }
-  
+
   /**
    * Returns the stickied link.
    *
@@ -721,7 +720,7 @@ public class Subreddit {
           .setArgs(name)
           .addParam("num", index)
           .get();
-  
+
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
     ListingEntity listing = Things.transform(things[0].getData(), ListingEntity.class);
     ThingEntity thing = Things.transformListing(listing, ThingEntity.class).findFirst().orElseThrow();

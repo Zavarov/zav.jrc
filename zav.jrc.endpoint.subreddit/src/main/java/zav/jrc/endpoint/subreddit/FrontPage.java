@@ -22,7 +22,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
@@ -44,17 +43,17 @@ import zav.jrc.databind.core.ListingEntity;
 public class FrontPage {
 
   private final Client client;
-  
+
   public FrontPage(Client client) {
     this.client = client;
   }
-  
+
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Listings                                                                                  //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Returns a stream over all links, sorted by {@code best}.
    *
@@ -67,10 +66,10 @@ public class FrontPage {
           .setEndpoint(Listings.GET_BEST)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code controversial}.
    *
@@ -83,10 +82,10 @@ public class FrontPage {
           .setEndpoint(Listings.GET_CONTROVERSIAL)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code hot}.
    *
@@ -99,10 +98,10 @@ public class FrontPage {
           .setEndpoint(Listings.GET_HOT)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code new}.
    *
@@ -115,10 +114,10 @@ public class FrontPage {
           .setEndpoint(Listings.GET_NEW)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over randomly selected links.
    *
@@ -131,12 +130,12 @@ public class FrontPage {
           .setEndpoint(Listings.GET_RANDOM)
           .setParams(params)
           .get();
-  
+
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
     ListingEntity listing = Things.transformThing(things[0], ListingEntity.class);
     return Things.transformListingOfThings(listing, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code rising}.
    *
@@ -149,10 +148,10 @@ public class FrontPage {
           .setEndpoint(Listings.GET_RISING)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links, sorted by {@code top}.
    *
@@ -165,16 +164,16 @@ public class FrontPage {
           .setEndpoint(Listings.GET_TOP)
           .setParams(params)
           .get();
-    
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Search                                                                                    //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Returns a stream over all links matching the search parameters.
    *
@@ -188,16 +187,16 @@ public class FrontPage {
           .setEndpoint(Search.GET_SEARCH)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Subreddits                                                                                //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Returns a stream over all subreddits matching the title and description provided by the
    * search parameters.
@@ -212,10 +211,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
           .setParams(params)
           .get();
-    
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all subreddit names matching the search parameters.
    *
@@ -230,12 +229,12 @@ public class FrontPage {
         .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
         .setParams(params)
         .post();
-  
+
     Map<?, ?> result = Things.transform(response, Map.class);
     List<?> values = Things.transform(result.get("names"), List.class);
     return values.stream().map(Objects::toString);
   }
-  
+
   /**
    * Returns a stream over all subreddits that begin with the provided query string.
    *
@@ -250,12 +249,12 @@ public class FrontPage {
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
           .setParams(params)
           .post();
-  
+
     Map<?, ?> result = Things.transform(response, Map.class);
     List<?> values = Things.transform(result.get("subreddits"), List.class);
     return values.stream().map(value -> Things.transform(value, SubredditEntity.class));
   }
-  
+
   /**
    * Returns a stream over all links matching the search parameters.
    *
@@ -269,10 +268,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all default subreddits.
    *
@@ -286,10 +285,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all subreddits that are only accessible by gilded users.
    *
@@ -303,10 +302,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_SUBREDDITS_GOLD)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all newly created subreddits.
    *
@@ -320,10 +319,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_SUBREDDITS_NEW)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all popular subreddits.
    *
@@ -337,10 +336,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_SUBREDDITS_POPULAR)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all newly created user subreddits.
    *
@@ -354,10 +353,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_USERS_NEW)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all popular user subreddits.
    *
@@ -371,10 +370,10 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_USERS_POPULAR)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all accounts corresponding to the user subreddits, matching the search
    * parameters.
@@ -389,7 +388,7 @@ public class FrontPage {
           .setEndpoint(Subreddits.GET_USERS_SEARCH)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, AccountEntity.class);
   }
 }

@@ -29,15 +29,15 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @NonNullByDefault
 public final class Endpoint {
   private final List<String> path;
-  
+
   public Endpoint(String... path) {
     this(Arrays.asList(path));
   }
-  
+
   public Endpoint(List<String> path) {
     this.path = Collections.unmodifiableList(path);
   }
-  
+
   /**
    * Calculates the qualified path of an endpoint. An endpoint may contain wildcards, represented by
    * the string "{...}". Each of those wildcard is replaced with one of the arguments.<br>
@@ -51,7 +51,7 @@ public final class Endpoint {
     String substitution = "\\{\\w*}";
     List<String> result = new ArrayList<>();
     int i = 0;
-    
+
     for (String entry : path) {
       if (entry.matches(substitution)) {
         result.add(args[i++].toString());
@@ -59,10 +59,10 @@ public final class Endpoint {
         result.add(entry);
       }
     }
-    
+
     //All arguments have to be consumed
     assert i == args.length;
-    
+
     return Collections.unmodifiableList(result);
   }
 }

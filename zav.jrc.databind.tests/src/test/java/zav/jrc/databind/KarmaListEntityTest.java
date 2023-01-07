@@ -27,33 +27,33 @@ import org.junit.jupiter.api.Test;
 public class KarmaListEntityTest extends AbstractTest {
   static KarmaListEntity karmaList;
   static KarmaEntity karma;
-  
+
   @BeforeAll
   public static void setUpAll() {
     karmaList = read("KarmaList.json", KarmaListEntity.class);
     karma = karmaList.getData().get(0);
   }
-  
+
   @Test
   public void testGetData() {
     assertEquals(karmaList.getData().size(), 1);
   }
-  
+
   @Test
   public void testGetKind() {
     assertEquals(karmaList.getKind(), "KarmaList");
   }
-  
+
   @Test
   public void testGetCommentKarma() {
     assertEquals(karma.getCommentKarma(), 69);
   }
-  
+
   @Test
   public void testGetLinkKarma() {
     assertEquals(karma.getLinkKarma(), 42);
   }
-  
+
   @Test
   public void testGetSubreddit() {
     assertEquals(karma.getSubreddit(), "bananapics");

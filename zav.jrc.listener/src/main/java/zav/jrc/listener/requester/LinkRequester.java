@@ -26,7 +26,6 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import zav.jrc.api.endpoint.Listings;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
@@ -43,7 +42,7 @@ import zav.jrc.databind.Things;
 @NonNullByDefault
 public class LinkRequester implements Iterator<List<LinkEntity>> {
   private static final Logger LOGGER = LoggerFactory.getLogger(LinkRequester.class);
-  
+
   @Nullable
   private LinkEntity head;
   private final Client client;
@@ -53,12 +52,12 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
     this.client = client;
     this.subreddit = subreddit;
   }
-  
+
   @Override
   public boolean hasNext() {
     return true;
   }
-  
+
   @Override
   public List<LinkEntity> next() throws IteratorException {
     try {
@@ -108,16 +107,16 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
 
     return result;
   }
-  
+
   private Stream<LinkEntity> getNew() throws FailedRequestException {
     String response = client.newRequest()
           .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
           .setArgs(subreddit)
           .get();
-  
+
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * This exception is thrown whenever the next sequence of links couldn't be requested from the
    * Reddit API. It wraps the {@link FailedRequestException} around an unchecked exception to
@@ -129,7 +128,7 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
     public IteratorException(FailedRequestException cause) {
       super(cause);
     }
-    
+
     @Override
     public FailedRequestException getCause() {
       return (FailedRequestException) super.getCause();

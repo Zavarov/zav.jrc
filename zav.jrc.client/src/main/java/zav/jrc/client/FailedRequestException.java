@@ -29,7 +29,7 @@ public class FailedRequestException extends Exception {
   private FailedRequestException(Exception cause) {
     super(cause);
   }
-  
+
   public static FailedRequestException wrap(Exception cause) {
     return new FailedRequestException(cause);
   }

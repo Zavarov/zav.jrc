@@ -47,7 +47,7 @@ public class ScriptClient extends Client {
     this.username = credentials.getUsername();
     this.password = credentials.getPassword();
   }
-  
+
   /**
    * Requests a new access token.<br>
    * It seems like Reddit ignores the value of {@code duration} and never returns a refresh token
@@ -63,16 +63,16 @@ public class ScriptClient extends Client {
     body.put("username", username);
     body.put("password", password);
     body.put("duration", duration);
-  
+
     String response = newTokenRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
           .post();
-  
-  
+
+
     if (duration == Duration.TEMPORARY) {
       addShutdownHook();
     }
-  
+
     try {
       token = TokenEntity.read(response);
     } catch (IOException e) {

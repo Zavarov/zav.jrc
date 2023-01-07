@@ -29,7 +29,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @NonNullByDefault
 public final class Captcha {
   private Captcha() {}
-  
+
   /**
    * Check whether ReCAPTCHAs are needed for API methods.<br>
    * This endpoint returns a boolean.

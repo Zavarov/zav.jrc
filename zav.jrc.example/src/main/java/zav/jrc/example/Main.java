@@ -38,7 +38,7 @@ public class Main {
   private static Client CLIENT;
   private static SimpleSubredditObservable OBSERVABLE;
   private static SubredditObserver OBSERVER;
-  
+
   /**
    * The entry point for the program.
    *
@@ -51,13 +51,13 @@ public class Main {
     CREDENTIALS = CredentialsEntity.read(new File("Credentials.json"));
     CLIENT = new UserlessClient(USER_AGENT, CREDENTIALS);
     OBSERVABLE = new SimpleSubredditObservable(CLIENT);
-    
+
     CLIENT.login(Duration.TEMPORARY);
-    
+
     OBSERVER = OBSERVABLE.getObserver("RedditDev");
     OBSERVER.addListener((e) -> System.out.println(e.getSource()));
     OBSERVER.notifyAllListeners();
-    
+
     CLIENT.logout();
   }
 }

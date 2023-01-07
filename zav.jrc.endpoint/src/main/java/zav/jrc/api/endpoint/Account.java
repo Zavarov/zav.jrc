@@ -27,7 +27,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @NonNullByDefault
 public final class Account {
   private Account() {}
-  
+
   /**
    * The identity of the authenticated user.<br>
    * This endpoint is a {@code SelfAccount}.

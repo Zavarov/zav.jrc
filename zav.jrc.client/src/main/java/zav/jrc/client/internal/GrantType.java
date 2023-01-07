@@ -29,13 +29,13 @@ public enum GrantType {
   PASSWORD("password"),
   CLIENT("client_credentials"),
   REFRESH("refresh_token");
-  
+
   private final String value;
 
   GrantType(String value) {
     this.value = value;
   }
-  
+
   @Override
   public String toString() {
     return value;

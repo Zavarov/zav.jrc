@@ -29,12 +29,12 @@ import zav.jrc.client.FailedRequestException;
 @NonNullByDefault
 public interface Observer<T extends EventListener> {
   boolean addListener(T listener);
-  
+
   boolean removeListener(T listener);
-  
+
   void notifyListener(T listener) throws FailedRequestException;
-  
+
   void notifyAllListeners() throws  FailedRequestException;
-  
+
   int size();
 }

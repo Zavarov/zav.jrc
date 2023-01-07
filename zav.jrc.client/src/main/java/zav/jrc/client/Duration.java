@@ -29,7 +29,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public enum Duration {
   PERMANENT,
   TEMPORARY;
-  
+
   @Override
   public String toString() {
     return name().toLowerCase(Locale.ENGLISH);

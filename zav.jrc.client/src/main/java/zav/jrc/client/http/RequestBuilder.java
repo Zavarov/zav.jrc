@@ -94,49 +94,49 @@ public class RequestBuilder {
    * Additional headers such as access token appended to each request.
    */
   private Map<String, String> headers = new HashMap<>();
-  
+
   private final Client client;
-  
+
   public RequestBuilder(Client client) {
     this.client = client;
   }
-  
+
   private String url() {
     assert endpoint != null;
-    
+
     HttpUrl.Builder builder = new HttpUrl.Builder().scheme(HTTPS).host(host);
-    
+
     //Append the endpoint URL
     Objects.requireNonNull(endpoint);
     endpoint.getPath(args.toArray()).forEach(builder::addPathSegment);
-    
+
     //Append any additional parameter
     params.forEach((k, v) -> builder.addQueryParameter(Objects.toString(k), Objects.toString(v)));
-    
+
     return builder.build().toString();
   }
-  
+
   private Request.Builder builder() {
     String url = url();
-    
+
     Request.Builder builder = new Request.Builder().url(url);
     headers.forEach(builder::addHeader);
-    
+
     return builder;
   }
-  
+
   public String get() throws FailedRequestException {
     Request request = builder().get().build();
-    
+
     return client.send(request);
   }
-  
+
   public String delete() throws FailedRequestException {
     Request request = body == null ? builder().delete().build() : builder().delete(body).build();
-    
+
     return client.send(request);
   }
-  
+
   /**
    * Transform this request into a PUT request.
    *
@@ -144,12 +144,12 @@ public class RequestBuilder {
    */
   public String put() throws FailedRequestException {
     Objects.requireNonNull(body);
-    
+
     Request request = builder().put(body).build();
-    
+
     return client.send(request);
   }
-  
+
   /**
    * Transform this request into a POST request.
    *
@@ -157,12 +157,12 @@ public class RequestBuilder {
    */
   public String post() throws FailedRequestException {
     Objects.requireNonNull(body);
-    
+
     Request request = builder().post(body).build();
-    
+
     return client.send(request);
   }
-  
+
   /**
    * Transform this request into a PATCH request.
    *
@@ -170,12 +170,12 @@ public class RequestBuilder {
    */
   public String patch() throws FailedRequestException {
     Objects.requireNonNull(body);
-    
+
     Request request = builder().patch(body).build();
-    
+
     return client.send(request);
   }
-  
+
   /**
    * Sets the request body, containing information about the requested resources. Elements within
    * the body are stored as key-value pairs.<br>
@@ -261,7 +261,7 @@ public class RequestBuilder {
     Map<Object, Object> result = new HashMap<>();
 
     Arrays.stream(params).forEach(param -> result.put(param.getKey(), param.getValue()));
-    
+
     return setParams(result);
   }
 
@@ -304,7 +304,7 @@ public class RequestBuilder {
     this.headers = new HashMap<>(headers);
     return this;
   }
-  
+
   /**
    * The body type of the REST request. When authentication the application, the {@code FORM} type
    * has to be selected, for API requests, the {@code JSON} type has to be selected.

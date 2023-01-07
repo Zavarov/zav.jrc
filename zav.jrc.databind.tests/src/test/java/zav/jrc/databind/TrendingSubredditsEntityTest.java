@@ -26,22 +26,22 @@ import org.junit.jupiter.api.Test;
  */
 public class TrendingSubredditsEntityTest extends AbstractTest {
   static TrendingSubredditsEntity trendingSubreddits;
-  
+
   @BeforeAll
   public static void setUpAll() {
     trendingSubreddits = read("TrendingSubreddits.json", TrendingSubredditsEntity.class);
   }
-  
+
   @Test
   public void testGetCommentCount() {
     assertEquals(trendingSubreddits.getCommentCount(), 4);
   }
-  
+
   @Test
   public void testGetCommentUrl() {
     assertEquals(trendingSubreddits.getCommentUrl(), "/r/trendingsubreddits/comments/l5xdvw/trending_subreddits_for_20210127_rsmallstreetbets/");
   }
-  
+
   @Test
   public void testGetSubredditNames() {
     assertEquals(trendingSubreddits.getSubredditNames().size(), 5);

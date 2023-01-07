@@ -27,7 +27,6 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
@@ -55,22 +54,22 @@ public class Account {
   private static final Cache<String, AccountEntity> accountCache = Caffeine.newBuilder()
         .expireAfterWrite(Duration.ofDays(1))
         .build();
-  
+
   private static final Logger LOGGER = LoggerFactory.getLogger(Account.class);
-  
+
   private final Client client;
   private final String name;
-  
+
   public Account(Client client, String name) {
     this.client = client;
     this.name = name;
   }
-  
+
   @Override
   public String toString() {
     return String.format("%s[%s]", getClass(), name);
   }
-  
+
   /**
    * Blocks this account.
    *
@@ -84,7 +83,7 @@ public class Account {
           .addParam("name", name)
           .post();
   }
-  
+
   /**
    * Unblocks this account.
    *
@@ -93,7 +92,7 @@ public class Account {
    */
   public void unblock() throws FailedRequestException {
     AccountEntity self = getAbout();
-    
+
     client.newRequest()
           .setEndpoint(Users.POST_API_UNFRIEND)
           .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
@@ -102,7 +101,7 @@ public class Account {
           .addParam("type", "enemy")
           .post();
   }
-  
+
   /**
    * Reports this user.
    *
@@ -114,13 +113,13 @@ public class Account {
     Map<String, String> body = new HashMap<>();
     body.put("user", name);
     body.put("reason", reason);
-    
+
     client.newRequest()
           .setEndpoint(Users.POST_API_REPORT_USER)
           .setBody(body, RequestBuilder.BodyType.JSON)
           .post();
   }
-  
+
   /**
    * Befriends this account.<br>
    * May be used to update the note of the account, in case it already is a 'friend'.
@@ -135,16 +134,16 @@ public class Account {
     if (note != null) {
       body.put("note", note);
     }
-    
+
     String response = client.newRequest()
           .setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME)
           .setBody(body, RequestBuilder.BodyType.JSON)
           .setArgs(name)
           .put();
-    
+
     return Things.transform(response, UserEntity.class);
   }
-  
+
   /**
    * Unfriends this user.
    *
@@ -158,7 +157,7 @@ public class Account {
           .setArgs(name)
           .delete();
   }
-  
+
   /**
    * Checks whether the username of this account has already been taken.
    *
@@ -171,10 +170,10 @@ public class Account {
           .setEndpoint(Users.GET_API_USERNAME_AVAILABLE)
           .addParam("user", name)
           .get();
-    
+
     return Things.transform(response, Boolean.class);
   }
-  
+
   /**
    * Get information about this specified 'friend', such as notes.
    *
@@ -187,10 +186,10 @@ public class Account {
           .setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME)
           .setArgs(name)
           .get();
-    
+
     return Things.transform(response, UserEntity.class);
   }
-  
+
   /**
    * Returns a stream over all awards this account possesses.
    *
@@ -203,13 +202,13 @@ public class Account {
           .setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES)
           .setArgs(name)
           .get();
-  
+
     return Things.transformThing(response, TrophyListEntity.class)
           .getTrophies()
           .stream()
           .map(thing -> Things.transformThing(thing, AwardEntity.class));
   }
-  
+
   /**
    * Returns the Entity object of this account.
    *
@@ -219,24 +218,24 @@ public class Account {
    */
   public AccountEntity getAbout() throws FailedRequestException {
     @Nullable AccountEntity result = accountCache.getIfPresent(name);
-    
+
     // Only perform a new request if the account hasn't been cached.
     if (result == null) {
       String response = client.newRequest()
             .setEndpoint(Users.GET_USER_USERNAME_ABOUT)
             .setArgs(name)
             .get();
-  
+
       result = Things.transformThing(response, AccountEntity.class);
-  
+
       accountCache.put(name, result);
-      
+
       LOGGER.debug("Cached new account with name {}.", name);
     }
-    
+
     return result;
   }
-  
+
   /**
    * Returns a stream over all comments that this account has submitted.
    *
@@ -254,7 +253,7 @@ public class Account {
 
     return Things.transformListingOfThings(response, CommentEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links and comments that this account has downvoted.
    *
@@ -269,10 +268,10 @@ public class Account {
           .setParams(params)
           .setArgs(name)
           .get();
-    
+
     return Things.transformListing(response, ThingEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links and comments that this account has gilded.
    *
@@ -287,10 +286,10 @@ public class Account {
           .setParams(params)
           .setArgs(name)
           .get();
-    
+
     return Things.transformListing(response, ThingEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links and comments that this account has hidden.
    *
@@ -305,10 +304,10 @@ public class Account {
           .setParams(params)
           .setArgs(name)
           .get();
-    
+
     return Things.transformListing(response, ThingEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links and comments that this account has submitted.
    *
@@ -323,10 +322,10 @@ public class Account {
           .setParams(params)
           .setArgs(name)
           .get();
-    
+
     return Things.transformListing(response, ThingEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links and comments that this account has saved.
    *
@@ -341,10 +340,10 @@ public class Account {
           .setParams(params)
           .setArgs(name)
           .get();
-    
+
     return Things.transformListing(response, ThingEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links that this account has submitted.
    *
@@ -362,7 +361,7 @@ public class Account {
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
-  
+
   /**
    * Returns a stream over all links and comments that this account has upvoted.
    *
@@ -377,7 +376,7 @@ public class Account {
           .setParams(params)
           .setArgs(name)
           .get();
-    
+
     return Things.transformListing(response, ThingEntity.class);
   }
 }

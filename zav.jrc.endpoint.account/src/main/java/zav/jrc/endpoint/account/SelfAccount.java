@@ -19,7 +19,6 @@ package zav.jrc.endpoint.account;
 import java.util.Map;
 import java.util.stream.Stream;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-
 import zav.jrc.api.endpoint.Account;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
@@ -42,15 +41,15 @@ import zav.jrc.databind.UserListEntity;
  */
 @NonNullByDefault
 public class SelfAccount {
-  
+
   private final Client client;
-  
+
   public SelfAccount(Client client) {
     this.client = client;
   }
-  
+
   // Account
-  
+
   /**
    * Returns the Entity object of this account.
    *
@@ -62,10 +61,10 @@ public class SelfAccount {
     String response = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME)
           .get();
-    
+
     return Things.transform(response, SelfAccountEntity.class);
   }
-  
+
   /**
    * Returns a stream over the karma of this account. Each entry corresponds to the karma gained
    * from a single subreddit. The sum of those entries results in the total account karma.
@@ -78,12 +77,12 @@ public class SelfAccount {
     String response = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_KARMA)
           .get();
-  
+
     return Things.transform(response, KarmaListEntity.class)
           .getData()
           .stream();
   }
-  
+
   /**
    * Returns the Entity object of this account preferences.
    *
@@ -95,10 +94,10 @@ public class SelfAccount {
     String response = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_PREFS)
           .get();
-  
+
     return Things.transform(response, PreferencesEntity.class);
   }
-  
+
   /**
    * Updates the account preferences.
    *
@@ -111,10 +110,10 @@ public class SelfAccount {
           .setEndpoint(Account.PATCH_API_V1_ME_PREFS)
           .setBody(Things.transform(preferences, Map.class), RequestBuilder.BodyType.JSON)
           .patch();
-  
+
     return Things.transform(response, PreferencesEntity.class);
   }
-  
+
   /**
    * Returns a stream over all awards this account possesses.
    *
@@ -126,13 +125,13 @@ public class SelfAccount {
     String response = client.newRequest()
           .setEndpoint(Account.GET_API_V1_ME_TROPHIES)
           .get();
-  
+
     return Things.transformThing(response, TrophyListEntity.class)
           .getTrophies()
           .stream()
           .map(thing -> Things.transformThing(thing, AwardEntity.class));
   }
-  
+
   /**
    * Returns a stream over all users that have been blocked by this account.
    *
@@ -144,13 +143,13 @@ public class SelfAccount {
     String response = client.newRequest()
           .setEndpoint(Account.GET_PREFS_BLOCKED)
           .get();
-  
+
     return Things.transform(response, UserListEntity.class)
           .getData()
           .getChildren()
           .stream();
   }
-  
+
   /**
    * Returns a stream over all users that have been befriended by this account.
    *
@@ -162,7 +161,7 @@ public class SelfAccount {
     String response = client.newRequest()
           .setEndpoint(Account.GET_PREFS_FRIENDS)
           .get();
-  
+
     // @See https://redd.it/p19tsh
     // The first structure matches that of GET /api/v1/me/friends.
     // The second one is always empty.
@@ -172,7 +171,7 @@ public class SelfAccount {
           .getChildren()
           .stream();
   }
-  
+
   /**
    * Returns a stream over all users that are trusted by this account.
    *
@@ -184,21 +183,21 @@ public class SelfAccount {
     String response = client.newRequest()
           .setEndpoint(Account.GET_PREFS_TRUSTED)
           .get();
-    
+
     System.out.println(Things.transform(response, UserListEntity.class).getData());
-  
+
     return Things.transform(response, UserListEntity.class)
           .getData()
           .getChildren()
           .stream();
   }
-  
+
   //----------------------------------------------------------------------------------------------//
   //                                                                                              //
   //    Subreddits                                                                                //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Returns a stream over all subreddits this account has contributed to.
    *
@@ -211,10 +210,10 @@ public class SelfAccount {
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all subreddits this account moderates.
    *
@@ -227,10 +226,10 @@ public class SelfAccount {
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all subreddits this account is subscribed to that contain hosted video
    * links.
@@ -244,10 +243,10 @@ public class SelfAccount {
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
-  
+
   /**
    * Returns a stream over all subreddits this account is subscribed to.
    *
@@ -260,7 +259,7 @@ public class SelfAccount {
           .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER)
           .setParams(params)
           .get();
-  
+
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
 }

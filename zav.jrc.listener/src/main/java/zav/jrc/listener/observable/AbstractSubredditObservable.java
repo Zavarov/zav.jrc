@@ -26,11 +26,11 @@ import zav.jrc.listener.observer.SubredditObserver;
 @NonNullByDefault
 public abstract class AbstractSubredditObservable {
   private final Client client;
-  
+
   public AbstractSubredditObservable(Client client) {
     this.client = client;
   }
-  
+
   public SubredditObserver getObserver(String subreddit) {
     return new SubredditObserver(client, subreddit);
   }

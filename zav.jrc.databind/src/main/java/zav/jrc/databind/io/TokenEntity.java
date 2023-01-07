@@ -18,7 +18,6 @@ package zav.jrc.databind.io;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
-
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;
@@ -40,7 +39,7 @@ public class TokenEntity extends TokenTOPEntity {
    */
   @JsonIgnore
   private final LocalDateTime creationTime = LocalDateTime.now();
-  
+
   /**
    * Checks if the access token has expired. In order to allow a bit of tolerance, the access
    * token will be treated as expired, the moment it is less than one minute valid. This minimizes
@@ -57,7 +56,7 @@ public class TokenEntity extends TokenTOPEntity {
     //has to be requested a minute before the current one expires
     return expirationTime.minusMinutes(1).isBefore(LocalDateTime.now());
   }
-  
+
   public static TokenEntity read(String source) throws IOException {
     return new ObjectMapper().readValue(source, TokenEntity.class);
   }

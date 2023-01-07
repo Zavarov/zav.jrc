@@ -36,7 +36,7 @@ import zav.jrc.databind.SubredditEntity;
  * Checks whether the calls to the frontpage-related endpoints return the expected response.
  */
 public class FrontPageTest {
-  
+
   Client client;
   FrontPage frontPage;
 
@@ -51,58 +51,58 @@ public class FrontPageTest {
     client.login(Duration.TEMPORARY);
     frontPage = new FrontPage(client);
   }
-  
+
   @Test
   public void testGetBest() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getBest().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Omfgg!!!");
   }
-  
+
   @Test
   public void testGetControversial() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getControversial().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Evil Texas legislators smiling as they sign law to take away rights");
   }
-  
+
   @Test
   public void testGetHot() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getHot().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Omfgg!!!");
   }
-  
+
   @Test
   public void testGetNew() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getNew().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Uk. i can print 600*600*800 on resin printer anyone interested?");
   }
-  
+
   @Test
   public void testGetRandom() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getRandom().collect(Collectors.toList());
     assertEquals(response.size(), 1);
     assertEquals(response.get(0).getTitle(), "Philadelphia’s Vine Street Expressway after Hurricane Ida 02 September 2021");
   }
-  
+
   @Test
   public void testGetRising() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getRising().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Come again?");
   }
-  
+
   @Test
   public void testGetTop() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getTop().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "People of Reddit, it is our duty!");
   }
-  
+
   // Search
-  
+
   @Test
   public void testSearch() throws FailedRequestException {
     Parameter param = new Parameter("q", "bananapics");
@@ -110,9 +110,9 @@ public class FrontPageTest {
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Having only one power hotkey is crazytown bananapants");
   }
-  
+
   // Subreddits
-  
+
   @Test
   public void testSearchRedditNames() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
@@ -124,7 +124,7 @@ public class FrontPageTest {
     assertEquals(response.get(3), "bananarchist");
     assertEquals(response.get(4), "Bananafight");
   }
-  
+
   @Test
   public void testQuerySubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
@@ -132,7 +132,7 @@ public class FrontPageTest {
     assertEquals(response.size(), 9);
     assertEquals(response.get(0).getName(), "banana");
   }
-  
+
   @Test
   public void testGetSubredditAutocomplete() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
@@ -140,34 +140,34 @@ public class FrontPageTest {
     assertEquals(response.size(), 5);
     assertEquals(response.get(0).getDisplayName(), "banana");
   }
-  
+
   @Test
   public void testGetDefaultSubreddits() throws FailedRequestException {
     List<SubredditEntity> response = frontPage.getDefaultSubreddits().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "gadgets");
   }
-  
+
   @Test
   public void testGetGoldSubreddits() throws FailedRequestException {
     List<SubredditEntity> response = frontPage.getGoldSubreddits().collect(Collectors.toList());
     assertTrue(response.isEmpty());
   }
-  
+
   @Test
   public void testGetNewSubreddits() throws FailedRequestException {
     List<SubredditEntity> response = frontPage.getNewSubreddits().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "pusaneko");
   }
-  
+
   @Test
   public void testGetPopularSubreddits() throws FailedRequestException {
     List<SubredditEntity> response = frontPage.getPopularSubreddits().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Home");
   }
-  
+
   @Test
   public void testSearchSubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
@@ -175,21 +175,21 @@ public class FrontPageTest {
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "banana");
   }
-  
+
   @Test
   public void testGetNewUserSubreddits() throws FailedRequestException {
     List<SubredditEntity> response = frontPage.getNewUserSubreddits().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "");
   }
-  
+
   @Test
   public void testGetPopularUserSubreddits() throws FailedRequestException {
     List<SubredditEntity> response = frontPage.getPopularUserSubreddits().collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Selben");
   }
-  
+
   @Test
   public void testGetSearchUserSubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");

@@ -30,7 +30,7 @@ public class ErrorResponseEntityTest extends AbstractTest {
   static ErrorResponseEntity error;
   static ErrorResponseDataEntity data;
   static List<List<String>> messages;
-  
+
   /**
    * Instantiates the error response DTO and retrieves its error messages.
    */
@@ -40,7 +40,7 @@ public class ErrorResponseEntityTest extends AbstractTest {
     data = error.getJson();
     messages = data.getErrors();
   }
-  
+
   @Test
   public void testMessages() {
     assertEquals(messages.get(0).size(), 3);

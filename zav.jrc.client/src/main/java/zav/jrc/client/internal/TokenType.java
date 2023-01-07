@@ -34,7 +34,7 @@ public enum TokenType {
    * expired.
    */
   REFRESH_TOKEN;
-  
+
   /**
    * The resulting string can be used in the JSON request to identify the type of token.
    *

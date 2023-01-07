@@ -29,7 +29,7 @@ public class TrophyListEntityTest extends AbstractTest {
   static TrophyListEntity trophyList;
   static AwardEntity threeYearClub;
   static AwardEntity verifiedEmail;
-  
+
   /**
    * Instantiates the trophy list DTO and retrieves the individual awards.
    */
@@ -39,12 +39,12 @@ public class TrophyListEntityTest extends AbstractTest {
     threeYearClub = read(trophyList.getTrophies().get(0).getData(), AwardEntity.class);
     verifiedEmail = read(trophyList.getTrophies().get(1).getData(), AwardEntity.class);
   }
-  
+
   @Test
   public void testGetTrophies() {
     assertEquals(trophyList.getTrophies().size(), 2);
   }
-  
+
   @Test
   public void testGetThreeYearClubTrophy() {
     assertEquals(threeYearClub.getIcon70(), "https://www.redditstatic.com/awards2/3_year_club-70.png");
@@ -56,7 +56,7 @@ public class TrophyListEntityTest extends AbstractTest {
     assertNull(threeYearClub.getId());
     assertNull(threeYearClub.getDescription());
   }
-  
+
   @Test
   public void testGetVerifiedEmailTrophy() {
     assertEquals(verifiedEmail.getIcon70(), "https://www.redditstatic.com/awards2/verified_email-70.png");

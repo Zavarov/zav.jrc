@@ -38,7 +38,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @Nullable
   private List<LinkEntity> history;
   private final LinkRequester requester;
-  
+
   public SubredditObserver(Client client, String subreddit) {
     this.requester = new LinkRequester(client, subreddit);
   }

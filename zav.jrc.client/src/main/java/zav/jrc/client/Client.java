@@ -52,7 +52,7 @@ public abstract class Client {
   private final OkHttpClient http;
   private final String userAgent;
   private final String credentials;
-  
+
   /**
    * Initializes a new Reddit client.
    *
@@ -65,7 +65,7 @@ public abstract class Client {
     this.rateLimiter = new RateLimiter();
     this.http = new OkHttpClient();
   }
-  
+
   protected void addShutdownHook() {
     // Revoke the (temporary) access token before shutting down
     Runtime.getRuntime().addShutdownHook(new Thread(() -> {
@@ -98,14 +98,14 @@ public abstract class Client {
     if (RequestBuilder.WWW.equals(request.header("Host"))) {
       return _send(request);
     }
-    
+
     Objects.requireNonNull(token);
-    
+
     //Make sure that the token is still valid
     if (token.isExpired()) {
       refresh();
     }
-    
+
     return _send(request);
   }
 
@@ -126,17 +126,17 @@ public abstract class Client {
     try {
       //Wait if we're making too many requests at once
       rateLimiter.acquire();
-      
+
       LOGGER.debug("--> {}", request);
       Response response = http.newCall(request).execute();
       rateLimiter.update(response);
       LOGGER.debug("<-- {}", response);
       LOGGER.debug("{} calls used, {} remain, {} seconds until next period", rateLimiter.getUsed(), rateLimiter.getRemaining(), rateLimiter.getReset());
-      
+
       if (!response.isSuccessful()) {
         throw FailedRequestException.wrap(new HttpException(response.code(), response.message()));
       }
-      
+
       @Nullable ResponseBody responseBody = response.body();
       return Objects.requireNonNull(responseBody).string();
     } catch (IOException | InterruptedException e) {
@@ -165,7 +165,7 @@ public abstract class Client {
    */
   public synchronized void refresh() throws FailedRequestException {
     assert token != null;
-    
+
     LOGGER.info("Refresh access token.");
     Objects.requireNonNull(token);
     Objects.requireNonNull(token.getRefreshToken());
@@ -173,7 +173,7 @@ public abstract class Client {
     Map<Object, Object> body = new HashMap<>();
     body.put("grant_type", GrantType.REFRESH);
     body.put("refresh_token", token.getRefreshToken());
-    
+
     String response = newTokenRequest()
           .setBody(body, RequestBuilder.BodyType.FORM)
           .post();
@@ -190,7 +190,7 @@ public abstract class Client {
   //    Logout                                                                                    //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Invalidates both the access and (if present) the refresh token.<br>
    * Returns immediately in case the application isn't authenticated.
@@ -216,7 +216,7 @@ public abstract class Client {
     if (token == null || token.getRefreshToken() == null) {
       return;
     }
-  
+
     LOGGER.info("Revoke refresh token.");
 
     Map<Object, Object> body = new HashMap<>();
@@ -237,7 +237,7 @@ public abstract class Client {
     if (token == null) {
       return;
     }
-    
+
     LOGGER.info("Revoke access token.");
 
     Map<Object, Object> body = new HashMap<>();
@@ -255,7 +255,7 @@ public abstract class Client {
   //    request                                                                                   //
   //                                                                                              //
   //----------------------------------------------------------------------------------------------//
-  
+
   /**
    * Creates a new builder instance and initializes it with the {@link HttpHeaders#AUTHORIZATION}
    * and {@link HttpHeaders#USER_AGENT} headers, based on the configuration files.
@@ -264,14 +264,14 @@ public abstract class Client {
    */
   public RequestBuilder newRequest() {
     assert token != null;
-    
+
     Objects.requireNonNull(token);
-    
+
     return new RequestBuilder(this)
           .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
           .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
-  
+
   protected RequestBuilder newTokenRequest() {
     return new RequestBuilder(this)
       .setHost(RequestBuilder.WWW)
@@ -279,7 +279,7 @@ public abstract class Client {
       .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
       .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
-  
+
   protected RequestBuilder newTokenRevokeRequest() {
     return new RequestBuilder(this)
           .setHost(RequestBuilder.WWW)

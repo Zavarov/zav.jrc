@@ -139,17 +139,17 @@ public enum Scope {
    * Select my subreddit flair. Change link flair on my submissions.
    */
   FLAIR("flair"),
-  
+
   /**
    * A wildcard indicating that all scopes are used.
    */
   ANY("*");
-  
+
   /**
    * The scope name.
    */
   private final String name;
-  
+
   /**
    * Assigns each scope a name. The name matches the one used by Reddit.
    *
@@ -158,7 +158,7 @@ public enum Scope {
   Scope(String name) {
     this.name = name;
   }
-  
+
   /**
    * The resulting string can be used in the JSON request to specify the scope requested by the
    * application.

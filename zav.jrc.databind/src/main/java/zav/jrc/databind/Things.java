@@ -35,7 +35,7 @@ import zav.jrc.databind.core.ListingEntity;
 @NonNullByDefault
 public class Things {
   private static final Map<String, Class<?>> KINDS = new HashMap<>();
-  
+
   static {
     KINDS.put("t1", CommentEntity.class);
     KINDS.put("t2", AccountEntity.class);
@@ -47,7 +47,7 @@ public class Things {
     KINDS.put("TrophyList", TrophyListEntity.class);
     KINDS.put("subreddit_settings", SubredditSettingsEntity.class);
   }
-  
+
   /**
    * Deserialized all objects contained by the {@link ListingEntity}.<br>
    * The listing is contained within a {@link ThingEntity}.
@@ -60,7 +60,7 @@ public class Things {
   public static <T> Stream<T> transformListingOfThings(String source, Class<T> target) {
     return transformListingOfThings(transformThing(source, ListingEntity.class), target);
   }
-  
+
   /**
    * Deserialized all objects contained by the {@link ListingEntity}.
    *
@@ -72,14 +72,14 @@ public class Things {
   public static <T> Stream<T> transformListingOfThings(ListingEntity source, Class<T> target) {
     List<ThingEntity> things = transformListing(source, ThingEntity.class).collect(Collectors.toList());
     List<T> result = new ArrayList<>();
-    
+
     for (ThingEntity thing : things) {
       result.add(transformThing(thing, target));
     }
-    
+
     return result.stream();
   }
-  
+
   /**
    * Deserialized all objects contained by the {@link ListingEntity}.<br>
    *    * The listing is contained within a {@link ThingEntity}.
@@ -92,7 +92,7 @@ public class Things {
   public static <T> Stream<T> transformListing(String source, Class<T> target) {
     return transformListing(transformThing(source, ListingEntity.class), target);
   }
-  
+
   /**
    * Deserialized all objects contained by the {@link ListingEntity}.
    *
@@ -103,14 +103,14 @@ public class Things {
    */
   public static <T> Stream<T> transformListing(ListingEntity source, Class<T> target) {
     List<T> objects = new ArrayList<>();
-    
+
     for (Object object : source.getChildren()) {
       objects.add(transform(object, target));
     }
-    
+
     return objects.stream();
   }
-  
+
   /**
    * Deserializes the object contained by the {@link ThingEntity}.<br>
    * {@link ThingEntity#getKind()} has to match the desired class.
@@ -123,7 +123,7 @@ public class Things {
   public static <T> T transformThing(String source, Class<T> target)  {
     return transformThing(transform(source, ThingEntity.class), target);
   }
-  
+
   /**
    * Deserializes the object contained by the {@link ThingEntity}.<br>
    * {@link ThingEntity#getKind()} has to match the desired class.
@@ -142,7 +142,7 @@ public class Things {
     // Data is internally a map => Convert back to JSON
     return transform(source.getData(), target);
   }
-  
+
   /**
    * Deserializes the provided Java object.
    *
@@ -160,7 +160,7 @@ public class Things {
       throw new IllegalArgumentException(e);
     }
   }
-  
+
   /**
    * Deserializes the provided JSON string.
    *

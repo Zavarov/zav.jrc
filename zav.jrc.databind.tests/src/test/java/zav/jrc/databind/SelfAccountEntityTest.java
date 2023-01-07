@@ -27,47 +27,47 @@ import org.junit.jupiter.api.Test;
  */
 public class SelfAccountEntityTest extends AbstractTest {
   static SelfAccountEntity selfAccount;
-  
+
   @BeforeAll
   public static void setUpAll() {
     selfAccount = read("SelfAccount.json", SelfAccountEntity.class);
   }
-  
+
   @Test
   public void testGetOver18() {
     assertTrue(selfAccount.getOver18());
   }
-  
+
   @Test
   public void testGetCommentKarma() {
     assertEquals(selfAccount.getCommentKarma(), 1707);
   }
-  
+
   @Test
   public void testGetCreatedUtc() {
     assertEquals(selfAccount.getCreatedUtc(), 1471206215.0);
   }
-  
+
   @Test
   public void testGetNumberOfFriends() {
     assertEquals(selfAccount.getNumberOfFriends(), 1);
   }
-  
+
   @Test
   public void testGetCreated() {
     assertEquals(selfAccount.getCreated(), 1471235015.0);
   }
-  
+
   @Test
   public void testGetTotalKarma() {
     assertEquals(selfAccount.getTotalKarma(), 1732);
   }
-  
+
   @Test
   public void testGetLinkKarma() {
     assertEquals(selfAccount.getLinkKarma(), 25);
   }
-  
+
   @Test
   public void testGetIconImage() {
     assertEquals(selfAccount.getIconImage(), "https://styles.redditmedia.com/t5_abcdef/styles/profileIcon_foo.png");

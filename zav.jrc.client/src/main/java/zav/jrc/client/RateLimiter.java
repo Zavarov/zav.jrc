@@ -54,7 +54,7 @@ public class RateLimiter {
   public long getReset() {
     return reset;
   }
-  
+
   /**
    * Updates the number of requests that have been made and the number of requests that still can
    * be made within the current window, as well as the time in seconds until the next window starts.
@@ -68,19 +68,19 @@ public class RateLimiter {
     if (value != null) {
       used = (long) Double.parseDouble(value);
     }
-    
+
     value = response.header(REMAINING);
     if (value != null) {
       remaining = (long) Double.parseDouble(value);
     }
-    
+
     value = response.header(RESET);
     if (value != null) {
       //In case of fractional seconds, round up
       reset = (long) Math.ceil(Double.parseDouble(value));
     }
   }
-  
+
   /**
    * In case a request can be made within the current window, the method returns immediately.
    * Otherwise, the method will block until the start of the next request window.
