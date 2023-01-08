@@ -24,7 +24,8 @@ import org.junit.jupiter.api.Test;
 import zav.jrc.databind.AbstractTest;
 
 /**
- * Checks whether the attributes of a reddit token entity have been properly deserialized.
+ * Checks whether the attributes of a reddit token entity have been properly
+ * deserialized.
  */
 public class TokenEntityTest extends AbstractTest {
   static TokenEntity token;

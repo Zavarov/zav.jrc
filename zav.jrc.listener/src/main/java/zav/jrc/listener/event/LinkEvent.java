@@ -31,7 +31,6 @@ public class LinkEvent implements Event<LinkEntity> {
     this.source = source;
   }
 
-
   @Override
   public LinkEntity getSource() {
     return source;

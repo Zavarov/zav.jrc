@@ -29,8 +29,10 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public final class Widgets {
   /**
    * Add and return a widget to the specified subreddit.<br>
-   * Accepts a JSON payload representing the widget data to be saved. Valid payloads differ in shape
-   * based on the "kind" attribute passed on the root object, which must be a valid widget kind.
+   * Accepts a JSON payload representing the widget data to be saved. Valid
+   * payloads differ in shape based on the "kind" attribute passed on the root
+   * object, which must be a valid widget kind.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -236,12 +238,14 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIDGET =
-        new Endpoint("r", "{subreddit}", "api", "widget");
+  public static final Endpoint POST_R_SUBREDDIT_API_WIDGET = new Endpoint("r", "{subreddit}", "api",
+      "widget");
   /**
    * Add and return a widget to the specified subreddit.<br>
-   * Accepts a JSON payload representing the widget data to be saved. Valid payloads differ in shape
-   * based on the "kind" attribute passed on the root object, which must be a valid widget kind.
+   * Accepts a JSON payload representing the widget data to be saved. Valid
+   * payloads differ in shape based on the "kind" attribute passed on the root
+   * object, which must be a valid widget kind.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -447,10 +451,10 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_WIDGET =
-        new Endpoint("api", "widget");
+  public static final Endpoint POST_API_WIDGET = new Endpoint("api", "widget");
   /**
    * Delete a widget from the specified subreddit (if it exists).
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -459,10 +463,11 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint DELETE_R_SUBREDDIT_API_WIDGET_WIDGET_ID =
-        new Endpoint("r", "{subreddit}", "api", "widget", "{widget_id}");
+  public static final Endpoint DELETE_R_SUBREDDIT_API_WIDGET_WIDGET_ID = new Endpoint("r",
+      "{subreddit}", "api", "widget", "{widget_id}");
   /**
    * Delete a widget from the specified subreddit (if it exists).
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -471,12 +476,14 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint DELETE_API_WIDGET_WIDGET_ID =
-        new Endpoint("api", "widget", "{widget_id}");
+  public static final Endpoint DELETE_API_WIDGET_WIDGET_ID = new Endpoint("api", "widget",
+      "{widget_id}");
   /**
    * Update and return the data of a widget.<br>
-   * Accepts a JSON payload representing the widget data to be saved. Valid payloads differ in shape
-   * based on the "kind" attribute passed on the root object, which must be a valid widget kind.
+   * Accepts a JSON payload representing the widget data to be saved. Valid
+   * payloads differ in shape based on the "kind" attribute passed on the root
+   * object, which must be a valid widget kind.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -718,12 +725,14 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PUT_R_SUBREDDIT_API_WIDGET_WIDGET_ID =
-        new Endpoint("r", "{subreddit}", "api", "widget", "{widget_id}");
+  public static final Endpoint PUT_R_SUBREDDIT_API_WIDGET_WIDGET_ID = new Endpoint("r",
+      "{subreddit}", "api", "widget", "{widget_id}");
   /**
    * Update and return the data of a widget.<br>
-   * Accepts a JSON payload representing the widget data to be saved. Valid payloads differ in shape
-   * based on the "kind" attribute passed on the root object, which must be a valid widget kind.
+   * Accepts a JSON payload representing the widget data to be saved. Valid
+   * payloads differ in shape based on the "kind" attribute passed on the root
+   * object, which must be a valid widget kind.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -965,14 +974,16 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PUT_API_WIDGET_WIDGET_ID =
-        new Endpoint("api", "widget", "{widget_id}");
+  public static final Endpoint PUT_API_WIDGET_WIDGET_ID = new Endpoint("api", "widget",
+      "{widget_id}");
   /**
    * Acquire and return an upload lease to s3 temp bucket.<br>
-   * The return value of this function is a json object containing credentials for uploading assets
-   * to S3 bucket, S3 url for upload request and the key to use for uploading. Using this lease the
-   * client will upload the emoji image to S3 temp bucket (included as part of the S3 URL).<br>
+   * The return value of this function is a json object containing credentials for
+   * uploading assets to S3 bucket, S3 url for upload request and the key to use
+   * for uploading. Using this lease the client will upload the emoji image to S3
+   * temp bucket (included as part of the S3 URL).<br>
    * This lease is used by S3 to verify that the upload is authorized.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -982,14 +993,16 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIDGET_IMAGE_UPLOAD_S3 =
-        new Endpoint("r", "{subreddit}", "api", "widget_image_upload_s3");
+  public static final Endpoint POST_R_SUBREDDIT_API_WIDGET_IMAGE_UPLOAD_S3 = new Endpoint("r",
+      "{subreddit}", "api", "widget_image_upload_s3");
   /**
    * Acquire and return an upload lease to s3 temp bucket.<br>
-   * The return value of this function is a json object containing credentials for uploading assets
-   * to S3 bucket, S3 url for upload request and the key to use for uploading. Using this lease the
-   * client will upload the emoji image to S3 temp bucket (included as part of the S3 URL).<br>
+   * The return value of this function is a json object containing credentials for
+   * uploading assets to S3 bucket, S3 url for upload request and the key to use
+   * for uploading. Using this lease the client will upload the emoji image to S3
+   * temp bucket (included as part of the S3 URL).<br>
    * This lease is used by S3 to verify that the upload is authorized.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -999,10 +1012,11 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_WIDGET_IMAGE_UPLOAD_S3 =
-        new Endpoint("api", "widget_image_upload_s3");
+  public static final Endpoint POST_API_WIDGET_IMAGE_UPLOAD_S3 = new Endpoint("api",
+      "widget_image_upload_s3");
   /**
    * Update the order of widget_ids in the specified subreddit.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -1016,10 +1030,11 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PATCH_R_SUBREDDIT_API_WIDGET_ORDER_SECTION =
-        new Endpoint("r", "{subreddit}", "api", "widget_order", "{section}");
+  public static final Endpoint PATCH_R_SUBREDDIT_API_WIDGET_ORDER_SECTION = new Endpoint("r",
+      "{subreddit}", "api", "widget_order", "{section}");
   /**
    * Update the order of widget_ids in the specified subreddit.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -1033,10 +1048,11 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PATCH_API_WIDGET_ORDER_SECTION =
-        new Endpoint("api", "widget_order", "{section}");
+  public static final Endpoint PATCH_API_WIDGET_ORDER_SECTION = new Endpoint("api", "widget_order",
+      "{section}");
   /**
    * Return all widgets for the given subreddit.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -1045,10 +1061,11 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_API_WIDGETS =
-        new Endpoint("r", "{subreddit}", "api", "widgets");
+  public static final Endpoint GET_R_SUBREDDIT_API_WIDGETS = new Endpoint("r", "{subreddit}", "api",
+      "widgets");
   /**
    * Return all widgets for the given subreddit.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -1057,6 +1074,5 @@ public final class Widgets {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_API_WIDGETS =
-        new Endpoint("api", "widgets");
+  public static final Endpoint GET_API_WIDGETS = new Endpoint("api", "widgets");
 }

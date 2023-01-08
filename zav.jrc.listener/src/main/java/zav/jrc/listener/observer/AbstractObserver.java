@@ -24,8 +24,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.FailedRequestException;
 
 /**
- * This class provides a skeleton implementation of the observer interface. All observers should
- * inherit from this class.
+ * This class provides a skeleton implementation of the observer interface. All
+ * observers should inherit from this class.
  *
  * @param <T> The type of listeners that are observed by this class.
  */

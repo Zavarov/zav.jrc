@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public class Wiki {
   /**
    * Allow/deny username to edit this wiki {@code page}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -40,10 +41,11 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ACT =
-        new Endpoint("r", "{subreddit}", "api", "wiki", "allowedit", "{act}");
+  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ACT = new Endpoint("r",
+      "{subreddit}", "api", "wiki", "allowedit", "{act}");
   /**
    * Allow/deny username to edit this wiki {@code page}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -55,10 +57,11 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_DEL =
-        new Endpoint(POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ACT.getPath("{subreddit}", "del"));
+  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_DEL = new Endpoint(
+      POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ACT.getPath("{subreddit}", "del"));
   /**
    * Allow/deny username to edit this wiki {@code page}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -70,10 +73,11 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ADD =
-        new Endpoint(POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ACT.getPath("{subreddit}", "add"));
+  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ADD = new Endpoint(
+      POST_R_SUBREDDIT_API_WIKI_ALLOWEDIT_ACT.getPath("{subreddit}", "add"));
   /**
    * Edit a wiki {@code}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -87,10 +91,11 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_EDIT =
-        new Endpoint("r", "{subreddit}", "api", "wiki", "edit");
+  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_EDIT = new Endpoint("r", "{subreddit}",
+      "api", "wiki", "edit");
   /**
    * Toggle the public visibility of a wiki page revision.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -101,10 +106,11 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_HIDE =
-        new Endpoint("r", "{subreddit}", "api", "wiki", "hide");
+  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_HIDE = new Endpoint("r", "{subreddit}",
+      "api", "wiki", "hide");
   /**
    * Revert a wiki {@code page} to {@code revision}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -115,11 +121,12 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_REVERT =
-        new Endpoint("r", "{subreddit}", "api", "wiki", "revert");
+  public static final Endpoint POST_R_SUBREDDIT_API_WIKI_REVERT = new Endpoint("r", "{subreddit}",
+      "api", "wiki", "revert");
   /**
    * Retrieve a list of discussions about this wiki {@code page}.<br>
    * This endpoint is a listing.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -134,15 +141,16 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_WIKI_DISCUSSIONS_PAGE =
-        new Endpoint("r", "{subreddit}", "wiki", "discussions", "{page}");
+  public static final Endpoint GET_R_SUBREDDIT_WIKI_DISCUSSIONS_PAGE = new Endpoint("r",
+      "{subreddit}", "wiki", "discussions", "{page}");
   /**
    * Retrieve a list of wiki pages in this subreddit.
    */
-  public static final Endpoint GET_R_SUBREDDIT_WIKI_PAGES =
-        new Endpoint("r", "{subreddit}", "wiki", "pages");
+  public static final Endpoint GET_R_SUBREDDIT_WIKI_PAGES = new Endpoint("r", "{subreddit}", "wiki",
+      "pages");
   /**
    * Retrieve a list of recently changed wiki pages in this subreddit.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -156,11 +164,12 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_WIKI_REVISIONS =
-        new Endpoint("r", "{subreddit}", "wiki", "revisions");
+  public static final Endpoint GET_R_SUBREDDIT_WIKI_REVISIONS = new Endpoint("r", "{subreddit}",
+      "wiki", "revisions");
   /**
    * Retrieve a list of revisions of this wiki {@code page}.<br>
    * This endpoint is a {@link ListingEntity Listing}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -175,10 +184,11 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_WIKI_REVISIONS_PAGE =
-        new Endpoint("r", "{subreddit}", "wiki", "revisions", "{page}");
+  public static final Endpoint GET_R_SUBREDDIT_WIKI_REVISIONS_PAGE = new Endpoint("r",
+      "{subreddit}", "wiki", "revisions", "{page}");
   /**
    * Retrieve the current permission settings for {@code page}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -187,10 +197,11 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_WIKI_SETTINGS_PAGE =
-        new Endpoint("r", "{subreddit}", "wiki", "settings", "{page}");
+  public static final Endpoint GET_R_SUBREDDIT_WIKI_SETTINGS_PAGE = new Endpoint("r", "{subreddit}",
+      "wiki", "settings", "{page}");
   /**
    * Update the permissions and visibility of wiki {@code page}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -202,12 +213,13 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_WIKI_SETTINGS_PAGE =
-        new Endpoint("r", "{subreddit}", "wiki", "settings", "{page}");
+  public static final Endpoint POST_R_SUBREDDIT_WIKI_SETTINGS_PAGE = new Endpoint("r",
+      "{subreddit}", "wiki", "settings", "{page}");
   /**
    * Return the content of a wiki page.<br>
-   * If {@code v} is given, show the wiki page as it was at that version If both {@code v} and
-   * {@code v2} are given, show a diff of the two.
+   * If {@code v} is given, show the wiki page as it was at that version If both
+   * {@code v} and {@code v2} are given, show a diff of the two.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -218,6 +230,6 @@ public class Wiki {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_WIKI_PAGE =
-        new Endpoint("r", "{subreddit}", "wiki", "{page}");
+  public static final Endpoint GET_R_SUBREDDIT_WIKI_PAGE = new Endpoint("r", "{subreddit}", "wiki",
+      "{page}");
 }

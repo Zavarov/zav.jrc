@@ -24,7 +24,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of a messaging entity have been properly deserialized.
+ * Checks whether the attributes of a messaging entity have been properly
+ * deserialized.
  */
 public class MessagingEntityTest extends AbstractTest {
   static UserListEntity[] messaging;

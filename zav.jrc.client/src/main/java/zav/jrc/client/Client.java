@@ -39,10 +39,10 @@ import zav.jrc.databind.io.TokenEntity;
 
 /**
  * The base class for authenticating the application.<br>
- * This class should be inherited by the clients implementing the individual authenticating methods
- * (e.g. via password, userless, etc.).<br>
- * It is responsible for requesting and invalidating the access token, as well as performing all
- * API requests.
+ * This class should be inherited by the clients implementing the individual
+ * authenticating methods (e.g. via password, userless, etc.).<br>
+ * It is responsible for requesting and invalidating the access token, as well
+ * as performing all API requests.
  */
 @NonNullByDefault
 public abstract class Client {
@@ -57,7 +57,7 @@ public abstract class Client {
   /**
    * Initializes a new Reddit client.
    *
-   * @param userAgent The user agent used for communicating with the REST api.
+   * @param userAgent   The user agent used for communicating with the REST api.
    * @param credentials The Reddit credentials used for authentication.
    */
   public Client(String userAgent, String credentials) {
@@ -79,16 +79,16 @@ public abstract class Client {
     }));
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    send                                                                                      //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // send //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
-   * This function has two purposes. The primary purpose is to execute the provided {@link Request}.
-   * However, it also checks if the current access token is still valid. In case it expired, a new
-   * one will be fetched automatically.
+   * This function has two purposes. The primary purpose is to execute the
+   * provided {@link Request}. However, it also checks if the current access token
+   * is still valid. In case it expired, a new one will be fetched automatically.
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
@@ -102,7 +102,7 @@ public abstract class Client {
 
     Objects.requireNonNull(token);
 
-    //Make sure that the token is still valid
+    // Make sure that the token is still valid
     if (token.isExpired()) {
       refresh();
     }
@@ -111,13 +111,14 @@ public abstract class Client {
   }
 
   /**
-   * This method serves three purposes. The primary purpose is to execute the provided
-   * {@link Request}. In addition, it also makes sure that all requests are made within the rate
-   * limit and, if necessary, waits until the next {@link Request} can be made.<br>
-   * It also checks if the {@link Request} was accepted and, upon error, throws the corresponding
-   * exception.<br>
-   * This method should <b>NEVER</b> be used anywhere outside the {@code login()} and
-   * {@code refresh} methods as it bypasses the token validation.
+   * This method serves three purposes. The primary purpose is to execute the
+   * provided {@link Request}. In addition, it also makes sure that all requests
+   * are made within the rate limit and, if necessary, waits until the next
+   * {@link Request} can be made.<br>
+   * It also checks if the {@link Request} was accepted and, upon error, throws
+   * the corresponding exception.<br>
+   * This method should <b>NEVER</b> be used anywhere outside the {@code login()}
+   * and {@code refresh} methods as it bypasses the token validation.
    *
    * @param request The request transmitted to Reddit.
    * @return The HTTP {@link Response} corresponding to the {@link Request}.
@@ -125,39 +126,41 @@ public abstract class Client {
    */
   protected synchronized String _send(Request request) throws FailedRequestException {
     try {
-      //Wait if we're making too many requests at once
+      // Wait if we're making too many requests at once
       rateLimiter.acquire();
 
       LOGGER.debug("--> {}", request);
       Response response = http.newCall(request).execute();
       rateLimiter.update(response);
       LOGGER.debug("<-- {}", response);
-      LOGGER.debug("{} calls used, {} remain, {} seconds until next period", rateLimiter.getUsed(), rateLimiter.getRemaining(), rateLimiter.getReset());
+      LOGGER.debug("{} calls used, {} remain, {} seconds until next period", rateLimiter.getUsed(),
+          rateLimiter.getRemaining(), rateLimiter.getReset());
 
       if (!response.isSuccessful()) {
         throw FailedRequestException.wrap(new HttpException(response.code(), response.message()));
       }
 
-      @Nullable ResponseBody responseBody = response.body();
+      @Nullable
+      ResponseBody responseBody = response.body();
       return Objects.requireNonNull(responseBody).string();
     } catch (IOException | InterruptedException e) {
       throw FailedRequestException.wrap(e);
     }
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    Login                                                                                     //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // Login //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   public abstract void login(Duration duration) throws FailedRequestException;
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    Refresh                                                                                   //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // Refresh //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
    * Requests a new access token.
@@ -175,9 +178,7 @@ public abstract class Client {
     body.put("grant_type", GrantType.REFRESH);
     body.put("refresh_token", token.getRefreshToken());
 
-    String response = newTokenRequest()
-          .setBody(body, RequestBuilder.BodyType.FORM)
-          .post();
+    String response = newTokenRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
 
     try {
       token = TokenEntity.read(response);
@@ -186,11 +187,11 @@ public abstract class Client {
     }
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    Logout                                                                                    //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // Logout //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
    * Invalidates both the access and (if present) the refresh token.<br>
@@ -224,9 +225,7 @@ public abstract class Client {
     body.put("token", token.getRefreshToken());
     body.put("token_type_hint", TokenType.REFRESH_TOKEN);
 
-    newTokenRevokeRequest()
-          .setBody(body, RequestBuilder.BodyType.FORM)
-          .post();
+    newTokenRevokeRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
   }
 
   /**
@@ -245,21 +244,20 @@ public abstract class Client {
     body.put("token", token.getAccessToken());
     body.put("token_type_hint", TokenType.ACCESS_TOKEN);
 
-    newTokenRevokeRequest()
-          .setBody(body, RequestBuilder.BodyType.FORM)
-          .post();
+    newTokenRevokeRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
 
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    request                                                                                   //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // request //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
-   * Creates a new builder instance and initializes it with the {@link HttpHeaders#AUTHORIZATION}
-   * and {@link HttpHeaders#USER_AGENT} headers, based on the configuration files.
+   * Creates a new builder instance and initializes it with the
+   * {@link HttpHeaders#AUTHORIZATION} and {@link HttpHeaders#USER_AGENT} headers,
+   * based on the configuration files.
    *
    * @return A new builder instance for a REST request.
    */
@@ -269,23 +267,19 @@ public abstract class Client {
     Objects.requireNonNull(token);
 
     return new RequestBuilder(this)
-          .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
-          .addHeader(HttpHeaders.USER_AGENT, userAgent);
+        .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
+        .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 
   protected RequestBuilder newTokenRequest() {
-    return new RequestBuilder(this)
-      .setHost(RequestBuilder.WWW)
-      .setEndpoint(OAuth2.ACCESS_TOKEN)
-      .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-      .addHeader(HttpHeaders.USER_AGENT, userAgent);
+    return new RequestBuilder(this).setHost(RequestBuilder.WWW).setEndpoint(OAuth2.ACCESS_TOKEN)
+        .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
+        .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 
   protected RequestBuilder newTokenRevokeRequest() {
-    return new RequestBuilder(this)
-          .setHost(RequestBuilder.WWW)
-          .setEndpoint(OAuth2.REVOKE_TOKEN)
-          .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-          .addHeader(HttpHeaders.USER_AGENT, userAgent);
+    return new RequestBuilder(this).setHost(RequestBuilder.WWW).setEndpoint(OAuth2.REVOKE_TOKEN)
+        .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
+        .addHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 }

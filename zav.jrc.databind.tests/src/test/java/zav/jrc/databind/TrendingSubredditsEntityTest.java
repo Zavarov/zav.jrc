@@ -23,7 +23,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of a trending subreddits entity have been properly deserialized.
+ * Checks whether the attributes of a trending subreddits entity have been
+ * properly deserialized.
  */
 public class TrendingSubredditsEntityTest extends AbstractTest {
   static TrendingSubredditsEntity trendingSubreddits;
@@ -40,7 +41,8 @@ public class TrendingSubredditsEntityTest extends AbstractTest {
 
   @Test
   public void testGetCommentUrl() {
-    assertEquals(trendingSubreddits.getCommentUrl(), "/r/trendingsubreddits/comments/l5xdvw/trending_subreddits_for_20210127_rsmallstreetbets/");
+    assertEquals(trendingSubreddits.getCommentUrl(),
+        "/r/trendingsubreddits/comments/l5xdvw/trending_subreddits_for_20210127_rsmallstreetbets/");
   }
 
   @Test

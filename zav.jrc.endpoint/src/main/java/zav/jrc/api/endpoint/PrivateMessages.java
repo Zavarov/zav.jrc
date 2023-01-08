@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public final class PrivateMessages {
   /**
    * For blocking the author of a thing via inbox.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -38,11 +39,11 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_BLOCK =
-        new Endpoint("api", "block");
+  public static final Endpoint POST_API_BLOCK = new Endpoint("api", "block");
   /**
    * Collapse a message.<br>
    * See also {@link #POST_API_UNCOLLAPSE_MESSAGE}.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -52,15 +53,17 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_COLLAPSE_MESSAGE =
-        new Endpoint("api", "collapse_message");
+  public static final Endpoint POST_API_COLLAPSE_MESSAGE = new Endpoint("api", "collapse_message");
   /**
    * Handles message composition under /message/compose.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
    * +------------------------+--------------------------------------------------------------------+
-   * | api_type               | the string {@code json}                                            |
+   * | api_type               | the string {@code
+   * json
+   * }                                            |
    * | from_sr                | subreddit name                                                     |
    * | g-recaptcha-response   |                                                                    |
    * | subject                | a string no longer than 100 characters                             |
@@ -70,10 +73,10 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_COMPOSE =
-        new Endpoint("api", "compose");
+  public static final Endpoint POST_API_COMPOSE = new Endpoint("api", "compose");
   /**
    * Delete messages from the recipient's view of their inbox.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -83,11 +86,12 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_DEL_MSG =
-        new Endpoint("api", "del_msg");
+  public static final Endpoint POST_API_DEL_MSG = new Endpoint("api", "del_msg");
   /**
    * Queue up marking all messages for a user as read.<br>
-   * This may take some time, and returns 202 to acknowledge acceptance of the request.
+   * This may take some time, and returns 202 to acknowledge acceptance of the
+   * request.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -97,10 +101,11 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_READ_ALL_MESSAGES =
-        new Endpoint("api", "read_all_messages");
+  public static final Endpoint POST_API_READ_ALL_MESSAGES = new Endpoint("api",
+      "read_all_messages");
   /**
    * Marks one or more messages for a user as read.<br>
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -110,10 +115,11 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_READ_MESSAGE =
-        new Endpoint("api", "read_message");
+  public static final Endpoint POST_API_READ_MESSAGE = new Endpoint("api", "read_message");
   /**
-   * Blocking a subreddit prevents the user from receiving any further messages from it.
+   * Blocking a subreddit prevents the user from receiving any further messages
+   * from it.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -123,11 +129,12 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_UNBLOCK_SUBREDDIT =
-        new Endpoint("api", "unblock_subreddit");
+  public static final Endpoint POST_API_UNBLOCK_SUBREDDIT = new Endpoint("api",
+      "unblock_subreddit");
   /**
    * Uncollapse a message.<br>
    * See also {@link #POST_API_COLLAPSE_MESSAGE}.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -137,10 +144,11 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_UNCOLLAPSE_MESSAGE =
-        new Endpoint("api", "uncollapse_message");
+  public static final Endpoint POST_API_UNCOLLAPSE_MESSAGE = new Endpoint("api",
+      "uncollapse_message");
   /**
    * Marks one or more messages for a user as unread.<br>
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -150,11 +158,11 @@ public final class PrivateMessages {
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_UNREAD_MESSAGE =
-        new Endpoint("api", "unread_message");
+  public static final Endpoint POST_API_UNREAD_MESSAGE = new Endpoint("api", "unread_message");
   /**
    * The endpoint for all user messages.<br>
    * This endpoint is a listing.
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -165,16 +173,18 @@ public final class PrivateMessages {
    * | before                 | fullname of a thing                                                |
    * | count                  | a positive integer (default: 0)                                    |
    * | limit                  | the maximum number of items desired (default: 25, maximum: 100)    |
-   * | show                   | (optional) the string {@code all}                                  |
+   * | show                   | (optional) the string {@code
+   * all
+   * }                                  |
    * | sr_detail              | (optional) expand subreddits                                       |
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_MESSAGE_WHERE =
-        new Endpoint("message", "{where}");
+  public static final Endpoint GET_MESSAGE_WHERE = new Endpoint("message", "{where}");
   /**
    * Returns a listing of all inbox messages.<br>
    * See also {@link #GET_MESSAGE_WHERE}
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -185,16 +195,18 @@ public final class PrivateMessages {
    * | before                 | fullname of a thing                                                |
    * | count                  | a positive integer (default: 0)                                    |
    * | limit                  | the maximum number of items desired (default: 25, maximum: 100)    |
-   * | show                   | (optional) the string {@code all}                                  |
+   * | show                   | (optional) the string {@code
+   * all
+   * }                                  |
    * | sr_detail              | (optional) expand subreddits                                       |
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_MESSAGE_INBOX =
-        new Endpoint(GET_MESSAGE_WHERE.getPath("inbox"));
+  public static final Endpoint GET_MESSAGE_INBOX = new Endpoint(GET_MESSAGE_WHERE.getPath("inbox"));
   /**
    * Returns a listing of all unread inbox messages.<br>
    * See also {@link #GET_MESSAGE_WHERE}
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -205,16 +217,19 @@ public final class PrivateMessages {
    * | before                 | fullname of a thing                                                |
    * | count                  | a positive integer (default: 0)                                    |
    * | limit                  | the maximum number of items desired (default: 25, maximum: 100)    |
-   * | show                   | (optional) the string {@code all}                                  |
+   * | show                   | (optional) the string {@code
+   * all
+   * }                                  |
    * | sr_detail              | (optional) expand subreddits                                       |
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_MESSAGE_UNREAD =
-        new Endpoint(GET_MESSAGE_WHERE.getPath("unread"));
+  public static final Endpoint GET_MESSAGE_UNREAD = new Endpoint(
+      GET_MESSAGE_WHERE.getPath("unread"));
   /**
    * Returns a listing of all sent messages.<br>
    * See also {@link #GET_MESSAGE_WHERE}
+   * 
    * <pre>
    * +------------------------+--------------------------------------------------------------------+
    * | Parameter              | Description                                                        |
@@ -225,11 +240,12 @@ public final class PrivateMessages {
    * | before                 | fullname of a thing                                                |
    * | count                  | a positive integer (default: 0)                                    |
    * | limit                  | the maximum number of items desired (default: 25, maximum: 100)    |
-   * | show                   | (optional) the string {@code all}                                  |
+   * | show                   | (optional) the string {@code
+   * all
+   * }                                  |
    * | sr_detail              | (optional) expand subreddits                                       |
    * +------------------------+--------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_MESSAGE_SENT =
-        new Endpoint(GET_MESSAGE_WHERE.getPath("sent"));
+  public static final Endpoint GET_MESSAGE_SENT = new Endpoint(GET_MESSAGE_WHERE.getPath("sent"));
 }

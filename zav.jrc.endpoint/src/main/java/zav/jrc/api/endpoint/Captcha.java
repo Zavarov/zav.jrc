@@ -23,21 +23,23 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
  * REST endpoint for the {@code Captcha} section.
  *
  * @see <a href="https://www.reddit.com/dev/api/#section_captcha">here</a>
- * @deprecated ReCAPTCHAs are no longer needed, therefore this endpoint became obsolete.
+ * @deprecated ReCAPTCHAs are no longer needed, therefore this endpoint became
+ *             obsolete.
  */
 @Deprecated
 @SuppressWarnings("unused")
 @NonNullByDefault
 public final class Captcha {
-  private Captcha() {}
+  private Captcha() {
+  }
 
   /**
    * Check whether ReCAPTCHAs are needed for API methods.<br>
    * This endpoint returns a boolean.
    *
-   * @deprecated Reddit no longer requires captchas and thus this endpoint returns 403
+   * @deprecated Reddit no longer requires captchas and thus this endpoint returns
+   *             403
    */
   @Deprecated
-  public static final Endpoint GET_API_NEEDS_CAPTCHA =
-        new Endpoint("api", "needs_captcha");
+  public static final Endpoint GET_API_NEEDS_CAPTCHA = new Endpoint("api", "needs_captcha");
 }

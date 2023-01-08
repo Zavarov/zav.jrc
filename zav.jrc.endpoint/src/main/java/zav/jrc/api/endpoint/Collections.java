@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public final class Collections {
   /**
    * Add a post to a collection.
+   * 
    * <pre>
    *   | Parameter             | Description               |
    *   | --------------------- | ------------------------- |
@@ -37,10 +38,11 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                 |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_ADD_POST_TO_COLLECTION =
-        new Endpoint("api", "v1", "collections", "add_post_to_collection");
+  public static final Endpoint POST_API_V1_COLLECTIONS_ADD_POST_TO_COLLECTION = new Endpoint("api",
+      "v1", "collections", "add_post_to_collection");
   /**
    * Fetch a collection including all the links.
+   * 
    * <pre>
    *   | Parameter             | Description               |
    *   | --------------------- | ------------------------- |
@@ -48,10 +50,11 @@ public final class Collections {
    *   | include_links         | boolean value             |
    * </pre>
    */
-  public static final Endpoint GET_API_V1_COLLECTIONS_COLLECTION =
-        new Endpoint("api", "v1", "collections", "collection");
+  public static final Endpoint GET_API_V1_COLLECTIONS_COLLECTION = new Endpoint("api", "v1",
+      "collections", "collection");
   /**
    * Create a collection.
+   * 
    * <pre>
    *   | Parameter             | Description                                         |
    *   | --------------------- | --------------------------------------------------- |
@@ -62,10 +65,11 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                                           |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_CREATE_COLLECTION =
-        new Endpoint("api", "v1", "collections", "create_collection");
+  public static final Endpoint POST_API_V1_COLLECTIONS_CREATE_COLLECTION = new Endpoint("api", "v1",
+      "collections", "create_collection");
   /**
    * Delete a collection.
+   * 
    * <pre>
    *   | Parameter             | Description               |
    *   | --------------------- | ------------------------- |
@@ -74,18 +78,19 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                 |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_DELETE_COLLECTION =
-        new Endpoint("api", "v1", "collections", "delete_collection");
+  public static final Endpoint POST_API_V1_COLLECTIONS_DELETE_COLLECTION = new Endpoint("api", "v1",
+      "collections", "delete_collection");
   /**
    * Follow or unfollow a collection.<br>
-   * To follow, {@code follow} should be {@code true}. To unfollow, {@code follow} should be
-   * {@code false}. The user must have access to the subreddit to be able to follow a collection
-   * within it.
+   * To follow, {@code follow} should be {@code true}. To unfollow, {@code follow}
+   * should be {@code false}. The user must have access to the subreddit to be
+   * able to follow a collection within it.
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_FOLLOW_COLLECTION =
-        new Endpoint("api", "v1", "collections", "follow_collection");
+  public static final Endpoint POST_API_V1_COLLECTIONS_FOLLOW_COLLECTION = new Endpoint("api", "v1",
+      "collections", "follow_collection");
   /**
    * Remove a post from a collection.
+   * 
    * <pre>
    *   | Parameter             | Description               |
    *   | --------------------- | ------------------------- |
@@ -94,10 +99,11 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                 |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_REMOVE_POST_IN_COLLECTION =
-        new Endpoint("api", "v1", "collections", "remove_post_in_collection");
+  public static final Endpoint POST_API_V1_COLLECTIONS_REMOVE_POST_IN_COLLECTION = new Endpoint(
+      "api", "v1", "collections", "remove_post_in_collection");
   /**
    * Reorder posts in a collection.
+   * 
    * <pre>
    *   | Parameter             | Description                          |
    *   | --------------------- | ------------------------------------ |
@@ -107,20 +113,22 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                            |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_REORDER_COLLECTION =
-        new Endpoint("api", "v1", "collections", "reorder_collection");
+  public static final Endpoint POST_API_V1_COLLECTIONS_REORDER_COLLECTION = new Endpoint("api",
+      "v1", "collections", "reorder_collection");
   /**
    * Fetch collections for the subreddit.
+   * 
    * <pre>
    *   | Parameter             | Description                                         |
    *   | --------------------- | --------------------------------------------------- |
    *   | sr_fullname           | a fullname of a subreddit                           |
    * </pre>
    */
-  public static final Endpoint GET_API_V1_COLLECTIONS_SUBREDDIT_COLLECTIONS =
-        new Endpoint("api", "v1", "collections", "subreddit_collections");
+  public static final Endpoint GET_API_V1_COLLECTIONS_SUBREDDIT_COLLECTIONS = new Endpoint("api",
+      "v1", "collections", "subreddit_collections");
   /**
    * Update a collection's description.
+   * 
    * <pre>
    *   | Parameter             | Description                            |
    *   | --------------------- | -------------------------------------- |
@@ -129,10 +137,11 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                              |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_UPDATE_COLLECTION_DESCRIPTION =
-        new Endpoint("api", "v1", "collections", "update_collection_description");
+  public static final Endpoint POST_API_V1_COLLECTIONS_UPDATE_COLLECTION_DESCRIPTION = new Endpoint(
+      "api", "v1", "collections", "update_collection_description");
   /**
    * Update a collection's display layout.
+   * 
    * <pre>
    *   | Parameter             | Description                |
    *   | --------------------- | -------------------------- |
@@ -141,10 +150,11 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                  |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_UPDATE_COLLECTION_DISPLAY_LAYOUT =
-        new Endpoint("api", "v1", "collections", "update_collection_display_layout");
+  public static final Endpoint POST_API_V1_COLLECTIONS_UPDATE_COLLECTION_DISPLAY_LAYOUT = new Endpoint(
+      "api", "v1", "collections", "update_collection_display_layout");
   /**
    * Update a collection's title.
+   * 
    * <pre>
    *   | Parameter             | Description                                         |
    *   | --------------------- | --------------------------------------------------- |
@@ -153,6 +163,6 @@ public final class Collections {
    *   | uh / X-Modhash header | a modhash                                           |
    * </pre>
    */
-  public static final Endpoint POST_API_V1_COLLECTIONS_UPDATE_COLLECTION_TITLE =
-        new Endpoint("api", "v1", "collections", "update_collection_title");
+  public static final Endpoint POST_API_V1_COLLECTIONS_UPDATE_COLLECTION_TITLE = new Endpoint("api",
+      "v1", "collections", "update_collection_title");
 }

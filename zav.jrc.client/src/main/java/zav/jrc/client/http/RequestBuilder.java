@@ -56,7 +56,7 @@ import zav.jrc.client.FailedRequestException;
 public class RequestBuilder {
   private static final Logger LOGGER = LoggerFactory.getLogger(RequestBuilder.class);
   /**
-    * The protocol used for OAuth requests.
+   * The protocol used for OAuth requests.
    */
   public static final String HTTPS = "https";
   /**
@@ -68,8 +68,8 @@ public class RequestBuilder {
    */
   public static final String WWW = "www.reddit.com";
   /**
-   * The content of the request. May contain serialized JSON objects e.g. to submit new
-   * submissions.
+   * The content of the request. May contain serialized JSON objects e.g. to
+   * submit new submissions.
    */
   @Nullable
   private RequestBody body;
@@ -78,8 +78,8 @@ public class RequestBuilder {
    */
   private String host = OAUTH2;
   /**
-   * Additional parameter appended to the URL. Those may contain additional information, such as
-   * the index when requesting stickied posts.
+   * Additional parameter appended to the URL. Those may contain additional
+   * information, such as the index when requesting stickied posts.
    */
   private Map<Object, Object> params = new HashMap<>();
   /**
@@ -88,7 +88,7 @@ public class RequestBuilder {
   @Nullable
   private Endpoint endpoint;
   /**
-   * Additional arguments for the {@link Endpoint}. E.g. a  subreddit name.
+   * Additional arguments for the {@link Endpoint}. E.g. a subreddit name.
    */
   private List<Object> args = new ArrayList<>();
   /**
@@ -107,11 +107,11 @@ public class RequestBuilder {
 
     HttpUrl.Builder builder = new HttpUrl.Builder().scheme(HTTPS).host(host);
 
-    //Append the endpoint URL
+    // Append the endpoint URL
     Objects.requireNonNull(endpoint);
     endpoint.getPath(args.toArray()).forEach(builder::addPathSegment);
 
-    //Append any additional parameter
+    // Append any additional parameter
     params.forEach((k, v) -> builder.addQueryParameter(Objects.toString(k), Objects.toString(v)));
 
     return builder.build().toString();
@@ -178,11 +178,11 @@ public class RequestBuilder {
   }
 
   /**
-   * Sets the request body, containing information about the requested resources. Elements within
-   * the body are stored as key-value pairs.<br>
+   * Sets the request body, containing information about the requested resources.
+   * Elements within the body are stored as key-value pairs.<br>
    * This method will overwrite the existing body.<br>
-   * API request have to use the type {@link BodyType#JSON}, while authentication requests have to
-   * use {@link BodyType#FORM}.
+   * API request have to use the type {@link BodyType#JSON}, while authentication
+   * requests have to use {@link BodyType#FORM}.
    *
    * @param body A collection of key-value pairs included in the request body.
    * @param type The type of request body.
@@ -195,7 +195,8 @@ public class RequestBuilder {
           ObjectMapper om = new ObjectMapper();
           String value = om.writeValueAsString(body);
 
-          @Nullable MediaType json = MediaType.parse("application/json; charset=utf-8");
+          @Nullable
+          MediaType json = MediaType.parse("application/json; charset=utf-8");
 
           return setBody(RequestBody.create(value, json));
         } catch (JsonProcessingException e) {
@@ -233,8 +234,8 @@ public class RequestBuilder {
   }
 
   /**
-   * Sets additional parameters attached to the query. Parameters are stored as key-value
-   * pairs.<br>
+   * Sets additional parameters attached to the query. Parameters are stored as
+   * key-value pairs.<br>
    * e.g. {@code /foo/bar?new=true&time=now}.<br>
    * This method will overwrite the existing arguments.<br>
    *
@@ -250,8 +251,8 @@ public class RequestBuilder {
   }
 
   /**
-   * Sets additional parameters attached to the query. Parameters are stored as key-value
-   * pairs.<br>
+   * Sets additional parameters attached to the query. Parameters are stored as
+   * key-value pairs.<br>
    * e.g. {@code /foo/bar?new=true&time=now}.<br>
    * This method will overwrite the existing arguments.<br>
    *
@@ -272,8 +273,8 @@ public class RequestBuilder {
   }
 
   /**
-   * Sets the arguments that are used to replace the wildcards within the unqualified
-   * endpoint.<br>
+   * Sets the arguments that are used to replace the wildcards within the
+   * unqualified endpoint.<br>
    * This method will overwrite the existing arguments.<br>
    *
    * @param args A list of objects.
@@ -307,11 +308,11 @@ public class RequestBuilder {
   }
 
   /**
-   * The body type of the REST request. When authentication the application, the {@code FORM} type
-   * has to be selected, for API requests, the {@code JSON} type has to be selected.
+   * The body type of the REST request. When authentication the application, the
+   * {@code FORM} type has to be selected, for API requests, the {@code JSON} type
+   * has to be selected.
    */
   public enum BodyType {
-    JSON,
-    FORM
+    JSON, FORM
   }
 }

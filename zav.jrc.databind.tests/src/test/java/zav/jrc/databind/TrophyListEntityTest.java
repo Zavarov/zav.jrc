@@ -24,7 +24,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of a trophy list entity have been properly deserialized.
+ * Checks whether the attributes of a trophy list entity have been properly
+ * deserialized.
  */
 public class TrophyListEntityTest extends AbstractTest {
   static TrophyListEntity trophyList;
@@ -48,10 +49,12 @@ public class TrophyListEntityTest extends AbstractTest {
 
   @Test
   public void testGetThreeYearClubTrophy() {
-    assertEquals(threeYearClub.getIcon70(), "https://www.redditstatic.com/awards2/3_year_club-70.png");
+    assertEquals(threeYearClub.getIcon70(),
+        "https://www.redditstatic.com/awards2/3_year_club-70.png");
     assertEquals(threeYearClub.getGrantedAt(), 1592849930);
     assertNull(threeYearClub.getUrl());
-    assertEquals(threeYearClub.getIcon40(), "https://www.redditstatic.com/awards2/3_year_club-40.png");
+    assertEquals(threeYearClub.getIcon40(),
+        "https://www.redditstatic.com/awards2/3_year_club-40.png");
     assertEquals(threeYearClub.getName(), "Three-Year Club");
     assertNull(threeYearClub.getAwardId());
     assertNull(threeYearClub.getId());
@@ -60,10 +63,12 @@ public class TrophyListEntityTest extends AbstractTest {
 
   @Test
   public void testGetVerifiedEmailTrophy() {
-    assertEquals(verifiedEmail.getIcon70(), "https://www.redditstatic.com/awards2/verified_email-70.png");
+    assertEquals(verifiedEmail.getIcon70(),
+        "https://www.redditstatic.com/awards2/verified_email-70.png");
     assertNull(verifiedEmail.getGrantedAt());
     assertNull(verifiedEmail.getUrl());
-    assertEquals(verifiedEmail.getIcon40(), "https://www.redditstatic.com/awards2/verified_email-40.png");
+    assertEquals(verifiedEmail.getIcon40(),
+        "https://www.redditstatic.com/awards2/verified_email-40.png");
     assertEquals(verifiedEmail.getName(), "Verified Email");
     assertEquals(verifiedEmail.getAwardId(), "o");
     assertEquals(verifiedEmail.getId(), "1ridbv");

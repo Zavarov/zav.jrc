@@ -23,14 +23,16 @@ import java.io.IOException;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
- * This class implements the user agent, attach to every API request in order to uniquely identify
- * the application.
+ * This class implements the user agent, attach to every API request in order to
+ * uniquely identify the application.
  */
 @NonNullByDefault
 public class UserAgentEntity extends UserAgentTOPEntity {
   /**
-   * Calculates the user agent of the application.<p/>
-   * The user agent string is of the form:<p/>
+   * Calculates the user agent of the application.
+   * <p/>
+   * The user agent string is of the form:
+   * <p/>
    * {@code <platform>:<app ID>:<version string> (by /u/<reddit username>)}
    *
    * @return The user agent string.

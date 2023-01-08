@@ -29,6 +29,7 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public final class RedditGold {
   /**
    * Gild a comment or submission.
+   * 
    * <pre>
    * +---------------------+-----------------------------------------------------------------------+
    * | Parameter           | Description                                                           |
@@ -37,10 +38,11 @@ public final class RedditGold {
    * +---------------------+-----------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_V1_GOLD_GILD_FULLNAME =
-        new Endpoint("api", "v1", "gold", "gild", "{fullname}");
+  public static final Endpoint POST_API_V1_GOLD_GILD_FULLNAME = new Endpoint("api", "v1", "gold",
+      "gild", "{fullname}");
   /**
    * Give gold to a user.
+   * 
    * <pre>
    * +---------------------+-----------------------------------------------------------------------+
    * | Parameter           | Description                                                           |
@@ -50,6 +52,6 @@ public final class RedditGold {
    * +---------------------+-----------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_V1_GOLD_GIVE_USERNAME =
-        new Endpoint("api", "v1", "gold", "give", "{username}");
+  public static final Endpoint POST_API_V1_GOLD_GIVE_USERNAME = new Endpoint("api", "v1", "gold",
+      "give", "{username}");
 }

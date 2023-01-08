@@ -31,8 +31,8 @@ import zav.jrc.databind.io.TokenEntity;
 import zav.jrc.databind.io.UserAgentEntity;
 
 /**
- * Runs on hardware you control, such as your own laptop or server. Doesn't have a user context
- * and therefore can't keep a secret.<br>
+ * Runs on hardware you control, such as your own laptop or server. Doesn't have
+ * a user context and therefore can't keep a secret.<br>
  */
 @NonNullByDefault
 public class UserlessClient extends Client {
@@ -43,7 +43,7 @@ public class UserlessClient extends Client {
   /**
    * Userless clients require an access token.
    *
-   * @param userAgent The user agent used for communicating with the REST api.
+   * @param userAgent   The user agent used for communicating with the REST api.
    * @param credentials The Reddit credentials used for authentication.
    */
   public UserlessClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
@@ -52,8 +52,9 @@ public class UserlessClient extends Client {
 
   /**
    * Requests a new access token.<br>
-   * Depending on the value of {@code duration}, Reddit will also return a refresh token with which
-   * the client is able to retrieve a new access token, once the old one expired.
+   * Depending on the value of {@code duration}, Reddit will also return a refresh
+   * token with which the client is able to retrieve a new access token, once the
+   * old one expired.
    *
    * @param duration The lifetime of the token.
    * @throws FailedRequestException In case the request was rejected by the API.
@@ -65,8 +66,10 @@ public class UserlessClient extends Client {
     body.put("device_id", uuid);
     body.put("duration", duration);
 
-    // Using a permanent token for an userless client doesn't make much sense, as it has to send
-    // its credentials anyway. Therefore, it would make more sense to request a new access token
+    // Using a permanent token for an userless client doesn't make much sense, as it
+    // has to send
+    // its credentials anyway. Therefore, it would make more sense to request a new
+    // access token
     // directly.
     if (duration == Duration.PERMANENT) {
       LOGGER.warn("You're requesting a permanent token for an userless client. Are you sure?");
@@ -74,9 +77,7 @@ public class UserlessClient extends Client {
       addShutdownHook();
     }
 
-    String response = newTokenRequest()
-          .setBody(body, RequestBuilder.BodyType.FORM)
-          .post();
+    String response = newTokenRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
 
     try {
       token = TokenEntity.read(response);

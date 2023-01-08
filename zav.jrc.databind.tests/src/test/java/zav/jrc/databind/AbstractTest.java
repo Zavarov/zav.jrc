@@ -32,9 +32,10 @@ public abstract class AbstractTest {
    * Deserializes a class based on the content of a JSON file.
    *
    * @param fileName The name of the file to be read.
-   * @param clazz The class of the target type.
-   * @param <T> The target type.
-   * @return An instance of the target type initializes with the content of the provided file.
+   * @param clazz    The class of the target type.
+   * @param <T>      The target type.
+   * @return An instance of the target type initializes with the content of the
+   *         provided file.
    */
   public static <T> T read(String fileName, Class<T> clazz) {
     try {

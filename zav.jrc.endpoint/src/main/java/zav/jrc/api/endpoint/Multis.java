@@ -31,6 +31,7 @@ public final class Multis {
    * Copy a multi.<br>
    * Responds with 409 Conflict if the target already exists.<br>
    * A "copied from ..." line will automatically be appended to the description.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -44,10 +45,10 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_MULTI_COPY =
-        new Endpoint("api", "multi", "copy");
+  public static final Endpoint POST_API_MULTI_COPY = new Endpoint("api", "multi", "copy");
   /**
    * Fetch a list of multis belonging to the current user.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -56,10 +57,10 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_API_MULTI_MINE =
-        new Endpoint("api", "multi", "mine");
+  public static final Endpoint GET_API_MULTI_MINE = new Endpoint("api", "multi", "mine");
   /**
    * Fetch a list of public multis belonging to {@code username}.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -69,10 +70,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_API_MULTI_USER_USERNAME =
-        new Endpoint("api", "multi", "user", "{username}");
+  public static final Endpoint GET_API_MULTI_USER_USERNAME = new Endpoint("api", "multi", "user",
+      "{username}");
   /**
    * Delete a multi.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -83,10 +85,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint DELETE_API_MULTI_MULTIPATH =
-        new Endpoint("api", "multi", "{multipath}");
+  public static final Endpoint DELETE_API_MULTI_MULTIPATH = new Endpoint("api", "multi",
+      "{multipath}");
   /**
    * Fetch a multi's data and subreddit list by name.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -96,10 +99,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_API_MULTI_MULTIPATH =
-        new Endpoint("api", "multi", "{multipath}");
+  public static final Endpoint GET_API_MULTI_MULTIPATH = new Endpoint("api", "multi",
+      "{multipath}");
   /**
    * Create a multi. Responds with 409 Conflict if it already exists.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -124,10 +128,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_API_MULTI_MULTIPATH =
-        new Endpoint("api", "multi", "{multipath}");
+  public static final Endpoint POST_API_MULTI_MULTIPATH = new Endpoint("api", "multi",
+      "{multipath}");
   /**
    * Create or update a multi.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -151,10 +156,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PUT_API_MULTI_MULTIPATH =
-        new Endpoint("api", "multi", "{multipath}");
+  public static final Endpoint PUT_API_MULTI_MULTIPATH = new Endpoint("api", "multi",
+      "{multipath}");
   /**
    * Get a multi's description.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -163,10 +169,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_API_MULTI_MULTIPATH_DESCRIPTION =
-        new Endpoint("api", "multi", "{multipath}", "description");
+  public static final Endpoint GET_API_MULTI_MULTIPATH_DESCRIPTION = new Endpoint("api", "multi",
+      "{multipath}", "description");
   /**
    * Change a multi's markdown description.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -180,10 +187,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PUT_API_MULTI_MULTIPATH_DESCRIPTION =
-        new Endpoint("api", "multi", "{multipath}", "description");
+  public static final Endpoint PUT_API_MULTI_MULTIPATH_DESCRIPTION = new Endpoint("api", "multi",
+      "{multipath}", "description");
   /**
    * Remove a subreddit from a multi.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -194,10 +202,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint DELETE_API_MULTI_MULTIPATH_R_SRNAME =
-        new Endpoint("api", "multi", "{multipath}", "r", "{srname}");
+  public static final Endpoint DELETE_API_MULTI_MULTIPATH_R_SRNAME = new Endpoint("api", "multi",
+      "{multipath}", "r", "{srname}");
   /**
    * Get data about a subreddit in a multi.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -207,10 +216,11 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_API_MULTI_MULTIPATH_R_SRNAME =
-        new Endpoint("api", "multi", "{multipath}", "r", "{srname}");
+  public static final Endpoint GET_API_MULTI_MULTIPATH_R_SRNAME = new Endpoint("api", "multi",
+      "{multipath}", "r", "{srname}");
   /**
    * Add a subreddit to a multi.
+   * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
    * | Parameter             | Description                                                         |
@@ -225,6 +235,6 @@ public final class Multis {
    * +-----------------------+---------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PUT_API_MULTI_MULTIPATH_R_SRNAME =
-        new Endpoint("api", "multi", "{multipath}", "r", "{srname}");
+  public static final Endpoint PUT_API_MULTI_MULTIPATH_R_SRNAME = new Endpoint("api", "multi",
+      "{multipath}", "r", "{srname}");
 }

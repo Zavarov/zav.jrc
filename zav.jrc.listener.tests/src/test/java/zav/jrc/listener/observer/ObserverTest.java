@@ -41,19 +41,23 @@ import zav.jrc.listener.SubredditListener;
 import zav.jrc.listener.requester.LinkRequester;
 
 /**
- * Checks whether listeners that have been added to an observer are properly notified.
+ * Checks whether listeners that have been added to an observer are properly
+ * notified.
  */
 @ExtendWith(MockitoExtension.class)
 public class ObserverTest {
-  @Mock Client client;
-  @Mock SubredditListener foo;
-  @Mock SubredditListener bar;
+  @Mock
+  Client client;
+  @Mock
+  SubredditListener foo;
+  @Mock
+  SubredditListener bar;
   Observer<SubredditListener> observer;
   LinkRequester requester;
 
   /**
-   * Creates mocks of the listeners {@link #foo} and {@link #bar}, as well as the observer
-   * {@link #observer}.
+   * Creates mocks of the listeners {@link #foo} and {@link #bar}, as well as the
+   * observer {@link #observer}.
    */
   @BeforeEach
   public void setUp() {

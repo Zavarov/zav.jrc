@@ -40,13 +40,16 @@ public final class Endpoint {
   }
 
   /**
-   * Calculates the qualified path of an endpoint. An endpoint may contain wildcards, represented by
-   * the string "{...}". Each of those wildcard is replaced with one of the arguments.<br>
+   * Calculates the qualified path of an endpoint. An endpoint may contain
+   * wildcards, represented by the string "{...}". Each of those wildcard is
+   * replaced with one of the arguments.<br>
    * The arguments are substituted in the order they are provided.<br>
    * The number of wildcards has to match the number of provided arguments.
    *
-   * @param args A list of arguments with which the wildcards are substituted with.
-   * @return A list of qualified parts, constituting the full path of the endpoint.
+   * @param args A list of arguments with which the wildcards are substituted
+   *             with.
+   * @return A list of qualified parts, constituting the full path of the
+   *         endpoint.
    */
   public List<String> getPath(Object... args) {
     String substitution = "\\{\\w*}";
@@ -61,7 +64,7 @@ public final class Endpoint {
       }
     }
 
-    //All arguments have to be consumed
+    // All arguments have to be consumed
     assert i == args.length;
 
     return Collections.unmodifiableList(result);

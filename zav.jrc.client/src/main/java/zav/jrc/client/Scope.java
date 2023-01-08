@@ -20,8 +20,8 @@ package zav.jrc.client;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
- * A list containing all supported Reddit scopes.
- * See https://www.reddit.com/api/v1/scopes for more.
+ * A list containing all supported Reddit scopes. See
+ * https://www.reddit.com/api/v1/scopes for more.
  */
 @NonNullByDefault
 public enum Scope {
@@ -30,8 +30,8 @@ public enum Scope {
    */
   CREDDITS("creddits"),
   /**
-   * Add/remove users to approved user lists and ban/unban or mute/unmute users from subreddits I
-   * moderate.
+   * Add/remove users to approved user lists and ban/unban or mute/unmute users
+   * from subreddits I moderate.
    */
   MODCONTRIBUTORS("modcontributors"),
   /**
@@ -43,7 +43,8 @@ public enum Scope {
    */
   MODCONFIG("modconfig"),
   /**
-   * Manage my subreddit subscriptions. Manage \"friends\" - users whose content I follow.
+   * Manage my subreddit subscriptions. Manage \"friends\" - users whose content I
+   * follow.
    */
   SUBSCRIBE("subscribe"),
   /**
@@ -107,8 +108,8 @@ public enum Scope {
    */
   LIVEMANAGE("livemanage"),
   /**
-   * Update preferences and related account information. Will not have access to your email or
-   * password.
+   * Update preferences and related account information. Will not have access to
+   * your email or password.
    */
   ACCOUNT("account"),
   /**
@@ -128,8 +129,8 @@ public enum Scope {
    */
   MODWIKI("modwiki"),
   /**
-   * Accept invitations to moderate a subreddit. Remove myself as a moderator or contributor of
-   * subreddits I moderate or contribute to.
+   * Accept invitations to moderate a subreddit. Remove myself as a moderator or
+   * contributor of subreddits I moderate or contribute to.
    */
   MODSELF("modself"),
   /**
@@ -161,8 +162,8 @@ public enum Scope {
   }
 
   /**
-   * The resulting string can be used in the JSON request to specify the scope requested by the
-   * application.
+   * The resulting string can be used in the JSON request to specify the scope
+   * requested by the application.
    *
    * @return A string representation of the enum type.
    */

@@ -59,29 +59,24 @@ public class SelfAccount {
    * @see Account#GET_API_V1_ME
    */
   public SelfAccountEntity getAbout() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.GET_API_V1_ME)
-          .get();
+    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME).get();
 
     return Things.transform(response, SelfAccountEntity.class);
   }
 
   /**
-   * Returns a stream over the karma of this account. Each entry corresponds to the karma gained
-   * from a single subreddit. The sum of those entries results in the total account karma.
+   * Returns a stream over the karma of this account. Each entry corresponds to
+   * the karma gained from a single subreddit. The sum of those entries results in
+   * the total account karma.
    *
    * @return A stream over the Entitys corresponding to the karma instances.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Account#GET_API_V1_ME_KARMA
    */
   public Stream<KarmaEntity> getKarma() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.GET_API_V1_ME_KARMA)
-          .get();
+    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME_KARMA).get();
 
-    return Things.transform(response, KarmaListEntity.class)
-          .getData()
-          .stream();
+    return Things.transform(response, KarmaListEntity.class).getData().stream();
   }
 
   /**
@@ -92,9 +87,7 @@ public class SelfAccount {
    * @see Account#GET_API_V1_ME_PREFS
    */
   public PreferencesEntity getPreferences() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.GET_API_V1_ME_PREFS)
-          .get();
+    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME_PREFS).get();
 
     return Things.transform(response, PreferencesEntity.class);
   }
@@ -106,11 +99,10 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Account#PATCH_API_V1_ME_PREFS
    */
-  public PreferencesEntity updatePreferences(PreferencesEntity preferences) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.PATCH_API_V1_ME_PREFS)
-          .setBody(Things.transform(preferences, Map.class), RequestBuilder.BodyType.JSON)
-          .patch();
+  public PreferencesEntity updatePreferences(PreferencesEntity preferences)
+      throws FailedRequestException {
+    String response = client.newRequest().setEndpoint(Account.PATCH_API_V1_ME_PREFS)
+        .setBody(Things.transform(preferences, Map.class), RequestBuilder.BodyType.JSON).patch();
 
     return Things.transform(response, PreferencesEntity.class);
   }
@@ -123,14 +115,10 @@ public class SelfAccount {
    * @see Account#GET_API_V1_ME_TROPHIES
    */
   public Stream<AwardEntity> getTrophies() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.GET_API_V1_ME_TROPHIES)
-          .get();
+    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME_TROPHIES).get();
 
-    return Things.transformThing(response, TrophyListEntity.class)
-          .getTrophies()
-          .stream()
-          .map(thing -> Things.transformThing(thing, AwardEntity.class));
+    return Things.transformThing(response, TrophyListEntity.class).getTrophies().stream()
+        .map(thing -> Things.transformThing(thing, AwardEntity.class));
   }
 
   /**
@@ -141,14 +129,9 @@ public class SelfAccount {
    * @see Account#GET_PREFS_BLOCKED
    */
   public Stream<UserEntity> getBlocked() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.GET_PREFS_BLOCKED)
-          .get();
+    String response = client.newRequest().setEndpoint(Account.GET_PREFS_BLOCKED).get();
 
-    return Things.transform(response, UserListEntity.class)
-          .getData()
-          .getChildren()
-          .stream();
+    return Things.transform(response, UserListEntity.class).getData().getChildren().stream();
   }
 
   /**
@@ -159,18 +142,13 @@ public class SelfAccount {
    * @see Account#GET_PREFS_FRIENDS
    */
   public Stream<UserEntity> getFriends() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.GET_PREFS_FRIENDS)
-          .get();
+    String response = client.newRequest().setEndpoint(Account.GET_PREFS_FRIENDS).get();
 
     // @See https://redd.it/p19tsh
     // The first structure matches that of GET /api/v1/me/friends.
     // The second one is always empty.
     // Nobody knows what it’s for.
-    return Things.transform(response, UserListEntity[].class)[0]
-          .getData()
-          .getChildren()
-          .stream();
+    return Things.transform(response, UserListEntity[].class)[0].getData().getChildren().stream();
   }
 
   /**
@@ -181,23 +159,18 @@ public class SelfAccount {
    * @see Account#GET_PREFS_TRUSTED
    */
   public Stream<UserEntity> getTrusted() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Account.GET_PREFS_TRUSTED)
-          .get();
+    String response = client.newRequest().setEndpoint(Account.GET_PREFS_TRUSTED).get();
 
     System.out.println(Things.transform(response, UserListEntity.class).getData());
 
-    return Things.transform(response, UserListEntity.class)
-          .getData()
-          .getChildren()
-          .stream();
+    return Things.transform(response, UserListEntity.class).getData().getChildren().stream();
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    Subreddits                                                                                //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // Subreddits //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
    * Returns a stream over all subreddits this account has contributed to.
@@ -206,11 +179,10 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_CONTRIBUTOR
    */
-  public Stream<SubredditEntity> getMineContributor(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR)
-          .setParams(params)
-          .get();
+  public Stream<SubredditEntity> getMineContributor(Parameter... params)
+      throws FailedRequestException {
+    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR)
+        .setParams(params).get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -222,28 +194,25 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_MODERATOR
    */
-  public Stream<SubredditEntity> getMineModerator(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR)
-          .setParams(params)
-          .get();
+  public Stream<SubredditEntity> getMineModerator(Parameter... params)
+      throws FailedRequestException {
+    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR)
+        .setParams(params).get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
 
   /**
-   * Returns a stream over all subreddits this account is subscribed to that contain hosted video
-   * links.
+   * Returns a stream over all subreddits this account is subscribed to that
+   * contain hosted video links.
    *
    * @return A stream over the Entitys corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_STREAMS
    */
   public Stream<SubredditEntity> getMineStreams(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS)
-          .setParams(params)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS)
+        .setParams(params).get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -255,11 +224,10 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_SUBSCRIBER
    */
-  public Stream<SubredditEntity> getMineSubscriber(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER)
-          .setParams(params)
-          .get();
+  public Stream<SubredditEntity> getMineSubscriber(Parameter... params)
+      throws FailedRequestException {
+    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER)
+        .setParams(params).get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }

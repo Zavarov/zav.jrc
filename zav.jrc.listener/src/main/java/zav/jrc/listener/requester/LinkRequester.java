@@ -34,11 +34,13 @@ import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.Things;
 
 /**
- * This class is used to retrieve the latest submissions from a given subreddit.<br>
- * During the first request, the most recent link is used as a head for future requests and thus
- * will always return an empty list.<br>
- * On future requests, the head is compared against all retrieved links and only those that have
- * been submitted after the head are returned. The head is then updated with the most recent link.
+ * This class is used to retrieve the latest submissions from a given
+ * subreddit.<br>
+ * During the first request, the most recent link is used as a head for future
+ * requests and thus will always return an empty list.<br>
+ * On future requests, the head is compared against all retrieved links and only
+ * those that have been submitted after the head are returned. The head is then
+ * updated with the most recent link.
  */
 @NonNullByDefault
 public class LinkRequester implements Iterator<List<LinkEntity>> {
@@ -91,8 +93,8 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
     while (iterator.hasNext()) {
       LinkEntity link = iterator.next();
 
-      //If the current link is lexicographically larger than the head
-      //Then that means it was created after the head, i.e. at a later point in time
+      // If the current link is lexicographically larger than the head
+      // Then that means it was created after the head, i.e. at a later point in time
       if (link.getId().compareTo(head.getId()) > 0) {
         result.add(link);
       } else {
@@ -101,7 +103,7 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
     }
 
     if (!result.isEmpty()) {
-      //Change head to the newest submission
+      // Change head to the newest submission
       head = result.get(0);
       LOGGER.info("Update 'head' to {}.", head.getName());
     }
@@ -110,18 +112,17 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
   }
 
   private Stream<LinkEntity> getNew() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
-          .setArgs(subreddit)
-          .get();
+    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
+        .setArgs(subreddit).get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
 
   /**
-   * This exception is thrown whenever the next sequence of links couldn't be requested from the
-   * Reddit API. It wraps the {@link FailedRequestException} around an unchecked exception to
-   * satisfy due to the signature of {@link #next()}}.
+   * This exception is thrown whenever the next sequence of links couldn't be
+   * requested from the Reddit API. It wraps the {@link FailedRequestException}
+   * around an unchecked exception to satisfy due to the signature of
+   * {@link #next()}}.
    */
   public static final class IteratorException extends RuntimeException {
     private static final long serialVersionUID = 1L;

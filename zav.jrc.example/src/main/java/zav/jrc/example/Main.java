@@ -30,8 +30,8 @@ import zav.jrc.listener.observer.SubredditObserver;
 
 /**
  * Standalone example of the JRC client.<br>
- * This example registers a listener for the subreddit {@code RedditDev} which prints the name
- * of all newly received links..
+ * This example registers a listener for the subreddit {@code RedditDev} which
+ * prints the name of all newly received links..
  */
 public class Main {
   private static UserAgentEntity USER_AGENT;
@@ -45,7 +45,7 @@ public class Main {
    *
    * @param args An array of command-line arguments.
    * @throws FailedRequestException If one of the API requests was rejected.
-   * @throws IOException If one of the JSON files couldn't be read.
+   * @throws IOException            If one of the JSON files couldn't be read.
    */
   public static void main(String[] args) throws FailedRequestException, IOException {
     USER_AGENT = UserAgentEntity.read(new File("UserAgent.json"));

@@ -29,53 +29,65 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public final class Flair {
   /**
    * Removes all user/link flairs.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | flair_type                     | one of (USER_FLAIR, LINK_FLAIR)                            |
    * | uh / X-Modhash header          | a modhash                                                  |
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_CLEARFLAIRTEMPLATES =
-        new Endpoint("r", "{subreddit}", "api", "clearflairtemplates");
+  public static final Endpoint POST_R_SUBREDDIT_API_CLEARFLAIRTEMPLATES = new Endpoint("r",
+      "{subreddit}", "api", "clearflairtemplates");
   /**
    * Removes a user flair.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | name                           | a user by name                                             |
    * | uh / X-Modhash header          | a modhash                                                  |
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_DELETEFLAIR =
-        new Endpoint("r", "{subreddit}", "api", "deleteflair");
+  public static final Endpoint POST_R_SUBREDDIT_API_DELETEFLAIR = new Endpoint("r", "{subreddit}",
+      "api", "deleteflair");
   /**
    * Deletes a flair template.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | flair_template_id              |                                                            |
    * | uh / X-Modhash header          | a modhash                                                  |
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_DELETEFLAIRTEMPLATE =
-        new Endpoint("r", "{subreddit}", "api", "deleteflairtemplate");
+  public static final Endpoint POST_R_SUBREDDIT_API_DELETEFLAIRTEMPLATE = new Endpoint("r",
+      "{subreddit}", "api", "deleteflairtemplate");
   /**
    * Sets the user flair.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | css_class                      | a valid subreddit image name                               |
    * | link                           | a fullname of a link                                       |
    * | name                           | a user by name                                             |
@@ -84,12 +96,13 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_FLAIR =
-        new Endpoint("r", "{subreddit}", "api", "flair");
+  public static final Endpoint POST_R_SUBREDDIT_API_FLAIR = new Endpoint("r", "{subreddit}", "api",
+      "flair");
   /**
    * Update the order of flair templates in the specified subreddit.<br>
-   * Order should contain every single flair id for that flair type; omitting any id will result in
-   * a loss of data.
+   * Order should contain every single flair id for that flair type; omitting any
+   * id will result in a loss of data.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
@@ -100,15 +113,18 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint PATCH_R_SUBREDDIT_API_FLAIR_TEMPLATE_ORDER =
-        new Endpoint("r", "{subreddit}", "api", "flair_template_order");
+  public static final Endpoint PATCH_R_SUBREDDIT_API_FLAIR_TEMPLATE_ORDER = new Endpoint("r",
+      "{subreddit}", "api", "flair_template_order");
   /**
    * Update the flair configuration.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | flair_enabled                  | boolean value                                              |
    * | flair_position                 | one of (left, right)                                       |
    * | flair_self_assign_enabled      | boolean value                                              |
@@ -118,16 +134,18 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRCONFIG =
-        new Endpoint("r", "{subreddit}", "api", "flairconfig");
+  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRCONFIG = new Endpoint("r", "{subreddit}",
+      "api", "flairconfig");
   /**
-   * Change the flair of multiple users in the same subreddit with a single API call.<br>
-   * Requires a string 'flair_csv' which has up to 100 lines of the form 'user,flairtext,cssclass'
-   * (Lines beyond the 100th are ignored).<br>
-   * If both {@code cssclass} and {@code flairtext} are the empty string for a given user, instead
-   * clears that user's flair.<br>
-   * Returns an array of objects indicating if each flair setting was applied, or a reason for the
-   * failure.
+   * Change the flair of multiple users in the same subreddit with a single API
+   * call.<br>
+   * Requires a string 'flair_csv' which has up to 100 lines of the form
+   * 'user,flairtext,cssclass' (Lines beyond the 100th are ignored).<br>
+   * If both {@code cssclass} and {@code flairtext} are the empty string for a
+   * given user, instead clears that user's flair.<br>
+   * Returns an array of objects indicating if each flair setting was applied, or
+   * a reason for the failure.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
@@ -137,10 +155,11 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRCSV =
-        new Endpoint("r", "{subreddit}", "api", "flaircsv");
+  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRCSV = new Endpoint("r", "{subreddit}",
+      "api", "flaircsv");
   /**
    * This endpoint is a listing.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
@@ -156,15 +175,16 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_API_FLAIRLIST =
-        new Endpoint("r", "{subreddit}", "api", "flairlist");
+  public static final Endpoint GET_R_SUBREDDIT_API_FLAIRLIST = new Endpoint("r", "{subreddit}",
+      "api", "flairlist");
   /**
    * Return information about a users' flair options.<br>
-   * If {@code link} is given, return link flair options for an existing link. If {@code is_newlink}
-   * is {@code True}, return link flairs options for a new link submission. Otherwise, return user
-   * flair options for this subreddit.<br>
-   * The logged-in user's flair is also returned. Subreddit moderators may give a user by
-   * {@code name} to instead retrieve that user's flair.
+   * If {@code link} is given, return link flair options for an existing link. If
+   * {@code is_newlink} is {@code True}, return link flairs options for a new link
+   * submission. Otherwise, return user flair options for this subreddit.<br>
+   * The logged-in user's flair is also returned. Subreddit moderators may give a
+   * user by {@code name} to instead retrieve that user's flair.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
@@ -175,15 +195,18 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRSELECTOR =
-        new Endpoint("r", "{subreddit}", "api", "flairselector");
+  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRSELECTOR = new Endpoint("r", "{subreddit}",
+      "api", "flairselector");
   /**
    * Create or update a flair template.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | css_class                      | a valid subreddit image name                               |
    * | flair_template_id              |                                                            |
    * | flair_type                     | one of (USER_FLAIR, LINK_FLAIR)                            |
@@ -193,17 +216,20 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRTEMPLATE =
-        new Endpoint("r", "{subreddit}", "api", "flairtemplate");
+  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRTEMPLATE = new Endpoint("r", "{subreddit}",
+      "api", "flairtemplate");
   /**
    * Create or update a flair template.<br>
    * This new endpoint is primarily used for the redesign.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
    * | allowable_content              | one of (all, emoji, text)                                  |
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | background_color               | a 6-digit rgb hex color, e.g. #AABBCC                      |
    * | css_class                      | a valid subreddit image name                               |
    * | flair_template_id              |                                                            |
@@ -218,29 +244,32 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRTEMPLATE_V2 =
-        new Endpoint("r", "{subreddit}", "api", "flairtemplate_v2");
+  public static final Endpoint POST_R_SUBREDDIT_API_FLAIRTEMPLATE_V2 = new Endpoint("r",
+      "{subreddit}", "api", "flairtemplate_v2");
   /**
    * Return list of available link flair for the current subreddit.<br>
-   * Will not return flair if the user cannot set their own link flair, and they are not a moderator
-   * that can set flair.
+   * Will not return flair if the user cannot set their own link flair, and they
+   * are not a moderator that can set flair.
    */
-  public static final Endpoint GET_R_SUBREDDIT_API_LINK_FLAIR =
-        new Endpoint("r", "{subreddit}", "api", "link_flair");
+  public static final Endpoint GET_R_SUBREDDIT_API_LINK_FLAIR = new Endpoint("r", "{subreddit}",
+      "api", "link_flair");
   /**
    * Return list of available link flair for the current subreddit.<br>
-   * Will not return flair if the user cannot set their own link flair, and they are not a moderator
-   * that can set flair.
+   * Will not return flair if the user cannot set their own link flair, and they
+   * are not a moderator that can set flair.
    */
-  public static final Endpoint GET_R_SUBREDDIT_API_LINK_FLAIR_V2 =
-        new Endpoint("r", "{subreddit}", "api", "link_flair_v2");
+  public static final Endpoint GET_R_SUBREDDIT_API_LINK_FLAIR_V2 = new Endpoint("r", "{subreddit}",
+      "api", "link_flair_v2");
   /**
    * Select the flair of a user/link.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | background_color               | a 6-digit rgb hex color, e.g. #AABBCC                      |
    * | css_class                      | a valid subreddit image name                               |
    * | flair_template_id              |                                                            |
@@ -254,33 +283,37 @@ public final class Flair {
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_SELECTFLAIR =
-        new Endpoint("r", "{subreddit}", "api", "selectflair");
+  public static final Endpoint POST_R_SUBREDDIT_API_SELECTFLAIR = new Endpoint("r", "{subreddit}",
+      "api", "selectflair");
   /**
    * Enables user/link flairs.
+   * 
    * <pre>
    * +--------------------------------+------------------------------------------------------------+
    * | Parameter                      | Description                                                |
    * +--------------------------------+------------------------------------------------------------+
-   * | api_type                       | the string {@code json}                                    |
+   * | api_type                       | the string {@code
+   * json
+   * }                                    |
    * | flair_enabled                  | boolean value                                              |
    * | uh / X-Modhash header          | a modhash                                                  |
    * +--------------------------------+------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint POST_R_SUBREDDIT_API_SETFLAIRENABLED =
-        new Endpoint("r", "{subreddit}", "api", "setflairenabled");
+  public static final Endpoint POST_R_SUBREDDIT_API_SETFLAIRENABLED = new Endpoint("r",
+      "{subreddit}", "api", "setflairenabled");
   /**
    * Return list of available user flair for the current subreddit.<br>
-   * Will not return flair if flair is disabled on the subreddit, the user cannot set their own
-   * flair, or they are not a moderator that can set flair.
+   * Will not return flair if flair is disabled on the subreddit, the user cannot
+   * set their own flair, or they are not a moderator that can set flair.
    */
-  public static final Endpoint GET_R_SUBREDDIT_API_USER_FLAIR =
-        new Endpoint("r", "{subreddit}", "api", "user_flair");
+  public static final Endpoint GET_R_SUBREDDIT_API_USER_FLAIR = new Endpoint("r", "{subreddit}",
+      "api", "user_flair");
   /**
    * Return list of available user flair for the current subreddit.<br>
-   * If user is not a mod of the subreddit, this endpoint filters out mod_only templates.
+   * If user is not a mod of the subreddit, this endpoint filters out mod_only
+   * templates.
    */
-  public static final Endpoint GET_R_SUBREDDIT_API_USER_FLAIR_V2 =
-        new Endpoint("r", "{subreddit}", "api", "user_flair_v2");
+  public static final Endpoint GET_R_SUBREDDIT_API_USER_FLAIR_V2 = new Endpoint("r", "{subreddit}",
+      "api", "user_flair_v2");
 }

@@ -30,9 +30,10 @@ import zav.jrc.listener.event.LinkEvent;
 import zav.jrc.listener.requester.LinkRequester;
 
 /**
- * The observer implementation for subreddits. Calling {@link #notifyListener(SubredditListener)} or
- * {@link #notifyAllListeners()} will call the respective
- * {@link SubredditListener#notify(LinkEvent)} methods of all registered listeners.
+ * The observer implementation for subreddits. Calling
+ * {@link #notifyListener(SubredditListener)} or {@link #notifyAllListeners()}
+ * will call the respective {@link SubredditListener#notify(LinkEvent)} methods
+ * of all registered listeners.
  */
 @NonNullByDefault
 public class SubredditObserver extends AbstractObserver<SubredditListener> {
@@ -47,22 +48,23 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   @Override
   public void notifyAllListeners() throws FailedRequestException {
     try {
-      history = requester.next(); //History is computed once for all listeners
+      history = requester.next(); // History is computed once for all listeners
       super.notifyAllListeners();
     } catch (LinkRequester.IteratorException e) {
       throw e.getCause();
     } finally {
-      history = null; //Clear cache even in case an exception was thrown.
+      history = null; // Clear cache even in case an exception was thrown.
     }
   }
 
   @Override
   public void notifyListener(SubredditListener listener) throws FailedRequestException {
     try {
-      //History may be null when a listener is called explicitly instead of via notifyAllListener.
+      // History may be null when a listener is called explicitly instead of via
+      // notifyAllListener.
       history = history == null ? requester.next() : history;
 
-      //Notify the listener starting with the oldest link first
+      // Notify the listener starting with the oldest link first
       List<LinkEntity> result = new ArrayList<>(history);
       result.sort(Comparator.comparing(LinkEntity::getId));
       result.stream().map(LinkEvent::new).forEach(listener::notify);

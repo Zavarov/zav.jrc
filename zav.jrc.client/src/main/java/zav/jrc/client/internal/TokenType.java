@@ -21,23 +21,26 @@ import java.util.Locale;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
- * The token type is used to inform Reddit about the kind of token that is transmitted. It is
- * required when refreshing the access token or invalidating already existing tokens.
+ * The token type is used to inform Reddit about the kind of token that is
+ * transmitted. It is required when refreshing the access token or invalidating
+ * already existing tokens.
  */
 @NonNullByDefault
 public enum TokenType {
   /**
-   * The access token is required to authenticate the application when using the OAuth2 endpoints.
+   * The access token is required to authenticate the application when using the
+   * OAuth2 endpoints.
    */
   ACCESS_TOKEN,
   /**
-   * The refresh token is required when requesting a new access token, once the previous one
-   * expired.
+   * The refresh token is required when requesting a new access token, once the
+   * previous one expired.
    */
   REFRESH_TOKEN;
 
   /**
-   * The resulting string can be used in the JSON request to identify the type of token.
+   * The resulting string can be used in the JSON request to identify the type of
+   * token.
    *
    * @return A string representation of the enum type.
    */

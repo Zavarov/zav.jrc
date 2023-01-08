@@ -47,7 +47,8 @@ import zav.jrc.databind.UserListDataEntity;
 import zav.jrc.databind.UserListEntity;
 
 /**
- * Checks whether the calls to the self-account-related endpoints return the expected response.
+ * Checks whether the calls to the self-account-related endpoints return the
+ * expected response.
  */
 @ExtendWith(MockitoExtension.class)
 public class SelfAccountTest {
@@ -56,11 +57,13 @@ public class SelfAccountTest {
   SelfAccount selfAccount;
   UserListEntity users;
   TrophyListEntity trophies;
-  @Mock Client client;
+  @Mock
+  Client client;
   RequestBuilder request;
 
   /**
-   * Initializes all fields and binds the {@link #request} to {@link Client#newRequest()}.<br>
+   * Initializes all fields and binds the {@link #request} to
+   * {@link Client#newRequest()}.<br>
    * {@link #users} is initialized with an empty list of users.<br>
    * {@link #trophies} is initialized with an empty list of trophies.<br>
    *
@@ -140,7 +143,8 @@ public class SelfAccountTest {
 
   @Test
   public void testGetFriends() throws FailedRequestException {
-    mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new UserListEntity[]{users});
+    mocked.when(() -> Things.transform(anyString(), any()))
+        .thenReturn(new UserListEntity[] { users });
     assertNotNull(selfAccount.getFriends());
 
     verify(request).setEndpoint(Account.GET_PREFS_FRIENDS);
@@ -151,7 +155,6 @@ public class SelfAccountTest {
   public void testGetTrusted() throws FailedRequestException {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(users);
     assertNotNull(selfAccount.getTrusted());
-
 
     verify(request).setEndpoint(Account.GET_PREFS_TRUSTED);
     verify(request).get();

@@ -29,8 +29,9 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 public final class Misc {
   /**
    * Retrieve the advisory text about saving media for relevant media links.<br>
-   * This endpoint returns a notice for display during the post submission process that is pertinent
-   * to media links.
+   * This endpoint returns a notice for display during the post submission process
+   * that is pertinent to media links.
+   * 
    * <pre>
    * +---------------------+-----------------------------------------------------------------------+
    * | Parameter           | Description                                                           |
@@ -39,12 +40,14 @@ public final class Misc {
    * +---------------------+-----------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_R_SUBREDDIT_API_SAVED_MEDIA =
-        new Endpoint("r", "{subreddit}", "api", "saved_media_text");
+  public static final Endpoint GET_R_SUBREDDIT_API_SAVED_MEDIA = new Endpoint("r", "{subreddit}",
+      "api", "saved_media_text");
   /**
    * Retrieve descriptions of reddit's OAuth2 scopes.<br>
    * If no scopes are given, information on all scopes are returned.<br>
-   * Invalid scope(s) will result in a 400 error with body that indicates the invalid scope(s).
+   * Invalid scope(s) will result in a 400 error with body that indicates the
+   * invalid scope(s).
+   * 
    * <pre>
    * +---------------------+-----------------------------------------------------------------------+
    * | Parameter           | Description                                                           |
@@ -53,6 +56,5 @@ public final class Misc {
    * +---------------------+-----------------------------------------------------------------------+
    * </pre>
    */
-  public static final Endpoint GET_API_V1_SCOPES =
-        new Endpoint("api", "v1", "scopes");
+  public static final Endpoint GET_API_V1_SCOPES = new Endpoint("api", "v1", "scopes");
 }

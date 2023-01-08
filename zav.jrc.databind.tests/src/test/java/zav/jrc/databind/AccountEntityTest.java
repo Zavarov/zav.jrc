@@ -26,7 +26,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of an account entity have been properly deserialized.
+ * Checks whether the attributes of an account entity have been properly
+ * deserialized.
  */
 public class AccountEntityTest extends AbstractTest {
   static ThingEntity thing;
@@ -115,7 +116,8 @@ public class AccountEntityTest extends AbstractTest {
 
   @Test
   public void testGetIconImage() {
-    assertEquals(account.getIconImage(), "https://styles.redditmedia.com/t5_hv5dz/styles/profileIcon_snoo8658e16c-55fa-486f-b7c7-00726de2e742-headshot.png?width=256&amp;height=256&amp;crop=256:256,smart&amp;s=f61c0e3ac1a1d9357c21086feb78943c31d19d37");
+    assertEquals(account.getIconImage(),
+        "https://styles.redditmedia.com/t5_hv5dz/styles/profileIcon_snoo8658e16c-55fa-486f-b7c7-00726de2e742-headshot.png?width=256&amp;height=256&amp;crop=256:256,smart&amp;s=f61c0e3ac1a1d9357c21086feb78943c31d19d37");
   }
 
   @Test

@@ -30,7 +30,8 @@ import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.io.TokenEntity;
 
 /**
- * Mock client instance that uses pre-recorded responses instead of performing actual API calls.
+ * Mock client instance that uses pre-recorded responses instead of performing
+ * actual API calls.
  */
 @NonNullByDefault
 public class ClientMock extends Client {
@@ -61,7 +62,8 @@ public class ClientMock extends Client {
 
     String dir = "responses";
     ClassLoader cl = getClass().getClassLoader();
-    @Nullable InputStream is = cl.getResourceAsStream(dir + "/" + fileName);
+    @Nullable
+    InputStream is = cl.getResourceAsStream(dir + "/" + fileName);
     if (is == null) {
       throw FailedRequestException.wrap(new FileNotFoundException(fileName));
     }

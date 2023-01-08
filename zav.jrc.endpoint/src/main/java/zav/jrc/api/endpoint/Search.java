@@ -31,13 +31,11 @@ public final class Search {
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_search">here</a>
    */
-  public static final Endpoint GET_R_SUBREDDIT_SEARCH =
-        new Endpoint("r", "{subreddit}", "search");
+  public static final Endpoint GET_R_SUBREDDIT_SEARCH = new Endpoint("r", "{subreddit}", "search");
   /**
    * Search links page.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_search">here</a>
    */
-  public static final Endpoint GET_SEARCH =
-        new Endpoint("search");
+  public static final Endpoint GET_SEARCH = new Endpoint("search");
 }

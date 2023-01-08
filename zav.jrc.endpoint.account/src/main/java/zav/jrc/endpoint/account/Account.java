@@ -43,18 +43,19 @@ import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
 
 /**
- * Representation of a Reddit account. Accounts are usually of the form u/<i>username</i>.
+ * Representation of a Reddit account. Accounts are usually of the form
+ * u/<i>username</i>.
  */
 @NonNullByDefault
 public class Account {
   /**
-   * In order to save the number of API calls, the account data is stored in an internal cache, s.t.
-   * the cached value is reused, during consecutive calls within a short time frame.<br>
+   * In order to save the number of API calls, the account data is stored in an
+   * internal cache, s.t. the cached value is reused, during consecutive calls
+   * within a short time frame.<br>
    * Items are cached for a single day.
    */
   private static final Cache<String, AccountEntity> accountCache = Caffeine.newBuilder()
-        .expireAfterWrite(Duration.ofDays(1))
-        .build();
+      .expireAfterWrite(Duration.ofDays(1)).build();
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Account.class);
 
@@ -78,11 +79,9 @@ public class Account {
    * @see Users#POST_API_BLOCK_USER
    */
   public void block() throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Users.POST_API_BLOCK_USER)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("name", name)
-          .post();
+    client.newRequest().setEndpoint(Users.POST_API_BLOCK_USER)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).addParam("name", name)
+        .post();
   }
 
   /**
@@ -94,13 +93,10 @@ public class Account {
   public void unblock() throws FailedRequestException {
     AccountEntity self = getAbout();
 
-    client.newRequest()
-          .setEndpoint(Users.POST_API_UNFRIEND)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("container", "t2_" + self.getId())
-          .addParam("name", name)
-          .addParam("type", "enemy")
-          .post();
+    client.newRequest().setEndpoint(Users.POST_API_UNFRIEND)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
+        .addParam("container", "t2_" + self.getId()).addParam("name", name)
+        .addParam("type", "enemy").post();
   }
 
   /**
@@ -115,15 +111,14 @@ public class Account {
     body.put("user", name);
     body.put("reason", reason);
 
-    client.newRequest()
-          .setEndpoint(Users.POST_API_REPORT_USER)
-          .setBody(body, RequestBuilder.BodyType.JSON)
-          .post();
+    client.newRequest().setEndpoint(Users.POST_API_REPORT_USER)
+        .setBody(body, RequestBuilder.BodyType.JSON).post();
   }
 
   /**
    * Befriends this account.<br>
-   * May be used to update the note of the account, in case it already is a 'friend'.
+   * May be used to update the note of the account, in case it already is a
+   * 'friend'.
    *
    * @param note A custom note corresponding to this account. May be {@code null}.
    * @return The user Entity corresponding to this account.
@@ -136,11 +131,8 @@ public class Account {
       body.put("note", note);
     }
 
-    String response = client.newRequest()
-          .setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME)
-          .setBody(body, RequestBuilder.BodyType.JSON)
-          .setArgs(name)
-          .put();
+    String response = client.newRequest().setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME)
+        .setBody(body, RequestBuilder.BodyType.JSON).setArgs(name).put();
 
     return Things.transform(response, UserEntity.class);
   }
@@ -152,11 +144,8 @@ public class Account {
    * @see Users#DELETE_API_V1_ME_FRIENDS_USERNAME
    */
   public void unfriend() throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .setArgs(name)
-          .delete();
+    client.newRequest().setEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).setArgs(name).delete();
   }
 
   /**
@@ -167,10 +156,8 @@ public class Account {
    * @see Users#GET_API_USERNAME_AVAILABLE
    */
   public boolean isAvailable() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_API_USERNAME_AVAILABLE)
-          .addParam("user", name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_API_USERNAME_AVAILABLE)
+        .addParam("user", name).get();
 
     return Things.transform(response, Boolean.class);
   }
@@ -183,10 +170,8 @@ public class Account {
    * @see Users#GET_API_V1_ME_FRIENDS_USERNAME
    */
   public UserEntity getFriends() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME)
+        .setArgs(name).get();
 
     return Things.transform(response, UserEntity.class);
   }
@@ -199,15 +184,11 @@ public class Account {
    * @see Users#GET_API_V1_USER_USERNAME_TROPHIES
    */
   public Stream<AwardEntity> getTrophies() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES)
+        .setArgs(name).get();
 
-    return Things.transformThing(response, TrophyListEntity.class)
-          .getTrophies()
-          .stream()
-          .map(thing -> Things.transformThing(thing, AwardEntity.class));
+    return Things.transformThing(response, TrophyListEntity.class).getTrophies().stream()
+        .map(thing -> Things.transformThing(thing, AwardEntity.class));
   }
 
   /**
@@ -218,14 +199,13 @@ public class Account {
    * @see Users#GET_USER_USERNAME_ABOUT
    */
   public AccountEntity getAbout() throws FailedRequestException {
-    @Nullable AccountEntity result = accountCache.getIfPresent(name);
+    @Nullable
+    AccountEntity result = accountCache.getIfPresent(name);
 
     // Only perform a new request if the account hasn't been cached.
     if (result == null) {
-      String response = client.newRequest()
-            .setEndpoint(Users.GET_USER_USERNAME_ABOUT)
-            .setArgs(name)
-            .get();
+      String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_ABOUT).setArgs(name)
+          .get();
 
       result = Things.transformThing(response, AccountEntity.class);
 
@@ -246,11 +226,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_COMMENTS
    */
   public Stream<CommentEntity> getComments(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_COMMENTS)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_COMMENTS)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListingOfThings(response, CommentEntity.class);
   }
@@ -264,11 +241,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_DOWNVOTED
    */
   public Stream<ThingEntity> getDownvoted(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListing(response, ThingEntity.class);
   }
@@ -282,11 +256,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_GILDED
    */
   public Stream<ThingEntity> getGilded(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_GILDED)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_GILDED)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListing(response, ThingEntity.class);
   }
@@ -300,11 +271,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_HIDDEN
    */
   public Stream<ThingEntity> getHidden(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_HIDDEN)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_HIDDEN)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListing(response, ThingEntity.class);
   }
@@ -318,11 +286,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_OVERVIEW
    */
   public Stream<ThingEntity> getOverview(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_OVERVIEW)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_OVERVIEW)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListing(response, ThingEntity.class);
   }
@@ -336,11 +301,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_SAVED
    */
   public Stream<ThingEntity> getSaved(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_SAVED)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_SAVED)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListing(response, ThingEntity.class);
   }
@@ -354,11 +316,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_SUBMITTED
    */
   public Stream<LinkEntity> getSubmitted(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_SUBMITTED)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_SUBMITTED)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -372,11 +331,8 @@ public class Account {
    * @see Users#GET_USER_USERNAME_UPVOTED
    */
   public Stream<ThingEntity> getUpvoted(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Users.GET_USER_USERNAME_UPVOTED)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Users.GET_USER_USERNAME_UPVOTED)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListing(response, ThingEntity.class);
   }

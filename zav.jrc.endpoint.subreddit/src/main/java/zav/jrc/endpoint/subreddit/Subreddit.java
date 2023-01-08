@@ -54,13 +54,13 @@ import zav.jrc.databind.UserListEntity;
 import zav.jrc.databind.core.ListingEntity;
 
 /**
- * Representation of a subreddits. Subreddits are usually of the form r/<i>name</i>.
+ * Representation of a subreddits. Subreddits are usually of the form
+ * r/<i>name</i>.
  */
 @NonNullByDefault
 public class Subreddit {
   private static final Cache<String, SubredditEntity> subredditCache = Caffeine.newBuilder()
-        .expireAfterWrite(Duration.ofDays(1))
-        .build();
+      .expireAfterWrite(Duration.ofDays(1)).build();
 
   private static final Logger LOGGER = LoggerFactory.getLogger(Subreddit.class);
 
@@ -77,11 +77,11 @@ public class Subreddit {
     return String.format("%s[%s]", getClass(), name);
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    Listings                                                                                  //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // Listings //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
    * Returns a stream over all links, sorted by {@code controversial}.
@@ -91,11 +91,8 @@ public class Subreddit {
    * @see Listings#GET_R_SUBREDDIT_CONTROVERSIAL
    */
   public Stream<LinkEntity> getControversial(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Listings.GET_R_SUBREDDIT_CONTROVERSIAL)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_CONTROVERSIAL)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -108,11 +105,8 @@ public class Subreddit {
    * @see Listings#GET_R_SUBREDDIT_HOT
    */
   public Stream<LinkEntity> getHot(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Listings.GET_R_SUBREDDIT_HOT)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_HOT)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -125,11 +119,8 @@ public class Subreddit {
    * @see Listings#GET_R_SUBREDDIT_NEW
    */
   public Stream<LinkEntity> getNew(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -142,11 +133,8 @@ public class Subreddit {
    * @see Listings#GET_R_SUBREDDIT_RANDOM
    */
   public Stream<LinkEntity> getRandom(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Listings.GET_R_SUBREDDIT_RANDOM)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_RANDOM)
+        .setParams(params).setArgs(name).get();
 
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
     ListingEntity listing = Things.transformThing(things[0], ListingEntity.class);
@@ -161,11 +149,8 @@ public class Subreddit {
    * @see Listings#GET_R_SUBREDDIT_RISING
    */
   public Stream<LinkEntity> getRising(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Listings.GET_R_SUBREDDIT_RISING)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_RISING)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -178,20 +163,17 @@ public class Subreddit {
    * @see Listings#GET_R_SUBREDDIT_TOP
    */
   public Stream<LinkEntity> getTop(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Listings.GET_R_SUBREDDIT_TOP)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_TOP)
+        .setParams(params).setArgs(name).get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    Search                                                                                    //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // Search //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
    * Returns a stream over all links matching the search parameters.
@@ -202,21 +184,18 @@ public class Subreddit {
    * @see Search#GET_R_SUBREDDIT_SEARCH
    */
   public Stream<LinkEntity> search(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Search.GET_R_SUBREDDIT_SEARCH)
-          .setParams(params)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Search.GET_R_SUBREDDIT_SEARCH)
+        .setParams(params).setArgs(name).get();
 
     ListingEntity listing = Things.transformThing(response, ListingEntity.class);
     return Things.transformListing(listing, LinkEntity.class);
   }
 
-  //----------------------------------------------------------------------------------------------//
-  //                                                                                              //
-  //    Subreddits                                                                                //
-  //                                                                                              //
-  //----------------------------------------------------------------------------------------------//
+  // ----------------------------------------------------------------------------------------------//
+  // //
+  // Subreddits //
+  // //
+  // ----------------------------------------------------------------------------------------------//
 
   /**
    * Creates a new subreddit.
@@ -226,15 +205,13 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SITE_ADMIN
    */
-  public SubredditSettingsEntity create(SubredditSettingsEntity settings) throws FailedRequestException {
+  public SubredditSettingsEntity create(SubredditSettingsEntity settings)
+      throws FailedRequestException {
     Map<?, ?> body = Things.transform(settings, Map.class);
 
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.POST_API_SITE_ADMIN)
-          .setBody(body, RequestBuilder.BodyType.JSON)
-          .addParam("api_type", "json")
-          .addParam("name", name)
-          .post();
+    String response = client.newRequest().setEndpoint(Subreddits.POST_API_SITE_ADMIN)
+        .setBody(body, RequestBuilder.BodyType.JSON).addParam("api_type", "json")
+        .addParam("name", name).post();
 
     return Things.transformThing(response, SubredditSettingsEntity.class);
   }
@@ -247,16 +224,14 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SITE_ADMIN
    */
-  public SubredditSettingsEntity configure(SubredditSettingsEntity settings) throws FailedRequestException {
+  public SubredditSettingsEntity configure(SubredditSettingsEntity settings)
+      throws FailedRequestException {
     Map<?, ?> body = Things.transform(settings, Map.class);
 
     SubredditEntity subreddit = getAbout();
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.POST_API_SITE_ADMIN)
-          .setBody(body, RequestBuilder.BodyType.JSON)
-          .addParam("api_type", "json")
-          .addParam("sr", "t5_" + subreddit.getId())
-          .post();
+    String response = client.newRequest().setEndpoint(Subreddits.POST_API_SITE_ADMIN)
+        .setBody(body, RequestBuilder.BodyType.JSON).addParam("api_type", "json")
+        .addParam("sr", "t5_" + subreddit.getId()).post();
 
     return Things.transformThing(response, SubredditSettingsEntity.class);
   }
@@ -268,12 +243,9 @@ public class Subreddit {
    * @see Subreddits#POST_API_SUBSCRIBE
    */
   public void subscribe() throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("action", "sub")
-          .addParam("sr_name", name)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_API_SUBSCRIBE)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).addParam("action", "sub")
+        .addParam("sr_name", name).post();
   }
 
   /**
@@ -283,12 +255,9 @@ public class Subreddit {
    * @see Subreddits#POST_API_SUBSCRIBE
    */
   public void unsubscribe() throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_API_SUBSCRIBE)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("action", "unsub")
-          .addParam("sr_name", name)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_API_SUBSCRIBE)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).addParam("action", "unsub")
+        .addParam("sr_name", name).post();
   }
 
   /**
@@ -300,9 +269,7 @@ public class Subreddit {
    */
   public Map<?, ?> getPostRequirements() throws FailedRequestException {
     String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_API_V1_SUBREDDIT_POST_REQUIREMENTS)
-          .setArgs(name)
-          .get();
+        .setEndpoint(Subreddits.GET_API_V1_SUBREDDIT_POST_REQUIREMENTS).setArgs(name).get();
 
     return Things.transform(response, Map.class);
   }
@@ -315,10 +282,8 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_BANNED
    */
   public Stream<UserEntity> getBanned() throws FailedRequestException {
-    String response = client.newRequest()
-        .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_BANNED)
-        .setArgs(name)
-        .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_BANNED)
+        .setArgs(name).get();
 
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
@@ -333,10 +298,8 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS
    */
   public Stream<UserEntity> getContributors() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_CONTRIBUTORS)
+        .setArgs(name).get();
 
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
@@ -351,26 +314,23 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_MODERATORS
    */
   public Stream<UserEntity> getModerators() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MODERATORS)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MODERATORS)
+        .setArgs(name).get();
 
     return Things.transform(response, UserListEntity.class).getData().getChildren().stream();
   }
 
   /**
-   * Returns a stream over all users that have been muted by the moderators of this subreddit.
+   * Returns a stream over all users that have been muted by the moderators of
+   * this subreddit.
    *
    * @return A stream over the entities corresponding to the users.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_MUTED
    */
   public Stream<UserEntity> getMuted() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MUTED)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_MUTED)
+        .setArgs(name).get();
 
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
@@ -378,17 +338,16 @@ public class Subreddit {
   }
 
   /**
-   * Returns a stream over all users that have been banned from the wiki of this subreddit.
+   * Returns a stream over all users that have been banned from the wiki of this
+   * subreddit.
    *
    * @return A stream over the entities corresponding to the users.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_WIKIBANNED
    */
   public Stream<UserEntity> getWikiBanned() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKIBANNED)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKIBANNED)
+        .setArgs(name).get();
 
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
@@ -404,9 +363,7 @@ public class Subreddit {
    */
   public Stream<UserEntity> getWikiContributors() throws FailedRequestException {
     String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS)
-          .setArgs(name)
-          .get();
+        .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_WIKICONTRIBUTORS).setArgs(name).get();
 
     ThingEntity thing = Things.transform(response, ThingEntity.class);
     ListingEntity listing = Things.transform(thing.getData(), ListingEntity.class);
@@ -420,12 +377,9 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_BANNER
    */
   public void deleteBanner() throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_BANNER)
-          .setArgs(name)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("api_type", "json")
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_BANNER).setArgs(name)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).addParam("api_type", "json")
+        .post();
   }
 
   /**
@@ -435,12 +389,9 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_HEADER
    */
   public void deleteHeader() throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_HEADER)
-          .setArgs(name)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("api_type", "json")
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_HEADER).setArgs(name)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).addParam("api_type", "json")
+        .post();
   }
 
   /**
@@ -450,12 +401,9 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_API_DELETE_SR_ICON
    */
   public void deleteIcon() throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_ICON)
-          .setArgs(name)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("api_type", "json")
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_DELETE_SR_ICON).setArgs(name)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).addParam("api_type", "json")
+        .post();
   }
 
   /**
@@ -465,13 +413,9 @@ public class Subreddit {
    * @see Subreddits#POST_R_SUBREDDIT_DELETE_SR_IMAGE
    */
   public void deleteImage(String imageName) throws FailedRequestException {
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_DELETE_SR_IMAGE)
-          .setArgs(name)
-          .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON)
-          .addParam("api_type", "json")
-          .addParam("img_name", imageName)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_DELETE_SR_IMAGE).setArgs(name)
+        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).addParam("api_type", "json")
+        .addParam("img_name", imageName).post();
   }
 
   /**
@@ -482,10 +426,8 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_API_SUBMIT_TEXT
    */
   public String getSubmitText() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_API_SUBMIT_TEXT)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_API_SUBMIT_TEXT)
+        .setArgs(name).get();
 
     Map<?, ?> data = Things.transform(response, Map.class);
 
@@ -502,12 +444,9 @@ public class Subreddit {
     Map<Object, Object> body = new HashMap<>();
     Arrays.stream(params).forEach(param -> body.put(param.getKey(), param.getValue()));
 
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET)
-          .setBody(body, RequestBuilder.BodyType.JSON)
-          .addParam("api_type", "json")
-          .setArgs(name)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET)
+        .setBody(body, RequestBuilder.BodyType.JSON).addParam("api_type", "json").setArgs(name)
+        .post();
   }
 
   /**
@@ -525,20 +464,14 @@ public class Subreddit {
       throw FailedRequestException.wrap(e);
     }
 
-    MultipartBody body = new MultipartBody.Builder()
-          .setType(MultipartBody.FORM)
-          .addFormDataPart("file", imageName, RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
-          .addFormDataPart("header", "0")
-          .addFormDataPart("img_type", "png")
-          .addFormDataPart("name", imageName)
-          .addFormDataPart("upload_type", "img")
-          .build();
+    MultipartBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", imageName,
+            RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
+        .addFormDataPart("header", "0").addFormDataPart("img_type", "png")
+        .addFormDataPart("name", imageName).addFormDataPart("upload_type", "img").build();
 
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
-          .setBody(body)
-          .setArgs(name)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE).setBody(body)
+        .setArgs(name).post();
   }
 
   /**
@@ -556,19 +489,14 @@ public class Subreddit {
       throw FailedRequestException.wrap(e);
     }
 
-    MultipartBody body = new MultipartBody.Builder()
-          .setType(MultipartBody.FORM)
-          .addFormDataPart("file", "header", RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
-          .addFormDataPart("header", "1")
-          .addFormDataPart("img_type", "png")
-          .addFormDataPart("upload_type", "header")
-          .build();
+    MultipartBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", "header",
+            RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
+        .addFormDataPart("header", "1").addFormDataPart("img_type", "png")
+        .addFormDataPart("upload_type", "header").build();
 
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
-          .setBody(body)
-          .setArgs(name)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE).setBody(body)
+        .setArgs(name).post();
   }
 
   /**
@@ -586,19 +514,14 @@ public class Subreddit {
       throw FailedRequestException.wrap(e);
     }
 
-    MultipartBody body = new MultipartBody.Builder()
-          .setType(MultipartBody.FORM)
-          .addFormDataPart("file", "icon", RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
-          .addFormDataPart("header", "0")
-          .addFormDataPart("img_type", "png")
-          .addFormDataPart("upload_type", "icon")
-          .build();
+    MultipartBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", "icon",
+            RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
+        .addFormDataPart("header", "0").addFormDataPart("img_type", "png")
+        .addFormDataPart("upload_type", "icon").build();
 
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
-          .setBody(body)
-          .setArgs(name)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE).setBody(body)
+        .setArgs(name).post();
   }
 
   /**
@@ -616,19 +539,14 @@ public class Subreddit {
       throw FailedRequestException.wrap(e);
     }
 
-    MultipartBody body = new MultipartBody.Builder()
-          .setType(MultipartBody.FORM)
-          .addFormDataPart("file", "icon", RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
-          .addFormDataPart("header", "0")
-          .addFormDataPart("img_type", "png")
-          .addFormDataPart("upload_type", "banner")
-          .build();
+    MultipartBody body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", "icon",
+            RequestBody.create(data.toByteArray(), MediaType.parse("image/png")))
+        .addFormDataPart("header", "0").addFormDataPart("img_type", "png")
+        .addFormDataPart("upload_type", "banner").build();
 
-    client.newRequest()
-          .setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE)
-          .setBody(body)
-          .setArgs(name)
-          .post();
+    client.newRequest().setEndpoint(Subreddits.POST_R_SUBREDDIT_API_UPLOAD_SR_IMAGE).setBody(body)
+        .setArgs(name).post();
   }
 
   /**
@@ -639,14 +557,13 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT
    */
   public SubredditEntity getAbout() throws FailedRequestException {
-    @Nullable SubredditEntity result = subredditCache.getIfPresent(name);
+    @Nullable
+    SubredditEntity result = subredditCache.getIfPresent(name);
 
     // Only perform a new request if the account hasn't been cached.
     if (result == null) {
-      String response = client.newRequest()
-            .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT)
-            .setArgs(name)
-            .get();
+      String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT)
+          .setArgs(name).get();
 
       result = Things.transformThing(response, SubredditEntity.class);
 
@@ -666,10 +583,8 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_EDIT
    */
   public SubredditSettingsEntity getEdit() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_EDIT)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_EDIT)
+        .setArgs(name).get();
 
     return Things.transformThing(response, SubredditSettingsEntity.class);
   }
@@ -682,10 +597,8 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_RULES
    */
   public RulesEntity getRules() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_RULES)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_RULES)
+        .setArgs(name).get();
 
     return Things.transform(response, RulesEntity.class);
   }
@@ -699,10 +612,8 @@ public class Subreddit {
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_TRAFFIC
    */
   public Map<?, ?> getTraffic() throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_TRAFFIC)
-          .setArgs(name)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_TRAFFIC)
+        .setArgs(name).get();
 
     return Things.transform(response, Map.class);
   }
@@ -710,21 +621,20 @@ public class Subreddit {
   /**
    * Returns the stickied link.
    *
-   * @param index The index of the stickied link. Has to be either {@code 1} or {@code 2}.
+   * @param index The index of the stickied link. Has to be either {@code 1} or
+   *              {@code 2}.
    * @return The Entity corresponding to the link.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_STICKY
    */
   public LinkEntity getSticky(int index) throws FailedRequestException {
-    String response = client.newRequest()
-          .setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_STICKY)
-          .setArgs(name)
-          .addParam("num", index)
-          .get();
+    String response = client.newRequest().setEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_STICKY)
+        .setArgs(name).addParam("num", index).get();
 
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
     ListingEntity listing = Things.transform(things[0].getData(), ListingEntity.class);
-    ThingEntity thing = Things.transformListing(listing, ThingEntity.class).findFirst().orElseThrow();
+    ThingEntity thing = Things.transformListing(listing, ThingEntity.class).findFirst()
+        .orElseThrow();
     return Things.transformThing(thing, LinkEntity.class);
   }
 }

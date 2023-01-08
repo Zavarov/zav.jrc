@@ -55,7 +55,7 @@ public class Things {
    *
    * @param source A serialized {@link ListingEntity} of Things.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
   public static <T> Stream<T> transformListingOfThings(String source, Class<T> target) {
@@ -67,11 +67,12 @@ public class Things {
    *
    * @param source A {@link ListingEntity} of Things.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
   public static <T> Stream<T> transformListingOfThings(ListingEntity source, Class<T> target) {
-    List<ThingEntity> things = transformListing(source, ThingEntity.class).collect(Collectors.toList());
+    List<ThingEntity> things = transformListing(source, ThingEntity.class)
+        .collect(Collectors.toList());
     List<T> result = new ArrayList<>();
 
     for (ThingEntity thing : things) {
@@ -83,11 +84,11 @@ public class Things {
 
   /**
    * Deserialized all objects contained by the {@link ListingEntity}.<br>
-   *    * The listing is contained within a {@link ThingEntity}.
+   * * The listing is contained within a {@link ThingEntity}.
    *
    * @param source A serialized {@link ListingEntity}.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
   public static <T> Stream<T> transformListing(String source, Class<T> target) {
@@ -99,7 +100,7 @@ public class Things {
    *
    * @param source A {@link ListingEntity}.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return A list of {@code T} contained by the {@link ListingEntity}.
    */
   public static <T> Stream<T> transformListing(ListingEntity source, Class<T> target) {
@@ -118,10 +119,10 @@ public class Things {
    *
    * @param source A serialized {@link ThingEntity}.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return Instance of {@code T}.
    */
-  public static <T> T transformThing(String source, Class<T> target)  {
+  public static <T> T transformThing(String source, Class<T> target) {
     return transformThing(transform(source, ThingEntity.class), target);
   }
 
@@ -131,7 +132,7 @@ public class Things {
    *
    * @param source A {@link ThingEntity}.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return Instance of {@code T}.
    */
   public static <T> T transformThing(ThingEntity source, Class<T> target) {
@@ -149,7 +150,7 @@ public class Things {
    *
    * @param source Java object.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return Instance of {@code T}.
    */
   public static <T> T transform(Object source, Class<T> target) {
@@ -167,7 +168,7 @@ public class Things {
    *
    * @param source Raw JSON string.
    * @param target Desired class.
-   * @param <T> Expected type.
+   * @param <T>    Expected type.
    * @return Instance of {@code T}.
    */
   public static <T> T transform(String source, Class<T> target) {

@@ -27,24 +27,26 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * This class implements the token of the current session and optionally, the refresh token
- * necessary to acquire a new token, once the current one expires. The token is attached to every
- * API request, in order to verify the identity of the requester.
+ * This class implements the token of the current session and optionally, the
+ * refresh token necessary to acquire a new token, once the current one expires.
+ * The token is attached to every API request, in order to verify the identity
+ * of the requester.
  */
 @NonNullByDefault
 public class TokenEntity extends TokenTOPEntity {
   private static final Logger LOGGER = LoggerFactory.getLogger(TokenEntity.class);
   /**
-   * The time when this token was created. It is used in combination with {@link #getExpiresIn()}
-   * to determine when the token has expired.
+   * The time when this token was created. It is used in combination with
+   * {@link #getExpiresIn()} to determine when the token has expired.
    */
   @JsonIgnore
   private final LocalDateTime creationTime = LocalDateTime.now();
 
   /**
-   * Checks if the access token has expired. In order to allow a bit of tolerance, the access
-   * token will be treated as expired, the moment it is less than one minute valid. This minimizes
-   * the risk of the token expiring between calling this method and sending the request.
+   * Checks if the access token has expired. In order to allow a bit of tolerance,
+   * the access token will be treated as expired, the moment it is less than one
+   * minute valid. This minimizes the risk of the token expiring between calling
+   * this method and sending the request.
    *
    * @return {@code true}, if the access token is no longer valid.
    */
@@ -53,8 +55,8 @@ public class TokenEntity extends TokenTOPEntity {
     LocalDateTime expirationTime = creationTime.plusSeconds(this.getExpiresIn());
     long remainingMinutes = ChronoUnit.MINUTES.between(LocalDateTime.now(), expirationTime);
     LOGGER.info("Token expires in {} minute(s)", remainingMinutes);
-    //In order to prevent using an expired token, a fresh one
-    //has to be requested a minute before the current one expires
+    // In order to prevent using an expired token, a fresh one
+    // has to be requested a minute before the current one expires
     return expirationTime.minusMinutes(1).isBefore(LocalDateTime.now());
   }
 

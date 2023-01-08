@@ -28,8 +28,8 @@ import zav.jrc.databind.io.TokenEntity;
 import zav.jrc.databind.io.UserAgentEntity;
 
 /**
- * Runs on hardware you control, such as your own laptop or server. Can keep a secret. Only has
- * access to your account.<br>
+ * Runs on hardware you control, such as your own laptop or server. Can keep a
+ * secret. Only has access to your account.<br>
  * The script therefore requires both your username and password.
  */
 @NonNullByDefault
@@ -40,7 +40,7 @@ public class ScriptClient extends Client {
   /**
    * Script clients require a username and password.
    *
-   * @param userAgent The user agent used for communicating with the REST api.
+   * @param userAgent   The user agent used for communicating with the REST api.
    * @param credentials The Reddit credentials used for authentication.
    */
   public ScriptClient(UserAgentEntity userAgent, CredentialsEntity credentials) {
@@ -51,8 +51,9 @@ public class ScriptClient extends Client {
 
   /**
    * Requests a new access token.<br>
-   * It seems like Reddit ignores the value of {@code duration} and never returns a refresh token
-   * for scripts. Once the access token expires, a new one has to be requested.
+   * It seems like Reddit ignores the value of {@code duration} and never returns
+   * a refresh token for scripts. Once the access token expires, a new one has to
+   * be requested.
    *
    * @param duration The lifetime of the token.
    * @throws FailedRequestException In case the request was rejected by the API.
@@ -65,10 +66,7 @@ public class ScriptClient extends Client {
     body.put("password", password);
     body.put("duration", duration);
 
-    String response = newTokenRequest()
-          .setBody(body, RequestBuilder.BodyType.FORM)
-          .post();
-
+    String response = newTokenRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
 
     if (duration == Duration.TEMPORARY) {
       addShutdownHook();

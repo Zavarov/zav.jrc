@@ -25,13 +25,13 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
 
 /**
- * A rate limiter is used to limit the amount of requests that can be made to the Reddit API with
- * a given interval. Making too many requests at once will trigger a {@code HttpException} with
- * error code 429 and in the worst case, gets the application banned from making any further
- * requests.<br>
- * API access is managed via windows. Within each window, a fixed amount of requests can be made.
- * Once those have been used up, the application has to wait until the start of the next windows,
- * until further requests can be made.
+ * A rate limiter is used to limit the amount of requests that can be made to
+ * the Reddit API with a given interval. Making too many requests at once will
+ * trigger a {@code HttpException} with error code 429 and in the worst case,
+ * gets the application banned from making any further requests.<br>
+ * API access is managed via windows. Within each window, a fixed amount of
+ * requests can be made. Once those have been used up, the application has to
+ * wait until the start of the next windows, until further requests can be made.
  */
 @NonNullByDefault
 public class RateLimiter {
@@ -57,14 +57,16 @@ public class RateLimiter {
   }
 
   /**
-   * Updates the number of requests that have been made and the number of requests that still can
-   * be made within the current window, as well as the time in seconds until the next window starts.
+   * Updates the number of requests that have been made and the number of requests
+   * that still can be made within the current window, as well as the time in
+   * seconds until the next window starts.
    *
    * @param response The response from the latest REST request.
    */
   public synchronized void update(Response response) {
     lastResponse = LocalDateTime.now();
-    @Nullable String value = response.header(USED);
+    @Nullable
+    String value = response.header(USED);
 
     if (value != null) {
       used = (long) Double.parseDouble(value);
@@ -77,23 +79,25 @@ public class RateLimiter {
 
     value = response.header(RESET);
     if (value != null) {
-      //In case of fractional seconds, round up
+      // In case of fractional seconds, round up
       reset = (long) Math.ceil(Double.parseDouble(value));
     }
   }
 
   /**
-   * In case a request can be made within the current window, the method returns immediately.
-   * Otherwise, the method will block until the start of the next request window.
+   * In case a request can be made within the current window, the method returns
+   * immediately. Otherwise, the method will block until the start of the next
+   * request window.
    *
-   * @throws InterruptedException In case the current thread has been interrupted, while waiting
-   *     for the start of the next request window.
+   * @throws InterruptedException In case the current thread has been interrupted,
+   *                              while waiting for the start of the next request
+   *                              window.
    */
   public void acquire() throws InterruptedException {
-    //Out of available requests?
+    // Out of available requests?
     if (remaining <= 0) {
       LocalDateTime now = LocalDateTime.now();
-      //Wait until the start of the next period
+      // Wait until the start of the next period
       if (SECONDS.between(lastResponse, now) < reset && SECONDS.between(lastResponse, now) > 0) {
         Thread.sleep((reset - SECONDS.between(lastResponse, now)) * 1000);
       }

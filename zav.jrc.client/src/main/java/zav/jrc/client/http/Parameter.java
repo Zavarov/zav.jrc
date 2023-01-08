@@ -20,9 +20,11 @@ package zav.jrc.client.http;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 
 /**
- * Parameters are used to provide additional information to the endpoint. Examples for this are
- * the index when requesting stickied posts or the number of elements that should be returned.<br>
- * Each parameter consists of a keyword, as well as a value that is assigned to it.
+ * Parameters are used to provide additional information to the endpoint.
+ * Examples for this are the index when requesting stickied posts or the number
+ * of elements that should be returned.<br>
+ * Each parameter consists of a keyword, as well as a value that is assigned to
+ * it.
  */
 @NonNullByDefault
 public class Parameter {

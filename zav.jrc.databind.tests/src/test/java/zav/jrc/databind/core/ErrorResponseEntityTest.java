@@ -25,7 +25,8 @@ import org.junit.jupiter.api.Test;
 import zav.jrc.databind.AbstractTest;
 
 /**
- * Checks whether the attributes of an error response entity have been properly deserialized.
+ * Checks whether the attributes of an error response entity have been properly
+ * deserialized.
  */
 public class ErrorResponseEntityTest extends AbstractTest {
   static ErrorResponseEntity error;

@@ -34,7 +34,8 @@ import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.SubredditEntity;
 
 /**
- * Checks whether the calls to the frontpage-related endpoints return the expected response.
+ * Checks whether the calls to the frontpage-related endpoints return the
+ * expected response.
  */
 public class FrontPageTest {
 
@@ -64,7 +65,8 @@ public class FrontPageTest {
   public void testGetControversial() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getControversial().collect(Collectors.toList());
     assertEquals(response.size(), 25);
-    assertEquals(response.get(0).getTitle(), "Evil Texas legislators smiling as they sign law to take away rights");
+    assertEquals(response.get(0).getTitle(),
+        "Evil Texas legislators smiling as they sign law to take away rights");
   }
 
   @Test
@@ -78,14 +80,16 @@ public class FrontPageTest {
   public void testGetNew() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getNew().collect(Collectors.toList());
     assertEquals(response.size(), 25);
-    assertEquals(response.get(0).getTitle(), "Uk. i can print 600*600*800 on resin printer anyone interested?");
+    assertEquals(response.get(0).getTitle(),
+        "Uk. i can print 600*600*800 on resin printer anyone interested?");
   }
 
   @Test
   public void testGetRandom() throws FailedRequestException {
     List<LinkEntity> response = frontPage.getRandom().collect(Collectors.toList());
     assertEquals(response.size(), 1);
-    assertEquals(response.get(0).getTitle(), "Philadelphia’s Vine Street Expressway after Hurricane Ida 02 September 2021");
+    assertEquals(response.get(0).getTitle(),
+        "Philadelphia’s Vine Street Expressway after Hurricane Ida 02 September 2021");
   }
 
   @Test
@@ -109,7 +113,8 @@ public class FrontPageTest {
     Parameter param = new Parameter("q", "bananapics");
     List<LinkEntity> response = frontPage.search(param).collect(Collectors.toList());
     assertEquals(response.size(), 25);
-    assertEquals(response.get(0).getTitle(), "Having only one power hotkey is crazytown bananapants");
+    assertEquals(response.get(0).getTitle(),
+        "Having only one power hotkey is crazytown bananapants");
   }
 
   // Subreddits
@@ -137,7 +142,8 @@ public class FrontPageTest {
   @Test
   public void testGetSubredditAutocomplete() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<SubredditEntity> response = frontPage.getSubredditAutocomplete(param).collect(Collectors.toList());
+    List<SubredditEntity> response = frontPage.getSubredditAutocomplete(param)
+        .collect(Collectors.toList());
     assertEquals(response.size(), 5);
     assertEquals(response.get(0).getDisplayName(), "banana");
   }
@@ -186,7 +192,8 @@ public class FrontPageTest {
 
   @Test
   public void testGetPopularUserSubreddits() throws FailedRequestException {
-    List<SubredditEntity> response = frontPage.getPopularUserSubreddits().collect(Collectors.toList());
+    List<SubredditEntity> response = frontPage.getPopularUserSubreddits()
+        .collect(Collectors.toList());
     assertEquals(response.size(), 25);
     assertEquals(response.get(0).getTitle(), "Selben");
   }
@@ -194,7 +201,8 @@ public class FrontPageTest {
   @Test
   public void testGetSearchUserSubreddits() throws FailedRequestException {
     Parameter param = new Parameter("q", "banana");
-    List<AccountEntity> response = frontPage.getSearchUserSubreddits(param).collect(Collectors.toList());
+    List<AccountEntity> response = frontPage.getSearchUserSubreddits(param)
+        .collect(Collectors.toList());
     assertEquals(response.size(), 11);
     assertEquals(response.get(0).getName(), "Hates_escalators");
   }

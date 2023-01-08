@@ -43,7 +43,8 @@ import zav.jrc.databind.SubredditSettingsEntity;
 import zav.jrc.databind.UserEntity;
 
 /**
- * Checks whether the calls to the subreddit-related endpoints return the expected response.
+ * Checks whether the calls to the subreddit-related endpoints return the
+ * expected response.
  */
 public class SubredditTest {
 
@@ -67,7 +68,8 @@ public class SubredditTest {
     assertEquals(subreddit.getControversial().count(), 3);
 
     LinkEntity response = subreddit.getControversial().findFirst().orElseThrow();
-    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(),
+        "Comments automatically get removed immediately after posting");
   }
 
   @Test
@@ -75,7 +77,8 @@ public class SubredditTest {
     assertEquals(subreddit.getHot().count(), 25);
 
     LinkEntity response = subreddit.getHot().findFirst().orElseThrow();
-    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(),
+        "Comments automatically get removed immediately after posting");
   }
 
   @Test
@@ -83,7 +86,8 @@ public class SubredditTest {
     assertEquals(subreddit.getNew().count(), 25);
 
     LinkEntity response = subreddit.getNew().findFirst().orElseThrow();
-    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(),
+        "Comments automatically get removed immediately after posting");
   }
 
   @Test
@@ -91,7 +95,8 @@ public class SubredditTest {
     assertEquals(subreddit.getRandom().count(), 1);
 
     LinkEntity response = subreddit.getRandom().findFirst().orElseThrow();
-    assertEquals(response.getTitle(), "I'm making a reddit bot that deletes spam mesages based on a specific keyword, but for some reason the message doesn't delete.");
+    assertEquals(response.getTitle(),
+        "I'm making a reddit bot that deletes spam mesages based on a specific keyword, but for some reason the message doesn't delete.");
   }
 
   @Test
@@ -99,7 +104,8 @@ public class SubredditTest {
     assertEquals(subreddit.getRising().count(), 25);
 
     LinkEntity response = subreddit.getRising().findFirst().orElseThrow();
-    assertEquals(response.getTitle(), "Comments automatically get removed immediately after posting");
+    assertEquals(response.getTitle(),
+        "Comments automatically get removed immediately after posting");
   }
 
   @Test
@@ -114,10 +120,8 @@ public class SubredditTest {
 
   @Test
   public void testSearch() throws FailedRequestException {
-    Parameter[] params = new Parameter[]{
-        new Parameter("q", "api"),
-        new Parameter("restrict_sr", true)
-    };
+    Parameter[] params = new Parameter[] { new Parameter("q", "api"),
+        new Parameter("restrict_sr", true) };
 
     assertEquals(subreddit.search(params).count(), 25);
   }
@@ -213,28 +217,28 @@ public class SubredditTest {
 
   @Test
   public void testGetSubmitText() throws FailedRequestException {
-    assertTrue(subreddit.getSubmitText().startsWith("Get faster, better responses by including more information"));
+    assertTrue(subreddit.getSubmitText()
+        .startsWith("Get faster, better responses by including more information"));
   }
 
   @Test
   public void testUpdateSubredditStylesheet() throws FailedRequestException, IOException {
-    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("css/Simple.css");
+    @Nullable
+    InputStream is = getClass().getClassLoader().getResourceAsStream("css/Simple.css");
     Objects.requireNonNull(is);
     String css = new String(is.readAllBytes(), StandardCharsets.UTF_8);
 
-    Parameter[] params = new Parameter[]{
-        new Parameter("api_type", "json"),
-        new Parameter("op", "save"),
-        new Parameter("reason", "test"),
-        new Parameter("stylesheet_contents", css)
-    };
+    Parameter[] params = new Parameter[] { new Parameter("api_type", "json"),
+        new Parameter("op", "save"), new Parameter("reason", "test"),
+        new Parameter("stylesheet_contents", css) };
 
     subreddit.updateSubredditStylesheet(params);
   }
 
   @Test
   public void testUploadImage() throws FailedRequestException, IOException {
-    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Image.png");
+    @Nullable
+    InputStream is = getClass().getClassLoader().getResourceAsStream("images/Image.png");
     Objects.requireNonNull(is);
     BufferedImage image = ImageIO.read(is);
 
@@ -243,7 +247,8 @@ public class SubredditTest {
 
   @Test
   public void testUploadHeader() throws FailedRequestException, IOException {
-    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Header.png");
+    @Nullable
+    InputStream is = getClass().getClassLoader().getResourceAsStream("images/Header.png");
     Objects.requireNonNull(is);
     BufferedImage header = ImageIO.read(is);
 
@@ -252,7 +257,8 @@ public class SubredditTest {
 
   @Test
   public void testUploadIcon() throws FailedRequestException, IOException {
-    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Icon.png");
+    @Nullable
+    InputStream is = getClass().getClassLoader().getResourceAsStream("images/Icon.png");
     Objects.requireNonNull(is);
     BufferedImage icon = ImageIO.read(is);
 
@@ -261,7 +267,8 @@ public class SubredditTest {
 
   @Test
   public void testUploadBanner() throws FailedRequestException, IOException {
-    @Nullable InputStream is = getClass().getClassLoader().getResourceAsStream("images/Banner.png");
+    @Nullable
+    InputStream is = getClass().getClassLoader().getResourceAsStream("images/Banner.png");
     Objects.requireNonNull(is);
     BufferedImage banner = ImageIO.read(is);
 

@@ -23,7 +23,8 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 /**
- * Checks whether the attributes of a user list entity have been properly deserialized.
+ * Checks whether the attributes of a user list entity have been properly
+ * deserialized.
  */
 public class UserListEntityTest extends AbstractTest {
   static UserListEntity userList;

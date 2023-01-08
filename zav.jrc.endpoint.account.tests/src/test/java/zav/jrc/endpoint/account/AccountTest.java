@@ -44,7 +44,8 @@ import zav.jrc.databind.TrophyListEntity;
 import zav.jrc.databind.UserEntity;
 
 /**
- * Checks whether the calls to the account-related endpoints return the expected response.
+ * Checks whether the calls to the account-related endpoints return the expected
+ * response.
  */
 @ExtendWith(MockitoExtension.class)
 public class AccountTest {
@@ -53,11 +54,13 @@ public class AccountTest {
   String name = "Account";
   String reason = "Very good reason...";
   Account account;
-  @Mock Client client;
+  @Mock
+  Client client;
   RequestBuilder request;
 
   /**
-   * Initializes all fields and binds the {@link #request} to {@link Client#newRequest()}.
+   * Initializes all fields and binds the {@link #request} to
+   * {@link Client#newRequest()}.
    *
    * @throws FailedRequestException Never
    */

@@ -27,7 +27,8 @@ import org.eclipse.jdt.annotation.NonNullByDefault;
 @SuppressWarnings("unused")
 @NonNullByDefault
 public final class Account {
-  private Account() {}
+  private Account() {
+  }
 
   /**
    * The identity of the authenticated user.<br>
@@ -35,11 +36,11 @@ public final class Account {
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me">here</a>
    */
-  public static final Endpoint GET_API_V1_ME =
-        new Endpoint("api", "v1", "me");
+  public static final Endpoint GET_API_V1_ME = new Endpoint("api", "v1", "me");
   /**
    * Returns all blocked users.<br>
    * This endpoint is a {@code UserList}.
+   * 
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -59,11 +60,11 @@ public final class Account {
    * @deprecated Deprecated in favor of {@link #GET_PREFS_BLOCKED}.
    */
   @Deprecated
-  public static final Endpoint GET_API_V1_ME_BLOCKED =
-        new Endpoint("api", "v1", "me", "blocked");
+  public static final Endpoint GET_API_V1_ME_BLOCKED = new Endpoint("api", "v1", "me", "blocked");
   /**
    * Returns all friends.<br>
    * This endpoint is a {@code UserList}.
+   * 
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -83,41 +84,37 @@ public final class Account {
    * @deprecated Deprecated in favor of {@link #GET_PREFS_FRIENDS}.
    */
   @Deprecated
-  public static final Endpoint GET_API_V1_ME_FRIENDS =
-        new Endpoint("api", "v1", "me", "friends");
+  public static final Endpoint GET_API_V1_ME_FRIENDS = new Endpoint("api", "v1", "me", "friends");
   /**
    * Return a breakdown of subreddit karma.<br>
    * This endpoint is a {@code KarmaList}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_karma">here</a>
    */
-  public static final Endpoint GET_API_V1_ME_KARMA =
-        new Endpoint("api", "v1", "me", "karma");
+  public static final Endpoint GET_API_V1_ME_KARMA = new Endpoint("api", "v1", "me", "karma");
   /**
    * Return the preference settings of the logged in user.<br>
    * This endpoint is a {@code Preferences}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_prefs">here</a>
    */
-  public static final Endpoint GET_API_V1_ME_PREFS =
-        new Endpoint("api", "v1", "me", "prefs");
+  public static final Endpoint GET_API_V1_ME_PREFS = new Endpoint("api", "v1", "me", "prefs");
   /**
    * Update the preference settings of the logged in user.<br>
    *
    * @see <a href="https://www.reddit.com/dev/api#PATCH_api_v1_me_prefs">here</a>
    */
-  public static final Endpoint PATCH_API_V1_ME_PREFS =
-        new Endpoint("api", "v1", "me", "prefs");
+  public static final Endpoint PATCH_API_V1_ME_PREFS = new Endpoint("api", "v1", "me", "prefs");
   /**
    * Return a list of trophies for the current user.<br>
    * This endpoint is a {@code TrophyList}.
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_api_v1_me_trophies">here</a>
    */
-  public static final Endpoint GET_API_V1_ME_TROPHIES =
-        new Endpoint("api", "v1", "me", "trophies");
+  public static final Endpoint GET_API_V1_ME_TROPHIES = new Endpoint("api", "v1", "me", "trophies");
   /**
    * The endpoint for all user preferences.
+   * 
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -135,11 +132,11 @@ public final class Account {
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_%28where%29">here</a>
    */
-  public static final Endpoint GET_PREFS_WHERE =
-        new Endpoint("prefs", "{where}");
+  public static final Endpoint GET_PREFS_WHERE = new Endpoint("prefs", "{where}");
   /**
    * Returns all blocked users.<br>
    * This endpoint is a {@code UserList}.
+   * 
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -157,11 +154,11 @@ public final class Account {
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_blocked">here</a>
    */
-  public static final Endpoint GET_PREFS_BLOCKED =
-        new Endpoint(GET_PREFS_WHERE.getPath("blocked"));
+  public static final Endpoint GET_PREFS_BLOCKED = new Endpoint(GET_PREFS_WHERE.getPath("blocked"));
   /**
    * Returns all friends.<br>
    * This endpoint is a {@code UserList}.
+   * 
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -179,11 +176,11 @@ public final class Account {
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_friends">here</a>
    */
-  public static final Endpoint GET_PREFS_FRIENDS =
-        new Endpoint(GET_PREFS_WHERE.getPath("friends"));
+  public static final Endpoint GET_PREFS_FRIENDS = new Endpoint(GET_PREFS_WHERE.getPath("friends"));
   /**
    * Returns all blocked and trusted users.<br>
    * This endpoint is a {@code Messaging}.
+   * 
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -200,14 +197,16 @@ public final class Account {
    * </pre>
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_messaging">here</a>
-   * @deprecated Use {@link #GET_PREFS_BLOCKED} and {@link #GET_PREFS_TRUSTED} instead.
+   * @deprecated Use {@link #GET_PREFS_BLOCKED} and {@link #GET_PREFS_TRUSTED}
+   *             instead.
    */
   @Deprecated
-  public static final Endpoint GET_PREFS_MESSAGING =
-        new Endpoint(GET_PREFS_WHERE.getPath("messaging"));
+  public static final Endpoint GET_PREFS_MESSAGING = new Endpoint(
+      GET_PREFS_WHERE.getPath("messaging"));
   /**
    * Returns all trusted users.<br>
    * This endpoint is a {@code UserList}.
+   * 
    * <pre>
    *   | Parameter | Description                         |
    *   | --------- | ----------------------------------- |
@@ -225,6 +224,5 @@ public final class Account {
    *
    * @see <a href="https://www.reddit.com/dev/api#GET_prefs_trusted">here</a>
    */
-  public static final Endpoint GET_PREFS_TRUSTED =
-        new Endpoint(GET_PREFS_WHERE.getPath("trusted"));
+  public static final Endpoint GET_PREFS_TRUSTED = new Endpoint(GET_PREFS_WHERE.getPath("trusted"));
 }
