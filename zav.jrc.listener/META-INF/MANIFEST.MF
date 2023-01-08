@@ -8,7 +8,6 @@ Export-Package: zav.jrc.listener,
  zav.jrc.listener.observable,
  zav.jrc.listener.observer,
  zav.jrc.listener.requester
-Import-Package: okhttp3
 Require-Bundle: jrc-client,
  jrc-databind,
  jrc-endpoint,
