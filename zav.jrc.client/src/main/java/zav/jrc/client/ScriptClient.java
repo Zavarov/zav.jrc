@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
@@ -66,7 +65,7 @@ public class ScriptClient extends Client {
     body.put("password", password);
     body.put("duration", duration);
 
-    String response = newTokenRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
+    String response = newTokenRequest().withBody(body).post();
 
     if (duration == Duration.TEMPORARY) {
       addShutdownHook();

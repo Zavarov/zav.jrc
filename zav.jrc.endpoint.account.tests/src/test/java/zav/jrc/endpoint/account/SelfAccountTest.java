@@ -92,7 +92,7 @@ public class SelfAccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new SelfAccountEntity());
     assertNotNull(selfAccount.getAbout());
 
-    verify(request).setEndpoint(Account.GET_API_V1_ME);
+    verify(request).withEndpoint(Account.GET_API_V1_ME);
     verify(request).get();
   }
 
@@ -101,7 +101,7 @@ public class SelfAccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new KarmaListEntity());
     assertNotNull(selfAccount.getKarma());
 
-    verify(request).setEndpoint(Account.GET_API_V1_ME_KARMA);
+    verify(request).withEndpoint(Account.GET_API_V1_ME_KARMA);
     verify(request).get();
   }
 
@@ -110,7 +110,7 @@ public class SelfAccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new PreferencesEntity());
     assertNotNull(selfAccount.getPreferences());
 
-    verify(request).setEndpoint(Account.GET_API_V1_ME_PREFS);
+    verify(request).withEndpoint(Account.GET_API_V1_ME_PREFS);
     verify(request).get();
   }
 
@@ -119,7 +119,7 @@ public class SelfAccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new PreferencesEntity());
     assertNotNull(selfAccount.updatePreferences(new PreferencesEntity()));
 
-    verify(request).setEndpoint(Account.PATCH_API_V1_ME_PREFS);
+    verify(request).withEndpoint(Account.PATCH_API_V1_ME_PREFS);
     verify(request).patch();
   }
 
@@ -128,7 +128,7 @@ public class SelfAccountTest {
     mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(trophies);
     assertNotNull(selfAccount.getTrophies());
 
-    verify(request).setEndpoint(Account.GET_API_V1_ME_TROPHIES);
+    verify(request).withEndpoint(Account.GET_API_V1_ME_TROPHIES);
     verify(request).get();
   }
 
@@ -137,7 +137,7 @@ public class SelfAccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(users);
     assertNotNull(selfAccount.getBlocked());
 
-    verify(request).setEndpoint(Account.GET_PREFS_BLOCKED);
+    verify(request).withEndpoint(Account.GET_PREFS_BLOCKED);
     verify(request).get();
   }
 
@@ -147,7 +147,7 @@ public class SelfAccountTest {
         .thenReturn(new UserListEntity[] { users });
     assertNotNull(selfAccount.getFriends());
 
-    verify(request).setEndpoint(Account.GET_PREFS_FRIENDS);
+    verify(request).withEndpoint(Account.GET_PREFS_FRIENDS);
     verify(request).get();
   }
 
@@ -156,7 +156,7 @@ public class SelfAccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(users);
     assertNotNull(selfAccount.getTrusted());
 
-    verify(request).setEndpoint(Account.GET_PREFS_TRUSTED);
+    verify(request).withEndpoint(Account.GET_PREFS_TRUSTED);
     verify(request).get();
   }
 
@@ -164,7 +164,7 @@ public class SelfAccountTest {
   public void testGetMineContributor() throws FailedRequestException {
     assertNotNull(selfAccount.getMineContributor());
 
-    verify(request).setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR);
+    verify(request).withEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR);
     verify(request).get();
   }
 
@@ -172,7 +172,7 @@ public class SelfAccountTest {
   public void testGetMineModerator() throws FailedRequestException {
     assertNotNull(selfAccount.getMineModerator());
 
-    verify(request).setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR);
+    verify(request).withEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR);
     verify(request).get();
   }
 
@@ -180,7 +180,7 @@ public class SelfAccountTest {
   public void testGetMineSubscriber() throws FailedRequestException {
     assertNotNull(selfAccount.getMineSubscriber());
 
-    verify(request).setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER);
+    verify(request).withEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER);
     verify(request).get();
 
   }

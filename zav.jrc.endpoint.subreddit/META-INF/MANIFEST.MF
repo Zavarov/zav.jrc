@@ -4,8 +4,6 @@ Bundle-Name: JRC Endpoint Subreddit
 Bundle-SymbolicName: jrc-endpoint-subreddit
 Bundle-Version: 0.6.1.qualifier
 Export-Package: zav.jrc.endpoint.subreddit
-Import-Package: okhttp3,
- okio
 Require-Bundle: com.github.ben-manes.caffeine,
  jrc-client,
  jrc-databind,

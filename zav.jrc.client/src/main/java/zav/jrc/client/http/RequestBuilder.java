@@ -28,12 +28,11 @@ import java.util.Objects;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.Request;
 import okhttp3.RequestBody;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.eclipse.jdt.annotation.Nullable;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import zav.jrc.api.endpoint.Endpoint;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
@@ -54,7 +53,6 @@ import zav.jrc.client.FailedRequestException;
  */
 @NonNullByDefault
 public class RequestBuilder {
-  private static final Logger LOGGER = LoggerFactory.getLogger(RequestBuilder.class);
   /**
    * The protocol used for OAuth requests.
    */
@@ -98,8 +96,11 @@ public class RequestBuilder {
 
   private final Client client;
 
-  public RequestBuilder(Client client) {
+  private final BodyType type;
+
+  public RequestBuilder(Client client, BodyType type) {
     this.client = client;
+    this.type = type;
   }
 
   private String url() {
@@ -180,15 +181,12 @@ public class RequestBuilder {
   /**
    * Sets the request body, containing information about the requested resources.
    * Elements within the body are stored as key-value pairs.<br>
-   * This method will overwrite the existing body.<br>
-   * API request have to use the type {@link BodyType#JSON}, while authentication
-   * requests have to use {@link BodyType#FORM}.
+   * This method will overwrite the existing body.
    *
    * @param body A collection of key-value pairs included in the request body.
-   * @param type The type of request body.
    * @return The current builder instance.
    */
-  public RequestBuilder setBody(Map<?, ?> body, BodyType type) {
+  public RequestBuilder withBody(Map<?, ?> body) {
     switch (type) {
       case JSON:
         try {
@@ -198,37 +196,69 @@ public class RequestBuilder {
           @Nullable
           MediaType json = MediaType.parse("application/json; charset=utf-8");
 
-          return setBody(RequestBody.create(value, json));
+          this.body = RequestBody.create(value, json);
         } catch (JsonProcessingException e) {
           throw new IllegalArgumentException(e.getMessage(), e);
         }
+        break;
       case FORM:
         FormBody.Builder builder = new FormBody.Builder();
 
         body.forEach((k, v) -> builder.add(k.toString(), v.toString()));
 
-        return setBody(builder.build());
+        this.body = builder.build();
+        break;
       default:
         throw new UnsupportedOperationException("Unknown body type: " + type);
     }
-  }
 
-  public RequestBuilder setBody(RequestBody body) {
-    this.body = body;
     return this;
   }
 
-  public RequestBuilder setHost(String host) {
+  public RequestBuilder withImage(byte[] data, String name) {
+    this.body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", name, RequestBody.create(data, MediaType.parse("image/png")))
+        .addFormDataPart("header", "0").addFormDataPart("name", name)
+        .addFormDataPart("img_type", "png").addFormDataPart("upload_type", "img").build();
+    return this;
+  }
+
+  public RequestBuilder withHeader(byte[] data) {
+    this.body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", "header", RequestBody.create(data, MediaType.parse("image/png")))
+        .addFormDataPart("header", "1").addFormDataPart("img_type", "png")
+        .addFormDataPart("upload_type", "header").build();
+    return this;
+  }
+
+  public RequestBuilder withIcon(byte[] data) {
+    this.body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", "icon", RequestBody.create(data, MediaType.parse("image/png")))
+        .addFormDataPart("header", "0").addFormDataPart("img_type", "png")
+        .addFormDataPart("upload_type", "icon").build();
+    return this;
+  }
+
+  public RequestBuilder withBanner(byte[] data) {
+    this.body = new MultipartBody.Builder().setType(MultipartBody.FORM)
+        .addFormDataPart("file", "icon", RequestBody.create(data, MediaType.parse("image/png")))
+        .addFormDataPart("header", "0").addFormDataPart("img_type", "png")
+        .addFormDataPart("upload_type", "banner").build();
+    return this;
+  }
+
+  public RequestBuilder withHost(String host) {
     this.host = host;
     return this;
   }
 
-  public RequestBuilder setEndpoint(Endpoint endpoint) {
+  public RequestBuilder withEndpoint(Endpoint endpoint, Object... args) {
     this.endpoint = endpoint;
+    this.args = List.of(args);
     return this;
   }
 
-  public <K, V> RequestBuilder addParam(K key, V value) {
+  public <K, V> RequestBuilder withParam(K key, V value) {
     this.params.put(key, value);
     return this;
   }
@@ -242,11 +272,8 @@ public class RequestBuilder {
    * @param params A map of key-value pairs attached to the query.
    * @return The current builder instance.
    */
-  public RequestBuilder setParams(Map<?, ?> params) {
-    if (!this.params.isEmpty()) {
-      LOGGER.debug("params is not empty! Overwriting {} entries", this.params.size());
-    }
-    this.params = new HashMap<>(params);
+  public RequestBuilder withParams(Map<?, ?> params) {
+    this.params.putAll(params);
     return this;
   }
 
@@ -259,36 +286,15 @@ public class RequestBuilder {
    * @param params A list of key-value pairs attached to the query.
    * @return The current builder instance.
    */
-  public RequestBuilder setParams(Parameter... params) {
+  public RequestBuilder withParams(Parameter... params) {
     Map<Object, Object> result = new HashMap<>();
 
     Arrays.stream(params).forEach(param -> result.put(param.getKey(), param.getValue()));
 
-    return setParams(result);
+    return withParams(result);
   }
 
-  public RequestBuilder addArg(Object arg) {
-    this.args.add(arg);
-    return this;
-  }
-
-  /**
-   * Sets the arguments that are used to replace the wildcards within the
-   * unqualified endpoint.<br>
-   * This method will overwrite the existing arguments.<br>
-   *
-   * @param args A list of objects.
-   * @return The current builder instance.
-   */
-  public RequestBuilder setArgs(Object... args) {
-    if (!this.args.isEmpty()) {
-      LOGGER.debug("params is not empty! Overwriting {} entries", this.args.size());
-    }
-    this.args = new ArrayList<>(Arrays.asList(args));
-    return this;
-  }
-
-  public RequestBuilder addHeader(String key, String value) {
+  public RequestBuilder withHeader(String key, String value) {
     this.headers.put(key, value);
     return this;
   }
@@ -299,11 +305,8 @@ public class RequestBuilder {
    * @param headers The new headers used for the REST requests.
    * @return The current builder instance.
    */
-  public RequestBuilder setHeaders(Map<String, String> headers) {
-    if (!this.headers.isEmpty()) {
-      LOGGER.debug("headers is not empty! Overwriting {} entries", this.headers.size());
-    }
-    this.headers = new HashMap<>(headers);
+  public RequestBuilder withHeader(Map<String, String> headers) {
+    this.headers.putAll(headers);
     return this;
   }
 

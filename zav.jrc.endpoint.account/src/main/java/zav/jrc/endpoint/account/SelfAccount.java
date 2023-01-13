@@ -25,7 +25,6 @@ import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.http.Parameter;
-import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.AwardEntity;
 import zav.jrc.databind.KarmaEntity;
 import zav.jrc.databind.KarmaListEntity;
@@ -59,7 +58,9 @@ public class SelfAccount {
    * @see Account#GET_API_V1_ME
    */
   public SelfAccountEntity getAbout() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME).get();
+    String response = client.newRequest() //
+        .withEndpoint(Account.GET_API_V1_ME) //
+        .get();
 
     return Things.transform(response, SelfAccountEntity.class);
   }
@@ -74,7 +75,9 @@ public class SelfAccount {
    * @see Account#GET_API_V1_ME_KARMA
    */
   public Stream<KarmaEntity> getKarma() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME_KARMA).get();
+    String response = client.newRequest() //
+        .withEndpoint(Account.GET_API_V1_ME_KARMA) //
+        .get();
 
     return Things.transform(response, KarmaListEntity.class).getData().stream();
   }
@@ -87,7 +90,9 @@ public class SelfAccount {
    * @see Account#GET_API_V1_ME_PREFS
    */
   public PreferencesEntity getPreferences() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME_PREFS).get();
+    String response = client.newRequest() //
+        .withEndpoint(Account.GET_API_V1_ME_PREFS) //
+        .get();
 
     return Things.transform(response, PreferencesEntity.class);
   }
@@ -101,8 +106,10 @@ public class SelfAccount {
    */
   public PreferencesEntity updatePreferences(PreferencesEntity preferences)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.PATCH_API_V1_ME_PREFS)
-        .setBody(Things.transform(preferences, Map.class), RequestBuilder.BodyType.JSON).patch();
+    String response = client.newRequest() //
+        .withEndpoint(Account.PATCH_API_V1_ME_PREFS) //
+        .withBody(Things.transform(preferences, Map.class)) //
+        .patch();
 
     return Things.transform(response, PreferencesEntity.class);
   }
@@ -115,7 +122,9 @@ public class SelfAccount {
    * @see Account#GET_API_V1_ME_TROPHIES
    */
   public Stream<AwardEntity> getTrophies() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.GET_API_V1_ME_TROPHIES).get();
+    String response = client.newRequest() //
+        .withEndpoint(Account.GET_API_V1_ME_TROPHIES) //
+        .get();
 
     return Things.transformThing(response, TrophyListEntity.class).getTrophies().stream()
         .map(thing -> Things.transformThing(thing, AwardEntity.class));
@@ -129,7 +138,9 @@ public class SelfAccount {
    * @see Account#GET_PREFS_BLOCKED
    */
   public Stream<UserEntity> getBlocked() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.GET_PREFS_BLOCKED).get();
+    String response = client.newRequest() //
+        .withEndpoint(Account.GET_PREFS_BLOCKED) //
+        .get();
 
     return Things.transform(response, UserListEntity.class).getData().getChildren().stream();
   }
@@ -142,7 +153,9 @@ public class SelfAccount {
    * @see Account#GET_PREFS_FRIENDS
    */
   public Stream<UserEntity> getFriends() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.GET_PREFS_FRIENDS).get();
+    String response = client.newRequest() //
+        .withEndpoint(Account.GET_PREFS_FRIENDS) //
+        .get();
 
     // @See https://redd.it/p19tsh
     // The first structure matches that of GET /api/v1/me/friends.
@@ -159,9 +172,9 @@ public class SelfAccount {
    * @see Account#GET_PREFS_TRUSTED
    */
   public Stream<UserEntity> getTrusted() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Account.GET_PREFS_TRUSTED).get();
-
-    System.out.println(Things.transform(response, UserListEntity.class).getData());
+    String response = client.newRequest() //
+        .withEndpoint(Account.GET_PREFS_TRUSTED) //
+        .get();
 
     return Things.transform(response, UserListEntity.class).getData().getChildren().stream();
   }
@@ -181,8 +194,10 @@ public class SelfAccount {
    */
   public Stream<SubredditEntity> getMineContributor(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -196,8 +211,10 @@ public class SelfAccount {
    */
   public Stream<SubredditEntity> getMineModerator(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -211,8 +228,10 @@ public class SelfAccount {
    * @see Subreddits#GET_SUBREDDITS_MINE_STREAMS
    */
   public Stream<SubredditEntity> getMineStreams(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -226,8 +245,10 @@ public class SelfAccount {
    */
   public Stream<SubredditEntity> getMineSubscriber(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }

@@ -24,7 +24,6 @@ import java.util.UUID;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.TokenEntity;
@@ -77,7 +76,7 @@ public class UserlessClient extends Client {
       addShutdownHook();
     }
 
-    String response = newTokenRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
+    String response = newTokenRequest().withBody(body).post();
 
     try {
       token = TokenEntity.read(response);

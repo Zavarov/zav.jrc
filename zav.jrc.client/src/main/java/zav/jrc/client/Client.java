@@ -32,6 +32,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import zav.jrc.client.http.HttpException;
 import zav.jrc.client.http.RequestBuilder;
+import zav.jrc.client.http.RequestBuilder.BodyType;
 import zav.jrc.client.internal.GrantType;
 import zav.jrc.client.internal.OAuth2;
 import zav.jrc.client.internal.TokenType;
@@ -178,7 +179,7 @@ public abstract class Client {
     body.put("grant_type", GrantType.REFRESH);
     body.put("refresh_token", token.getRefreshToken());
 
-    String response = newTokenRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
+    String response = newTokenRequest().withBody(body).post();
 
     try {
       token = TokenEntity.read(response);
@@ -225,7 +226,7 @@ public abstract class Client {
     body.put("token", token.getRefreshToken());
     body.put("token_type_hint", TokenType.REFRESH_TOKEN);
 
-    newTokenRevokeRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
+    newTokenRevokeRequest().withBody(body).post();
   }
 
   /**
@@ -244,15 +245,13 @@ public abstract class Client {
     body.put("token", token.getAccessToken());
     body.put("token_type_hint", TokenType.ACCESS_TOKEN);
 
-    newTokenRevokeRequest().setBody(body, RequestBuilder.BodyType.FORM).post();
+    newTokenRevokeRequest().withBody(body).post();
 
   }
 
-  // ----------------------------------------------------------------------------------------------//
-  // //
+  // --------//
   // request //
-  // //
-  // ----------------------------------------------------------------------------------------------//
+  // --------//
 
   /**
    * Creates a new builder instance and initializes it with the
@@ -266,20 +265,22 @@ public abstract class Client {
 
     Objects.requireNonNull(token);
 
-    return new RequestBuilder(this)
-        .addHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
-        .addHeader(HttpHeaders.USER_AGENT, userAgent);
+    return new RequestBuilder(this, BodyType.JSON)
+        .withHeader(HttpHeaders.AUTHORIZATION, "Bearer " + token.getAccessToken())
+        .withHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 
   protected RequestBuilder newTokenRequest() {
-    return new RequestBuilder(this).setHost(RequestBuilder.WWW).setEndpoint(OAuth2.ACCESS_TOKEN)
-        .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-        .addHeader(HttpHeaders.USER_AGENT, userAgent);
+    return new RequestBuilder(this, BodyType.FORM).withHost(RequestBuilder.WWW)
+        .withEndpoint(OAuth2.ACCESS_TOKEN)
+        .withHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
+        .withHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 
   protected RequestBuilder newTokenRevokeRequest() {
-    return new RequestBuilder(this).setHost(RequestBuilder.WWW).setEndpoint(OAuth2.REVOKE_TOKEN)
-        .addHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
-        .addHeader(HttpHeaders.USER_AGENT, userAgent);
+    return new RequestBuilder(this, BodyType.JSON).withHost(RequestBuilder.WWW)
+        .withEndpoint(OAuth2.REVOKE_TOKEN)
+        .withHeader(HttpHeaders.AUTHORIZATION, "Basic " + credentials)
+        .withHeader(HttpHeaders.USER_AGENT, userAgent);
   }
 }

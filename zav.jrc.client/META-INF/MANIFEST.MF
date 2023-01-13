@@ -6,7 +6,8 @@ Bundle-Version: 0.6.1.qualifier
 Export-Package: zav.jrc.client,
  zav.jrc.client.http,
  zav.jrc.client.internal;x-internal:=true
-Import-Package: okhttp3
+Import-Package: okhttp3,
+ okio
 Require-Bundle: com.fasterxml.jackson.core.jackson-core,
  com.fasterxml.jackson.core.jackson-databind,
  jakarta.ws.rs-api,

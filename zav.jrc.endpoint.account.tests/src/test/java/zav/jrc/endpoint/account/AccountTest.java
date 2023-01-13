@@ -83,8 +83,8 @@ public class AccountTest {
   public void testBlock() throws FailedRequestException {
     account.block();
 
-    verify(request).setEndpoint(Users.POST_API_BLOCK_USER);
-    verify(request).addParam("name", name);
+    verify(request).withEndpoint(Users.POST_API_BLOCK_USER);
+    verify(request).withParam("name", name);
     verify(request).post();
   }
 
@@ -92,8 +92,8 @@ public class AccountTest {
   public void testReport() throws FailedRequestException {
     account.report(reason);
 
-    verify(request).setEndpoint(Users.POST_API_REPORT_USER);
-    verify(request).setBody(Map.of("user", name, "reason", reason), RequestBuilder.BodyType.JSON);
+    verify(request).withEndpoint(Users.POST_API_REPORT_USER);
+    verify(request).withBody(Map.of("user", name, "reason", reason), RequestBuilder.BodyType.JSON);
     verify(request).post();
   }
 
@@ -102,14 +102,13 @@ public class AccountTest {
     mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(new AccountEntity());
     // Load the account into memory and clear request
     account.getAbout();
-    request.setArgs();
 
     account.unblock();
 
-    verify(request).setEndpoint(Users.POST_API_UNFRIEND);
-    verify(request).addParam("container", "t2_null");
-    verify(request).addParam("name", name);
-    verify(request).addParam("type", "enemy");
+    verify(request).withEndpoint(Users.POST_API_UNFRIEND);
+    verify(request).withParam("container", "t2_null");
+    verify(request).withParam("name", name);
+    verify(request).withParam("type", "enemy");
     verify(request).post();
   }
 
@@ -118,8 +117,8 @@ public class AccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(true);
     assertTrue(account.isAvailable());
 
-    verify(request).setEndpoint(Users.GET_API_USERNAME_AVAILABLE);
-    verify(request).addParam("user", name);
+    verify(request).withEndpoint(Users.GET_API_USERNAME_AVAILABLE);
+    verify(request).withParam("user", name);
     verify(request).get();
   }
 
@@ -127,8 +126,7 @@ public class AccountTest {
   public void testUnfriend() throws FailedRequestException {
     account.unfriend();
 
-    verify(request).setEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.DELETE_API_V1_ME_FRIENDS_USERNAME, name);
     verify(request).delete();
   }
 
@@ -137,9 +135,8 @@ public class AccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new UserEntity());
     assertNotNull(account.friend("note"));
 
-    verify(request).setEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME);
-    verify(request).setBody(Map.of("note", "note"), RequestBuilder.BodyType.JSON);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.PUT_API_V1_ME_FRIENDS_USERNAME);
+    verify(request).withBody(Map.of("note", "note"), RequestBuilder.BodyType.JSON, name);
     verify(request).put();
   }
 
@@ -148,8 +145,7 @@ public class AccountTest {
     mocked.when(() -> Things.transform(anyString(), any())).thenReturn(new UserEntity());
     assertNotNull(account.getFriends());
 
-    verify(request).setEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_API_V1_ME_FRIENDS_USERNAME, name);
     verify(request).get();
   }
 
@@ -158,8 +154,7 @@ public class AccountTest {
     mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(new TrophyListEntity());
     assertNotNull(account.getTrophies());
 
-    verify(request).setEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_API_V1_USER_USERNAME_TROPHIES, name);
     verify(request).get();
   }
 
@@ -168,8 +163,7 @@ public class AccountTest {
     mocked.when(() -> Things.transformThing(anyString(), any())).thenReturn(new AccountEntity());
     assertNotNull(account.getAbout());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_ABOUT);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_ABOUT, name);
     verify(request).get();
   }
 
@@ -177,8 +171,7 @@ public class AccountTest {
   public void testGetComments() throws FailedRequestException {
     assertNotNull(account.getComments());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_COMMENTS);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_COMMENTS, name);
     verify(request).get();
   }
 
@@ -186,8 +179,7 @@ public class AccountTest {
   public void testGetDownvoted() throws FailedRequestException {
     assertNotNull(account.getDownvoted());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_DOWNVOTED);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_DOWNVOTED, name);
     verify(request).get();
   }
 
@@ -195,8 +187,7 @@ public class AccountTest {
   public void testGetGilded() throws FailedRequestException {
     assertNotNull(account.getGilded());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_GILDED);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_GILDED, name);
     verify(request).get();
   }
 
@@ -204,8 +195,7 @@ public class AccountTest {
   public void testGetHidden() throws FailedRequestException {
     assertNotNull(account.getHidden());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_HIDDEN);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_HIDDEN, name);
     verify(request).get();
   }
 
@@ -213,8 +203,7 @@ public class AccountTest {
   public void testGetOverview() throws FailedRequestException {
     assertNotNull(account.getOverview());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_OVERVIEW);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_OVERVIEW, name);
     verify(request).get();
   }
 
@@ -222,8 +211,7 @@ public class AccountTest {
   public void testGetSaved() throws FailedRequestException {
     assertNotNull(account.getSaved());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_SAVED);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_SAVED, name);
     verify(request).get();
   }
 
@@ -231,8 +219,7 @@ public class AccountTest {
   public void testGetSubmitted() throws FailedRequestException {
     assertNotNull(account.getSubmitted());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_SUBMITTED);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_SUBMITTED, name);
     verify(request).get();
   }
 
@@ -240,8 +227,7 @@ public class AccountTest {
   public void testGetUpvoted() throws FailedRequestException {
     assertNotNull(account.getUpvoted());
 
-    verify(request).setEndpoint(Users.GET_USER_USERNAME_UPVOTED);
-    verify(request).setArgs(name);
+    verify(request).withEndpoint(Users.GET_USER_USERNAME_UPVOTED, name);
     verify(request).get();
   }
 }

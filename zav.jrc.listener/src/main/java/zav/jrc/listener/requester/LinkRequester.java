@@ -112,8 +112,9 @@ public class LinkRequester implements Iterator<List<LinkEntity>> {
   }
 
   private Stream<LinkEntity> getNew() throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_R_SUBREDDIT_NEW)
-        .setArgs(subreddit).get();
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_R_SUBREDDIT_NEW, subreddit) //
+        .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }

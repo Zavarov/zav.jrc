@@ -29,7 +29,6 @@ import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.http.Parameter;
-import zav.jrc.client.http.RequestBuilder;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.SubredditEntity;
@@ -49,11 +48,9 @@ public class FrontPage {
     this.client = client;
   }
 
-  // ----------------------------------------------------------------------------------------------//
-  // //
+  // ---------//
   // Listings //
-  // //
-  // ----------------------------------------------------------------------------------------------//
+  // ---------//
 
   /**
    * Returns a stream over all links, sorted by {@code best}.
@@ -63,7 +60,10 @@ public class FrontPage {
    * @see Listings#GET_BEST
    */
   public Stream<LinkEntity> getBest(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_BEST).setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_BEST) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -76,7 +76,9 @@ public class FrontPage {
    * @see Listings#GET_CONTROVERSIAL
    */
   public Stream<LinkEntity> getControversial(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_CONTROVERSIAL).setParams(params)
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_CONTROVERSIAL) //
+        .withParams(params) //
         .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
@@ -90,7 +92,10 @@ public class FrontPage {
    * @see Listings#GET_HOT
    */
   public Stream<LinkEntity> getHot(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_HOT).setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_HOT) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -103,7 +108,10 @@ public class FrontPage {
    * @see Listings#GET_NEW
    */
   public Stream<LinkEntity> getNew(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_NEW).setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_NEW) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -116,7 +124,10 @@ public class FrontPage {
    * @see Listings#GET_RANDOM
    */
   public Stream<LinkEntity> getRandom(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_RANDOM).setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_RANDOM) //
+        .withParams(params) //
+        .get();
 
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
     ListingEntity listing = Things.transformThing(things[0], ListingEntity.class);
@@ -131,7 +142,10 @@ public class FrontPage {
    * @see Listings#GET_RISING
    */
   public Stream<LinkEntity> getRising(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_RISING).setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_RISING) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
@@ -144,16 +158,17 @@ public class FrontPage {
    * @see Listings#GET_TOP
    */
   public Stream<LinkEntity> getTop(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Listings.GET_TOP).setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Listings.GET_TOP) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
 
-  // ----------------------------------------------------------------------------------------------//
-  // //
+  // -------//
   // Search //
-  // //
-  // ----------------------------------------------------------------------------------------------//
+  // -------//
 
   /**
    * Returns a stream over all links matching the search parameters.
@@ -164,16 +179,17 @@ public class FrontPage {
    * @see Search#GET_SEARCH
    */
   public Stream<LinkEntity> search(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Search.GET_SEARCH).setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Search.GET_SEARCH) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, LinkEntity.class);
   }
 
-  // ----------------------------------------------------------------------------------------------//
-  // //
+  // -----------//
   // Subreddits //
-  // //
-  // ----------------------------------------------------------------------------------------------//
+  // -----------//
 
   /**
    * Returns a stream over all subreddits matching the title and description
@@ -186,8 +202,10 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> searchSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_SEARCH)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_SEARCH) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -201,8 +219,11 @@ public class FrontPage {
    * @see Subreddits#POST_API_SEARCH_REDDIT_NAMES
    */
   public Stream<String> searchRedditNames(Parameter... params) throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.POST_API_SEARCH_REDDIT_NAMES)
-        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).setParams(params).post();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.POST_API_SEARCH_REDDIT_NAMES) //
+        .withBody(Collections.emptyMap()) //
+        .withParams(params) //
+        .post();
 
     Map<?, ?> result = Things.transform(response, Map.class);
     List<?> values = Things.transform(result.get("names"), List.class);
@@ -220,8 +241,11 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> querySubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS)
-        .setBody(Collections.emptyMap(), RequestBuilder.BodyType.JSON).setParams(params).post();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS) //
+        .withBody(Collections.emptyMap()) //
+        .withParams(params) //
+        .post();
 
     Map<?, ?> result = Things.transform(response, Map.class);
     List<?> values = Things.transform(result.get("subreddits"), List.class);
@@ -238,8 +262,10 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> getSubredditAutocomplete(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -254,8 +280,10 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> getDefaultSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -271,8 +299,10 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> getGoldSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_GOLD)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_GOLD) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -287,8 +317,10 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> getNewSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_NEW)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_NEW) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -303,8 +335,10 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> getPopularSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_SUBREDDITS_POPULAR)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_SUBREDDITS_POPULAR) //
+        .withParams(params) //
+        .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -319,7 +353,8 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> getNewUserSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_USERS_NEW).setParams(params)
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_USERS_NEW).withParams(params) //
         .get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
@@ -335,8 +370,9 @@ public class FrontPage {
    */
   public Stream<SubredditEntity> getPopularUserSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_USERS_POPULAR)
-        .setParams(params).get();
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_USERS_POPULAR) //
+        .withParams(params).get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
   }
@@ -352,7 +388,9 @@ public class FrontPage {
    */
   public Stream<AccountEntity> getSearchUserSubreddits(Parameter... params)
       throws FailedRequestException {
-    String response = client.newRequest().setEndpoint(Subreddits.GET_USERS_SEARCH).setParams(params)
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_USERS_SEARCH) //
+        .withParams(params) //
         .get();
 
     return Things.transformListingOfThings(response, AccountEntity.class);
