@@ -94,7 +94,7 @@
       "type" : "boolean"
     },
     "layout" : {
-      "type" : "integer"
+      "type" : "string"
     },
     "num_comments" : {
       "javaType" : "numberOfComments",
