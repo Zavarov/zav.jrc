@@ -97,7 +97,7 @@ public abstract class Client {
    */
   public synchronized String send(Request request) throws FailedRequestException {
     // Token is only request for OAuth2 requests
-    if (RequestBuilder.WWW.equals(request.header("Host"))) {
+    if (RequestBuilder.WWW.equals(request.url().host())) {
       return _send(request);
     }
 
