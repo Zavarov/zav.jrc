@@ -24,7 +24,6 @@ import zav.jrc.api.endpoint.Account;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.client.http.Parameter;
 import zav.jrc.databind.AwardEntity;
 import zav.jrc.databind.KarmaEntity;
 import zav.jrc.databind.KarmaListEntity;
@@ -192,7 +191,7 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_CONTRIBUTOR
    */
-  public Stream<SubredditEntity> getMineContributor(Parameter... params)
+  public Stream<SubredditEntity> getMineContributor(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_CONTRIBUTOR) //
@@ -209,7 +208,7 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_MODERATOR
    */
-  public Stream<SubredditEntity> getMineModerator(Parameter... params)
+  public Stream<SubredditEntity> getMineModerator(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_MODERATOR) //
@@ -227,7 +226,8 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_STREAMS
    */
-  public Stream<SubredditEntity> getMineStreams(Parameter... params) throws FailedRequestException {
+  public Stream<SubredditEntity> getMineStreams(Map<String, Object> params)
+      throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_STREAMS) //
         .withParams(params) //
@@ -243,7 +243,7 @@ public class SelfAccount {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_MINE_SUBSCRIBER
    */
-  public Stream<SubredditEntity> getMineSubscriber(Parameter... params)
+  public Stream<SubredditEntity> getMineSubscriber(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_MINE_SUBSCRIBER) //

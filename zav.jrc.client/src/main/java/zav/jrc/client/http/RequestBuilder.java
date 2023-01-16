@@ -20,7 +20,6 @@ package zav.jrc.client.http;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +35,6 @@ import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.endpoint.Endpoint;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.client.parameter.Parameter;
 
 /**
  * The base class for creating all REST request.<br>
@@ -276,23 +274,6 @@ public class RequestBuilder {
   public RequestBuilder withParams(Map<?, ?> params) {
     this.params.putAll(params);
     return this;
-  }
-
-  /**
-   * Sets additional parameters attached to the query. Parameters are stored as
-   * key-value pairs.<br>
-   * e.g. {@code /foo/bar?new=true&time=now}.<br>
-   * This method will overwrite the existing arguments.<br>
-   *
-   * @param params A list of key-value pairs attached to the query.
-   * @return The current builder instance.
-   */
-  public RequestBuilder withParams(Parameter... params) {
-    Map<Object, Object> result = new HashMap<>();
-
-    Arrays.stream(params).forEach(param -> result.put(param.getKey(), param.getValue()));
-
-    return withParams(result);
   }
 
   public RequestBuilder withHeader(String key, String value) {

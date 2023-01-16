@@ -23,9 +23,7 @@ import java.awt.image.RenderedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Stream;
 import javax.imageio.ImageIO;
@@ -38,7 +36,6 @@ import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.client.http.Parameter;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.RulesEntity;
 import zav.jrc.databind.SubredditEntity;
@@ -84,7 +81,8 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_R_SUBREDDIT_CONTROVERSIAL
    */
-  public Stream<LinkEntity> getControversial(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getControversial(Map<String, Object> params)
+      throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_R_SUBREDDIT_CONTROVERSIAL, name) //
         .withParams(params) //
@@ -100,7 +98,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_R_SUBREDDIT_HOT
    */
-  public Stream<LinkEntity> getHot(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getHot(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_R_SUBREDDIT_HOT, name) //
         .withParams(params) //
@@ -116,7 +114,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_R_SUBREDDIT_NEW
    */
-  public Stream<LinkEntity> getNew(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getNew(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_R_SUBREDDIT_NEW, name) //
         .withParams(params) //
@@ -132,10 +130,9 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_R_SUBREDDIT_RANDOM
    */
-  public Stream<LinkEntity> getRandom(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getRandom() throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_R_SUBREDDIT_RANDOM, name) //
-        .withParams(params) //
         .get();
 
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
@@ -150,7 +147,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_R_SUBREDDIT_RISING
    */
-  public Stream<LinkEntity> getRising(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getRising(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_R_SUBREDDIT_RISING, name) //
         .withParams(params) //
@@ -166,7 +163,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_R_SUBREDDIT_TOP
    */
-  public Stream<LinkEntity> getTop(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getTop(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_R_SUBREDDIT_TOP, name) //
         .withParams(params) //
@@ -187,14 +184,14 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Search#GET_R_SUBREDDIT_SEARCH
    */
-  public Stream<LinkEntity> search(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> search(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Search.GET_R_SUBREDDIT_SEARCH, name) //
         .withParams(params) //
         .get();
 
     ListingEntity listing = Things.transformThing(response, ListingEntity.class);
-    return Things.transformListing(listing, LinkEntity.class);
+    return Things.transformListing(listing, ThingEntity.class);
   }
 
   // -----------//
@@ -473,13 +470,10 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET
    */
-  public void updateSubredditStylesheet(Parameter... params) throws FailedRequestException {
-    Map<Object, Object> body = new HashMap<>();
-    Arrays.stream(params).forEach(param -> body.put(param.getKey(), param.getValue()));
-
+  public void updateSubredditStylesheet(Map<String, Object> params) throws FailedRequestException {
     client.newRequest() //
         .withEndpoint(Subreddits.POST_R_SUBREDDIT_API_SUBREDDIT_STYLESHEET, name) //
-        .withBody(body) //
+        .withBody(params) //
         .withParam("api_type", "json") //
         .post();
   }
@@ -602,7 +596,7 @@ public class Subreddit {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_R_SUBREDDIT_ABOUT_EDIT
    */
-  public SubredditSettingsEntity getEdit() throws FailedRequestException {
+  public SubredditSettingsEntity getSettings() throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_R_SUBREDDIT_ABOUT_EDIT, name) //
         .get();

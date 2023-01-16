@@ -31,7 +31,6 @@ import org.slf4j.LoggerFactory;
 import zav.jrc.api.endpoint.Users;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.client.http.Parameter;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.AwardEntity;
 import zav.jrc.databind.CommentEntity;
@@ -240,7 +239,8 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_COMMENTS
    */
-  public Stream<CommentEntity> getComments(Parameter... params) throws FailedRequestException {
+  public Stream<CommentEntity> getComments(Map<String, Object> params)
+      throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_COMMENTS, name) //
         .get();
@@ -256,7 +256,8 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_DOWNVOTED
    */
-  public Stream<ThingEntity> getDownvoted(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> getDownvoted(Map<String, Object> params)
+      throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_DOWNVOTED, name) //
         .withParams(params) //
@@ -273,7 +274,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_GILDED
    */
-  public Stream<ThingEntity> getGilded(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> getGilded(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_GILDED, name) //
         .withParams(params) //
@@ -290,7 +291,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_HIDDEN
    */
-  public Stream<ThingEntity> getHidden(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> getHidden(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_HIDDEN, name) //
         .withParams(params) //
@@ -307,7 +308,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_OVERVIEW
    */
-  public Stream<ThingEntity> getOverview(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> getOverview(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_OVERVIEW, name) //
         .withParams(params) //
@@ -324,7 +325,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_SAVED
    */
-  public Stream<ThingEntity> getSaved(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> getSaved(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_SAVED, name) //
         .withParams(params) //
@@ -341,7 +342,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_SUBMITTED
    */
-  public Stream<LinkEntity> getSubmitted(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getSubmitted(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_SUBMITTED, name) //
         .withParams(params) //
@@ -358,7 +359,7 @@ public class Account {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Users#GET_USER_USERNAME_UPVOTED
    */
-  public Stream<ThingEntity> getUpvoted(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> getUpvoted(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Users.GET_USER_USERNAME_UPVOTED, name) //
         .withParams(params) //

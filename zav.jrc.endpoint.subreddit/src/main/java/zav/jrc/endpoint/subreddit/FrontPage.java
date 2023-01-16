@@ -28,7 +28,6 @@ import zav.jrc.api.endpoint.Search;
 import zav.jrc.api.endpoint.Subreddits;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
-import zav.jrc.client.http.Parameter;
 import zav.jrc.databind.AccountEntity;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.databind.SubredditEntity;
@@ -59,7 +58,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_BEST
    */
-  public Stream<LinkEntity> getBest(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getBest(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_BEST) //
         .withParams(params) //
@@ -75,7 +74,8 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_CONTROVERSIAL
    */
-  public Stream<LinkEntity> getControversial(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getControversial(Map<String, Object> params)
+      throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_CONTROVERSIAL) //
         .withParams(params) //
@@ -91,7 +91,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_HOT
    */
-  public Stream<LinkEntity> getHot(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getHot(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_HOT) //
         .withParams(params) //
@@ -107,7 +107,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_NEW
    */
-  public Stream<LinkEntity> getNew(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getNew(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_NEW) //
         .withParams(params) //
@@ -123,10 +123,9 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_RANDOM
    */
-  public Stream<LinkEntity> getRandom(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getRandom() throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_RANDOM) //
-        .withParams(params) //
         .get();
 
     ThingEntity[] things = Things.transform(response, ThingEntity[].class);
@@ -141,7 +140,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_RISING
    */
-  public Stream<LinkEntity> getRising(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getRising(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_RISING) //
         .withParams(params) //
@@ -157,7 +156,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Listings#GET_TOP
    */
-  public Stream<LinkEntity> getTop(Parameter... params) throws FailedRequestException {
+  public Stream<LinkEntity> getTop(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Listings.GET_TOP) //
         .withParams(params) //
@@ -171,20 +170,20 @@ public class FrontPage {
   // -------//
 
   /**
-   * Returns a stream over all links matching the search parameters.
+   * Returns a stream over all things matching the search parameters.
    *
    * @param params The search parameters.
    * @return A stream over the entities corresponding to the links.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Search#GET_SEARCH
    */
-  public Stream<LinkEntity> search(Parameter... params) throws FailedRequestException {
+  public Stream<ThingEntity> search(Map<String, Object> params) throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Search.GET_SEARCH) //
         .withParams(params) //
         .get();
 
-    return Things.transformListingOfThings(response, LinkEntity.class);
+    return Things.transformListing(response, ThingEntity.class);
   }
 
   // -----------//
@@ -200,7 +199,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_SEARCH
    */
-  public Stream<SubredditEntity> searchSubreddits(Parameter... params)
+  public Stream<SubredditEntity> findSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_SEARCH) //
@@ -211,6 +210,24 @@ public class FrontPage {
   }
 
   /**
+   * Returns a stream over all accounts corresponding to the user subreddits,
+   * matching the search parameters.
+   *
+   * @param params The search parameters.
+   * @return A stream over the entities corresponding to the accounts.
+   * @throws FailedRequestException If the API requests was rejected.
+   * @see Subreddits#GET_USERS_SEARCH
+   */
+  public Stream<AccountEntity> findUsers(Map<String, Object> params) throws FailedRequestException {
+    String response = client.newRequest() //
+        .withEndpoint(Subreddits.GET_USERS_SEARCH) //
+        .withParams(params) //
+        .get();
+
+    return Things.transformListingOfThings(response, AccountEntity.class);
+  }
+
+  /**
    * Returns a stream over all subreddit names matching the search parameters.
    *
    * @param params The search parameters.
@@ -218,7 +235,8 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SEARCH_REDDIT_NAMES
    */
-  public Stream<String> searchRedditNames(Parameter... params) throws FailedRequestException {
+  public Stream<String> searchRedditNames(Map<String, Object> params)
+      throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.POST_API_SEARCH_REDDIT_NAMES) //
         .withBody(Collections.emptyMap()) //
@@ -239,7 +257,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#POST_API_SEARCH_SUBREDDITS
    */
-  public Stream<SubredditEntity> querySubreddits(Parameter... params)
+  public Stream<SubredditEntity> searchSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.POST_API_SEARCH_SUBREDDITS) //
@@ -253,21 +271,22 @@ public class FrontPage {
   }
 
   /**
-   * Returns a stream over all links matching the search parameters.
+   * Returns a stream over all subreddits matching the search parameters. The
+   * stream may contain both subreddits and user-subreddits.
    *
    * @param params The search parameters.
    * @return A stream over the entities corresponding to the subreddits.
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_API_SUBREDDIT_AUTOCOMPLETE_V2
    */
-  public Stream<SubredditEntity> getSubredditAutocomplete(Parameter... params)
+  public Stream<ThingEntity> getSubredditAutocomplete(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_API_SUBREDDIT_AUTOCOMPLETE_V2) //
         .withParams(params) //
         .get();
 
-    return Things.transformListingOfThings(response, SubredditEntity.class);
+    return Things.transformListing(response, ThingEntity.class);
   }
 
   /**
@@ -278,7 +297,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_DEFAULT
    */
-  public Stream<SubredditEntity> getDefaultSubreddits(Parameter... params)
+  public Stream<SubredditEntity> getDefaultSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_DEFAULT) //
@@ -297,7 +316,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_GOLD
    */
-  public Stream<SubredditEntity> getGoldSubreddits(Parameter... params)
+  public Stream<SubredditEntity> getGoldSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_GOLD) //
@@ -315,7 +334,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_NEW
    */
-  public Stream<SubredditEntity> getNewSubreddits(Parameter... params)
+  public Stream<SubredditEntity> getNewSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_NEW) //
@@ -333,7 +352,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_SUBREDDITS_POPULAR
    */
-  public Stream<SubredditEntity> getPopularSubreddits(Parameter... params)
+  public Stream<SubredditEntity> getPopularSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_SUBREDDITS_POPULAR) //
@@ -351,7 +370,7 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_USERS_NEW
    */
-  public Stream<SubredditEntity> getNewUserSubreddits(Parameter... params)
+  public Stream<SubredditEntity> getNewUserSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_USERS_NEW).withParams(params) //
@@ -368,31 +387,12 @@ public class FrontPage {
    * @throws FailedRequestException If the API requests was rejected.
    * @see Subreddits#GET_USERS_POPULAR
    */
-  public Stream<SubredditEntity> getPopularUserSubreddits(Parameter... params)
+  public Stream<SubredditEntity> getPopularUserSubreddits(Map<String, Object> params)
       throws FailedRequestException {
     String response = client.newRequest() //
         .withEndpoint(Subreddits.GET_USERS_POPULAR) //
         .withParams(params).get();
 
     return Things.transformListingOfThings(response, SubredditEntity.class);
-  }
-
-  /**
-   * Returns a stream over all accounts corresponding to the user subreddits,
-   * matching the search parameters.
-   *
-   * @param params The search parameters.
-   * @return A stream over the entities corresponding to the accounts.
-   * @throws FailedRequestException If the API requests was rejected.
-   * @see Subreddits#GET_USERS_SEARCH
-   */
-  public Stream<AccountEntity> getSearchUserSubreddits(Parameter... params)
-      throws FailedRequestException {
-    String response = client.newRequest() //
-        .withEndpoint(Subreddits.GET_USERS_SEARCH) //
-        .withParams(params) //
-        .get();
-
-    return Things.transformListingOfThings(response, AccountEntity.class);
   }
 }
