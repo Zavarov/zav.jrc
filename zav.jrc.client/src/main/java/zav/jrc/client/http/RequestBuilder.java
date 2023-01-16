@@ -36,6 +36,7 @@ import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.api.endpoint.Endpoint;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.client.parameter.Parameter;
 
 /**
  * The base class for creating all REST request.<br>
