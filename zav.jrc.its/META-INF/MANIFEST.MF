@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: JRC Integration Tests
+Bundle-SymbolicName: zav.jrc.its
+Bundle-Version: 1.0.0.qualifier
+Import-Package: kotlin.jvm.internal.markers
+Require-Bundle: junit-jupiter-api,
+ jrc-client,
+ jrc-databind,
+ jrc-endpoint-account,
+ jrc-endpoint-subreddit
+Automatic-Module-Name: zav.jrc.its
+Bundle-RequiredExecutionEnvironment: JavaSE-11
