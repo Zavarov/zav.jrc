@@ -39,22 +39,22 @@ public abstract class AbstractIntegrationTest {
     userAgent.setName("JRC");
     userAgent.setPlatform("linux");
 
-    String id = System.getProperty("REDDIT_ID");
+    String id = System.getenv("REDDIT_ID");
     if (id == null) {
       LOGGER.error("Reddit ID not contributed as enviroment variable!");
     }
 
-    String secret = System.getProperty("REDDIT_SECRET");
+    String secret = System.getenv("REDDIT_SECRET");
     if (secret == null) {
       LOGGER.error("Reddit Secret not contributed as enviroment variable!");
     }
 
-    String username = System.getProperty("REDDIT_USERNAME");
+    String username = System.getenv("REDDIT_USERNAME");
     if (username == null) {
       LOGGER.error("Reddit username not contributed as enviroment variable!");
     }
 
-    String password = System.getProperty("REDDIT_PASSWORD");
+    String password = System.getenv("REDDIT_PASSWORD");
     if (password == null) {
       LOGGER.error("Reddit password not contributed as enviroment variable!");
     }
