@@ -8,6 +8,8 @@ Require-Bundle: junit-jupiter-api,
  jrc-client,
  jrc-databind,
  jrc-endpoint-account,
- jrc-endpoint-subreddit
+ jrc-endpoint-subreddit,
+ org.slf4j.api,
+ org.slf4j.simple
 Automatic-Module-Name: zav.jrc.its
 Bundle-RequiredExecutionEnvironment: JavaSE-11

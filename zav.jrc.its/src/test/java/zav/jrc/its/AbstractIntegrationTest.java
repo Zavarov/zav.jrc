@@ -18,6 +18,8 @@ package zav.jrc.its;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zav.jrc.client.Client;
 import zav.jrc.client.Duration;
 import zav.jrc.client.FailedRequestException;
@@ -26,6 +28,7 @@ import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.UserAgentEntity;
 
 public abstract class AbstractIntegrationTest {
+  private static Logger LOGGER = LoggerFactory.getLogger(AbstractIntegrationTest.class);
   protected static Client client;
 
   @BeforeAll
@@ -36,11 +39,31 @@ public abstract class AbstractIntegrationTest {
     userAgent.setName("JRC");
     userAgent.setPlatform("linux");
 
+    String id = System.getProperty("REDDIT_ID");
+    if (id == null) {
+      LOGGER.error("Reddit ID not contributed as enviroment variable!");
+    }
+
+    String secret = System.getProperty("REDDIT_SECRET");
+    if (secret == null) {
+      LOGGER.error("Reddit Secret not contributed as enviroment variable!");
+    }
+
+    String username = System.getProperty("REDDIT_USERNAME");
+    if (username == null) {
+      LOGGER.error("Reddit username not contributed as enviroment variable!");
+    }
+
+    String password = System.getProperty("REDDIT_PASSWORD");
+    if (password == null) {
+      LOGGER.error("Reddit password not contributed as enviroment variable!");
+    }
+
     CredentialsEntity credentials = new CredentialsEntity();
-    credentials.setId(System.getProperty("REDDIT_ID"));
-    credentials.setSecret(System.getProperty("REDDIT_SECRET"));
-    credentials.setUsername(System.getProperty("REDDIT_USERNAME"));
-    credentials.setPassword(System.getProperty("REDDIT_PASSWORD"));
+    credentials.setId(id);
+    credentials.setSecret(secret);
+    credentials.setUsername(username);
+    credentials.setPassword(password);
 
     client = new ScriptClient(userAgent, credentials);
     client.login(Duration.TEMPORARY);
