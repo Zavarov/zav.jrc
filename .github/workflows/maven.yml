@@ -25,4 +25,8 @@ jobs:
       env:
         GITHUB_ACCOUNT: ${{ github.actor }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        REDDIT_ID: ${{ secrets.REDDIT_ID }}
+        REDDIT_SECRET: ${{ secrets.REDDIT_SECRET }}
+        REDDIT_PASSWORD: ${{ secrets.REDDIT_PASSWORD }}
+        REDDIT_USERNAME: ${{ secrets.REDDIT_USERNAME }}
       run: mvn clean verify -ntp -B -s settings.xml
