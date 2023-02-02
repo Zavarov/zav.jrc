@@ -39,7 +39,6 @@
         <module>zav.jrc.endpoint</module>
         <module>zav.jrc.endpoint.account</module>
         <module>zav.jrc.endpoint.subreddit</module>
-        <module>zav.jrc.example</module>
         <module>zav.jrc.listener</module>
         <module>zav.jrc.listener.tests</module>
         <module>target-platform</module>
