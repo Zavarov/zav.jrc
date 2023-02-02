@@ -15,7 +15,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.requester;
+package zav.jrc.listener.internal;
 
 import java.util.ArrayList;
 import java.util.Collections;

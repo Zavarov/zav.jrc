@@ -25,7 +25,6 @@ import zav.jrc.client.FailedRequestException;
 import zav.jrc.client.UserlessClient;
 import zav.jrc.databind.io.CredentialsEntity;
 import zav.jrc.databind.io.UserAgentEntity;
-import zav.jrc.listener.observable.SimpleSubredditObservable;
 import zav.jrc.listener.observer.SubredditObserver;
 
 /**
@@ -37,7 +36,6 @@ public class Main {
   private static UserAgentEntity USER_AGENT;
   private static CredentialsEntity CREDENTIALS;
   private static Client CLIENT;
-  private static SimpleSubredditObservable OBSERVABLE;
   private static SubredditObserver OBSERVER;
 
   /**
@@ -51,11 +49,10 @@ public class Main {
     USER_AGENT = UserAgentEntity.read(new File("UserAgent.json"));
     CREDENTIALS = CredentialsEntity.read(new File("Credentials.json"));
     CLIENT = new UserlessClient(USER_AGENT, CREDENTIALS);
-    OBSERVABLE = new SimpleSubredditObservable(CLIENT);
 
     CLIENT.login(Duration.TEMPORARY);
 
-    OBSERVER = OBSERVABLE.getObserver("RedditDev");
+    OBSERVER = new SubredditObserver(CLIENT, "RedditDev");
     OBSERVER.addListener((e) -> System.out.println(e.getSource()));
     OBSERVER.notifyAllListeners();
 

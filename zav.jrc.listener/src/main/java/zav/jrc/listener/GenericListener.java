@@ -19,14 +19,11 @@ package zav.jrc.listener;
 
 import java.util.EventListener;
 import org.eclipse.jdt.annotation.NonNullByDefault;
-import zav.jrc.databind.SubredditEntity;
-import zav.jrc.listener.event.LinkEvent;
 
 /**
- * This class handles all events associated with a given
- * {@link SubredditEntity}.
+ * This class handles all events fired by Reddit changes.
  */
 @NonNullByDefault
-public interface SubredditListener extends EventListener {
-  void notify(LinkEvent event);
+public interface GenericListener<T> extends EventListener {
+  void notify(GenericEvent<T> event);
 }

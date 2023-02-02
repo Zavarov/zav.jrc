@@ -17,11 +17,11 @@
 
 package zav.jrc.listener.observer;
 
-import java.util.EventListener;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.listener.GenericListener;
 
 /**
  * This class provides a skeleton implementation of the observer interface. All
@@ -30,22 +30,22 @@ import zav.jrc.client.FailedRequestException;
  * @param <T> The type of listeners that are observed by this class.
  */
 @NonNullByDefault
-public abstract class AbstractObserver<T extends EventListener> implements Observer<T> {
-  private final Set<T> listeners = new CopyOnWriteArraySet<>();
+public abstract class AbstractObserver<T> implements Observer<T> {
+  private final Set<GenericListener<T>> listeners = new CopyOnWriteArraySet<>();
 
   @Override
-  public boolean addListener(T listener) {
+  public boolean addListener(GenericListener<T> listener) {
     return listeners.add(listener);
   }
 
   @Override
-  public boolean removeListener(T listener) {
+  public boolean removeListener(GenericListener<T> listener) {
     return listeners.remove(listener);
   }
 
   @Override
   public void notifyAllListeners() throws FailedRequestException {
-    for (T listener : listeners) {
+    for (GenericListener<T> listener : listeners) {
       this.notifyListener(listener);
     }
   }

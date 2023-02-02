@@ -25,18 +25,18 @@ import org.eclipse.jdt.annotation.Nullable;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkEntity;
-import zav.jrc.listener.SubredditListener;
-import zav.jrc.listener.event.LinkEvent;
-import zav.jrc.listener.requester.LinkRequester;
+import zav.jrc.listener.GenericEvent;
+import zav.jrc.listener.GenericListener;
+import zav.jrc.listener.internal.LinkRequester;
 
 /**
  * The observer implementation for subreddits. Calling
- * {@link #notifyListener(SubredditListener)} or {@link #notifyAllListeners()}
- * will call the respective {@link SubredditListener#notify(LinkEvent)} methods
- * of all registered listeners.
+ * {@link #notifyListener(GenericListener)} or {@link #notifyAllListeners()}
+ * will call the respective {@link GenericListener#notify(LinkEvent)} methods of
+ * all registered listeners.
  */
 @NonNullByDefault
-public class SubredditObserver extends AbstractObserver<SubredditListener> {
+public class SubredditObserver extends AbstractObserver<LinkEntity> {
   @Nullable
   private List<LinkEntity> history;
   private final LinkRequester requester;
@@ -58,7 +58,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
   }
 
   @Override
-  public void notifyListener(SubredditListener listener) throws FailedRequestException {
+  public void notifyListener(GenericListener<LinkEntity> listener) throws FailedRequestException {
     try {
       // History may be null when a listener is called explicitly instead of via
       // notifyAllListener.
@@ -67,7 +67,7 @@ public class SubredditObserver extends AbstractObserver<SubredditListener> {
       // Notify the listener starting with the oldest link first
       List<LinkEntity> result = new ArrayList<>(history);
       result.sort(Comparator.comparing(LinkEntity::getId));
-      result.stream().map(LinkEvent::new).forEach(listener::notify);
+      result.stream().map(GenericEvent::new).forEach(listener::notify);
     } catch (LinkRequester.IteratorException e) {
       throw e.getCause();
     }

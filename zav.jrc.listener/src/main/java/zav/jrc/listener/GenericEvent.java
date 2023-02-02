@@ -1,6 +1,5 @@
 /*
- * Copyright (c) 2023 Zavarov
- * 
+ * Copyright (c) 2023 Zavarov.
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
@@ -15,24 +14,25 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package zav.jrc.listener.observable;
+package zav.jrc.listener;
 
-import org.eclipse.jdt.annotation.NonNullByDefault;
-import zav.jrc.client.Client;
-import zav.jrc.listener.observer.SubredditObserver;
+import java.util.EventObject;
 
 /**
- * Abstract base class for all subreddit observers.
+ * Base class for all object events. This event is used by all
+ * {@link GenericListener}.
+ *
+ * @param <T> Then entity type contained by this event.
  */
-@NonNullByDefault
-public abstract class AbstractSubredditObservable {
-  private final Client client;
+public class GenericEvent<T> extends EventObject {
+  private static final long serialVersionUID = 1L;
 
-  public AbstractSubredditObservable(Client client) {
-    this.client = client;
+  public GenericEvent(T source) {
+    super(source);
   }
 
-  public SubredditObserver getObserver(String subreddit) {
-    return new SubredditObserver(client, subreddit);
+  @SuppressWarnings("unchecked")
+  public T getSource() {
+    return (T) super.getSource();
   }
 }

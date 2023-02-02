@@ -37,8 +37,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkEntity;
-import zav.jrc.listener.SubredditListener;
-import zav.jrc.listener.requester.LinkRequester;
+import zav.jrc.listener.GenericListener;
+import zav.jrc.listener.internal.LinkRequester;
 
 /**
  * Checks whether listeners that have been added to an observer are properly
@@ -49,10 +49,10 @@ public class ObserverTest {
   @Mock
   Client client;
   @Mock
-  SubredditListener foo;
+  GenericListener<LinkEntity> foo;
   @Mock
-  SubredditListener bar;
-  Observer<SubredditListener> observer;
+  GenericListener<LinkEntity> bar;
+  Observer<LinkEntity> observer;
   LinkRequester requester;
 
   /**

@@ -17,9 +17,9 @@
 
 package zav.jrc.listener.observer;
 
-import java.util.EventListener;
 import org.eclipse.jdt.annotation.NonNullByDefault;
 import zav.jrc.client.FailedRequestException;
+import zav.jrc.listener.GenericListener;
 
 /**
  * Implements the observer pattern. Notifications to the observer are
@@ -28,12 +28,12 @@ import zav.jrc.client.FailedRequestException;
  * @param <T> The type of listener that are observed by this class.
  */
 @NonNullByDefault
-public interface Observer<T extends EventListener> {
-  boolean addListener(T listener);
+public interface Observer<T> {
+  boolean addListener(GenericListener<T> listener);
 
-  boolean removeListener(T listener);
+  boolean removeListener(GenericListener<T> listener);
 
-  void notifyListener(T listener) throws FailedRequestException;
+  void notifyListener(GenericListener<T> listener) throws FailedRequestException;
 
   void notifyAllListeners() throws FailedRequestException;
 
