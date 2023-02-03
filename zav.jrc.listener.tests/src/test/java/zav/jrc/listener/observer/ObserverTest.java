@@ -38,7 +38,7 @@ import zav.jrc.client.Client;
 import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.listener.GenericListener;
-import zav.jrc.listener.internal.LinkRequester;
+import zav.jrc.listener.paginator.LinkPaginator;
 
 /**
  * Checks whether listeners that have been added to an observer are properly
@@ -53,7 +53,7 @@ public class ObserverTest {
   @Mock
   GenericListener<LinkEntity> bar;
   Observer<LinkEntity> observer;
-  LinkRequester requester;
+  LinkPaginator requester;
 
   /**
    * Creates mocks of the listeners {@link #foo} and {@link #bar}, as well as the
@@ -61,7 +61,7 @@ public class ObserverTest {
    */
   @BeforeEach
   public void setUp() {
-    try (MockedConstruction<LinkRequester> mocked = mockConstruction(LinkRequester.class)) {
+    try (MockedConstruction<LinkPaginator> mocked = mockConstruction(LinkPaginator.class)) {
       observer = new SubredditObserver(client, "subreddit");
       requester = mocked.constructed().get(0);
     }

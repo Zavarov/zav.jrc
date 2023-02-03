@@ -27,7 +27,8 @@ import zav.jrc.client.FailedRequestException;
 import zav.jrc.databind.LinkEntity;
 import zav.jrc.listener.GenericEvent;
 import zav.jrc.listener.GenericListener;
-import zav.jrc.listener.internal.LinkRequester;
+import zav.jrc.listener.paginator.IteratorException;
+import zav.jrc.listener.paginator.LinkPaginator;
 
 /**
  * The observer implementation for subreddits. Calling
@@ -39,10 +40,10 @@ import zav.jrc.listener.internal.LinkRequester;
 public class SubredditObserver extends AbstractObserver<LinkEntity> {
   @Nullable
   private List<LinkEntity> history;
-  private final LinkRequester requester;
+  private final LinkPaginator requester;
 
   public SubredditObserver(Client client, String subreddit) {
-    this.requester = new LinkRequester(client, subreddit);
+    this.requester = new LinkPaginator(client, subreddit);
   }
 
   @Override
@@ -50,7 +51,7 @@ public class SubredditObserver extends AbstractObserver<LinkEntity> {
     try {
       history = requester.next(); // History is computed once for all listeners
       super.notifyAllListeners();
-    } catch (LinkRequester.IteratorException e) {
+    } catch (IteratorException e) {
       throw e.getCause();
     } finally {
       history = null; // Clear cache even in case an exception was thrown.
@@ -68,7 +69,7 @@ public class SubredditObserver extends AbstractObserver<LinkEntity> {
       List<LinkEntity> result = new ArrayList<>(history);
       result.sort(Comparator.comparing(LinkEntity::getId));
       result.stream().map(GenericEvent::new).forEach(listener::notify);
-    } catch (LinkRequester.IteratorException e) {
+    } catch (IteratorException e) {
       throw e.getCause();
     }
   }

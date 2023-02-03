@@ -4,8 +4,8 @@ Bundle-Name: JRC Endpoint Listener
 Bundle-SymbolicName: jrc-listener
 Bundle-Version: 0.6.1.qualifier
 Export-Package: zav.jrc.listener,
- zav.jrc.listener.internal;x-internal:=true,
- zav.jrc.listener.observer
+ zav.jrc.listener.observer,
+ zav.jrc.listener.paginator;x-internal:=true
 Require-Bundle: jrc-client,
  jrc-databind,
  jrc-endpoint,
