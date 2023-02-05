@@ -33,8 +33,8 @@ import zav.jrc.listener.paginator.LinkPaginator;
 /**
  * The observer implementation for subreddits. Calling
  * {@link #notifyListener(GenericListener)} or {@link #notifyAllListeners()}
- * will call the respective {@link GenericListener#notify(LinkEvent)} methods of
- * all registered listeners.
+ * will call the respective {@link GenericListener#notify(GenericEvent)} methods
+ * of all registered listeners.
  */
 @NonNullByDefault
 public class SubredditObserver extends AbstractObserver<LinkEntity> {
