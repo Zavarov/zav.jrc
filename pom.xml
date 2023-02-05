@@ -264,7 +264,7 @@
         
         <profile>
             <id>generate-model</id>
-                <build>
+            <build>
                 <plugins>
                     <plugin>
                         <groupId>org.jsonschema2pojo</groupId>
