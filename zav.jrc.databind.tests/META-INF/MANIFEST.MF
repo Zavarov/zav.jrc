@@ -7,5 +7,5 @@ Fragment-Host: jrc-databind
 Require-Bundle: com.fasterxml.jackson.core.jackson-databind,
  com.fasterxml.jackson.core.jackson-core,
  junit-jupiter-api
-Automatic-Module-Name: jrc-databind-tests
+Automatic-Module-Name: jrc.databind.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-11

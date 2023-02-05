@@ -11,5 +11,5 @@ Require-Bundle: junit-jupiter-api,
  org.mockito.mockito-core,
  org.mockito.junit-jupiter,
  org.objenesis
-Automatic-Module-Name: jrc-listener-tests
+Automatic-Module-Name: jrc.listener.tests
 Bundle-RequiredExecutionEnvironment: JavaSE-11

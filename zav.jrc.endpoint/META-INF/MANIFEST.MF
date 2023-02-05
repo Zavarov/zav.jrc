@@ -5,5 +5,5 @@ Bundle-SymbolicName: jrc-endpoint
 Bundle-Version: 0.6.1.qualifier
 Export-Package: zav.jrc.api.endpoint
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Automatic-Module-Name: jrc-endpoint
+Automatic-Module-Name: jrc.endpoint
 Bundle-ActivationPolicy: lazy

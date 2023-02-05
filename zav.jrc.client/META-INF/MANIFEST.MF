@@ -15,6 +15,6 @@ Require-Bundle: com.fasterxml.jackson.core.jackson-core,
  jrc-endpoint,
  org.slf4j.api
 Bundle-RequiredExecutionEnvironment: JavaSE-11
-Automatic-Module-Name: jrc-client
+Automatic-Module-Name: jrc.client
 Bundle-ActivationPolicy: lazy
 Eclipse-ExtensibleAPI: true
