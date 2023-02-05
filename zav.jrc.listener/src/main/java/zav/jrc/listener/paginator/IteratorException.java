@@ -16,13 +16,14 @@
 
 package zav.jrc.listener.paginator;
 
+import java.util.Iterator;
 import zav.jrc.client.FailedRequestException;
 
 /**
  * This exception is thrown whenever the next sequence of links couldn't be
  * requested from the Reddit API. It wraps the {@link FailedRequestException}
- * around an unchecked exception to satisfy due to the signature of
- * {@link #next()}}.
+ * around an unchecked exception due to the constraints imposed by
+ * {@link Iterator#next()}}.
  */
 public final class IteratorException extends RuntimeException {
   private static final long serialVersionUID = 1L;
