@@ -168,7 +168,7 @@ public class Wiki {
       "wiki", "revisions");
   /**
    * Retrieve a list of revisions of this wiki {@code page}.<br>
-   * This endpoint is a {@link ListingEntity Listing}.
+   * This endpoint is a listing.
    * 
    * <pre>
    * +-----------------------+---------------------------------------------------------------------+
