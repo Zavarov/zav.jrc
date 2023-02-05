@@ -99,44 +99,18 @@
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>target-platform-configuration</artifactId>
                 <version>${tycho-version}</version>
-                <configuration>
-                    <target>
-                        <artifact> 
-                            <groupId>zav.jrc</groupId> 
-                            <artifactId>target-platform</artifactId> 
-                            <version>0.6.1-SNAPSHOT</version>
-                        </artifact> 
-                    </target>
-                </configuration>
             </plugin>
             
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>tycho-packaging-plugin</artifactId>
                 <version>${tycho-version}</version>
-                <configuration>
-                    <additionalFileSets>
-                        <additionalFileSet>
-                            <directory>${project.build.directory}</directory>
-                            <includes>
-                                <include>bom.xml</include>
-                            </includes>
-                        </additionalFileSet>
-                    </additionalFileSets>
-                </configuration>
             </plugin>
             
             <plugin>
                 <groupId>org.eclipse.tycho</groupId>
                 <artifactId>tycho-source-plugin</artifactId>
                 <version>${tycho-version}</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>plugin-source</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
             
             <!-- Clean Dependencies -->
@@ -161,36 +135,10 @@
                 <groupId>org.cyclonedx</groupId>
                 <artifactId>cyclonedx-maven-plugin</artifactId>
                 <inherited>false</inherited>
-                <executions>
-                    <execution>
-                        <phase>generate-resources</phase>
-                        <goals>
-                            <goal>makeAggregateBom</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <includeProvidedScope>false</includeProvidedScope>
-                    <outputFormat>xml</outputFormat>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-clean-plugin</artifactId>
-                <version>3.2.0</version>
-                <configuration>
-                    <excludeDefaultDirectories>true</excludeDefaultDirectories>
-                    <filesets>
-                        <fileset>
-                            <directory>${project.build.directory}</directory>
-                            <followSymlinks>false</followSymlinks>
-                            <useDefaultExcludes>false</useDefaultExcludes>
-                            <excludes>
-                                <exclude>bom.xml</exclude>
-                            </excludes>
-                        </fileset>
-                    </filesets>
-                </configuration>
             </plugin>
             <!-- Static Code Analysis -->
             <plugin>
@@ -218,6 +166,86 @@
                 <artifactId>jacoco-maven-plugin</artifactId>
             </plugin>
         </plugins>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>target-platform-configuration</artifactId>
+                    <configuration>
+                        <target>
+                            <artifact> 
+                                <groupId>zav.jrc</groupId> 
+                                <artifactId>target-platform</artifactId> 
+                                <version>0.6.1-SNAPSHOT</version>
+                            </artifact> 
+                        </target>
+                    </configuration>
+                </plugin>
+                
+                <plugin>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>tycho-packaging-plugin</artifactId>
+                    <configuration>
+                        <additionalFileSets>
+                            <additionalFileSet>
+                                <directory>${project.build.directory}</directory>
+                                <includes>
+                                    <include>bom.xml</include>
+                                </includes>
+                            </additionalFileSet>
+                        </additionalFileSets>
+                    </configuration>
+                </plugin>
+                
+                <plugin>
+                    <groupId>org.eclipse.tycho</groupId>
+                    <artifactId>tycho-source-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <goals>
+                                <goal>plugin-source</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+                
+                <plugin>
+                    <groupId>org.cyclonedx</groupId>
+                    <artifactId>cyclonedx-maven-plugin</artifactId>
+                    <executions>
+                        <execution>
+                            <phase>generate-resources</phase>
+                            <goals>
+                                <goal>makeAggregateBom</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                    <configuration>
+                        <includeProvidedScope>false</includeProvidedScope>
+                        <outputFormat>xml</outputFormat>
+                    </configuration>
+                </plugin>
+                
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-clean-plugin</artifactId>
+                    <version>3.2.0</version>
+                    <configuration>
+                        <excludeDefaultDirectories>true</excludeDefaultDirectories>
+                        <filesets>
+                            <fileset>
+                                <directory>${project.build.directory}</directory>
+                                <followSymlinks>false</followSymlinks>
+                                <useDefaultExcludes>false</useDefaultExcludes>
+                                <excludes>
+                                    <exclude>bom.xml</exclude>
+                                </excludes>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
     </build>
     
     <profiles>
